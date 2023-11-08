@@ -22,8 +22,8 @@
 							<img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('Dashboard/img/faces/6.jpg')}}"><span class="avatar-status profile-status bg-green"></span>
 						</div>
 						<div class="user-info">
-							<h4 class="font-weight-semibold mt-3 mb-0">Admin FPX</h4>
-							<span class="mb-0 text-muted">admin@yahoo.com</span>
+							<h4 class="font-weight-semibold mt-3 mb-0">{{Auth::user()->name}}</h4>
+							<span class="mb-0 text-muted">{{Auth::user()->email}}</span>
 						</div>
 					</div>
 				</div>

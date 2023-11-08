@@ -7,6 +7,9 @@ return [
     'players' => 'Players',
     'add_players'=>'Add Players',
     'veiw_all_players'=>'View Players',
+    'teams' => 'Teams',
+    'total_clubs'=>'Total Clubs',
+    'total_players'=>'Total Players',
 
 
 ];

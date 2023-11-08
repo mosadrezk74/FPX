@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Club;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,12 +13,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.index');
+        $club_count=Club::all();
+        $count=$club_count->count();
+        return view('Dashboard.index'
+
+        ,compact('count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //

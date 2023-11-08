@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Club;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,5 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->share('auth', 'My Awesome Website');
+        $club_count=Club::all();
+        $count=$club_count->count();
+        view()->share('count',$count);
     }
 }
