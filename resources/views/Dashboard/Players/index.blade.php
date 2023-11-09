@@ -35,43 +35,234 @@
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
-
-
                     <a href="{{route('player.create')}}" class="btn btn-primary" role="button"
                        aria-pressed="true">Add Player</a>
-                    <button type="button" class="btn btn-danger"
-                            id="btn_delete_all">Delete</button>
-
                 </div>
+
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="example" class="table key-buttons text-md-nowrap">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th><input name="select_all"  id="example-select-all"  type="checkbox"/></th>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Team</th>
-                                <th>Image</th>
-                                <th>Age</th>
-                                <th>Height</th>
-                                <th>Weight</th>
-                                <th>Country</th>
-                                <th>Actions</th>
+    <div class="col-lg-12 col-md-12">
+        <div class="card" id="basic-alert">
+            <div class="card-body">
+                <div class="text-wrap">
+                    <div class="example">
+                        <div class="panel panel-primary tabs-style-1">
+                            <div class=" tab-menu-heading">
+                                <div class="tabs-menu1">
+                                    <!-- Tabs -->
+                                    <ul class="nav panel-tabs main-nav-line">
+                                        <li class="nav-item"><a href="#tab1" class="nav-link active"
+                                                                data-toggle="tab">حراس المرمي</a></li>
+                                        <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">المدافعين</a>
+                                        </li>
+                                        <li class="nav-item"><a href="#tab3" class="nav-link" data-toggle="tab">لاعبي الوسط</a>
+                                        </li>
+                                        <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">المهاجمين
+                                            </a></li>
+                                        <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">المدرب
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">
+                                <div class="tab-content">
 
-                            </tr>
-                            </thead>
-                            <tbody>
+
+                                    {{-- Start Invices Patient --}}
+
+                                    <div class="tab-pane active" id="tab1">
+
+                                        <div class="table-responsive">
+                                            <table class="table table-hover text-md-nowrap text-center">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>الصورة</th>
+                                                    <th>اسم اللاعب</th>
+                                                    <th>الفريق</th>
+                                                    <th>العمر</th>
+                                                    <th>الجنسية</th>
+                                                    <th>المركز</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    @foreach($players as $player)
+
+                                                        <td>1</td>
+                                                        <td>{{$player->name}}</td>
+                                                        <td>{{$player->Phone}}</td>
+                                                        <td>{{$player->email}}</td>
+                                                        <td>{{$player->Date_Birth}}</td>
+                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
+                                                        <td>{{$player->Blood_Group}}</td>
+                                                    @endforeach
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {{-- End Invices Patient --}}
 
 
-                            </tbody>
-                        </table>
+                                    {{-- Start Invices Patient --}}
+
+                                    <div class="tab-pane" id="tab2">
+
+                                        <div class="table-responsive">
+                                            <table class="table table-hover text-md-nowrap text-center">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>الصورة</th>
+                                                    <th>اسم اللاعب</th>
+                                                    <th>الفريق</th>
+                                                    <th>العمر</th>
+                                                    <th>الجنسية</th>
+                                                    <th>المركز</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    @foreach($players as $player)
+
+                                                        <td>1</td>
+                                                        <td>{{$player->name}}</td>
+                                                        <td>{{$player->Phone}}</td>
+                                                        <td>{{$player->email}}</td>
+                                                        <td>{{$player->Date_Birth}}</td>
+                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
+                                                        <td>{{$player->Blood_Group}}</td>
+                                                    @endforeach
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    {{-- End Invices Patient --}}
+
+
+
+                                    {{-- Start Receipt Patient  --}}
+
+                                    <div class="tab-pane" id="tab3">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover text-md-nowrap text-center">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>الصورة</th>
+                                                    <th>اسم اللاعب</th>
+                                                    <th>الفريق</th>
+                                                    <th>العمر</th>
+                                                    <th>الجنسية</th>
+                                                    <th>المركز</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    @foreach($players as $player)
+
+                                                        <td>1</td>
+                                                        <td>{{$player->name}}</td>
+                                                        <td>{{$player->Phone}}</td>
+                                                        <td>{{$player->email}}</td>
+                                                        <td>{{$player->Date_Birth}}</td>
+                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
+                                                        <td>{{$player->Blood_Group}}</td>
+                                                    @endforeach
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    {{-- End Receipt Patient  --}}
+
+
+                                    {{-- Start payment accounts Patient --}}
+                                    <div class="tab-pane" id="tab4">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover text-md-nowrap text-center">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>الصورة</th>
+                                                    <th>اسم اللاعب</th>
+                                                    <th>الفريق</th>
+                                                    <th>العمر</th>
+                                                    <th>الجنسية</th>
+                                                    <th>المركز</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    @foreach($players as $player)
+
+                                                        <td>1</td>
+                                                        <td>{{$player->name}}</td>
+                                                        <td>{{$player->Phone}}</td>
+                                                        <td>{{$player->email}}</td>
+                                                        <td>{{$player->Date_Birth}}</td>
+                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
+                                                        <td>{{$player->Blood_Group}}</td>
+                                                    @endforeach
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <br>
+
+                                    </div>
+
+                                    {{-- End payment accounts Patient --}}
+
+
+                                    <div class="tab-pane" id="tab5">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover text-md-nowrap text-center">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>الصورة</th>
+                                                    <th>اسم اللاعب</th>
+                                                    <th>الفريق</th>
+                                                    <th>العمر</th>
+                                                    <th>الجنسية</th>
+                                                    <th>المركز</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    @foreach($players as $player)
+
+                                                        <td>1</td>
+                                                        <td>{{$player->name}}</td>
+                                                        <td>{{$player->Phone}}</td>
+                                                        <td>{{$player->email}}</td>
+                                                        <td>{{$player->Date_Birth}}</td>
+                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
+                                                        <td>{{$player->Blood_Group}}</td>
+                                                    @endforeach
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <!-- End Prism Precode -->
                 </div>
             </div>
         </div>
-        <!--/div-->
     </div>
     <!-- /row -->
     </div>

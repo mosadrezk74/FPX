@@ -12,7 +12,9 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.Players.index');
+        $players = \App\Models\Player::with('club')->get();
+        return view('Dashboard.Players.index',compact('players'));
+
     }
 
     /**

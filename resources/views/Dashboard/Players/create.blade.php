@@ -157,9 +157,6 @@
                                                         <option value="ZW">{{ trans('nation.zimbabwe') }}</option>
                                                     </select>
 
-
-
-
                                                     @error('nationality')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
@@ -204,7 +201,7 @@
 
                                                 <div class="col-md-4">
                                                     <label for="shirt" class="control-label mb-1">{{trans('index.player_shirt')}}</label>
-                                                    <select id="shirt" name="shirt" class="form-control" required>
+                                                    <select id="shirt" name="shirt_number" class="form-control" required>
                                                         <option value="">{{trans('index.player_shirt_number')}}</option>
 
                                                     </select>

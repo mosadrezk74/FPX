@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
+            $table->string('name_ar')->index();
+            $table->string('name_en')->index();
+            $table->string('photo');
+             $table->string('nationality')->default('Egypt');
+            $table->integer('age');
+            $table->double('height');
+            $table->string('position');
+            $table->integer('shirt_number') ->nullable();
+
+            $table->unsignedBigInteger('club_id');
+            $table->foreign('club_id')
+                ->references('id')
+                ->on('clubs');
             $table->timestamps();
         });
     }
