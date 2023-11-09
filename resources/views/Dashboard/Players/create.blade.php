@@ -22,9 +22,9 @@
 	<div class="breadcrumb-header justify-content-between">
 		<div class="my-auto">
 			<div class="d-flex">
-				<h4 class="content-title mb-0 my-auto"> {{trans('main-sidebar_trans.doctors')}}</h4><span
+				<h4 class="content-title mb-0 my-auto"> {{trans('Dashboard/main-sidebar_trans.clubs')}}</h4><span
 						class="text-muted mt-1 tx-13 mr-2 mb-0">/
-               {{trans('doctors.add_doctor')}}</span>
+               {{trans('Dashboard/main-sidebar_trans.add_clubs')}}</span>
 			</div>
 		</div>
 	</div>
@@ -39,143 +39,196 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="card">
 				<div class="card-body" >
-					<form action="{{ route('Doctors.store') }}"  method="post" autocomplete="off" enctype="multipart/form-data">
-						{{ csrf_field() }}
-						<div class="pd-30 pd-sm-40 bg-gray-200">
+                    <form action="{{ route('player.store') }}" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        @csrf
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="name_ar" class="control-label mb-1">{{trans('index.player_name_ar')}}</label>
+                                                    <input id="name_ar"  name="name_ar" type="text"
+                                                           class="form-control" aria-required="true"   >
+                                                    @error('name_ar')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="name_en" class="control-label mb-1">{{trans('index.player_name_en')}}</label>
+                                                    <input id="name_en"  name="name_en" type="text"
+                                                           class="form-control" aria-required="true"   >
+                                                    @error('name_en')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
 
-							<div class="row row-xs align-items-center mg-b-20">
-								<div class="col-md-1">
-									<label for="exampleInputEmail1">
-										{{trans('doctors.name1')}}</label>
-								</div>
-								<div class="col-md-11 mg-t-5 mg-md-t-0">
-									<input class="form-control"  name="name" type="text" autofocus>
-								</div>
-							</div>
+                                                <div class="col-md-4">
+                                                    <label for="club" class="control-label mb-1">{{trans('index.club')}}</label>
 
+                                                    <select id="club" name="club_id" class="form-control" required>
+                                                        <option value="">{{trans('index.clubs')}}</option>
 
-
-							<div class="row row-xs align-items-center mg-b-20">
-								<div class="col-md-1">
-									<label for="exampleInputEmail1">
-										{{trans('doctors.name2')}}</label>
-								</div>
-								<div class="col-md-11 mg-t-5 mg-md-t-0">
-									<input class="form-control" name="name2" type="text" >
-								</div>
-							</div>
-
-							<div class="row row-xs align-items-center mg-b-20">
-								<div class="col-md-1">
-									<label for="exampleInputEmail1">
-										{{trans('doctors.email')}}</label>
-								</div>
-								<div class="col-md-11 mg-t-5 mg-md-t-0">
-									<input class="form-control" name="email" type="email">
-								</div>
-							</div>
-
-							<div class="row row-xs align-items-center mg-b-20">
-								<div class="col-md-1">
-									<label for="exampleInputEmail1">
-										{{ trans('doctors.password') }}</label>
-								</div>
-								<div class="col-md-11 mg-t-5 mg-md-t-0">
-									<input class="form-control" name="password" type="password">
-								</div>
-							</div>
-
-							<div class="row row-xs align-items-center mg-b-20">
-								<div class="col-md-1">
-									<label for="exampleInputEmail1">
-										{{ trans('doctors.phone') }}</label>
-								</div>
-								<div class="col-md-11 mg-t-5 mg-md-t-0">
-									<input class="form-control" name="phone" type="tel" maxlength="11">
-
-								</div>
-							</div>
-
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                                                    </select>
+                                                </div>
 
 
-							<div class="row row-xs align-items-center mg-b-20">
-								<div class="col-md-1">
-									<label for="exampleInputEmail1">
-										{{trans('doctors.section')}}</label>
-								</div>
+                                                <div class="col-md-4">
+                                                    <label for="image" class="control-label mb-1">{{trans('index.player_image')}}</label>
+                                                    <input class="form-control" type="file" name="photo">
+                                                    @error('photo')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
 
-								<div class="col-md-11 mg-t-5 mg-md-t-0">
-									<select name="section_id" class="form-control SlectBox">
-										<option value="" selected disabled>------</option>
-										@foreach($sections as $section)
-											<option value="{{$section->id}}">{{$section->name}}</option>
-										@endforeach
-									</select>
-								</div>
+                                                <div class="col-md-4">
+                                                    <label for="nationality" class="control-label mb-1">{{trans('index.player_nation')}}</label>
 
-							</div>
+                                                    <select id="nationality" name="nationality" class="form-control" required>
+                                                        <option value="" >{{trans('index.player_nation')}}</option>
+                                                         <option value="EG">{{ trans('nation.egypt') }}</option>
+                                                        <option value="PL">{{ trans('nation.palestine') }}</option>
+                                                        <option value="DZ">{{ trans('nation.algeria') }}</option>
+                                                        <option value="AO">{{ trans('nation.angola') }}</option>
+                                                        <option value="AR">{{ trans('nation.argentina') }}</option>
+                                                        <option value="BH">{{ trans('nation.bahrain') }}</option>
+                                                        <option value="BJ">{{ trans('nation.benin') }}</option>
+                                                        <option value="BO">{{ trans('nation.bolivia') }}</option>
+                                                        <option value="BW">{{ trans('nation.botswana') }}</option>
+                                                        <option value="BR">{{ trans('nation.brazil') }}</option>
+                                                        <option value="BF">{{ trans('nation.burkina-faso') }}</option>
+                                                        <option value="BI">{{ trans('nation.burundi') }}</option>
+                                                        <option value="CM">{{ trans('nation.cameroon') }}</option>
+                                                        <option value="CV">{{ trans('nation.cape-verde') }}</option>
+                                                        <option value="CF">{{ trans('nation.central-african-republic') }}</option>
+                                                        <option value="TD">{{ trans('nation.chad') }}</option>
+                                                        <option value="KM">{{ trans('nation.comoros') }}</option>
+                                                        <option value="CG">{{ trans('nation.congo') }}</option>
+                                                        <option value="CD">{{ trans('nation.democratic-republic-of-the-congo') }}</option>
+                                                        <option value="CK">{{ trans('nation.cook-islands') }}</option>
+                                                        <option value="CI">{{ trans('nation.cote-divoire') }}</option>
+                                                        <option value="GQ">{{ trans('nation.equatorial-guinea') }}</option>
+                                                        <option value="ET">{{ trans('nation.ethiopia') }}</option>
+                                                        <option value="FR">{{ trans('nation.france') }}</option>
+                                                        <option value="GA">{{ trans('nation.gabon') }}</option>
+                                                        <option value="GM">{{ trans('nation.gambia') }}</option>
+                                                        <option value="DE">{{ trans('nation.germany') }}</option>
+                                                        <option value="GH">{{ trans('nation.ghana') }}</option>
+                                                        <option value="GR">{{ trans('nation.greece') }}</option>
+                                                        <option value="GN">{{ trans('nation.guinea') }}</option>
+                                                        <option value="GW">{{ trans('nation.guinea-bissau') }}</option>
+                                                        <option value="IQ">{{ trans('nation.iraq') }}</option>
+                                                        <option value="IT">{{ trans('nation.italy') }}</option>
+                                                        <option value="JO">{{ trans('nation.jordan') }}</option>
+                                                        <option value="KE">{{ trans('nation.kenya') }}</option>
+                                                        <option value="KW">{{ trans('nation.kuwait') }}</option>
+                                                        <option value="LB">{{ trans('nation.lebanon') }}</option>
+                                                        <option value="LR">{{ trans('nation.liberia') }}</option>
+                                                        <option value="LY">{{ trans('nation.libya') }}</option>
+                                                        <option value="MG">{{ trans('nation.madagascar') }}</option>
+                                                        <option value="MW">{{ trans('nation.malawi') }}</option>
+                                                        <option value="ML">{{ trans('nation.mali') }}</option>
+                                                        <option value="MA">{{ trans('nation.morocco') }}</option>
+                                                        <option value="MZ">{{ trans('nation.mozambique') }}</option>
+                                                        <option value="NA">{{ trans('nation.namibia') }}</option>
+                                                        <option value="NL">{{ trans('nation.netherlands') }}</option>
+                                                        <option value="NE">{{ trans('nation.niger') }}</option>
+                                                        <option value="NG">{{ trans('nation.nigeria') }}</option>
+                                                        <option value="OM">{{ trans('nation.oman') }}</option>
+                                                        <option value="PT">{{ trans('nation.portugal') }}</option>
+                                                        <option value="QA">{{ trans('nation.qatar') }}</option>
+                                                        <option value="RW">{{ trans('nation.rwanda') }}</option>
+                                                        <option value="SA">{{ trans('nation.saudi-arabia') }}</option>
+                                                        <option value="SN">{{ trans('nation.senegal') }}</option>
+                                                        <option value="SO">{{ trans('nation.somalia') }}</option>
+                                                        <option value="ZA">{{ trans('nation.south-africa') }}</option>
+                                                        <option value="ES">{{ trans('nation.spain') }}</option>
+                                                        <option value="SD">{{ trans('nation.sudan') }}</option>
+                                                         <option value="TN">{{ trans('nation.tunisia') }}</option>
+                                                        <option value="UG">{{ trans('nation.uganda') }}</option>
+                                                        <option value="ZM">{{ trans('nation.zambia') }}</option>
+                                                        <option value="ZW">{{ trans('nation.zimbabwe') }}</option>
+                                                    </select>
 
-{{--							###############################################--}}
-
-{{--							<div class="col-md-11 mg-t-5 mg-md-t-0">--}}
-{{--								<select name="country_id" class="form-control SlectBox">--}}
-{{--									<option value="" selected disabled>------</option>--}}
-{{--									<input type="text" id="country-search" class="form-control" placeholder="ابحث عن دولة">--}}
-
-{{--								</select>--}}
-{{--							</div>--}}
-
-
-{{--							<div class="row row-xs align-items-center mg-b-20">--}}
-{{--								<div class="col-md-1">--}}
-{{--									<label>اسم الدولة</label>--}}
-{{--								</div>--}}
-{{--								<div class="col-md-11 mg-t-5 mg-md-t-0">--}}
-{{--									<select name="country_id" class="form-control SlectBox">--}}
-{{--											<option class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off"--}}
-{{--												   autocapitalize="none"--}}
-{{--												   spellcheck="false" role="textbox"--}}
-{{--												   placeholder="Search">--}}
-{{--										</option>--}}
-{{--										@foreach($countries as $country)--}}
-{{--											<option value="{{ $country->alpha2Code }}">{{ $country->name }}</option>--}}
-{{--										@endforeach--}}
-{{--									</select>--}}
-{{--								</div>--}}
-{{--							</div>--}}
 
 
 
-							<div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-1">
-                                        <label for="exampleInputEmail1">
-                                            {{ trans('doctors.appointments') }}</label>
-                                    </div>
-                                    <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                        <input class="form-control" name="appointment" type="text"   >
+                                                    @error('nationality')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label for="age" class="control-label mb-1">{{trans('index.player_age')}}</label>
+                                                    <input id="age"  name="age" type="text"
+                                                           class="form-control" aria-required="true"   >
+                                                    @error('age')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="height" class="control-label mb-1">{{trans('index.player_height')}}</label>
+                                                    <input id="height"  name="height" type="text"
+                                                           class="form-control" aria-required="true"   >
+                                                    @error('height')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="position" class="control-label mb-1">{{trans('index.player_position')}}</label>
+                                                    <select id="position" name="position" class="form-control" required>
+                                                        <option value="">{{trans('index.player_position_SS')}}</option>
+
+                                                     </select>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label for="shirt" class="control-label mb-1">{{trans('index.player_shirt')}}</label>
+                                                    <select id="shirt" name="shirt" class="form-control" required>
+                                                        <option value="">{{trans('index.player_shirt_number')}}</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </div>
+
                                     </div>
                                 </div>
 
-							<div class="row row-xs align-items-center mg-b-20">
-								<div class="col-md-1">
-									<label for="exampleInputEmail1">
-										{{ trans('Doctors.doctor_photo') }}</label>
-								</div>
-								<div class="col-md-11 mg-t-5 mg-md-t-0">
-									<input type="file" accept="image/*" name="photo" onchange="loadFile(event)">
-									<img style="border-radius:50%" width="150px" height="150px" id="output"/>
-								</div>
-							</div>
+                            </div>
 
-							<button type="submit"
-									class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">{{ trans('Doctors.submit') }}</button>
-						</div>
-					</form>
+                        <center>
+
+                        <div>
+                            <button id="payment-button" type="submit" class="btn btn-lg btn-info">
+                                Submit
+                            </button>
+                        </div>
+                        </center>
+
+                    </form>
 				</div>
 			</div>
 		</div>
@@ -189,15 +242,7 @@
 @endsection
 @section('js')
 
-	<script>
-		var loadFile = function(event) {
-			var output = document.getElementById('output');
-			output.src = URL.createObjectURL(event.target.files[0]);
-			output.onload = function() {
-				URL.revokeObjectURL(output.src) // free memory
-			}
-		};
-	</script>
+
 
 	<!--Internal  Form-elements js-->
 	<script src="{{ URL::asset('Dashboard/js/select2.js') }}"></script>
