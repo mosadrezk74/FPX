@@ -73,6 +73,13 @@
 
                                                     <select id="club" name="club_id" class="form-control" required>
                                                         <option value="">{{trans('index.clubs')}}</option>
+                                                        @foreach($clubs as $club)
+                                                            @if (App::getLocale() == 'ar')
+                                                            <option value="{{$club->id}}">{{$club->name_ar}}</option>
+                                                            @else
+                                                                <option value="{{$club->id}}">{{$club->name_en}}</option>
+                                                            @endif
+                                                        @endforeach
 
                                                     </select>
                                                 </div>
@@ -194,7 +201,11 @@
                                                 <div class="col-md-4">
                                                     <label for="position" class="control-label mb-1">{{trans('index.player_position')}}</label>
                                                     <select id="position" name="position" class="form-control" required>
-                                                        <option value="">{{trans('index.player_position_SS')}}</option>
+                                                        <option value="" disabled selected>{{trans('index.player_position_SS')}}</option>
+                                                        <option value="0">{{trans('index.player_position_GK')}}</option>
+                                                        <option value="1">{{trans('index.player_position_DF')}}</option>
+                                                        <option value="2">{{trans('index.player_position_MF')}}</option>
+                                                        <option value="3">{{trans('index.player_position_FW')}}</option>
 
                                                      </select>
                                                 </div>
@@ -203,7 +214,11 @@
                                                     <label for="shirt" class="control-label mb-1">{{trans('index.player_shirt')}}</label>
                                                     <select id="shirt" name="shirt_number" class="form-control" required>
                                                         <option value="">{{trans('index.player_shirt_number')}}</option>
-
+                                                            <?php
+                                                            for ($i = 1; $i <= 99; $i++) {
+                                                                echo "<option value='$i'>$i</option>";
+                                                            }
+                                                            ?>
                                                     </select>
                                                 </div>
                                             </div>

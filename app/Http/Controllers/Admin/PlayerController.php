@@ -22,8 +22,10 @@ class PlayerController extends Controller
      */
     public function create()
     {
+        $players = \App\Models\Player::with('club')->get();
+        $clubs = \App\Models\Club::all();
+        return view('Dashboard.Players.create',compact('players' ,'clubs' ));
 
-        return view('Dashboard.Players.create');
     }
 
     /**
@@ -31,7 +33,30 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $players = new \App\Models\Player();
+        $players->name_ar=$request->name_ar;
+        $players->name_en=$request->name_en;
+        $players->nationality=$request->nationality;
+        $players->age=$request->age;
+        $players->height=$request->height;
+        $players->position=$request->position;
+        $players->shirt_number=$request->shirt_number;
+        $players->club_id=$request->club_id;
+
+        if($request->hasfile('photo'))
+        {
+            $file = $request->file('photo');
+            $extenstion = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extenstion;
+            $file->move('uploads/players/', $filename);
+            $players->photo = $filename;
+        }
+        $players->save();
+        session()->flash('add');
+
+        return redirect()->route('player.create');
+
+
     }
 
     /**

@@ -81,20 +81,28 @@
                                                     <th>الفريق</th>
                                                     <th>العمر</th>
                                                     <th>الجنسية</th>
-                                                    <th>المركز</th>
-                                                </tr>
+                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr>
                                                     @foreach($players as $player)
+                                                        @if($player->position==0)
+                                                            <td>{{$loop->iteration}}</td>
+                                                            <td>
+                                                                <img width="40px" height="40px" alt="image"
+                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
+                                                                />
+                                                            </td>
+                                                            @if(App::getLocale() == 'ar')
+                                                                <td>{{$player->name_ar}}</td>
+                                                            @else
+                                                                <td>{{$player->name_en}}</td>
+                                                            @endif
+                                                            <td>{{$player->club->name_ar}}</td>
+                                                            <td>{{$player->age}}</td>
+                                                            <td>{{$player->nationality}}</td>
 
-                                                        <td>1</td>
-                                                        <td>{{$player->name}}</td>
-                                                        <td>{{$player->Phone}}</td>
-                                                        <td>{{$player->email}}</td>
-                                                        <td>{{$player->Date_Birth}}</td>
-                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
-                                                        <td>{{$player->Blood_Group}}</td>
+                                                        @endif
                                                     @endforeach
 
                                                 </tr>
@@ -119,20 +127,29 @@
                                                     <th>الفريق</th>
                                                     <th>العمر</th>
                                                     <th>الجنسية</th>
-                                                    <th>المركز</th>
+
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr>
                                                     @foreach($players as $player)
+                                                        @if($player->position==1)
+                                                            <td>{{$loop->iteration}}</td>
+                                                            <td>
+                                                                <img width="40px" height="40px" alt="image"
+                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
+                                                                />
+                                                            </td>
+                                                            @if(App::getLocale() == 'ar')
+                                                                <td>{{$player->name_ar}}</td>
+                                                            @else
+                                                                <td>{{$player->name_en}}</td>
+                                                            @endif
+                                                            <td>{{$player->club->name_ar}}</td>
+                                                            <td>{{$player->age}}</td>
+                                                            <td>{{$player->nationality}}</td>
 
-                                                        <td>1</td>
-                                                        <td>{{$player->name}}</td>
-                                                        <td>{{$player->Phone}}</td>
-                                                        <td>{{$player->email}}</td>
-                                                        <td>{{$player->Date_Birth}}</td>
-                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
-                                                        <td>{{$player->Blood_Group}}</td>
+                                                        @endif
                                                     @endforeach
 
                                                 </tr>
@@ -158,20 +175,28 @@
                                                     <th>الفريق</th>
                                                     <th>العمر</th>
                                                     <th>الجنسية</th>
-                                                    <th>المركز</th>
-                                                </tr>
+                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr>
                                                     @foreach($players as $player)
+                                                        @if($player->position==2)
+                                                            <td>{{$loop->iteration}}</td>
+                                                            <td>
+                                                                <img width="40px" height="40px" alt="image"
+                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
+                                                                />
+                                                            </td>
+                                                            @if(App::getLocale() == 'ar')
+                                                                <td>{{$player->name_ar}}</td>
+                                                            @else
+                                                                <td>{{$player->name_en}}</td>
+                                                            @endif
+                                                            <td>{{$player->club->name_ar}}</td>
+                                                            <td>{{$player->age}}</td>
+                                                            <td>{{$player->nationality}}</td>
 
-                                                        <td>1</td>
-                                                        <td>{{$player->name}}</td>
-                                                        <td>{{$player->Phone}}</td>
-                                                        <td>{{$player->email}}</td>
-                                                        <td>{{$player->Date_Birth}}</td>
-                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
-                                                        <td>{{$player->Blood_Group}}</td>
+                                                        @endif
                                                     @endforeach
 
                                                 </tr>
@@ -195,20 +220,28 @@
                                                     <th>الفريق</th>
                                                     <th>العمر</th>
                                                     <th>الجنسية</th>
-                                                    <th>المركز</th>
-                                                </tr>
+                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr>
                                                     @foreach($players as $player)
+                                                        @if($player->position==3)
+                                                            <td>{{$loop->iteration}}</td>
+                                                            <td>
+                                                                <img width="40px" height="40px" alt="image"
+                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
+                                                                />
+                                                            </td>
+                                                            @if(App::getLocale() == 'ar')
+                                                                <td>{{$player->name_ar}}</td>
+                                                            @else
+                                                                <td>{{$player->name_en}}</td>
+                                                            @endif
+                                                            <td>{{$player->club->name_ar}}</td>
+                                                            <td>{{$player->age}}</td>
+                                                            <td>{{$player->nationality}}</td>
 
-                                                        <td>1</td>
-                                                        <td>{{$player->name}}</td>
-                                                        <td>{{$player->Phone}}</td>
-                                                        <td>{{$player->email}}</td>
-                                                        <td>{{$player->Date_Birth}}</td>
-                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
-                                                        <td>{{$player->Blood_Group}}</td>
+                                                        @endif
                                                     @endforeach
 
                                                 </tr>
@@ -234,22 +267,29 @@
                                                     <th>الفريق</th>
                                                     <th>العمر</th>
                                                     <th>الجنسية</th>
-                                                    <th>المركز</th>
-                                                </tr>
+                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr>
                                                     @foreach($players as $player)
+                                                        @if($player->position==1)
+                                                            <td>{{$loop->iteration}}</td>
+                                                            <td>
+                                                                <img width="40px" height="40px" alt="image"
+                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
+                                                                />
+                                                            </td>
+                                                            @if(App::getLocale() == 'ar')
+                                                                <td>{{$player->name_ar}}</td>
+                                                            @else
+                                                                <td>{{$player->name_en}}</td>
+                                                            @endif
+                                                            <td>{{$player->club->name_ar}}</td>
+                                                            <td>{{$player->age}}</td>
+                                                            <td>{{$player->nationality}}</td>
 
-                                                        <td>1</td>
-                                                        <td>{{$player->name}}</td>
-                                                        <td>{{$player->Phone}}</td>
-                                                        <td>{{$player->email}}</td>
-                                                        <td>{{$player->Date_Birth}}</td>
-                                                        <td>{{$player->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
-                                                        <td>{{$player->Blood_Group}}</td>
+                                                        @endif
                                                     @endforeach
-
                                                 </tr>
                                                 </tbody>
                                             </table>

@@ -18,6 +18,10 @@ return [
     'player_shirt_number'=>'Select Shirt Number',
     'club'=>'Club',
     'clubs'=>'Select Club Name',
+    'player_position_GK'=>'GK',
+    'player_position_DF'=>'DF',
+    'player_position_MF'=>'MF',
+    'player_position_FW'=>'FW',
 
 
 

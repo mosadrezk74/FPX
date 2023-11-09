@@ -18,6 +18,10 @@ return [
     'player_shirt_number'=>'ادخل رقم القميص',
     'club'=>'الفريق',
     'clubs'=>'اختر الفريق',
+    'player_position_GK'=>'حارس مرمي',
+    'player_position_DF'=>'مدافع',
+    'player_position_MF'=>'وسط ملعب',
+    'player_position_FW'=>'مهاجم',
 
 
 

@@ -44,7 +44,7 @@ class ClubController extends Controller
         }
         $clubs->date=$request->date;
         $clubs->save();
-
+        session()->flash('add');
         return redirect()->route('club.index');
 
 

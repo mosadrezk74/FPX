@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Club extends Model
 {
-
+    public $table = 'clubs';
 
     public function player()
     {
