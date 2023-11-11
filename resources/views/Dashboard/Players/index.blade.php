@@ -90,7 +90,7 @@
                                                                                 <td>{{$player->name_en}}</td>
                                                                             @endif
                                                                             <td>{{$player->club->name_ar}}</td>
-                                                                            <td>{{$player->age}}</td>
+                                                                            <td>  {{ now()->diffInYears($player->age) }}  </td>
                                                                             <td>{{$player->nationality}}</td>
                                                                         </tr>
                                                                     @endif
@@ -131,7 +131,7 @@
                                                                             @endif
                                                                             <td>
                                                                                 {{$player->club->name_ar}}</td>
-                                                                            <td>{{$player->age}}</td>
+                                                                            <td>  {{ now()->diffInYears($player->age) }}  </td>
                                                                             <td>{{$player->nationality}}</td>
                                                                         </tr>
                                                                     @endif
@@ -170,7 +170,7 @@
                                                                                 <td>{{$player->name_en}}</td>
                                                                             @endif
                                                                             <td>{{$player->club->name_ar}}</td>
-                                                                            <td>{{$player->age}}</td>
+                                                                            <td>  {{ now()->diffInYears($player->age) }}  </td>
                                                                             <td>{{$player->nationality}}</td>
                                                                         </tr>
                                                                     @endif
@@ -209,7 +209,7 @@
                                                                                 <td>{{$player->name_en}}</td>
                                                                             @endif
                                                                             <td>{{$player->club->name_ar}}</td>
-                                                                            <td>{{$player->age}}</td>
+                                                                            <td>  {{ now()->diffInYears($player->age) }}  </td>
                                                                             <td>{{$player->nationality}}</td>
                                                                         </tr>
                                                                     @endif
@@ -249,7 +249,8 @@
                                                                                 <td>{{$player->name_en}}</td>
                                                                             @endif
                                                                             <td>{{$player->club->name_ar}}</td>
-                                                                            <td>{{$player->age}}</td>
+                                                                            <td>  {{ now()->diffInYears($player->age) }}  </td>
+
                                                                             <td>{{$player->nationality}}</td>
                                                                         </tr>
                                                                     @endif

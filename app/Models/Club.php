@@ -13,6 +13,10 @@ class Club extends Model
     {
         return $this->hasMany(Player::class);
     }
+    public function coach()
+    {
+        return $this->hasMany(Coach::class);
+    }
 
     use HasFactory;
 }

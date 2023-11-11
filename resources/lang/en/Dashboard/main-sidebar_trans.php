@@ -10,6 +10,9 @@ return [
     'teams' => 'Teams',
     'total_clubs'=>'Total Clubs',
     'total_players'=>'Total Players',
+    'coach'=>'Coach',
+    'team'=>'Team',
+    'veiw_all_coach'=>'View Coach',
 
 
 ];

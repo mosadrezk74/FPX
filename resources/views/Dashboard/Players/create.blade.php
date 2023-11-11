@@ -173,7 +173,7 @@
 
                                                 <div class="col-md-4">
                                                     <label for="age" class="control-label mb-1">{{trans('index.player_age')}}</label>
-                                                    <input id="age"  name="age" type="text"
+                                                    <input id="age"  name="age" type="date"
                                                            class="form-control" aria-required="true"   >
                                                     @error('age')
                                                     <div class="alert alert-danger" role="alert">
