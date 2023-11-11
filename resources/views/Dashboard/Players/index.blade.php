@@ -31,283 +31,250 @@
     @include('Dashboard.messages_alert')
     <!-- row opened -->
     <div class="row row-sm">
-        <!--div-->
+        <!-- Outer Container -->
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
-                    <a href="{{route('player.create')}}" class="btn btn-primary" role="button"
-                       aria-pressed="true">Add Player</a>
+                    <a href="{{ route('player.create') }}" class="btn btn-primary" role="button" aria-pressed="true">Add Player</a>
                 </div>
 
+
                 <div class="card-body">
-    <div class="col-lg-12 col-md-12">
-        <div class="card" id="basic-alert">
-            <div class="card-body">
-                <div class="text-wrap">
-                    <div class="example">
-                        <div class="panel panel-primary tabs-style-1">
-                            <div class=" tab-menu-heading">
-                                <div class="tabs-menu1">
-                                    <!-- Tabs -->
-                                    <ul class="nav panel-tabs main-nav-line">
-                                        <li class="nav-item"><a href="#tab1" class="nav-link active"
-                                                                data-toggle="tab">حراس المرمي</a></li>
-                                        <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">المدافعين</a>
-                                        </li>
-                                        <li class="nav-item"><a href="#tab3" class="nav-link" data-toggle="tab">لاعبي الوسط</a>
-                                        </li>
-                                        <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">المهاجمين
-                                            </a></li>
-                                        <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">المدرب
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">
-                                <div class="tab-content">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card" id="basic-alert">
+                            <div class="card-body">
+                                <div class="text-wrap">
+                                    <div class="example">
+                                        <div class="panel panel-primary tabs-style-1">
+                                            <div class="tab-menu-heading">
+                                                <div class="tabs-menu1">
+                                                    <!-- Tabs -->
+                                                    <ul class="nav panel-tabs main-nav-line">
+                                                        <li class="nav-item"><a href="#tab1" class="nav-link active" data-toggle="tab">حراس المرمي</a></li>
+                                                        <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">المدافعين</a></li>
+                                                        <li class="nav-item"><a href="#tab3" class="nav-link" data-toggle="tab">لاعبي الوسط</a></li>
+                                                        <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">المهاجمين</a></li>
+                                                        <li class="nav-item"><a href="#tab5" class="nav-link" data-toggle="tab">المدرب</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
 
+                                            <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">
+                                                <div class="tab-content">
+                                                    {{-- Start Goalkeeper --}}
 
-                                    {{-- Start Invices Patient --}}
+                                                    <div class="tab-pane active" id="tab1">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover text-md-nowrap text-center">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>الصورة</th>
+                                                                    <th>اسم اللاعب</th>
+                                                                    <th>الفريق</th>
+                                                                    <th>العمر</th>
+                                                                    <th>الجنسية</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($players as $player)
+                                                                    @if($player->position==0)
+                                                                        <tr>
+                                                                            <td>{{$player->shirt_number}}</td>
+                                                                            <td>
+                                                                                <img width="20px" height="30px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                                            </td>
+                                                                            @if(App::getLocale() == 'ar')
+                                                                                <td>{{$player->name_ar}}</td>
+                                                                            @else
+                                                                                <td>{{$player->name_en}}</td>
+                                                                            @endif
+                                                                            <td>{{$player->club->name_ar}}</td>
+                                                                            <td>{{$player->age}}</td>
+                                                                            <td>{{$player->nationality}}</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
 
-                                    <div class="tab-pane active" id="tab1">
+                                                    {{-- End Goalkeeper --}}
 
-                                        <div class="table-responsive">
-                                            <table class="table table-hover text-md-nowrap text-center">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>الصورة</th>
-                                                    <th>اسم اللاعب</th>
-                                                    <th>الفريق</th>
-                                                    <th>العمر</th>
-                                                    <th>الجنسية</th>
-                                                 </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    @foreach($players as $player)
-                                                        @if($player->position==0)
-                                                            <td>{{$loop->iteration}}</td>
-                                                            <td>
-                                                                <img width="40px" height="40px" alt="image"
-                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
-                                                                />
-                                                            </td>
-                                                            @if(App::getLocale() == 'ar')
-                                                                <td>{{$player->name_ar}}</td>
-                                                            @else
-                                                                <td>{{$player->name_en}}</td>
-                                                            @endif
-                                                            <td>{{$player->club->name_ar}}</td>
-                                                            <td>{{$player->age}}</td>
-                                                            <td>{{$player->nationality}}</td>
+                                                    {{-- Start Defender --}}
+                                                    <div class="tab-pane" id="tab2">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover text-md-nowrap text-center">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>الصورة</th>
+                                                                    <th>اسم اللاعب</th>
+                                                                    <th>الفريق</th>
+                                                                    <th>العمر</th>
+                                                                    <th>الجنسية</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($players as $player)
+                                                                    @if($player->position==1)
+                                                                        <tr>
+                                                                            <td>{{$player->shirt_number}}</td>
+                                                                            <td>
+                                                                                <img width="20px" height="30px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                                            </td>
+                                                                            @if(App::getLocale() == 'ar')
+                                                                                <td>{{$player->name_ar}}</td>
+                                                                            @else
+                                                                                <td>{{$player->name_en}}</td>
+                                                                            @endif
+                                                                            <td>
+                                                                                {{$player->club->name_ar}}</td>
+                                                                            <td>{{$player->age}}</td>
+                                                                            <td>{{$player->nationality}}</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    {{-- End Defender --}}
 
-                                                        @endif
-                                                    @endforeach
+                                                    {{-- Start Midfielder --}}
+                                                    <div class="tab-pane" id="tab3">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover text-md-nowrap text-center">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>الصورة</th>
+                                                                    <th>اسم اللاعب</th>
+                                                                    <th>الفريق</th>
+                                                                    <th>العمر</th>
+                                                                    <th>الجنسية</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($players as $player)
+                                                                    @if($player->position==2)
+                                                                        <tr>
+                                                                            <td>{{$player->shirt_number}}</td>
+                                                                            <td>
+                                                                                <img width="20px" height="30px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                                            </td>
+                                                                            @if(App::getLocale() == 'ar')
+                                                                                <td>{{$player->name_ar}}</td>
+                                                                            @else
+                                                                                <td>{{$player->name_en}}</td>
+                                                                            @endif
+                                                                            <td>{{$player->club->name_ar}}</td>
+                                                                            <td>{{$player->age}}</td>
+                                                                            <td>{{$player->nationality}}</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    {{-- End Midfielder --}}
 
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                                    {{-- Start Striker --}}
+                                                    <div class="tab-pane" id="tab4">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover text-md-nowrap text-center">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>الصورة</th>
+                                                                    <th>اسم اللاعب</th>
+                                                                    <th>الفريق</th>
+                                                                    <th>العمر</th>
+                                                                    <th>الجنسية</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($players as $player)
+                                                                    @if($player->position==3)
+                                                                        <tr>
+                                                                            <td>{{$player->shirt_number}}</td>
+                                                                            <td>
+                                                                                <img width="20px" height="30px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                                            </td>
+                                                                            @if(App::getLocale() == 'ar')
+                                                                                <td>{{$player->name_ar}}</td>
+                                                                            @else
+                                                                                <td>{{$player->name_en}}</td>
+                                                                            @endif
+                                                                            <td>{{$player->club->name_ar}}</td>
+                                                                            <td>{{$player->age}}</td>
+                                                                            <td>{{$player->nationality}}</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+                                                    {{-- End Striker --}}
+
+                                                    {{-- Additional Tab if needed --}}
+                                                    <div class="tab-pane" id="tab5">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover text-md-nowrap text-center">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>الصورة</th>
+                                                                    <th>اسم اللاعب</th>
+                                                                    <th>الفريق</th>
+                                                                    <th>العمر</th>
+                                                                    <th>الجنسية</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($players as $player)
+                                                                    @if($player->position==4)
+                                                                        <tr>
+                                                                            <td>{{$player->shirt_number}}</td>
+                                                                            <td>
+                                                                                <img width="20px" height="30px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                                            </td>
+                                                                            @if(App::getLocale() == 'ar')
+                                                                                <td>{{$player->name_ar}}</td>
+                                                                            @else
+                                                                                <td>{{$player->name_en}}</td>
+                                                                            @endif
+                                                                            <td>{{$player->club->name_ar}}</td>
+                                                                            <td>{{$player->age}}</td>
+                                                                            <td>{{$player->nationality}}</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    {{-- End Additional Tab --}}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    {{-- End Invices Patient --}}
-
-
-                                    {{-- Start Invices Patient --}}
-
-                                    <div class="tab-pane" id="tab2">
-
-                                        <div class="table-responsive">
-                                            <table class="table table-hover text-md-nowrap text-center">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>الصورة</th>
-                                                    <th>اسم اللاعب</th>
-                                                    <th>الفريق</th>
-                                                    <th>العمر</th>
-                                                    <th>الجنسية</th>
-
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    @foreach($players as $player)
-                                                        @if($player->position==1)
-                                                            <td>{{$loop->iteration}}</td>
-                                                            <td>
-                                                                <img width="40px" height="40px" alt="image"
-                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
-                                                                />
-                                                            </td>
-                                                            @if(App::getLocale() == 'ar')
-                                                                <td>{{$player->name_ar}}</td>
-                                                            @else
-                                                                <td>{{$player->name_en}}</td>
-                                                            @endif
-                                                            <td>{{$player->club->name_ar}}</td>
-                                                            <td>{{$player->age}}</td>
-                                                            <td>{{$player->nationality}}</td>
-
-                                                        @endif
-                                                    @endforeach
-
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                    {{-- End Invices Patient --}}
-
-
-
-                                    {{-- Start Receipt Patient  --}}
-
-                                    <div class="tab-pane" id="tab3">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover text-md-nowrap text-center">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>الصورة</th>
-                                                    <th>اسم اللاعب</th>
-                                                    <th>الفريق</th>
-                                                    <th>العمر</th>
-                                                    <th>الجنسية</th>
-                                                 </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    @foreach($players as $player)
-                                                        @if($player->position==2)
-                                                            <td>{{$loop->iteration}}</td>
-                                                            <td>
-                                                                <img width="40px" height="40px" alt="image"
-                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
-                                                                />
-                                                            </td>
-                                                            @if(App::getLocale() == 'ar')
-                                                                <td>{{$player->name_ar}}</td>
-                                                            @else
-                                                                <td>{{$player->name_en}}</td>
-                                                            @endif
-                                                            <td>{{$player->club->name_ar}}</td>
-                                                            <td>{{$player->age}}</td>
-                                                            <td>{{$player->nationality}}</td>
-
-                                                        @endif
-                                                    @endforeach
-
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                    {{-- End Receipt Patient  --}}
-
-
-                                    {{-- Start payment accounts Patient --}}
-                                    <div class="tab-pane" id="tab4">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover text-md-nowrap text-center">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>الصورة</th>
-                                                    <th>اسم اللاعب</th>
-                                                    <th>الفريق</th>
-                                                    <th>العمر</th>
-                                                    <th>الجنسية</th>
-                                                 </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    @foreach($players as $player)
-                                                        @if($player->position==3)
-                                                            <td>{{$loop->iteration}}</td>
-                                                            <td>
-                                                                <img width="40px" height="40px" alt="image"
-                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
-                                                                />
-                                                            </td>
-                                                            @if(App::getLocale() == 'ar')
-                                                                <td>{{$player->name_ar}}</td>
-                                                            @else
-                                                                <td>{{$player->name_en}}</td>
-                                                            @endif
-                                                            <td>{{$player->club->name_ar}}</td>
-                                                            <td>{{$player->age}}</td>
-                                                            <td>{{$player->nationality}}</td>
-
-                                                        @endif
-                                                    @endforeach
-
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <br>
-
-                                    </div>
-
-                                    {{-- End payment accounts Patient --}}
-
-
-                                    <div class="tab-pane" id="tab5">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover text-md-nowrap text-center">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>الصورة</th>
-                                                    <th>اسم اللاعب</th>
-                                                    <th>الفريق</th>
-                                                    <th>العمر</th>
-                                                    <th>الجنسية</th>
-                                                 </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    @foreach($players as $player)
-                                                        @if($player->position==1)
-                                                            <td>{{$loop->iteration}}</td>
-                                                            <td>
-                                                                <img width="40px" height="40px" alt="image"
-                                                                     src="{{ asset('uploads/players/'. $player->photo) }}"
-                                                                />
-                                                            </td>
-                                                            @if(App::getLocale() == 'ar')
-                                                                <td>{{$player->name_ar}}</td>
-                                                            @else
-                                                                <td>{{$player->name_en}}</td>
-                                                            @endif
-                                                            <td>{{$player->club->name_ar}}</td>
-                                                            <td>{{$player->age}}</td>
-                                                            <td>{{$player->nationality}}</td>
-
-                                                        @endif
-                                                    @endforeach
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <!-- End Prism Precode -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- End Prism Precode -->
+                    <!-- /row -->
                 </div>
+                <!-- Container closed -->
             </div>
         </div>
-    </div>
-    <!-- /row -->
-    </div>
-    <!-- Container closed -->
-    </div>
+    </div> <!-- Closing tag for the outermost div -->
+
 
 
     <!-- main-content closed -->
@@ -337,33 +304,9 @@
     <script src="{{URL::asset('dashboard/plugins/notify/js/notifIt.js')}}"></script>
     <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
 
-    <script>
-        $(function() {
-            jQuery("[name=select_all]").click(function(source) {
-                checkboxes = jQuery("[name=delete_select]");
-                for(var i in checkboxes){
-                    checkboxes[i].checked = source.target.checked;
-                }
-            });
-        })
-    </script>
 
 
-    <script type="text/javascript">
-        $(function () {
-            $("#btn_delete_all").click(function () {
-                var selected = [];
-                $("#example input[name=delete_select]:checked").each(function () {
-                    selected.push(this.value);
-                });
 
-                if (selected.length > 0) {
-                    $('#delete_select').modal('show')
-                    $('input[id="delete_select_id"]').val(selected);
-                }
-            });
-        });
-    </script>
 
 
 

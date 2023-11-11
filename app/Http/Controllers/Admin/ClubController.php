@@ -58,9 +58,9 @@ class ClubController extends Controller
      */
     public function show(string $id)
     {
-        $clubs=Club::findorFail($id);
+        $club=Club::findorFail($id);
 
-        return view('Dashboard.Clubs.show' , compact('clubs') );
+        return view('Dashboard.Clubs.show', ['club' => $club]);
 
     }
 

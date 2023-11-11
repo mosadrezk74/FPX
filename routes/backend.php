@@ -37,6 +37,7 @@ Route::group(
 
   Route::resource('dashboard/admin/player', PlayerController::class);
   Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
+    Route::get('/get-players', [PlayerController::class, 'getPlayersByClub']);
 
     //////////////////////////  End Player Route    ///////////////////////////////////////
 

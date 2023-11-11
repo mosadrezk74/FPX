@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Player;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -13,7 +14,8 @@ class PlayerController extends Controller
     public function index()
     {
         $players = \App\Models\Player::with('club')->get();
-        return view('Dashboard.Players.index',compact('players'));
+        $clubs = \App\Models\Club::all();
+        return view('Dashboard.Players.index',compact('players' ,'clubs' ));
 
     }
 
@@ -59,12 +61,14 @@ class PlayerController extends Controller
 
     }
 
+
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+         return 'dDd';
     }
 
     /**
