@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ClubLoginController;
+use App\Http\Controllers\Auth\CoachLoginController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\PlayerLoginController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
@@ -30,11 +33,44 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->midd
 
 //################################## Route Admin ##############################################
 
-Route::get('/login/admin', [AdminController::class, 'create'])->middleware('guest')->name('login.admin');
+Route::get('/login/admin', [AdminController::class, 'create'])->middleware('guest')->name('login');
 
 Route::post('/login/admin', [AdminController::class, 'store'])->middleware('guest')->name('login.admin');
 
 Route::post('/logout/admin', [AdminController::class, 'destroy'])->middleware('auth:admin')->name('logout.admin');
+
+
+//#############################################################################################
+
+//################################## Route Club ##############################################
+
+Route::get('/login/club', [ClubLoginController::class, 'create'])->middleware('guest');
+
+Route::post('/login/club', [ClubLoginController::class, 'store'])->middleware('guest')->name('login.club');
+
+Route::post('/logout/club', [ClubLoginController::class, 'destroy'])->middleware('auth:admin')->name('logout.club');
+
+
+//#############################################################################################
+
+//################################## Route Coach ##############################################
+
+Route::get('/login/coach', [CoachLoginController::class, 'create'])->middleware('guest');
+
+Route::post('/login/coach', [CoachLoginController::class, 'store'])->middleware('guest')->name('login.coach');
+
+Route::post('/logout/coach', [CoachLoginController::class, 'destroy'])->middleware('auth:coach')->name('logout.coach');
+
+
+//#############################################################################################
+
+//################################## Route Player ##############################################
+
+Route::get('/login/player', [PlayerLoginController::class, 'create'])->middleware('guest');
+
+Route::post('/login/player', [PlayerLoginController::class, 'store'])->middleware('guest')->name('login.player');
+
+Route::post('/logout/player', [PlayerLoginController::class, 'destroy'])->middleware('auth:player')->name('logout.player');
 
 
 //#############################################################################################

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name_en')->index();
             $table->string('photo');
              $table->string('nationality')->default('Egypt');
-            $table->string('age');
+            $table->string('age')->default(21);
             $table->double('height');
             $table->string('position');
             $table->integer('shirt_number') ->nullable();
@@ -26,6 +26,11 @@ return new class extends Migration
             $table->foreign('club_id')
                 ->references('id')
                 ->on('clubs');
+
+
+            $table->string('email')->unique();
+             $table->string('password');
+
             $table->timestamps();
         });
     }

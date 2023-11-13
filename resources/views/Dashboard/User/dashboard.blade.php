@@ -14,8 +14,8 @@
 
             </div>
         </div>
-
     </div>
+
     <!-- /breadcrumb -->
 @endsection
 @section('content')

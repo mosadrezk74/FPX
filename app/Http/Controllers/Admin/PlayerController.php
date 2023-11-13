@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Player;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PlayerController extends Controller
 {
@@ -47,6 +48,9 @@ class PlayerController extends Controller
         $players->position=$request->position;
         $players->shirt_number=$request->shirt_number;
         $players->club_id=$request->club_id;
+        $players->email = $request->email;
+        $players->password = Hash::make($request->password);
+
 
         if($request->hasfile('photo'))
         {

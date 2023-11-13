@@ -23,6 +23,12 @@ return new class extends Migration
             $table->foreign('club_id')
                 ->references('id')
                 ->on('clubs');
+
+
+
+            $table->string('email')->unique();
+             $table->string('password');
+
             $table->timestamps();
         });
     }

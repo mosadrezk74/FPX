@@ -23,6 +23,18 @@ class RedirectIfAuthenticated
             return redirect(RouteServiceProvider::ADMIN);
         }
 
+        if (auth('player')->check()){
+            return redirect(RouteServiceProvider::PLAYER);
+        }
+
+        if (auth('coach')->check()){
+            return redirect(RouteServiceProvider::COACH);
+        }
+
+        if (auth('club')->check()){
+            return redirect(RouteServiceProvider::CLUB);
+        }
+
 
         return $next($request);
     }

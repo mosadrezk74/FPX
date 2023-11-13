@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClubController extends Controller
 {
@@ -34,6 +35,8 @@ class ClubController extends Controller
         $clubs=new Club();
         $clubs->name_ar=$request->name_ar;
         $clubs->name_en=$request->name_en;
+        $clubs->email = $request->email;
+        $clubs->password = Hash::make($request->password);
         if($request->hasfile('image'))
         {
             $file = $request->file('image');
@@ -83,10 +86,10 @@ class ClubController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    function destroy($id)
+    function destroy($club)
     {
-        Club::destroy($id);
-
-        return back();
+        $to_delete = Club::findorfail($club);
+        $to_delete ->delete();
+        return redirect() -> route('club.index');
     }
 }

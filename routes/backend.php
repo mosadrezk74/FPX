@@ -17,29 +17,43 @@ Route::group(
         ->middleware(['auth', 'verified'])
         ->name('dashboard');
 
-
+    //-----------------------------------------------------------------------
     Route::get('/dashboard/user', function () {
         return view('Dashboard.User.dashboard');
     })->middleware(['auth'])->name('dashboard.user');
-
+    //-----------------------------------------------------------------------
+    //-----------------------------------------------------------------------
     Route::get('/dashboard/admin', function () {
         return view('Dashboard.Admin.dashboard');
     })->middleware(['auth:admin'])->name('dashboard.admin');
+    //-----------------------------------------------------------------------
+    //-----------------------------------------------------------------------
+    Route::get('/dashboard/caoch', function () {
+        return view('Dashboard.Coach_Dashboard.dashboard');
+    })->middleware(['auth:coach'])->name('dashboard.caoch');
+    //-----------------------------------------------------------------------
+    //-----------------------------------------------------------------------
+    Route::get('/dashboard/player', function () {
+        return view('Dashboard.Player_Dashboard.dashboard');
+    })->middleware(['auth:player'])->name('dashboard.player');
+    //-----------------------------------------------------------------------
+    //-----------------------------------------------------------------------
+    Route::get('/dashboard/club', function () {
+        return view('Dashboard.Club_Dashboard.dashboard');
+    })->middleware(['auth:club'])->name('dashboard.club');
+    //-----------------------------------------------------------------------
+    //-----------------------------------------------------------------------
 
-    //////////////////////////////  Start Player Route         ///////////////////////////////////////
-//    Route::get('/dashboard/admin/player', [PlayerController::class, 'index'])->name('player.index');
-//    Route::get('/dashboard/admin/player/create', [PlayerController::class, 'create'])->name('player.create');
-//    Route::post('/dashboard/admin/player/store', [PlayerController::class, 'store'])->name('player.store');
-//    Route::get('/dashboard/admin/player/{id}', [PlayerController::class, 'show'])->name('player.show');
-//    Route::get('/dashboard/admin/player/{id}/edit', [PlayerController::class, 'edit'])->name('player.edit');
-//    Route::put('/dashboard/admin/player/{id}', [PlayerController::class, 'update'])->name('player.update');
-//    Route::delete('/dashboard/admin/player/{id}', [PlayerController::class, 'destroy'])->name('player.destroy');
 
+    //--------------------Start Admin Routes---------------------------------------------------
   Route::resource('dashboard/admin/player', PlayerController::class);
   Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
   Route::resource('dashboard/admin/coach', \App\Http\Controllers\Admin\CaochController::class);
+    //--------------------End Admin Routes------------------------------------------------------
 
-    //////////////////////////  End Player Route    ///////////////////////////////////////
+
+
+
 
 });
 

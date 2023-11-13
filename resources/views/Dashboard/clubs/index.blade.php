@@ -162,6 +162,16 @@
                                     <input type="text" name="date" class="form-control">
                                 </div>
 
+                                <div class="modal-body">
+                                    <label for="exampleInputPassword1">{{trans('clubs.email')}}</label>
+                                    <input type="email" name="email" class="form-control">
+                                </div>
+
+                                <div class="modal-body">
+                                    <label for="exampleInputPassword1">{{trans('clubs.password')}}</label>
+                                    <input type="password" name="password" class="form-control">
+                                </div>
+
 
 
                                 <div class="modal-footer">

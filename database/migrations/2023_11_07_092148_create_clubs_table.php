@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('name_en')->index()->unique();
             $table->string('name_ar')->index()->unique();
             $table->string('image')->nullable();
-            $table->integer('date')->nullable();
+            $table->integer('date')->nullable()->default(100);
+
+            $table->string('email')->unique();
+             $table->string('password');
 
 
             $table->timestamps();
