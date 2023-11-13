@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\ClubRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
@@ -20,18 +21,16 @@ class ClubLoginController extends Controller
 
     public function store(ClubRequest $request): RedirectResponse
     {
-        if ($request->authenticate()) {
-            $request->session()->regenerate();
+        $request->authenticate();
 
-            return redirect()->intended(RouteServiceProvider::CLUB);
-        } else {
-            // Return to the login page
-            return back()->with('MMMM');
-        }
+        $request->session()->regenerate();
 
+        return redirect()->intended(RouteServiceProvider::CLUB);
     }
 
-
+    /**
+     * Destroy an authenticated session.
+     */
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('club')->logout();

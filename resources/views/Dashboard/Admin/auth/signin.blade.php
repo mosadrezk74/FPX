@@ -11,7 +11,7 @@
 				<div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
 					<div class="row wd-100p mx-auto text-center">
 						<div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-{{--							<img src="{{URL::asset('Dashboard/img/media/login.png')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">--}}
+							<img src="{{URL::asset('Dashboard/img/media/admin.png')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
 						</div>
 					</div>
 				</div>
@@ -26,7 +26,7 @@
 										<div class="mb-5 d-flex"> <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28"> </h1></div>
 										<div class="card-sigin">
 											<div class="main-signup-header">
-												<h2>Welcome back again !</h2>
+												<h2>Welcome Back Admin  🤨   !</h2>
 
                                                 <div class="form-group">
                                                     <label for="exampleFormControlSelect1">Admin Dashboard</label>

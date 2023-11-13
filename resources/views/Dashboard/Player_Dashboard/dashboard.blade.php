@@ -9,10 +9,13 @@
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="left-content">
-						<div>
-						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Welcome {{Auth::user()->name}} </h2>
-
-						</div>
+                        <div>
+                            @if(App::getlocale() == 'ar')
+                                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1"> مرحبا  {{Auth::user()->name_ar}} </h2>
+                            @else
+                                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Welcome {{Auth::user()->name_en}} </h2>
+                            @endif
+                        </div>
 					</div>
 
 				</div>

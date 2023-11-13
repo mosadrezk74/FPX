@@ -16,12 +16,49 @@
 			<img src="{{URL::asset('Dashboard/img/loader.svg')}}" class="loader-img" alt="Loader">
 		</div>
 		<!-- /Loader -->
-		@include('Dashboard.layouts.main-sidebar')
-		<!-- main-content -->
+        @if (auth('admin')->user())
+            {{--//---------------------------------}}
+            @include('Dashboard.layouts.main-sidebar.main-sidebar')
+            {{--//---------------------------------}}
+        @elseif(auth('coach')->user())
+            {{--//---------------------------------}}
+            @include('Dashboard.layouts.main-sidebar.main-sidebar-coach')
+            {{--//---------------------------------}}
+        @elseif(auth('club')->user())
+            {{--//---------------------------------}}
+            @include('Dashboard.layouts.main-sidebar.main-sidebar-club')
+            {{--//---------------------------------}}
+        @elseif(auth('player')->user())
+            {{--//---------------------------------}}
+            @include('Dashboard.layouts.main-sidebar.main-sidebar-player')
+            {{--//---------------------------------}}
+        @endif
+
+
+        <!-- main-content -->
 
 		<div class="main-content app-content">
-			@include('Dashboard.layouts.main-header')
-
+            {{--//---------------------------------}}
+            {{--//---------------------------------}}
+            @if(auth('admin')->user())
+                {{--//---------------------------------}}
+                @include('Dashboard.layouts.main-header.main-header')
+                {{--//---------------------------------}}
+            @elseif(auth('coach')->user())
+                {{--//---------------------------------}}
+            @include('Dashboard.layouts.main-header.main-header-coach')
+                {{--//---------------------------------}}
+            @elseif(auth('club')->user())
+                {{--//---------------------------------}}
+            @include('Dashboard.layouts.main-header.main-header-club')
+                {{--//---------------------------------}}
+            @elseif(auth('player')->user())
+                {{--//---------------------------------}}
+            @include('Dashboard.layouts.main-header.main-header-player')
+                {{--//---------------------------------}}
+            @endif
+            {{--//---------------------------------}}
+            {{--//---------------------------------}}
 			<!-- container -->
 			<div class="container-fluid">
 				@yield('page-header')

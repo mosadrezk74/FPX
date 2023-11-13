@@ -10,24 +10,34 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Club extends Authenticatable
 {
+    use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table ='clubs';
+
+     public $guard = 'club';
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+       'name_ar',
+       'name_en',
+       'email',
+       'password',
+        'image',
+        'date'
     ];
-
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+
     ];
+
 
 
 

@@ -31,15 +31,15 @@ return [
         ],
         'club' => [
             'driver' => 'session',
-            'provider' => 'admins'
+            'provider' => 'clubs'
         ],
         'player' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'players',
       ],
         'coach' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'coaches',
         ],
     ],
 

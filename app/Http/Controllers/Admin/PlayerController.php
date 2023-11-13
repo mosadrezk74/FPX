@@ -49,7 +49,7 @@ class PlayerController extends Controller
         $players->shirt_number=$request->shirt_number;
         $players->club_id=$request->club_id;
         $players->email = $request->email;
-        $players->password = Hash::make($request->password);
+        $players->password = password_hash($request->password, PASSWORD_BCRYPT);
 
 
         if($request->hasfile('photo'))

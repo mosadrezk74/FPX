@@ -36,7 +36,7 @@ class ClubController extends Controller
         $clubs->name_ar=$request->name_ar;
         $clubs->name_en=$request->name_en;
         $clubs->email = $request->email;
-        $clubs->password = Hash::make($request->password);
+        $clubs->password = password_hash($request->password, PASSWORD_BCRYPT);
         if($request->hasfile('image'))
         {
             $file = $request->file('image');

@@ -17,17 +17,17 @@ return new class extends Migration
             $table->string('name_en')->index();
             $table->string('photo');
             $table->string('nationality')->default('Egypt');
-            $table->date('age');
+            $table->date('age')->default('1999-01-01');
 
             $table->unsignedBigInteger('club_id');
             $table->foreign('club_id')
                 ->references('id')
-                ->on('clubs');
+                ->on('clubs')
 
-
+                ->onDelete('cascade');
 
             $table->string('email')->unique();
-             $table->string('password');
+            $table->string('password');
 
             $table->timestamps();
         });

@@ -109,11 +109,21 @@
                             <form method="POST" action="{{ route('logout.user') }}">
                                 @elseif(Auth('admin')->check())
                                     <form method="POST" action="{{ route('logout.admin') }}">
+
+                                        @elseif(Auth('club')->check())
+                                            <form method="POST" action="{{ route('logout.club') }}">
+
+                                                @elseif(Auth('player')->check())
+                                                    <form method="POST" action="{{ route('logout.player') }}">
+
+                                                        @elseif(Auth('coach')->check())
+                                                            <form method="POST" action="{{ route('logout.coach') }}">
+
                                                 @endif
                                                 @csrf
                                         <a class="dropdown-item" href="#"
                                            onclick="event.preventDefault();
-                                        this.closest('form').submit();"><i class="bx bx-log-out"></i>تسجيل الخروج</a>
+                                        this.closest('form').submit();"><i class="bx bx-log-out"></i>Log Out</a>
                                     </form>
 
                     </div>

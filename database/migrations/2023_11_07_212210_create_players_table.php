@@ -25,7 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger('club_id');
             $table->foreign('club_id')
                 ->references('id')
-                ->on('clubs');
+                ->on('clubs')->onDelete('cascade');
 
 
             $table->string('email')->unique();

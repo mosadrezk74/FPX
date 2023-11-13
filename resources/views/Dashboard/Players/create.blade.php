@@ -96,6 +96,27 @@
                                                 </div>
 
                                                 <div class="col-md-4">
+                                                    <label for="password" class="control-label mb-1">{{trans('index.email')}}</label>
+                                                    <input class="form-control" type="email" name="email">
+                                                    @error('email')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+
+
+                                                <div class="col-md-4">
+                                                    <label for="password" class="control-label mb-1">{{trans('index.password')}}</label>
+                                                    <input class="form-control" type="password" name="password">
+                                                    @error('photo')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="col-md-4">
                                                     <label for="nationality" class="control-label mb-1">{{trans('index.player_nation')}}</label>
 
                                                     <select id="nationality" name="nationality" class="form-control" required>
