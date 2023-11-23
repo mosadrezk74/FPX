@@ -59,13 +59,12 @@
 									<div class="card-body">
 										<div class="counter-status d-flex md-mb-0">
 											<div class="counter-icon bg-primary-transparent">
-												<i class="icon-layers text-primary"></i>
+												<i class="icon-calculator text-primary"></i>
 											</div>
 											<div class="mr-auto">
 												<h5 class="tx-13">عدد اللاعبين</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">1,587</h2>
-												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
-											</div>
+												<h2 class="mb-0 tx-22 mb-1 mt-1">{{$count_players}}</h2>
+ 											</div>
 										</div>
 									</div>
 								</div>
@@ -75,7 +74,7 @@
 									<div class="card-body">
 										<div class="counter-status d-flex md-mb-0">
 											<div class="counter-icon bg-danger-transparent">
-												<i class="icon-paypal text-danger"></i>
+												<i class="icon-user text-danger"></i>
 											</div>
 											<div class="mr-auto">
 												<h5 class="tx-13">اسم المدرب</h5>
@@ -91,7 +90,7 @@
 									<div class="card-body">
 										<div class="counter-status d-flex md-mb-0">
 											<div class="counter-icon bg-success-transparent">
-												<i class="icon-rocket text-success"></i>
+												<i class="icon-bubble text-success"></i>
 											</div>
 											<div class="mr-auto">
 												<h5 class="tx-13">اسم الملعب</h5>

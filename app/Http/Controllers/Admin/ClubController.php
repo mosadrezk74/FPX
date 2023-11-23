@@ -65,8 +65,10 @@ class ClubController extends Controller
         $club=Club::findorFail($clubId);
         $players = Player::where('club_id', $clubId)->get();
 
+        $count_players=$players->count();
+
         return view('Dashboard.Clubs.show', ['club' => $club]
-        , compact('players')
+        , compact('players' , 'count_players' )
         );
 
     }
