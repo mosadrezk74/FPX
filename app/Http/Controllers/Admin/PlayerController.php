@@ -50,8 +50,6 @@ class PlayerController extends Controller
         $players->club_id=$request->club_id;
         $players->email = $request->email;
         $players->password = password_hash($request->password, PASSWORD_BCRYPT);
-
-
         if($request->hasfile('photo'))
         {
             $file = $request->file('photo');
@@ -61,6 +59,7 @@ class PlayerController extends Controller
             $players->photo = $filename;
         }
         $players->save();
+        
         session()->flash('add');
 
         return redirect()->route('player.create');

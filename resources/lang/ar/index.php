@@ -22,6 +22,8 @@ return [
     'player_position_DF'=>'مدافع',
     'player_position_MF'=>'وسط ملعب',
     'player_position_FW'=>'مهاجم',
+    'email'=>'البريد الالكتروني',
+    'password'=>'كلمة السر',
 
 
 

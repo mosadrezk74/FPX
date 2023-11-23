@@ -14,7 +14,7 @@
 	<link href="{{URL::asset('Dashboard/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
 
 	@section('title')
-		{{trans('doctors.add_doctor')}}
+        {{trans('Dashboard/main-sidebar_trans.players')}}
 	@stop
 @endsection
 @section('page-header')
@@ -121,7 +121,7 @@
 
                                                     <select id="nationality" name="nationality" class="form-control" required>
                                                         <option value="" >{{trans('index.player_nation')}}</option>
-                                                         <option value="EG">{{ trans('nation.egypt') }}</option>
+                                                         <option value="Egypt">{{ trans('nation.egypt') }}</option>
                                                         <option value="PL">{{ trans('nation.palestine') }}</option>
                                                         <option value="DZ">{{ trans('nation.algeria') }}</option>
                                                         <option value="AO">{{ trans('nation.angola') }}</option>
@@ -227,20 +227,14 @@
                                                         <option value="1">{{trans('index.player_position_DF')}}</option>
                                                         <option value="2">{{trans('index.player_position_MF')}}</option>
                                                         <option value="3">{{trans('index.player_position_FW')}}</option>
-
                                                      </select>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <label for="shirt" class="control-label mb-1">{{trans('index.player_shirt')}}</label>
-                                                    <select id="shirt" name="shirt_number" class="form-control" required>
-                                                        <option value="">{{trans('index.player_shirt_number')}}</option>
-                                                            <?php
-                                                            for ($i = 1; $i <= 99; $i++) {
-                                                                echo "<option value='$i'>$i</option>";
-                                                            }
-                                                            ?>
-                                                    </select>
+                                                    <input id="shirt" name="shirt_number" class="form-control" type="text" aria-required="true"
+                                                    placeholder="Enter Number between 1-99">
+
                                                 </div>
                                             </div>
                                         </div>

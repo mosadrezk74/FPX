@@ -22,6 +22,9 @@ return [
     'player_position_DF'=>'DF',
     'player_position_MF'=>'MF',
     'player_position_FW'=>'FW',
+    'email'=>'Email',
+    'password'=>'Password',
+
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Club;
+use App\Models\Player;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -59,33 +60,30 @@ class ClubController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($clubId)
     {
-        $club=Club::findorFail($id);
+        $club=Club::findorFail($clubId);
+        $players = Player::where('club_id', $clubId)->get();
 
-        return view('Dashboard.Clubs.show', ['club' => $club]);
+        return view('Dashboard.Clubs.show', ['club' => $club]
+        , compact('players')
+        );
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     function destroy($club)
     {
         $to_delete = Club::findorfail($club);
