@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('name_en')->index();
             $table->string('photo');
             $table->string('nationality')->default('Egypt');
-            $table->date('age')->default('1999-01-01');
+            $table->string('age')->default(21);
 
-            $table->unsignedBigInteger('club_id');
+            $table->unsignedBigInteger('club_id')->index();
             $table->foreign('club_id')
                 ->references('id')
                 ->on('clubs')

@@ -95,6 +95,8 @@
                                                                         </tr>
                                                                     @endif
                                                                 @endforeach
+
+
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -175,6 +177,8 @@
                                                                         </tr>
                                                                     @endif
                                                                 @endforeach
+                                                                {{ $players->links() }}
+
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -265,6 +269,7 @@
                                         </div>
                                     </div>
                                     <!-- End Prism Precode -->
+
                                 </div>
                             </div>
                         </div>
@@ -277,7 +282,7 @@
     </div> <!-- Closing tag for the outermost div -->
 
 
-
+    {{$players->links('pagination::bootstrap-4') }}
     <!-- main-content closed -->
 @endsection
 @section('js')

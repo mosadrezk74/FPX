@@ -4,16 +4,6 @@
     {{trans('Dashboard/main-sidebar_trans.clubs')}}
 @stop
 
-@section('css')
-
-    <link href="{{URL::asset('Dashboard/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('Dashboard/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('Dashboard/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('Dashboard/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('Dashboard/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('Dashboard/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
-@endsection
 
 
     @section('page-header')
@@ -69,7 +59,12 @@
                                                          src="{{ asset('uploads/club_logo/' . $club->image) }}"
                                                     />
                                                 </td>
-                                                <td><a href="{{route('club.show',$club->id)}}">{{$club->name_ar}}</a> </td>
+                                                @if(App::getLocale() == 'ar')
+                                                    <td><a href="{{route('club.show',$club->id)}}">{{$club->name_ar}}</a> </td>
+                                                @else
+                                                    <td><a href="{{route('club.show',$club->id)}}">{{$club->name_en}}</a> </td>
+                                                @endif
+
                                                 <td>{{ $club->date }}</td>
                                                 <td>{{ $club->created_at->diffForHumans() }}</td>
                                                 <td>
@@ -87,6 +82,8 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+
+
                                         <?php } else { ?>
                                         @foreach($clubs as $club)
                                             <tr>
@@ -114,6 +111,8 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+
+
                                         <?php } ?>
 
                                         </tbody>

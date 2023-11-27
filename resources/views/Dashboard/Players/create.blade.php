@@ -120,69 +120,14 @@
                                                     <label for="nationality" class="control-label mb-1">{{trans('index.player_nation')}}</label>
 
                                                     <select id="nationality" name="nationality" class="form-control" required>
-                                                        <option value="" >{{trans('index.player_nation')}}</option>
-                                                         <option value="Egypt">{{ trans('nation.egypt') }}</option>
-                                                        <option value="PL">{{ trans('nation.palestine') }}</option>
-                                                        <option value="DZ">{{ trans('nation.algeria') }}</option>
-                                                        <option value="AO">{{ trans('nation.angola') }}</option>
-                                                        <option value="AR">{{ trans('nation.argentina') }}</option>
-                                                        <option value="BH">{{ trans('nation.bahrain') }}</option>
-                                                        <option value="BJ">{{ trans('nation.benin') }}</option>
-                                                        <option value="BO">{{ trans('nation.bolivia') }}</option>
-                                                        <option value="BW">{{ trans('nation.botswana') }}</option>
-                                                        <option value="BR">{{ trans('nation.brazil') }}</option>
-                                                        <option value="BF">{{ trans('nation.burkina-faso') }}</option>
-                                                        <option value="BI">{{ trans('nation.burundi') }}</option>
-                                                        <option value="CM">{{ trans('nation.cameroon') }}</option>
-                                                        <option value="CV">{{ trans('nation.cape-verde') }}</option>
-                                                        <option value="CF">{{ trans('nation.central-african-republic') }}</option>
-                                                        <option value="TD">{{ trans('nation.chad') }}</option>
-                                                        <option value="KM">{{ trans('nation.comoros') }}</option>
-                                                        <option value="CG">{{ trans('nation.congo') }}</option>
-                                                        <option value="CD">{{ trans('nation.democratic-republic-of-the-congo') }}</option>
-                                                        <option value="CK">{{ trans('nation.cook-islands') }}</option>
-                                                        <option value="CI">{{ trans('nation.cote-divoire') }}</option>
-                                                        <option value="GQ">{{ trans('nation.equatorial-guinea') }}</option>
-                                                        <option value="ET">{{ trans('nation.ethiopia') }}</option>
-                                                        <option value="FR">{{ trans('nation.france') }}</option>
-                                                        <option value="GA">{{ trans('nation.gabon') }}</option>
-                                                        <option value="GM">{{ trans('nation.gambia') }}</option>
-                                                        <option value="DE">{{ trans('nation.germany') }}</option>
-                                                        <option value="GH">{{ trans('nation.ghana') }}</option>
-                                                        <option value="GR">{{ trans('nation.greece') }}</option>
-                                                        <option value="GN">{{ trans('nation.guinea') }}</option>
-                                                        <option value="GW">{{ trans('nation.guinea-bissau') }}</option>
-                                                        <option value="IQ">{{ trans('nation.iraq') }}</option>
-                                                        <option value="IT">{{ trans('nation.italy') }}</option>
-                                                        <option value="JO">{{ trans('nation.jordan') }}</option>
-                                                        <option value="KE">{{ trans('nation.kenya') }}</option>
-                                                        <option value="KW">{{ trans('nation.kuwait') }}</option>
-                                                        <option value="LB">{{ trans('nation.lebanon') }}</option>
-                                                        <option value="LR">{{ trans('nation.liberia') }}</option>
-                                                        <option value="LY">{{ trans('nation.libya') }}</option>
-                                                        <option value="MG">{{ trans('nation.madagascar') }}</option>
-                                                        <option value="MW">{{ trans('nation.malawi') }}</option>
-                                                        <option value="ML">{{ trans('nation.mali') }}</option>
-                                                        <option value="MA">{{ trans('nation.morocco') }}</option>
-                                                        <option value="MZ">{{ trans('nation.mozambique') }}</option>
-                                                        <option value="NA">{{ trans('nation.namibia') }}</option>
-                                                        <option value="NL">{{ trans('nation.netherlands') }}</option>
-                                                        <option value="NE">{{ trans('nation.niger') }}</option>
-                                                        <option value="NG">{{ trans('nation.nigeria') }}</option>
-                                                        <option value="OM">{{ trans('nation.oman') }}</option>
-                                                        <option value="PT">{{ trans('nation.portugal') }}</option>
-                                                        <option value="QA">{{ trans('nation.qatar') }}</option>
-                                                        <option value="RW">{{ trans('nation.rwanda') }}</option>
-                                                        <option value="SA">{{ trans('nation.saudi-arabia') }}</option>
-                                                        <option value="SN">{{ trans('nation.senegal') }}</option>
-                                                        <option value="SO">{{ trans('nation.somalia') }}</option>
-                                                        <option value="ZA">{{ trans('nation.south-africa') }}</option>
-                                                        <option value="ES">{{ trans('nation.spain') }}</option>
-                                                        <option value="SD">{{ trans('nation.sudan') }}</option>
-                                                         <option value="TN">{{ trans('nation.tunisia') }}</option>
-                                                        <option value="UG">{{ trans('nation.uganda') }}</option>
-                                                        <option value="ZM">{{ trans('nation.zambia') }}</option>
-                                                        <option value="ZW">{{ trans('nation.zimbabwe') }}</option>
+                                                             <option selected disabled>{{trans('nation.player_nation')}}</option>
+                                                            @foreach ($countries as $country)
+                                                                <option value="{{ $country['name']['common'] }}">
+                                                                    {{ trans('nation.country_name.' . strtolower($country['cca2'])) }}
+                                                                    <img src="{{ $country['flags']['png'] }}" alt="{{ $country['name']['common'] }} Flag">
+                                                                </option>
+                                                            @endforeach
+
                                                     </select>
 
                                                     @error('nationality')

@@ -15,7 +15,7 @@ class ClubController extends Controller
      */
     public function index()
     {
-        $clubs=Club::all();
+        $clubs = Club::paginate(3);
 
         return view('Dashboard.Clubs.index' , compact('clubs') );
     }
