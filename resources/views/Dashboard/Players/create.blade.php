@@ -139,14 +139,14 @@
 
                                                 <div class="col-md-4">
                                                     <label for="age" class="control-label mb-1">{{trans('index.player_age')}}</label>
-                                                    <input id="age"  name="age" type="date"
-                                                           class="form-control" aria-required="true"   >
+                                                    <input id="age" name="age" type="text" class="form-control" data-input aria-required="true">
                                                     @error('age')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
                                                 </div>
+
 
 
 
@@ -245,6 +245,16 @@
 	<script src="{{URL::asset('dashboard/plugins/pickerjs/picker.min.js')}}"></script>
 	<!-- Internal form-elements js -->
 	<script src="{{URL::asset('dashboard/js/form-elements.js')}}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#age", {
+                maxDate: "2006-01-01",
+                dateFormat: "Y-m-d",
+            });
+        });
+    </script>
+
+
 
 
 

@@ -144,8 +144,27 @@ class PlayerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        try {
+            $player = \App\Models\Player::findOrFail($id);
+
+            // Delete the player's photo from the disk
+            if ($player->photo) {
+                $photoPath = public_path('uploads/players/' . $player->photo);
+                if (file_exists($photoPath)) {
+                    unlink($photoPath);
+                }
+            }
+
+            $player->delete();
+
+            session()->flash('delete');
+
+            return redirect()->route('player.index');
+        } catch (\Exception $e) {
+            return redirect()->route('player.index')->withErrors(['error' => 'An error occurred. Please try again.']);
+        }
     }
+
 }

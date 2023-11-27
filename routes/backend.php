@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -49,6 +50,8 @@ Route::group(
   Route::resource('dashboard/admin/player', PlayerController::class);
   Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
   Route::resource('dashboard/admin/coach', \App\Http\Controllers\Admin\CaochController::class);
+    Route::get('/search', SearchController::class);
+
     //--------------------End Admin Routes------------------------------------------------------
 
 

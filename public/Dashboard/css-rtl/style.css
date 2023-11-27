@@ -52545,5 +52545,23 @@ a.text-dark:hover, a.text-dark:focus {
 
 .wd-100v {
   width: 100vw; }
+   /* Style for the search bar */
+    .form-group {
+        margin-bottom: 20px; /* Adjust the margin as needed */
+    }
 
+    #searchInput {
+        width: 100%;
+        max-width: 300px; /* Adjust the maximum width as needed */
+        padding: 10px;
+        border: 1px solid #ced4da; /* Add a border */
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    /* Optional: Style for the clear search button */
+    #clearSearch {
+        display: none; /* Initially hide the clear search button */
+        cursor: pointer;
+    }
 /*# sourceMappingURL=style.css.map */
