@@ -17,6 +17,7 @@ html {
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
+@import 'style-dark.css';
 
 body {
   margin: 0;

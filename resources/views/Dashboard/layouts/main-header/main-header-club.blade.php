@@ -19,6 +19,21 @@
 
         </div>
         <div class="main-header-right">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="theme-switch" style=" display: none;" >
+                    <input type="checkbox" id="theme-switch"  />
+                    <span class="slider"></span>
+                </label>
+                <div class="theme-switcher-options">
+                    <button class="btn btn-sm btn-light" id="light-theme">
+                        <i class="fas fa-sun fa-2x-lg"></i>
+                    </button>
+                    <button class="btn btn-sm btn-dark" id="dark-theme">
+                        <i class="fas fa-moon fa-2x-lg"></i>
+                    </button>
+                </div>
+
+            </div>
             <ul class="nav">
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
@@ -69,11 +84,11 @@
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                      class="feather feather-search"><circle cx="11" cy="11"
-                                                     r="8"></circle>
+                                                                                            r="8"></circle>
                                                     <line x1="21"
-                                                     y1="21"
-                                                     x2="16.65"
-                                                                          y2="16.65">
+                                                          y1="21"
+                                                          x2="16.65"
+                                                          y2="16.65">
 
                                                     </line>
                                                 </svg>
@@ -82,6 +97,8 @@
                         </div>
                     </form>
                 </div>
+
+
 
 
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
@@ -94,7 +111,7 @@
                                                                 class=""></div>
                                 <div class="mr-3 my-auto">
                                     @auth
-                                    <h6>{{Auth::user()->name}}</h6><span>السوبر  أدمن </span>
+                                        <h6>{{Auth::user()->name}}</h6><span>السوبر  أدمن </span>
                                     @endauth
                                 </div>
                             </div>
@@ -119,12 +136,12 @@
                                                         @elseif(Auth('coach')->check())
                                                             <form method="POST" action="{{ route('logout.coach') }}">
 
-                                                @endif
-                                                @csrf
-                                        <a class="dropdown-item" href="#"
-                                           onclick="event.preventDefault();
+                                                                @endif
+                                                                @csrf
+                                                                <a class="dropdown-item" href="#"
+                                                                   onclick="event.preventDefault();
                                         this.closest('form').submit();"><i class="bx bx-log-out"></i>Log Out</a>
-                                    </form>
+                                                            </form>
 
                     </div>
                 </div>
@@ -133,4 +150,65 @@
         </div>
     </div>
 </div>
-<!-- /main-header -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    // Grab the elements
+    const themeSwitch = document.getElementById('theme-switch');
+    const lightThemeButton = document.getElementById('light-theme');
+    const darkThemeButton = document.getElementById('dark-theme');
+
+    // Add a class to the body to apply dark mode by default
+    document.body.classList.add('dark-theme');
+
+    // Handle theme switch toggling
+    themeSwitch.addEventListener('change', () => {
+        if (themeSwitch.checked) {
+            document.body.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.classList.remove('dark-theme');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Handle manual theme selection
+    lightThemeButton.addEventListener('click', () => {
+        themeSwitch.checked = false;
+        document.body.classList.remove('dark-theme');
+    });
+
+    darkThemeButton.addEventListener('click', () => {
+        themeSwitch.checked = true;
+        document.body.classList.add('dark-theme');
+    });
+
+    // Check if the user has set a preferred theme
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark') {
+        themeSwitch.checked = true;
+    } else if (storedTheme === 'light') {
+        themeSwitch.checked = false;
+        document.body.classList.remove('dark-theme');
+    }
+</script>

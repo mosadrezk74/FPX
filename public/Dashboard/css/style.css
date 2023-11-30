@@ -110,7 +110,10 @@ body {
   line-height: 1.5;
   color: #031b4e;
   text-align: left;
-  background-color: #ecf0fa; }
+  background-color: #ecf0fa; 
+    transition: background-color 0.5s ease;
+
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }

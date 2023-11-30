@@ -23,7 +23,7 @@
 				<!-- row -->
 				<div class="row row-sm">
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-						<div class="card overflow-hidden sales-card bg-secondary">
+						<div class="card overflow-hidden sales-card bg-primary-gradient">
 							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
 									<h6 class="mb-3 tx-12 text-white">{{trans('Dashboard/main-sidebar_trans.total_clubs')}}</h6>
