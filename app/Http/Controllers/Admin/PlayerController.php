@@ -16,7 +16,7 @@ class PlayerController extends Controller
     public function index()
     {
 
-        $players = \App\Models\Player::with('club')->paginate(5);
+        $players = \App\Models\Player::with('club')->get();
          $clubs = \App\Models\Club::all();
 
         return view('Dashboard.Players.index',compact('players' ,'clubs' ));
@@ -166,5 +166,20 @@ class PlayerController extends Controller
             return redirect()->route('player.index')->withErrors(['error' => 'An error occurred. Please try again.']);
         }
     }
+
+    public function getAvailableShirtNumbers($club_id)
+    {
+        $takenShirtNumbers = \App\Models\Player::where('club_id', $club_id)->pluck('shirt_number')->toArray();
+
+        $allShirtNumbers = range(1, 99); // Assuming shirt numbers range from 1 to 99
+
+        $availableShirtNumbers = array_diff($allShirtNumbers, $takenShirtNumbers);
+        \Log::info('Club ID: ' . $club_id);
+        \Log::info('Available Shirt Numbers: ' . implode(', ', $availableShirtNumbers));
+
+        return response()->json($availableShirtNumbers);
+    }
+
+
 
 }

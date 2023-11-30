@@ -9386,6 +9386,10 @@ a.tag-addon {
   background-color: #343a40 !important;
   color: #fff; }
 
+.select2-dropdown-with-searchbar .select2-search__field {
+    width: 100%;
+    box-sizing: border-box;
+}
 .tag-rounded {
   border-radius: 50px; }
   .tag-rounded .tag-avatar {

@@ -51,6 +51,10 @@ Route::group(
   Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
   Route::resource('dashboard/admin/coach', \App\Http\Controllers\Admin\CaochController::class);
     Route::get('/search', SearchController::class);
+//    Route::get('/get-available-shirt-numbers/{club_id}', \App\Http\Controllers\Admin\PlayerController::class . 'getAvailableShirtNumbers');
+    Route::get('/get-available-shirt-numbers/{club_id}', [PlayerController::class, 'getAvailableShirtNumbers']);
+
+
 
     //--------------------End Admin Routes------------------------------------------------------
 

@@ -70,22 +70,38 @@
             	@include('Dashboard.layouts.footer')
 				@include('Dashboard.layouts.footer-scripts')
 
+            </div>
+            </div>
+                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-    <script>
+                <script>
+                    $(document).ready(function () {
+                        $('#club').on('change', function () {
+                            var clubId = $(this).val();
+                            console.log('Selected Club ID:', clubId);
 
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
 
-        var pusher = new Pusher('bf45e2af9220c2d6cfa2', {
-            cluster: 'mt1'
-        });
+                            $.ajax({
+                                url: '/get-available-shirt-numbers/' + clubId,
+                                type: 'GET',
+                                success: function (data) {
+                                    console.log(data);
 
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-            alert(JSON.stringify(data));
-        });
-    </script>
+                                    $('#shirt').empty();
+
+                                    $.each(data, function (index, value) {
+                                        console.log(value);
+                                        $('#shirt').append('<option value="' + value + '">' + value + '</option>');
+                                    });
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error(xhr.responseText);
+                                }
+                            });
+                        });
+                    });
+                </script>
+
 
     </body>
 </html>

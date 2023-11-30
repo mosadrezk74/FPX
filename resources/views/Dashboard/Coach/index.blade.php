@@ -155,15 +155,16 @@
 
                                 <div class="modal-body">
                                     <label for="nationality">{{trans('coach.nationality')}}</label>
-                                     <select name="nationality" id="nationality" class="form-control">
-                                         <option selected disabled>{{trans('coach.c_nat')}}</option>
-                                         @foreach ($countries as $country)
-                                             <option value="{{ $country['name']['common'] }}">
-                                                 {{ trans('nation.country_name.' . strtolower($country['cca2'])) }}
-                                                 <img src="{{ $country['flags']['png'] }}" alt="{{ $country['name']['common'] }} Flag">
-                                             </option>
-                                         @endforeach
-                                    </select>
+                                    <input id="nationality" name="nationality" list="nationalitiesList" class="form-control" required>
+                                    <datalist id="nationalitiesList">
+                                        <option value="" label="{{trans('nation.player_nation')}}"></option>
+                                        @foreach ($countries as $country)
+                                            <option value="{{ $country['name']['common'] }}">
+                                                {{ trans('nation.country_name.' . strtolower($country['cca2'])) }}
+                                                <img src="{{ $country['flags']['png'] }}" alt="{{ $country['name']['common'] }} Flag">
+                                            </option>
+                                        @endforeach
+                                    </datalist>
 
                                 </div>
 
