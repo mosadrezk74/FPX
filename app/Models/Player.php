@@ -12,6 +12,8 @@ class Player extends Authenticatable
 {
 
     public $guard = 'club';
+    use Notifiable;
+
 
     protected $fillable = [
         'name_ar',
@@ -31,12 +33,11 @@ class Player extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function unreadNotifications()
+    {
+        return $this->notifications()->whereNull('read_at');
+    }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
 

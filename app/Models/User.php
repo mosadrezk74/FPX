@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function unreadNotifications()
+    {
+        return $this->notifications()->whereNull('read_at');
+    }
+
 
     protected $fillable = [
         'name',

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -59,6 +60,8 @@ Route::group(
     //--------------------End Admin Routes------------------------------------------------------
 
 
+
+    Route::get('/send-notification', [NotificationController::class, 'sendOfferNotification']);
 
 
 

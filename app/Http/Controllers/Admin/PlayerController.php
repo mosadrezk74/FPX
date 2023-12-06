@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\User;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
@@ -18,8 +20,10 @@ class PlayerController extends Controller
 
         $players = \App\Models\Player::with('club')->get();
          $clubs = \App\Models\Club::all();
+        $notifications = \App\Models\Notification::all();
 
-        return view('Dashboard.Players.index',compact('players' ,'clubs' ));
+
+        return view('Dashboard.Players.index',compact('players' ,'clubs','notifications'));
 
     }
 
@@ -29,6 +33,7 @@ class PlayerController extends Controller
 
         $players = \App\Models\Player::with('club')->get();
         $clubs = \App\Models\Club::all();
+        $notifications = \App\Models\Notification::all();
         $client = new Client();
         $response = $client->get('https://restcountries.com/v3.1/all');
         $countries = json_decode($response->getBody(), true);
@@ -44,8 +49,13 @@ class PlayerController extends Controller
         $countries = collect($countries)->sortBy('name.common')->all();
         return view('Dashboard.Players.create',
             ['countries' => $countries],
-            compact('players' ,'clubs' ));
+            compact('players' ,'clubs','notifications'));
 
+    }
+
+    public function unreadNotifications()
+    {
+        return $this->notifications()->whereNull('read_at');
     }
 
     public function store(Request $request)
@@ -76,7 +86,7 @@ class PlayerController extends Controller
                     ->withInput();
             }
 
-             $players = new \App\Models\Player();
+            $players = new \App\Models\Player();
             $players->name_ar = $request->name_ar;
             $players->name_en = $request->name_en;
             $players->nationality = $request->nationality;
@@ -89,7 +99,7 @@ class PlayerController extends Controller
             $players->password = password_hash($request->password, PASSWORD_BCRYPT);
 
             if ($request->hasFile('photo')) {
-                 $file = $request->file('photo');
+                $file = $request->file('photo');
                 $extension = $file->getClientOriginalExtension();
                 $filename = time() . '.' . $extension;
                 $file->move('uploads/players/', $filename);
@@ -97,6 +107,12 @@ class PlayerController extends Controller
             }
 
             $players->save();
+            $user = User::get();
+            $player_id = \App\Models\Player::all()->first();
+
+
+            Notification::send($user, new \App\Notifications\OffersNotification($player_id));
+
 
             session()->flash('add');
 
@@ -117,33 +133,26 @@ class PlayerController extends Controller
 
 
 
-    /**
-     * Display the specified resource.
-     */
+
+
     public function show(string $id)
     {
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy($id)
     {
         try {

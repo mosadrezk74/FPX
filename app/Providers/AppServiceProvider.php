@@ -24,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
         $club_count=Club::all();
         $count=$club_count->count();
         view()->share('count',$count);
+        $notifications = \App\Models\Notification::all();
+        view()->share('notifications',$notifications);
+
+
 
 
 
