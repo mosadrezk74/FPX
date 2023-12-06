@@ -1,0 +1,332 @@
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Bold.ttf");
+  font-size: 900;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Medium.ttf");
+  font-size: 700;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Regular.ttf");
+  font-size: 500;
+}
+
+
+*{
+    font-family: 'Noto Kufi Arabic', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+:root{
+
+}
+
+.header{
+  background-image:linear-gradient(#000000e5, rgba(51, 50, 50, 0.704)),
+  url('../images/main_screen/photo-1.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 105vh;
+  width: 100%;
+  overflow: hidden;
+  position: sticky;
+
+}
+.container{
+  position: relative;
+}
+
+
+.arrow{
+  position: absolute;
+  top: 50%;
+  left: 220vh;
+  width: 150vh;
+  height: 159vh;
+  transform: translate(-50%, -50%);
+}
+
+.arrow2{
+  position: absolute;
+  top: 50%;
+  left:150vh;
+  width: 150vh;
+  height: 159vh;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+}
+
+.header .navbar-brand{
+  position: relative;
+  bottom: 40px;
+  right: 70px;
+}
+
+.navbar ul{
+  padding: 0px 6px 0px 6px;
+  position: relative;
+  top: -40px;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.navbar .navbar-nav .nav-link{
+  color: aliceblue;
+}
+
+
+.navbar .navbar-nav .nav-link .active,
+.navbar .navbar-nav .nav-link:focus,
+.navbar .navbar-nav .nav-link:hover{
+  color:chartreuse;
+}
+
+.dropdown-menu{
+  border-radius: 5px;
+  text-align: center;
+  font-size: 10px;
+  background-color:rgb(88, 200, 88);
+
+}
+
+.footy{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 220px;
+  position: relative;
+  left: 110px;
+
+}
+.footy .images{
+  position: relative;
+  bottom: 200px;
+
+}
+
+.footy .analyzing{
+  color: aliceblue;
+  position: relative;
+  bottom: 200px;
+
+}
+
+
+.footy .analyzing h1{
+  font-weight: 700;
+  font-size: 120px;
+}
+
+.footy .analyzing h2{
+  margin-left: 20px;
+  font-size: 40px;
+  font-weight: 400;
+  position: relative;
+  bottom: 20px;
+}
+.footy .analyzing p{
+  font-weight: 600;
+  font-size: 28px;
+  width: 70%;
+  padding: 30px 0px 30px 0px;
+  position: relative;
+  bottom: 30px;
+}
+.navbar .navbar-toggler{
+  position: relative;
+  top: -40px;
+  background-color:white;
+  border: 3px solid white;
+
+  padding: 2px 2px;
+}
+.navbar .navbar-toggler:focus{
+  box-shadow: none;
+}
+.navbar .navbar-toggler img{
+  margin-left: 13px;
+}
+.navbar-toggler-icon{
+  width: .3em;
+}
+
+
+/*mobile*/
+@media (max-width:767px){
+  .navbar ul{
+    position: relative;
+    bottom: 50px;
+  }
+  .arrow{
+    position: absolute;
+    right: 300vh;
+  }
+  .footy .images img{
+    height: 60vh;
+    width: 25vh;
+    margin-left: -70px;
+    position: fixed;
+
+
+  }
+  .footy .analyzing h1{
+    font-size: 40px;
+    position: relative;
+    right: 80px;
+  }
+  .footy .analyzing h2{
+    font-size: 15px;
+    position: relative;
+    right: 80px;
+    padding: 3px 0px;
+  }
+  .footy .analyzing p{
+    font-size: 12px;
+    position: relative;
+    right: 80px;
+    top: -50px;
+  }
+  .navbar ul{
+    line-height: 14px;
+
+  }
+  .arrow2{
+    width: 50vh;
+    margin-left: -800px;
+  }
+  .arrow{
+    width: 50vh;
+    margin-left: -1100px;
+  }
+  .analyzing{
+    position: relative;
+    top: 10px;
+
+  }
+}
+
+/*small screen*/
+@media (min-width:768px) and (max-width:991px){
+  .arrow2{
+    width: 80vh;
+    margin-left: -550px;
+  }
+  .arrow{
+    width: 80vh;
+    margin-left: -780px;
+  }
+  .navbar ul{
+    line-height: 12px;
+
+  }
+  .footy .images img{
+    height: 65vh;
+    width: 35vh;
+    position: relative;
+    left: 50px;
+    position: fixed;
+
+
+  }
+  .analyzing{
+    position: relative;
+    top: -60px;
+  }
+  .footy .analyzing h1{
+    font-size: 60px;
+    position:relative;
+    right: 40px;
+
+  }
+  .footy .analyzing h2{
+    position: relative;
+    font-size: 25px;
+    right: 40px;
+
+  }
+  .footy .analyzing p{
+    font-size: 16px;
+    position: relative;
+    right: 40px;
+
+  }
+}
+
+
+/*medium screen*/
+@media (min-width:992px){
+  .footy .analyzing h1{
+    position: relative;
+    right: 150px;
+    font-size: 80px;
+  }
+  .footy .analyzing h2{
+    position: relative;
+    right: 150px;
+    font-size: 32px;
+  }
+  .footy .analyzing p{
+    position: relative;
+    font-size: 17px ;
+    font-weight: 500;
+    right: 135px;
+  }
+  .footy .images img{
+    height: 80vh;
+    width: 40vh;
+    position: relative;
+    top: 60px;
+  }
+  .arrow2{
+    margin-left: -280px;
+    width: 110vh;
+  }
+  .arrow{
+    margin-left: -470px;
+    width: 110vh;
+  }
+  .navbar ul{
+    font-size: 18px;
+    padding: 0px 4px 0px 4px;
+  }
+
+}
+
+/*large screen*/
+@media (min-width:1200px){
+  .footy .analyzing h1{
+    position: relative;
+    right: 70px;
+    font-size: 100px;
+
+  }
+  .footy .analyzing h2{
+    position: relative;
+    right: 50px;
+    font-size: 37px;
+  }
+  .footy .analyzing p{
+    position: relative;
+    right: 60px;
+    font-size: 20px;
+  }
+  .arrow2{
+    margin-left: -200px;
+    width: 120vh;
+  }
+  .arrow{
+    margin-left: -300px;
+    width: 120vh;
+  }
+
+}
