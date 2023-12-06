@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ClubController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $clubs = Club::paginate(3);
@@ -20,17 +18,11 @@ class ClubController extends Controller
         return view('Dashboard.Clubs.index' , compact('clubs') );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $clubs=new Club();
@@ -51,15 +43,8 @@ class ClubController extends Controller
         session()->flash('add');
         return redirect()->route('club.index');
 
-
-
-
-
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($clubId)
     {
         $club=Club::findorFail($clubId);

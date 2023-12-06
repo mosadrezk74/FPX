@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 
 class CaochController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $coaches=Coach::with('club')->get();
@@ -37,17 +35,6 @@ class CaochController extends Controller
         ,compact('coaches','clubs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $coaches=new Coach();
@@ -72,9 +59,7 @@ class CaochController extends Controller
         return redirect()->route('coach.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //

@@ -53,15 +53,9 @@ class PlayerController extends Controller
 
     }
 
-    public function unreadNotifications()
-    {
-        return $this->notifications()->whereNull('read_at');
-    }
 
     public function store(Request $request)
     {
-
-
         try {
 
             $rules = [
@@ -75,7 +69,7 @@ class PlayerController extends Controller
                 'club_id' => 'required|exists:clubs,id',
                 'email' => 'required|email|unique:players,email',
                 'password' => 'required|string|min:6',
-                'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -109,10 +103,7 @@ class PlayerController extends Controller
             $players->save();
             $user = User::get();
             $player_id = \App\Models\Player::all()->first();
-
-
             Notification::send($user, new \App\Notifications\OffersNotification($player_id));
-
 
             session()->flash('add');
 
@@ -132,12 +123,9 @@ class PlayerController extends Controller
     }
 
 
-
-
-
     public function show(string $id)
     {
-
+        //
     }
 
 
@@ -158,7 +146,6 @@ class PlayerController extends Controller
         try {
             $player = \App\Models\Player::findOrFail($id);
 
-            // Delete the player's photo from the disk
             if ($player->photo) {
                 $photoPath = public_path('uploads/players/' . $player->photo);
                 if (file_exists($photoPath)) {
@@ -180,8 +167,7 @@ class PlayerController extends Controller
     {
         $takenShirtNumbers = \App\Models\Player::where('club_id', $club_id)->pluck('shirt_number')->toArray();
 
-        $allShirtNumbers = range(1, 99); // Assuming shirt numbers range from 1 to 99
-
+        $allShirtNumbers = range(1, 99);
         $availableShirtNumbers = array_diff($allShirtNumbers, $takenShirtNumbers);
         \Log::info('Club ID: ' . $club_id);
         \Log::info('Available Shirt Numbers: ' . implode(', ', $availableShirtNumbers));
