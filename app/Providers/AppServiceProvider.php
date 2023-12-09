@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->share('auth', 'My Awesome Website');
-        $club_count=Club::all();
+        $club_count=Player::all();
         $count=$club_count->count();
         view()->share('count',$count);
         $notifications = \App\Models\Notification::all();
@@ -40,6 +40,8 @@ class AppServiceProvider extends ServiceProvider
         $currentTime = Carbon::now();
         $time = $currentTime->format('H:i:s');
         view()->share('time',$time);
+
+
 
 
 

@@ -19,7 +19,7 @@
 
 
 *{
-    font-family: 'Noto Kufi Arabic', sans-serif;
+  font-family: 'inter',sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -43,41 +43,48 @@
 
 }
 .container{
-  position: relative;
+
 }
 
 
 .arrow{
   position: absolute;
   top: 50%;
-  left: 220vh;
-  width: 150vh;
-  height: 159vh;
+  left: 170vh;
+  width: 130vh;
+  height: 110vh;
   transform: translate(-50%, -50%);
 }
 
 .arrow2{
   position: absolute;
   top: 50%;
-  left:150vh;
-  width: 150vh;
-  height: 159vh;
+  left:110vh;
+  width: 130vh;
+  height: 150vh;
   overflow: hidden;
   transform: translate(-50%, -50%);
 }
 
 .header .navbar-brand{
   position: relative;
-  bottom: 40px;
+  top: -30px;
   right: 70px;
 }
 
-.navbar ul{
-  padding: 0px 6px 0px 6px;
-  position: relative;
-  top: -40px;
-  font-weight: 900;
+.navbar-collapse li a{
   font-size: 20px;
+  position: relative;
+  top: -30px;
+  padding: 10px;
+
+}
+
+ul{
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+
 }
 
 .navbar .navbar-nav .nav-link{
@@ -88,15 +95,29 @@
 .navbar .navbar-nav .nav-link .active,
 .navbar .navbar-nav .nav-link:focus,
 .navbar .navbar-nav .nav-link:hover{
-  color:chartreuse;
+  color: cadetblue;
 }
 
 .dropdown-menu{
   border-radius: 5px;
-  text-align: center;
+  background-color: black;
+  width: 250px;
+  padding: 40px 0px 0px 20px;
+  color: white;
+  position: relative;
+  top: -100px;
+}
+.dropdown-menu a{
+  border-radius: 5px;
+  color: aliceblue;
+  line-height: .8;
+  width: 200px;
   font-size: 10px;
-  background-color:rgb(88, 200, 88);
 
+}
+dropdown-menu a:hover{
+  background-color: cadetblue;
+  color: white;
 }
 
 .footy{
@@ -108,39 +129,44 @@
   left: 110px;
 
 }
-.footy .images{
+.footy .images img{
   position: relative;
-  bottom: 200px;
+  bottom: 170px;
+  width: 50vh;
+  height: 100vh;
+
 
 }
 
 .footy .analyzing{
   color: aliceblue;
   position: relative;
-  bottom: 200px;
+  left: 110px;
+  top: -150px;
 
 }
 
 
 .footy .analyzing h1{
   font-weight: 700;
-  font-size: 120px;
+  font-size: 100px;
 }
 
 .footy .analyzing h2{
-  margin-left: 20px;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 400;
   position: relative;
   bottom: 20px;
+  left: 20px;
 }
 .footy .analyzing p{
-  font-weight: 600;
-  font-size: 28px;
-  width: 70%;
+  font-weight: 700;
+  font-size: 25px;
+  width: 60%;
   padding: 30px 0px 30px 0px;
   position: relative;
-  bottom: 30px;
+  bottom: 40px;
+  left: 10px;
 }
 .navbar .navbar-toggler{
   position: relative;
@@ -159,7 +185,23 @@
 .navbar-toggler-icon{
   width: .3em;
 }
+.linears{
 
+
+}
+linear-one{
+  height: 15vh;
+  background-color: #384043;
+  border-bottom:40px;
+
+
+}
+.mixed-line{
+  width: 100%;
+  height: 15vh;
+  background: linear-gradient(to right, #384043 25%, #D9D9D9 100%);
+
+}
 
 /*mobile*/
 @media (max-width:767px){
@@ -167,34 +209,40 @@
     position: relative;
     bottom: 50px;
   }
-  .arrow{
-    position: absolute;
-    right: 300vh;
+  .navbar-collapse li a{
+    font-size: 12px;
   }
+
   .footy .images img{
-    height: 60vh;
+    height: 70vh;
     width: 25vh;
     margin-left: -70px;
-    position: fixed;
+    bottom: 50px;
+  }
+  .footy .analyzing{
+    margin-top: 150px;
 
 
   }
   .footy .analyzing h1{
     font-size: 40px;
     position: relative;
-    right: 80px;
+    right: 300px;
+
   }
   .footy .analyzing h2{
-    font-size: 15px;
+    font-size: 18px;
     position: relative;
-    right: 80px;
+    left: -300px;
     padding: 3px 0px;
+
   }
   .footy .analyzing p{
     font-size: 12px;
     position: relative;
-    right: 80px;
-    top: -50px;
+    left: -300px;
+    width: 90%;
+
   }
   .navbar ul{
     line-height: 14px;
@@ -202,131 +250,550 @@
   }
   .arrow2{
     width: 50vh;
-    margin-left: -800px;
+    margin-left: -500px;
   }
   .arrow{
     width: 50vh;
-    margin-left: -1100px;
+    margin-left: -666px;
   }
-  .analyzing{
-    position: relative;
-    top: 10px;
 
-  }
 }
 
 /*small screen*/
 @media (min-width:768px) and (max-width:991px){
   .arrow2{
     width: 80vh;
-    margin-left: -550px;
+    margin-left: -330px;
   }
   .arrow{
     width: 80vh;
-    margin-left: -780px;
+    margin-left: -420px;
   }
-  .navbar ul{
-    line-height: 12px;
-
-  }
-  .footy .images img{
-    height: 65vh;
-    width: 35vh;
+  ul{
     position: relative;
-    left: 50px;
-    position: fixed;
-
-
-  }
-  .analyzing{
-    position: relative;
-    top: -60px;
-  }
-  .footy .analyzing h1{
-    font-size: 60px;
-    position:relative;
-    right: 40px;
-
-  }
-  .footy .analyzing h2{
-    position: relative;
-    font-size: 25px;
-    right: 40px;
-
-  }
-  .footy .analyzing p{
-    font-size: 16px;
-    position: relative;
-    right: 40px;
-
-  }
-}
-
-
-/*medium screen*/
-@media (min-width:992px){
-  .footy .analyzing h1{
-    position: relative;
-    right: 150px;
-    font-size: 80px;
-  }
-  .footy .analyzing h2{
-    position: relative;
-    right: 150px;
-    font-size: 32px;
-  }
-  .footy .analyzing p{
-    position: relative;
-    font-size: 17px ;
-    font-weight: 500;
-    right: 135px;
   }
   .footy .images img{
     height: 80vh;
     width: 40vh;
     position: relative;
-    top: 60px;
+    bottom:100px ;
+  }
+  .footy .analyzing{
+    position: relative;
+    left: -180px;
+
+  }
+  .footy .analyzing h1{
+    font-size: 70px;
+    position:relative;
+
+  }
+  .footy .analyzing h2{
+    position: relative;
+    font-size: 25px;
+
+
+  }
+  .footy .analyzing p{
+    font-size: 16px;
+    font-weight: 400;
+    width: 80%;
+  }
+
+.dropdown-menu{
+  border-radius: 5px;
+  background-color: black;
+  width: 250px;
+  padding: 40px 0px 0px 20px;
+  color: white;
+  position: relative;
+  top: -100px;
+}
+.dropdown-menu a{
+  border-radius: 5px;
+  color: aliceblue;
+  line-height: .8;
+  width: 200px;
+  font-size: 10px;
+
+}
+.dropdown-menu a:hover{
+  background-color: cadetblue;
+  color: white;
+}
+}
+
+
+/*medium screen*/
+@media (min-width:992px) and (max-width:1199px){
+  .footy .analyzing h1{
+    font-size: 80px;
+    position: relative;
+    top: 50px;
+  }
+  .footy .analyzing h2{
+    font-size: 30px;
+    position: relative;
+    top: 35px;
+  }
+  .footy .analyzing p{
+    font-size: 17px ;
+    font-weight: 500;
+    width: 70%;
+    position: relative;
+    top: 20px;
+  }
+  .footy .analyzing{
+  position: relative;
+  left: -80px;
+
+
+  }
+  .footy .images img{
+    height: 80vh;
+    width: 40vh;
+    position: relative;
+    top: -100px;
+    left: -30px;
   }
   .arrow2{
-    margin-left: -280px;
-    width: 110vh;
+    margin-left: -250px;
+    width: 90vh;
+    position: absolute;
   }
   .arrow{
-    margin-left: -470px;
-    width: 110vh;
+    margin-left: -430px;
+    width: 90vh;
+    position: absolute;
   }
-  .navbar ul{
-    font-size: 18px;
-    padding: 0px 4px 0px 4px;
+
+  ul{
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+
   }
+  .navbar-collapse li a{
+    font-size: 20px;
+  }
+  .dropdown-menu{
+    border-radius: 5px;
+    background-color: black;
+    width: 250px;
+    padding: 40px 0px 0px 20px;
+    color: white;
+    position: relative;
+    top: -150px;
+  }
+  .dropdown-menu a{
+    border-radius: 5px;
+    color: aliceblue;
+    line-height: .5;
+    width: 200px;
+    font-size: 8px;
+
+  }
+  .dropdown-menu a:hover{
+    background-color: cadetblue;
+    color: white;
+  }
+
 
 }
 
 /*large screen*/
 @media (min-width:1200px){
+  ul{
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    right: 30px;
+  }
+  .navbar-collapse li a{
+    font-size: 18px;
+
+  }
+  .footy .analyzing{
+    position: relative;
+    left: -50px;
+  }
   .footy .analyzing h1{
     position: relative;
-    right: 70px;
-    font-size: 100px;
+    font-size: 90px;
 
   }
   .footy .analyzing h2{
     position: relative;
-    right: 50px;
-    font-size: 37px;
+    font-size: 30px;
   }
   .footy .analyzing p{
     position: relative;
-    right: 60px;
-    font-size: 20px;
+    font-size: 18px;
   }
   .arrow2{
-    margin-left: -200px;
+    margin-left: -130px;
     width: 120vh;
   }
   .arrow{
-    margin-left: -300px;
+    margin-left: -160px;
     width: 120vh;
   }
 
+.dropdown-menu{
+  border-radius: 5px;
+  background-color: black;
+  width: 250px;
+  padding: 40px 0px 0px 20px;
+  color: white;
+  position: relative;
+  top: -100px;
 }
+.dropdown-menu a{
+  border-radius: 5px;
+  color: aliceblue;
+  line-height: .8;
+  width: 200px;
+  font-size: 10px;
+
+}
+.dropdown-menu a:hover{
+  background-color: cadetblue;
+  color: white;
+}
+.footy .images img{
+  width: 45vh;
+  height: 90vh;
+
+}
+
+}
+
+.join{
+  background-image:linear-gradient(#000000e7, rgba(51, 50, 50, 0.771)),
+  url('../images/main_screen/background\ 1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 300vh;
+  background-size: cover;
+  position: sticky;
+  margin-top: -16px;
+}
+/*
+.join .contain{
+  background-image: url('../images/main_screen/re1.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  position: sticky;
+  width:100%;
+  height: 100vh;
+}
+.wavy-background{
+  width: 95vw;
+  height: 60vh;
+  left: 0;
+  background:linear-gradient(45deg, #000000d4, rgba(16, 16, 16, 0.771)) ;
+  position: absolute;
+  animation: waveAnimation 5s linear infinite;
+}
+@keyframes waveAnimation{
+  0%{
+    transform: skewX(20deg);
+  }
+  50%{
+    transform:skewX(-20deg);
+  }
+  100%{
+    transform: skewX(20deg);
+  }
+}*/
+.join .wavy-background h1{
+  color: aliceblue;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  top: 100px;
+  font-size: 40px;
+  font-weight: 900;
+}
+.join .wavy-background span{
+  color: #287D14;
+}
+.join .wavy-background p{
+  color: azure;
+  position: relative;
+  top: 120px;
+  text-align: center;
+  margin: auto;
+  font-size: 25px;
+}
+
+.wavy-background hr{
+  width: 200px;
+  position: relative;
+  top: 150px;
+  text-align: center;
+  margin: auto;
+  border: 2px solid white;
+
+}
+.wavy-background::before{
+  content: "";
+  position: fixed;
+  position: absolute;
+  width: 73vw;
+  height: 50vh;
+  top: -374px;
+  left: -900px;
+  background-color:#161414df ;
+  transform: translate(100% ,100%) skew( 20deg,0);
+  align-items: center;
+}
+.fpxs{
+  display: flex;
+
+  position: relative;
+  top: 350px;
+}
+.fpxs .photo-one img{
+  width: 110vh;
+  height: 100vh;
+  position: relative;
+  left: 100px;
+}
+.fpx{
+  position: relative;
+  top: 300px;
+}
+.fpx h1{
+  color: #287D14;
+  font-size: 40px;
+  font-weight: 900;
+}
+.fpx p{
+  color: #287D14;
+  font-size: 20px;
+  font-weight: 700;
+  word-spacing: 4px;
+  width: 30vw;
+  margin-top: 20px;
+}
+.fpx span{
+  color: white;
+}
+.want{
+  display: flex;
+  position: relative;
+  top: 300px;
+
+}
+.want .photo-two img{
+  width: 120vh;
+  height: 100vh;
+}
+.want .warking h1{
+  font-size: 40px;
+  font-weight: 900;
+  color: #287D14;
+}
+.want .warking p{
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  width: 75%;
+  word-spacing: 2px;
+  margin-top: 30px;
+
+}
+
+.warking{
+  position: relative;
+  top: 280px;
+  left: -30px;
+}
+
+/*large screen*/
+@media (max-width:1200px){
+  .join{
+    position: sticky;
+  }
+  .wavy-background::before{
+    position: absolute;
+    text-align: center;
+    margin-left: 170px;
+    margin-top: 35px;
+  }
+  .wavy-background p{
+    font-size: 20px;
+  }
+  .fpxs .photo-one img{
+    position: relative;
+    left: -30px;
+  }
+  .fpx{
+    position: relative;
+    left: 30px;
+  }
+
+  .warking{
+    position: relative;
+    left: -60px;
+
+
+  }
+  .want .warking h1{
+    font-size: 30px;
+    position: relative;
+    top: -50px;
+  }
+  .want .warking p{
+    font-size: 16px;
+    position: relative;
+    top: -50px;
+  }
+
+}
+
+
+/*medium screen
+@media (min-width:992px) and (max-width:1199px){
+  .join{
+    background-size: cover;
+    background-repeat: no-repeat;
+
+  }
+  .join .wavy-background h1{
+    font-size: 30px;
+  }
+  .join .wavy-background p{
+    font-size: 18px;
+  }
+  .wavy-background::before{
+    position: fixed;
+    width: 60vw;
+    left: -20px;
+
+
+
+  }
+
+
+}*/
+
+/*small screen*/
+@media (min-width:768px) and (max-width:991px){
+}
+
+/*mobile*/
+@media (max-width:767px){
+}
+
+.cards{
+  display: flex;
+  gap: 120px;
+  justify-content: center;
+  background-color:rgba(0, 0, 0, 0.896);
+
+
+}
+.cards p{
+  font-size: 30px;
+  font-weight: 700;
+  color: red;
+}
+.cards h1{
+  font-size: 30px;
+  font-weight: 900;
+  color: white;
+}
+.cards img{
+  filter: invert(99%) sepia(5%) saturate(379%) hue-rotate(244deg) brightness(116%) contrast(100%);;
+}
+
+.footer{
+  background-color: black;
+  height: 70vh;
+}
+.blocks{
+  display: flex;
+
+}
+.logo p{
+  font-size: 16px;
+  color: aliceblue;
+  width: 25%;
+  position: relative;
+  left: 70px;
+}
+.explor{
+  position: relative;
+  right: 500px;
+  top: 100px;
+}
+
+.explor h1{
+  color: #287D14;
+  font-size: 35px;
+  font-weight: 900;
+}
+.explor h2{
+  color: white;
+  font-size: 20px;
+  position: relative;
+  top: 40px;
+  margin: 20px;
+  letter-spacing: 1px;
+
+}
+
+.about a{
+  color: white;
+  font-size: 20px;
+  position: relative;
+  right: 450px;
+  top: 170px;
+  text-transform:uppercase;
+  margin:18px;
+  text-decoration: none;
+  display: block;
+
+  letter-spacing: 1px;
+}
+.icons i{
+  color: white;
+  font-size: 25px;
+  padding: 10px 10px;
+}
+.icons{
+  position: relative;
+  padding: 20px 20px 30px 60px;
+
+}
+.icons h1{
+  color: #287D14;
+  font-size: 30px;
+  font-weight: 900;
+}
+.icons .face i:hover{
+  color: rgb(31, 31, 241);
+}
+.icons .insta i:hover{
+  color: crimson;
+}
+.icons .twitter i:hover{
+  color: rgb(31, 31, 241);
+
+}
+.icons .whats i:hover{
+  color: #287D14;
+}
+.icons .invi i:hover{
+  color: rgb(31, 31, 241);
+}
+
+
+
