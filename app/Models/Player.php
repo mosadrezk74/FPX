@@ -48,4 +48,8 @@ class Player extends Authenticatable
     public function club(){
         return $this->belongsTo(Club::class,'club_id','id');
     }
+    public function coach()
+    {
+        return $this->belongsTo(Coach::class);
+    }
 }

@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Club;
+use App\Models\Coach;
+use App\Models\Player;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +29,18 @@ class AppServiceProvider extends ServiceProvider
         view()->share('count',$count);
         $notifications = \App\Models\Notification::all();
         view()->share('notifications',$notifications);
+        $players=Player::with('club')->get();
+        view()->share('players',$players);
+        $now = Carbon::now();
+        $dayOfWeekEnglish = $now->isoFormat('dddd');
+        Carbon::setLocale('ar');
+        $dayOfWeekArabic = $now->isoFormat('dddd');
+        view()->share('dayOfWeekEnglish',$dayOfWeekEnglish);
+        view()->share('dayOfWeekArabic',$dayOfWeekArabic);
+        $currentTime = Carbon::now();
+        $time = $currentTime->format('H:i:s');
+        view()->share('time',$time);
+
 
 
 

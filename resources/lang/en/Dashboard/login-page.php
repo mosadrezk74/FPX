@@ -22,6 +22,12 @@ return [
     'SS' => 'Enter your Email',
     'SS2' => 'Enter your password',
     'Fail' => 'Email Is incorrect or password',
+    'Signin' => 'Sign In',
+    'Admins' => 'Welcome Back Admin !',
+    'dashboard' => 'Admin Dashboard',
+    'club' => 'Welcome Back , Club !',
+    'player' => 'Welcome Back , Player !',
+    'coach' => 'Welcome Back , Coach !',
 
 
 

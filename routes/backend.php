@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CaochController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\NotificationController;
@@ -30,9 +31,9 @@ Route::group(
     })->middleware(['auth:admin'])->name('dashboard.admin');
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
-    Route::get('/dashboard/caoch', function () {
-        return view('Dashboard.Coach_Dashboard.dashboard');
-    })->middleware(['auth:coach'])->name('dashboard.caoch');
+    Route::get('dashboard/coach', [\App\Http\Controllers\Coach_Dashboard::class, 'index'])
+        ->middleware(['auth:coach'])
+        ->name('dashboard.coach');
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
     Route::get('/dashboard/player', function () {
@@ -54,14 +55,18 @@ Route::group(
     Route::get('/search', SearchController::class);
 //    Route::get('/get-available-shirt-numbers/{club_id}', \App\Http\Controllers\Admin\PlayerController::class . 'getAvailableShirtNumbers');
     Route::get('/get-available-shirt-numbers/{club_id}', [PlayerController::class, 'getAvailableShirtNumbers']);
-
-
-
+    Route::get('/send-notification', [NotificationController::class, 'sendOfferNotification']);
     //--------------------End Admin Routes------------------------------------------------------
 
 
+    //------------------------- Start Coach Routes -------------------------------------------
+        Route::get('dashboard/coach/player/stats', [CaochController::class, 'stats'])->name('coach.stats');
+        Route::get('dashboard/coach/player/contact', [CaochController::class, 'contact'])->name('coach.contact');
 
-    Route::get('/send-notification', [NotificationController::class, 'sendOfferNotification']);
+
+        //------------------------- End Coach Routes -------------------------------------------
+
+
 
 
 

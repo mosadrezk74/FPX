@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
 use App\Models\Coach;
+use App\Models\Player;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -57,6 +58,15 @@ class CaochController extends Controller
         $coaches->save();
         session()->flash('add');
         return redirect()->route('coach.index');
+    }
+
+
+    public function stats(){
+
+        $players=Player::with('club')->get();
+
+        return view('Dashboard.Coach_dashboard.stats',compact('players'));
+
     }
 
 

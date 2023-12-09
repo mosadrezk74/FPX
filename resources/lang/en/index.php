@@ -18,12 +18,15 @@ return [
     'player_shirt_number'=>'Select Shirt Number',
     'club'=>'Club',
     'clubs'=>'Select Club Name',
-    'player_position_GK'=>'GK',
-    'player_position_DF'=>'DF',
-    'player_position_MF'=>'MF',
-    'player_position_FW'=>'FW',
+    'player_position_GK'=>'Goalkeeper',
+    'player_position_DF'=>'Defender',
+    'player_position_MF'=>'Midfielder',
+    'player_position_FW'=>'Forward',
     'email'=>'Email',
     'password'=>'Password',
+    'day'=>'Day',
+    'date'=>'Date',
+    'time'=>'Time',
 
 
 

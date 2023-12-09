@@ -43,4 +43,8 @@ class Coach extends Authenticatable
     public function club(){
         return $this->belongsTo(Club::class,'club_id','id');
     }
+    public function players()
+    {
+        return $this->hasMany(Player::class);
+    }
 }
