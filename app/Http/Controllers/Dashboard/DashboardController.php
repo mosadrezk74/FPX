@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Club;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -20,6 +21,10 @@ class DashboardController extends Controller
         ,compact('count'));
     }
 
+
+    public function country(){
+
+    }
 
     public function create()
     {

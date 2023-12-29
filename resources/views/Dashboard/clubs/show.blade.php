@@ -69,38 +69,38 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-12 col-xl-4 col-lg-12 col-md-12">
-								<div class="card ">
-									<div class="card-body">
-										<div class="counter-status d-flex md-mb-0">
-											<div class="counter-icon bg-danger-transparent">
-												<i class="icon-user text-danger"></i>
-											</div>
-											<div class="mr-auto">
-												<h5 class="tx-13">اسم المدرب</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">46,782</h2>
-												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-12 col-xl-4 col-lg-12 col-md-12">
-								<div class="card ">
-									<div class="card-body">
-										<div class="counter-status d-flex md-mb-0">
-											<div class="counter-icon bg-success-transparent">
-												<i class="icon-bubble text-success"></i>
-											</div>
-											<div class="mr-auto">
-												<h5 class="tx-13">اسم الملعب</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">1,890</h2>
-												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+{{--							<div class="col-sm-12 col-xl-4 col-lg-12 col-md-12">--}}
+{{--								<div class="card ">--}}
+{{--									<div class="card-body">--}}
+{{--										<div class="counter-status d-flex md-mb-0">--}}
+{{--											<div class="counter-icon bg-danger-transparent">--}}
+{{--												<i class="icon-user text-danger"></i>--}}
+{{--											</div>--}}
+{{--											<div class="mr-auto">--}}
+{{--												<h5 class="tx-13">اسم المدرب</h5>--}}
+{{--												<h2 class="mb-0 tx-22 mb-1 mt-1">46,782</h2>--}}
+{{--												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>--}}
+{{--											</div>--}}
+{{--										</div>--}}
+{{--									</div>--}}
+{{--								</div>--}}
+{{--							</div>--}}
+{{--							<div class="col-sm-12 col-xl-4 col-lg-12 col-md-12">--}}
+{{--								<div class="card ">--}}
+{{--									<div class="card-body">--}}
+{{--										<div class="counter-status d-flex md-mb-0">--}}
+{{--											<div class="counter-icon bg-success-transparent">--}}
+{{--												<i class="icon-bubble text-success"></i>--}}
+{{--											</div>--}}
+{{--											<div class="mr-auto">--}}
+{{--												<h5 class="tx-13">اسم الملعب</h5>--}}
+{{--												<h2 class="mb-0 tx-22 mb-1 mt-1">1,890</h2>--}}
+{{--												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>--}}
+{{--											</div>--}}
+{{--										</div>--}}
+{{--									</div>--}}
+{{--								</div>--}}
+{{--							</div>--}}
 						</div>
 						<div class="card">
 							<div class="card-body">
