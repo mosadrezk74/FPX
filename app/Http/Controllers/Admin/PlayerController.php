@@ -34,8 +34,8 @@ class PlayerController extends Controller
         $players = \App\Models\Player::with('club')->get();
         $clubs = \App\Models\Club::all();
         $notifications = \App\Models\Notification::all();
-        $jsonData = file_get_contents(public_path('countriesV2.json'));
-        $response = json_decode($jsonData);
+        $client = new Client();
+        $response = $client->get('https://restcountries.com/v3.1/all');
         $countries = json_decode($response->getBody(), true);
         $countries = array_filter($countries, function ($country) {
             return $country['name']['common'] !== 'Israel';
@@ -91,8 +91,6 @@ class PlayerController extends Controller
             $players->club_id = $request->club_id;
             $players->email = $request->email;
             $players->password = password_hash($request->password, PASSWORD_BCRYPT);
-            $players->status=$request->status;
-            $players->Preferred_Foot=$request->Preferred_Foot;
 
             if ($request->hasFile('photo')) {
                 $file = $request->file('photo');
