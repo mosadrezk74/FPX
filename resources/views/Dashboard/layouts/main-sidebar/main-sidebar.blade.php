@@ -73,6 +73,7 @@
                         </a>
                         <ul class="slide-menu">
                             <li><a class="slide-item" href="{{ route('player.index') }}">{{trans('Dashboard/main-sidebar_trans.veiw_all_players')}}</a></li>
+                            <li><a class="slide-item" href="{{ route('player_stats.index') }}">{{trans('Dashboard/main-sidebar_trans.veiw_stats')}}</a></li>
 
                         </ul>
                     </li>

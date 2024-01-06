@@ -100,6 +100,7 @@
     <!-- row closed -->
 
 <div class="row row-sm row-deck">
+
     <div class="col-md-12 col-lg-4 col-xl-4">
         <div class="card card-dashboard-eight pb-2">
             <h6 class="card-title">أفضل اللاعبين</h6>
@@ -202,11 +203,13 @@
             </div>
         </div>
     </div>
+
 </div>
 
 
-</div>
-</div>
+
+    </div>
+ </div>
 <!-- Container closed -->
 @endsection
 @section('js')
@@ -249,6 +252,9 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+
+
     </script>
 
 @endsection

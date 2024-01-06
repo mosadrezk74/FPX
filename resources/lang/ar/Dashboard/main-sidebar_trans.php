@@ -14,6 +14,7 @@ return [
     'team'=>'فريق',
     'veiw_all_coach'=>'عرض المدربين',
     'admin_dashboard'=>'لوحة التحكم الإدارية',
+    'veiw_stats'=>'إضافة الاحصائيات',
 
 
 

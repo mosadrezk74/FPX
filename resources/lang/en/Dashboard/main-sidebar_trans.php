@@ -14,6 +14,7 @@ return [
     'team'=>'Team',
     'veiw_all_coach'=>'View Coach',
     'admin_dashboard'=>'Admin Dashboard',
+    'veiw_stats'=>'Add Stats',
 
 
 ];

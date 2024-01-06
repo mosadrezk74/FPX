@@ -1,6 +1,9 @@
-<!-- main-header opened -->
+<style>
+
+</style>
 <div class="main-header sticky side-header nav nav-item">
     <div class="container-fluid">
+
         <div class="main-header-left ">
             <div class="responsive-logo">
                 <a href="{{ url('/' . $page='index') }}" ><img src="{{URL::asset('Dashboard/img/brand/logo.png')}}"
@@ -16,24 +19,25 @@
                 <a class="open-toggle" href="#"><i class="header-icon fe fe-align-left"></i></a>
                 <a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
             </div>
+            <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
+                <input class="form-control" placeholder="Search for anything..." type="search">
+                <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
+            </div>
 
         </div>
         <div class="main-header-right">
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="theme-switch" style=" display: none;" >
-                    <input type="checkbox" id="theme-switch"  />
-                    <span class="slider"></span>
-                </label>
-                <div class="theme-switcher-options">
-                    <button class="btn btn-sm btn-light" id="light-theme">
-                        <i class="fas fa-sun fa-2x-lg"></i>
-                    </button>
-                    <button class="btn btn-sm btn-dark" id="dark-theme">
-                        <i class="fas fa-moon fa-2x-lg"></i>
-                    </button>
-                </div>
 
+            <div class="theme-switch-wrapper">
+                <div class="theme-switcher-options">
+                    <select id="theme-select" class="form-select form-select-sm">
+                        <option value="light">&#9728;</option>
+                        <option value="dark">&#127769;</option>
+                    </select>
+                </div>
             </div>
+
+
+
             <ul class="nav">
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
@@ -169,37 +173,40 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
 </div>
 
 
 
 <script>
-    const themeSwitch = document.getElementById('theme-switch');
-    const lightThemeButton = document.getElementById('light-theme');
-    const darkThemeButton = document.getElementById('dark-theme');
-    document.body.classList.add('dark-theme');
-    themeSwitch.addEventListener('change', () => {
-        if (themeSwitch.checked) {
-            document.body.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.body.classList.remove('dark-theme');
-            localStorage.setItem('theme', 'light');
-        }
-    });
-    lightThemeButton.addEventListener('click', () => {
-        themeSwitch.checked = false;
-        document.body.classList.remove('dark-theme');
-    });
-    darkThemeButton.addEventListener('click', () => {
-        themeSwitch.checked = true;
-        document.body.classList.add('dark-theme');
-    });
+    const themeSwitch = document.getElementById('theme-select');
     const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark') {
-        themeSwitch.checked = true;
-    } else if (storedTheme === 'light') {
-        themeSwitch.checked = false;
-        document.body.classList.remove('dark-theme');
+
+    // Function to set the theme based on the stored value
+    function setTheme(theme) {
+        document.body.classList.remove('light-theme', 'dark-theme');
+        document.body.classList.add(`${theme}-theme`);
+    }
+
+    // Event listener for changes in the selected option
+    themeSwitch.addEventListener('change', function () {
+        var selectedTheme = this.value;
+        setTheme(selectedTheme);
+        localStorage.setItem('theme', selectedTheme);
+    });
+
+    // Set the initial theme based on local storage
+    if (storedTheme) {
+        themeSwitch.value = storedTheme;
+        setTheme(storedTheme);
+    } else {
+        // Default theme if no theme is stored in local storage
+        setTheme('dark');
+        localStorage.setItem('theme', 'dark');
     }
 </script>

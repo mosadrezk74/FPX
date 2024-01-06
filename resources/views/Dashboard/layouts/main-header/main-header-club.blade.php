@@ -1,10 +1,11 @@
 <!-- main-header opened -->
 <div class="main-header sticky side-header nav nav-item">
     <div class="container-fluid">
+
         <div class="main-header-left ">
             <div class="responsive-logo">
-                <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/logo.png')}}"
-                                                              class="logo-1" alt="logo"></a>
+                <a href="{{ url('/' . $page='index') }}" ><img src="{{URL::asset('Dashboard/img/brand/logo.png')}}"
+                                                               class="logo-1" alt="logo"></a>
                 <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/logo-white.png')}}"
                                                               class="dark-logo-1" alt="logo"></a>
                 <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
@@ -15,6 +16,10 @@
             <div class="app-sidebar__toggle" data-toggle="sidebar">
                 <a class="open-toggle" href="#"><i class="header-icon fe fe-align-left"></i></a>
                 <a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
+            </div>
+            <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
+                <input class="form-control" placeholder="Search for anything..." type="search">
+                <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
             </div>
 
         </div>
@@ -41,15 +46,15 @@
                            aria-expanded="false">
                             @if (App::getLocale() == 'ar')
                                 <span class="avatar country-Flag mr-0 align-self-center bg-transparent"><img
-                                        src="{{URL::asset('Dashboard/img/flags/egypt_flag.jpg')}}" alt="img"></span>
+                                            src="{{URL::asset('Dashboard/img/flags/egypt_flag.jpg')}}" alt="img"></span>
                                 <strong
-                                    class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
+                                        class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
                             @else
                                 <span class="avatar country-Flag mr-0 align-self-center bg-transparent">
                                     <img
-                                        src="{{URL::asset('Dashboard/img/flags/us_flag.jpg')}}" alt="img"></span>
+                                            src="{{URL::asset('Dashboard/img/flags/us_flag.jpg')}}" alt="img"></span>
                                 <strong
-                                    class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
+                                        class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
                             @endif
                             <div class="my-auto">
                             </div>
@@ -77,7 +82,7 @@
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-maximize">
                             <path
-                                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                    d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
                         </svg>
                     </a>
                 </div>
@@ -90,49 +95,41 @@
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
-                        <span class=" pulse"></span></a>
+                        <span class="pulse"></span>
+                    </a>
                     <div class="dropdown-menu">
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">{{trans('Dashboard/main-header_trans.notifications')}}</h6>
-                                <span
-                                    class="badge badge-pill badge-warning mr-auto my-auto float-left">{{trans('Dashboard/main-header_trans.all')}}</span>
+                                <span class="badge badge-pill badge-warning mr-auto my-auto float-left">{{trans('Dashboard/main-header_trans.all')}}</span>
                             </div>
-                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">{{trans('Dashboard/main-header_trans.you_have')}} 4
-                                {{trans('Dashboard/main-header_trans.notifications')}}</p>
+                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">{{trans('Dashboard/main-header_trans.you_have')}} {{ $notifications->count() }} {{trans('Dashboard/main-header_trans.notifications')}}</p>
                         </div>
                         <div class="main-notification-list Notification-scroll">
-                            <a class="d-flex p-3 border-bottom" href="#" data-toggle="dropdown" data-bs-dismiss="dropdown">
-                                <div class="notifyimg bg-pink">
-                                    <i class="la la-file-alt text-white"></i>
-                                </div>
-                                <div class="mr-3">
-                                    <h5 class="notification-label mb-1">{{trans('Dashboard/main-header_trans.new_files')}}</h5>
-                                    <div class="notification-subtext">10 {{trans('Dashboard/main-header_trans.hours_ago')}}</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3" href="#" data-toggle="dropdown" data-bs-dismiss="dropdown">
-                                <div class="notifyimg bg-purple">
-                                    <i class="la la-gem text-white"></i>
-                                </div>
-                                <div class="mr-3">
-                                    <h5 class="notification-label mb-1">{{trans('Dashboard/main-header_trans.updates')}}</h5>
-                                    <div class="notification-subtext">2 {{trans('Dashboard/main-header_trans.days_ago')}}</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-
+                            @forelse($notifications as $notification)
+                                <a class="d-flex p-3 border-bottom" href="{{ json_decode($notification->data)->id }}" data-toggle="dropdown" data-bs-dismiss="dropdown">
+                                    <div class="notifyimg bg-pink">
+                                        <i class="la la-file-alt text-white"></i>
+                                    </div>
+                                    <div class="mr-3">
+                                        <h5 class="notification-label mb-1">{{ json_decode($notification->data)->title }}</h5>
+                                        <div class="notification-subtext">{{ $notification->created_at->diffForHumans() }}</div>
+                                    </div>
+                                    <div class="mr-auto">
+                                        <i class="las la-angle-left text-left text-muted"></i>
+                                    </div>
+                                </a>
+                            @empty
+                                <!-- No notifications message -->
+                                <div class="p-3 text-center">{{trans('Dashboard/main-header_trans.no_notifications')}}</div>
+                            @endforelse
                         </div>
                         <div class="dropdown-footer">
-                            <a href="">{{trans('Dashboard/main-header_trans.view')}}</a>
+                            <a href="{{ url('InvoicesDetails') }}">{{trans('Dashboard/main-header_trans.view')}}</a>
                         </div>
                     </div>
                 </div>
+
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     <a class="profile-user d-flex" href="" data-toggle="dropdown" data-bs-dismiss="dropdown"><img alt=""
                                                                                                                   src="{{URL::asset('Dashboard/img/faces/6.jpg')}}"></a>
@@ -177,6 +174,12 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
 </div>
 
 

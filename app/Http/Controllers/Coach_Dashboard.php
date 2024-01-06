@@ -24,6 +24,7 @@ class Coach_Dashboard extends Controller
 
 
 
+
         return view('Dashboard.Coach_Dashboard.dashboard' , compact('coach' , 'random'
         ,'count_p'
             ,'clubs'

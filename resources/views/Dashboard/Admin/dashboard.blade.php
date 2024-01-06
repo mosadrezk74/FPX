@@ -1,8 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('css')
-<!--  Owl-carousel css-->
 <link href="{{URL::asset('Dashboard/plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet" />
-<!-- Maps css -->
 <link href="{{URL::asset('Dashboard/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
 @endsection
 <title>{{trans('Dashboard/main-sidebar_trans.admin_dashboard')}}</title>
@@ -12,7 +10,7 @@
 					<div class="left-content">
 						<div>
                             @if(App::getLocale() == "ar")
-						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1"> مرحبا يا  {{Auth::user()->name_ar}} </h2>
+						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1"> مرحبا    {{Auth::user()->name_ar}} </h2>
                             @else
 						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Welcome {{Auth::user()->name_en}} </h2>
                             @endif
@@ -43,7 +41,6 @@
 
     </div>
     <!-- row closed -->
-
     <div class="row row-sm row-deck">
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
@@ -61,6 +58,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-12 col-lg-8 col-xl-8">
             <div class="card card-table-two">
                 <div class="d-flex justify-content-between">
@@ -147,8 +145,24 @@
                 </div>
             </div>
         </div>
+
+        {{--    <div class="col-xl-4 col-lg-5">--}}
+        {{--        <div class="card shadow mb-4">--}}
+        {{--            <!-- Card Header - Dropdown -->--}}
+        {{--            <div class="card-header py-3">--}}
+        {{--                <h6 class="m-0 font-weight-bold text-primary">Matches Played</h6>--}}
+        {{--            </div>--}}
+        {{--            <!-- Card Body -->--}}
+        {{--            <div class="card-body">--}}
+        {{--                <div class="chart-pie pt-4">--}}
+        {{--                    <canvas id="myPieChart"></canvas>--}}
+        {{--                </div>--}}
+
+        {{--            </div>--}}
+        {{--        </div>--}}
+        {{--    </div>--}}
+
     </div>
-    <!-- /row -->
 
 
     </div>
@@ -156,6 +170,63 @@
     <!-- Container closed -->
 @endsection
 
+@section('js')
+    <!--Internal  Chart.bundle js -->
+    <script src="{{asset('Dashboard/plugins/chart.js/Chart.bundle.min.js')}}"></script>
+    <!-- Moment js -->
+    <script src="{{asset('Dashboard/plugins/raphael/raphael.min.js')}}"></script>
+    <!--Internal  Flot js-->
+    <script src="{{asset('Dashboard/plugins/jquery.flot/jquery.flot.js')}}"></script>
+    <script src="{{asset('Dashboard/plugins/jquery.flot/jquery.flot.pie.js')}}"></script>
+    <script src="{{asset('Dashboard/plugins/jquery.flot/jquery.flot.resize.js')}}"></script>
+    <script src="{{asset('Dashboard/plugins/jquery.flot/jquery.flot.categories.js')}}"></script>
+    <script src="{{asset('Dashboard/js/dashboard.sampledata.js')}}"></script>
+    <script src="{{asset('Dashboard/js/chart.flot.sampledata.js')}}"></script>
+    <!--Internal Apexchart js-->
+    <script src="{{asset('Dashboard/js/apexcharts.js')}}"></script>
+    <!-- Internal Map -->
+    <script src="{{asset('Dashboard/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+    <script src="{{asset('Dashboard/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+    <script src="{{asset('Dashboard/js/modal-popup.js')}}"></script>
+    <!--Internal  index js -->
+    <script src="{{asset('Dashboard/js/index.js')}}"></script>
+    <script src="{{asset('Dashboard/js/jquery.vmap.sampledata.js')}}"></script>
+    <script>
+         Chart.defaults.global.defaultFontColor = '#858796';
 
+         var ctx = document.getElementById("myPieChart");
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ["Wins", "Draws", "Losses"],
+                datasets: [{
+                    data: [55, 30, 15],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 80,
+            },
+        });
+
+    </script>
+
+@endsection
 
 

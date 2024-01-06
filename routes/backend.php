@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Admin\CaochController;
 use App\Http\Controllers\Admin\PlayerController;
+use App\Http\Controllers\Admin\PlayerStatsController;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
@@ -50,7 +53,12 @@ Route::group(
 
     //--------------------Start Admin Routes---------------------------------------------------
   Route::resource('dashboard/admin/player', PlayerController::class);
-  Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
+  //-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
+  Route::get('dashboard/admin/player_stats', [PlayerStatsController::class, 'index'])->name('player_stats.index');
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+     Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
   Route::resource('dashboard/admin/coach', \App\Http\Controllers\Admin\CaochController::class);
     Route::get('/search', SearchController::class);
 //    Route::get('/get-available-shirt-numbers/{club_id}', \App\Http\Controllers\Admin\PlayerController::class . 'getAvailableShirtNumbers');

@@ -2,9 +2,6 @@
 <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 <!-- JQuery min js -->
 <script src="{{URL::asset('Dashboard/plugins/jquery/jquery.min.js')}}"></script>
-
-{{--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"  ></script>--}}
-
 <!-- Bootstrap Bundle js -->
 <script src="{{URL::asset('Dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- Ionicons js -->
@@ -29,22 +26,10 @@
 <!-- Eva-icons js -->
 <script src="{{URL::asset('Dashboard/js/eva-icons.min.js')}}"></script>
 @yield('js')
-
-<script src="{{ asset('Dashboard/js/index-dark.js') }}"></script>
-<script src="{{ asset('Dashboard/js/index.js') }}"></script>
-<script src="{{ asset('Dashboard/js/app.js') }}"></script>
-<script src="{{ asset('Dashboard/js/app-dark.js') }}"></script>
-<script src="{{ asset('Dashboard/js/app-style-switcher.js') }}"></script>
-<script src="{{ asset('Dashboard/js/feather.min.js') }}"></script>
-<script src="{{ asset('Dashboard/js/side-menu.js') }}"></script>
-<script src="{{ asset('Dashboard/js/side-menu-dark.js') }}"></script>
-<script src="{{ asset('Dashboard/js/custom.js') }}"></script>
-<script src="{{ asset('Dashboard/js/custom-dark.js') }}"></script>
-
 <!-- Sticky js -->
 <script src="{{URL::asset('Dashboard/js/sticky.js')}}"></script>
 <!-- custom js -->
 <script src="{{URL::asset('Dashboard/js/custom.js')}}"></script><!-- Left-menu js-->
 <script src="{{URL::asset('Dashboard/plugins/side-menu/sidemenu.js')}}"></script>
-<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
