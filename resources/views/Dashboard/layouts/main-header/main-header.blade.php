@@ -187,26 +187,22 @@
     const themeSwitch = document.getElementById('theme-select');
     const storedTheme = localStorage.getItem('theme');
 
-    // Function to set the theme based on the stored value
-    function setTheme(theme) {
+     function setTheme(theme) {
         document.body.classList.remove('light-theme', 'dark-theme');
         document.body.classList.add(`${theme}-theme`);
     }
 
-    // Event listener for changes in the selected option
-    themeSwitch.addEventListener('change', function () {
+     themeSwitch.addEventListener('change', function () {
         var selectedTheme = this.value;
         setTheme(selectedTheme);
         localStorage.setItem('theme', selectedTheme);
     });
 
-    // Set the initial theme based on local storage
-    if (storedTheme) {
+     if (storedTheme) {
         themeSwitch.value = storedTheme;
         setTheme(storedTheme);
     } else {
-        // Default theme if no theme is stored in local storage
-        setTheme('dark');
+         setTheme('dark');
         localStorage.setItem('theme', 'dark');
     }
 </script>

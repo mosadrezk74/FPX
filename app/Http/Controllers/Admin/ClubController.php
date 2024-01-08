@@ -5,17 +5,34 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
 use App\Models\Player;
+use App\Trait\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ClubController extends Controller
 {
+    use GeneralTrait;
 
     public function index()
     {
         $clubs = Club::paginate(3);
 
         return view('Dashboard.Clubs.index' , compact('clubs') );
+    }
+
+
+    public function get_clubs_api(){
+
+        $clubs=Club::get();
+        return response()->json($clubs);
+    }
+    public function get_club_by_id_api(Request $request){
+        $club=Club::get()->find($request->id);
+        if(!$club){
+            return $this->returnError('001','مفيش نادي مسجل بالرقم دا .. حاول تاني ');
+        }
+        return $this->returnData('club_info',$club,'تم تحميل بيانات النادي بنجاح');
+//        return response()->json($club);
     }
 
     public function create()

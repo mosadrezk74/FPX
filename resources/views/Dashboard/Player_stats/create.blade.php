@@ -25,182 +25,30 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="card">
 				<div class="card-body" >
-                    <form action="{{ route('player.store') }}" method="post" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        @csrf
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label for="name_ar" class="control-label mb-1">{{trans('index.player_name_ar')}}</label>
-                                                    <input id="name_ar"  name="name_ar" type="text"
-                                                           class="form-control" aria-required="true" required  >
-                                                    @error('name_ar')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="name_en" class="control-label mb-1">{{trans('index.player_name_en')}}</label>
-                                                    <input id="name_en"  name="name_en" type="text"
-                                                           class="form-control" aria-required="true"  required >
-                                                    @error('name_en')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
+					<form id="playerStatsForm" action="{{ route('player_stats.store') }}" method="post" enctype="multipart/form-data">
+						@csrf
 
-                                                <div class="col-md-4">
-                                                    <label for="club" class="control-label mb-1">{{trans('index.club')}}</label>
+						<div class="form-group">
+							<label for="club" class="control-label mb-1">اختر النادي:</label>
+							<select id="club" name="club_id" class="form-control" required>
+								<option value="">اختر ناديًا</option>
+								@foreach($clubs as $club)
+									<option value="{{ $club->id }}">{{ App::getLocale() == 'ar' ? $club->name_ar : $club->name_en }}</option>
+								@endforeach
+							</select>
+						</div>
 
-                                                    <select id="club" name="club_id" class="form-control" required>
-                                                        <option value="">{{trans('index.clubs')}}</option>
-                                                        @foreach($clubs as $club)
-                                                            @if (App::getLocale() == 'ar')
-                                                            <option value="{{$club->id}}">{{$club->name_ar}}</option>
-                                                            @else
-                                                                <option value="{{$club->id}}">{{$club->name_en}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                    @error('club_id')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
+						<div class="form-group">
+							<label for="player" class="control-label mb-1">اختر اللاعب:</label>
+							<select id="player" name="player_id" class="form-control" required>
+								<!-- الخيارات ستتم إضافتها باستخدام AJAX -->
+							</select>
+						</div>
 
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="shirt" class="control-label mb-1">{{trans('index.player_shirt')}}</label>
-                                                    <select id="shirt" name="shirt_number" class="form-control" aria-required="true" required>
-                                                        <!-- Options will be dynamically added here via AJAX -->
-                                                    </select>
-                                                    @error('shirt_number')
-                                                    <div class="alert alert-danger mt-2" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
+						<div id="playerInfo">لا يوجد لاعب محدد حتى الآن.</div>
 
-
-                                                <div class="col-md-4">
-                                                    <label for="photo" class="control-label mb-1">{{trans('index.player_image')}}</label>
-                                                    <input class="form-control" type="file" name="photo" required>
-                                                    @error('photo')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <label for="email" class="control-label mb-1">{{trans('index.email')}}</label>
-                                                    <input class="form-control" type="email" name="email" required>
-                                                    @error('email')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-
-
-                                                <div class="col-md-4">
-                                                    <label for="password" class="control-label mb-1">{{trans('index.password')}}</label>
-                                                    <input class="form-control" type="password" name="password" required>
-                                                    @error('password')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <label for="nationality" class="control-label mb-1">{{trans('index.player_nation')}}</label>
-                                                    <input id="nationality" name="nationality" list="nationalitiesList" class="form-control" required>
-                                                    <datalist id="nationalitiesList">
-                                                        <option value="" label="{{trans('nation.player_nation')}}"></option>
-                                                        @foreach ($countries as $country)
-                                                            <option value="{{ $country['name']['common'] }}">
-                                                                {{ trans('nation.country_name.' . strtolower($country['cca2'])) }}
-                                                                <img src="{{ $country['flags']['png'] }}" alt="{{ $country['name']['common'] }} Flag">
-                                                            </option>
-                                                        @endforeach
-                                                    </datalist>
-                                                    @error('nationality')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-
-
-                                                <div class="col-md-4">
-                                                    <label for="age" class="control-label mb-1">{{trans('index.player_age')}}</label>
-                                                    <input id="age" name="age" type="text" class="form-control" required data-input aria-required="true">
-                                                    @error('age')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label for="height" class="control-label mb-1">{{trans('index.player_height')}}</label>
-                                                    <input id="height"  name="height" type="text"
-                                                           class="form-control" aria-required="true"  required >
-                                                    @error('height')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="position" class="control-label mb-1">{{trans('index.player_position')}}</label>
-                                                    <select id="position" name="position" class="form-control" required>
-                                                        <option value="" disabled selected>{{trans('index.player_position_SS')}}</option>
-                                                        <option value="0">{{trans('index.player_position_GK')}}</option>
-                                                        <option value="1">{{trans('index.player_position_DF')}}</option>
-                                                        <option value="2">{{trans('index.player_position_MF')}}</option>
-                                                        <option value="3">{{trans('index.player_position_FW')}}</option>
-                                                     </select>
-                                                    @error('position')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-
-
-
-
-                                            </div>
-                                        </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        <center>
-
-                        <div>
-                            <button id="payment-button" type="submit" class="btn btn-lg btn-primary">
-                                Submit
-                            </button>
-                        </div>
-                        </center>
-
-                    </form>
+						<button type="submit">إضافة إحصائيات</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -211,14 +59,30 @@
 
 @endsection
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            flatpickr("#age", {
-                maxDate: "2006-01-01",
-                dateFormat: "Y-m-d",
-            });
-        });
-    </script>
+<script>
+	$(document).ready(function() {
+		$('#club').on('change', function() {
+			var clubId = $(this).val();
+
+			if (clubId) {
+				$.ajax({
+					url: '/get-players/' + clubId,
+					type: 'GET',
+					dataType: 'json',
+					success: function(data) {
+						console.log(data);
+						$('#player').empty();
+						$.each(data, function(key, value) {
+							$('#player').append('<option value="' + value.id + '">' + value.name_ar + '</option>');
+						});
+					}
+				});
+			} else {
+				$('#player').empty();
+			}
+		});
+	});
+</script>
 
 
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
+use App\Livewire\PlayerStats;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -22,6 +23,10 @@ Route::group(
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->middleware(['auth', 'verified'])
         ->name('dashboard');
+
+           Route::get('/test', function () {
+        return view('Dashboard.pages.dropdown');
+    });
 
     //-----------------------------------------------------------------------
     Route::get('/dashboard/user', function () {
@@ -56,6 +61,10 @@ Route::group(
   //-------------------------------------------------------------------------
   //-------------------------------------------------------------------------
   Route::get('dashboard/admin/player_stats', [PlayerStatsController::class, 'index'])->name('player_stats.index');
+  Route::get('dashboard/admin/player_stats/add_player_stats', [PlayerStatsController::class, 'create'])->name('player_stats.create');
+  Route::get('dashboard/admin/player_stats/add_player_stats/store', [PlayerStatsController::class, 'store'])->name('player_stats.store');
+  Route::get('/get-players/{clubId}', [PlayerStatsController::class, 'getPlayers'])->name('getPlayers');
+
     //-------------------------------------------------------------------------
     //-------------------------------------------------------------------------
      Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);

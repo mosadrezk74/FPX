@@ -21,8 +21,8 @@ return [
     'process'=>'Processes',
     'players'=>'Players',
     'show'=>'Show All Players',
-
-
+    'match'=>'Matches',
+    'add_match_stats'=>'Add Match Stats',
 
 
 

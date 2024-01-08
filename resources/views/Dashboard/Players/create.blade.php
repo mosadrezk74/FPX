@@ -77,8 +77,7 @@
                                                 <div class="col-md-4">
                                                     <label for="shirt" class="control-label mb-1">{{trans('index.player_shirt')}}</label>
                                                     <select id="shirt" name="shirt_number" class="form-control" aria-required="true" required>
-                                                        <!-- Options will be dynamically added here via AJAX -->
-                                                    </select>
+                                                     </select>
                                                     @error('shirt_number')
                                                     <div class="alert alert-danger mt-2" role="alert">
                                                         {{ $message }}
