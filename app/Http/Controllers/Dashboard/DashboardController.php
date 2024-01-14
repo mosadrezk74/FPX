@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
 class DashboardController extends Controller
 {
@@ -15,10 +17,17 @@ class DashboardController extends Controller
     {
         $club_count=Club::all();
         $count=$club_count->count();
-        return view('Dashboard.index'
+        $jsonFilePath = public_path('Football API.postman_collection.json');
+        $jsonData = File::get($jsonFilePath);
 
-        ,compact('count'));
+        $standingsData = json_decode($jsonData, true);
+
+        return view('Dashboard.index'
+        ,compact('count','standingsData'));
     }
+
+
+
 
 
     public function create()

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Dashboard\Admin_Dashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,10 @@ Route::group(
 
         Route::post('get_clubs_name', [\App\Http\Controllers\Admin\ClubController::class, 'get_clubs_api'])->name('get_clubs_name');
         Route::post('get_club_by_id_api', [\App\Http\Controllers\Admin\ClubController::class, 'get_club_by_id_api'])->name('get_club_by_id_api');
+        Route::post('/standings/{version}/{sport}', [\App\Http\Controllers\Admin\ClubController::class, 'getApiData'])->name('getApiData');
 
-    });
+
+});
 
 
 

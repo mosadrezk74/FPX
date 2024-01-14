@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\PlayerStatsController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\Coach_Dashboard;
+use App\Http\Controllers\Dashboard\Admin_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
@@ -34,9 +35,10 @@ Route::group(
     })->middleware(['auth'])->name('dashboard.user');
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
-    Route::get('/dashboard/admin', function () {
-        return view('Dashboard.Admin.dashboard');
-    })->middleware(['auth:admin'])->name('dashboard.admin');
+
+    Route::get('dashboard/admin', [Admin_Dashboard::class, 'index'])
+        ->middleware(['auth:admin'])
+        ->name('dashboard.admin');
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
     Route::get('dashboard/coach', [\App\Http\Controllers\Coach_Dashboard::class, 'index'])

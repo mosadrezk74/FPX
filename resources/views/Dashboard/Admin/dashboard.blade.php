@@ -79,6 +79,16 @@
                         </tr>
                         </thead>
                         <tbody>
+
+
+                            <ul>
+                                @foreach ($data as $team)
+                                    <li>{{ $team->name }} - Points: {{ $team->points }}</li>
+                                @endforeach
+                            </ul>
+
+
+
                         <tr>
                             <td class="tx-right tx-medium tx-inverse">1</td>
 
@@ -91,77 +101,220 @@
                             <td class="tx-right tx-medium tx-inverse">0</td>
                             <td class="tx-right tx-medium tx-danger tx-bold">28</td>
                         </tr>
-                        <tr>
-                            <td class="tx-right tx-medium tx-inverse">2</td>
+{{--                        <tr>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">2</td>--}}
 
-                            <td class="tx-right tx-medium tx-inverse">
-                                <img src="{{URL::asset('Dashboard/logo/2.jpg')}}" class="wd-30 ht-30" alt="img">
-                                بيراميدز</td>
-                            <td class="tx-right tx-medium tx-inverse">10</td>
-                            <td class="tx-right tx-medium tx-inverse">8</td>
-                            <td class="tx-right tx-medium tx-inverse">1</td>
-                            <td class="tx-right tx-medium tx-inverse">1</td>
-                            <td class="tx-right tx-medium tx-danger tx-bold">25</td>
-                        </tr>
-                        <tr>
-                            <td class="tx-right tx-medium tx-inverse">3</td>
+{{--                            <td class="tx-right tx-medium tx-inverse">--}}
+{{--                                <img src="{{URL::asset('Dashboard/logo/2.jpg')}}" class="wd-30 ht-30" alt="img">--}}
+{{--                                بيراميدز</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">10</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">8</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">1</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">1</td>--}}
+{{--                            <td class="tx-right tx-medium tx-danger tx-bold">25</td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">3</td>--}}
 
-                            <td class="tx-right tx-medium tx-inverse">
-                                <img src="{{URL::asset('Dashboard/logo/3.jpg')}}" class="wd-30 ht-30" alt="img">
-                                مودرن فيوتشر</td>
-                            <td class="tx-right tx-medium tx-inverse">10</td>
-                            <td class="tx-right tx-medium tx-inverse">6</td>
-                            <td class="tx-right tx-medium tx-inverse">4</td>
-                            <td class="tx-right tx-medium tx-inverse">0</td>
-                            <td class="tx-right tx-medium tx-danger tx-bold">22</td>
-                        </tr>
-                        <tr>
-                            <td class="tx-right tx-medium tx-inverse">4</td>
+{{--                            <td class="tx-right tx-medium tx-inverse">--}}
+{{--                                <img src="{{URL::asset('Dashboard/logo/3.jpg')}}" class="wd-30 ht-30" alt="img">--}}
+{{--                                مودرن فيوتشر</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">10</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">6</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">4</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">0</td>--}}
+{{--                            <td class="tx-right tx-medium tx-danger tx-bold">22</td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">4</td>--}}
 
-                            <td class="tx-right tx-medium tx-inverse">
-                                <img src="{{URL::asset('Dashboard/logo/4.jpg')}}" class="wd-30 ht-30" alt="img">
-                                سموحة</td>
-                            <td class="tx-right tx-medium tx-inverse">10</td>
-                            <td class="tx-right tx-medium tx-inverse">5</td>
-                            <td class="tx-right tx-medium tx-inverse">3</td>
-                            <td class="tx-right tx-medium tx-inverse">2</td>
-                            <td class="tx-right tx-medium tx-danger tx-bold">18</td>
-                        </tr>
-                        <tr>
-                            <td class="tx-right tx-medium tx-inverse">5</td>
+{{--                            <td class="tx-right tx-medium tx-inverse">--}}
+{{--                                <img src="{{URL::asset('Dashboard/logo/4.jpg')}}" class="wd-30 ht-30" alt="img">--}}
+{{--                                سموحة</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">10</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">5</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">3</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">2</td>--}}
+{{--                            <td class="tx-right tx-medium tx-danger tx-bold">18</td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">5</td>--}}
 
-                            <td class="tx-right tx-medium tx-inverse">
-                                <img src="{{URL::asset('Dashboard/logo/5.jpg')}}" class="wd-30 ht-30" alt="img">
-                                الزمالك</td>
-                            <td class="tx-right tx-medium tx-inverse">10</td>
-                            <td class="tx-right tx-medium tx-inverse">5</td>
-                            <td class="tx-right tx-medium tx-inverse">0</td>
-                            <td class="tx-right tx-medium tx-inverse">5</td>
-                            <td class="tx-right tx-medium tx-danger tx-bold">15</td>
-                        </tr>
+{{--                            <td class="tx-right tx-medium tx-inverse">--}}
+{{--                                <img src="{{URL::asset('Dashboard/logo/5.jpg')}}" class="wd-30 ht-30" alt="img">--}}
+{{--                                الزمالك</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">10</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">5</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">0</td>--}}
+{{--                            <td class="tx-right tx-medium tx-inverse">5</td>--}}
+{{--                            <td class="tx-right tx-medium tx-danger tx-bold">15</td>--}}
+{{--                        </tr>--}}
 
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+    </div>
 
-        {{--    <div class="col-xl-4 col-lg-5">--}}
-        {{--        <div class="card shadow mb-4">--}}
-        {{--            <!-- Card Header - Dropdown -->--}}
-        {{--            <div class="card-header py-3">--}}
-        {{--                <h6 class="m-0 font-weight-bold text-primary">Matches Played</h6>--}}
-        {{--            </div>--}}
-        {{--            <!-- Card Body -->--}}
-        {{--            <div class="card-body">--}}
-        {{--                <div class="chart-pie pt-4">--}}
-        {{--                    <canvas id="myPieChart"></canvas>--}}
-        {{--                </div>--}}
+    <!-- row -->
+    <div class="row row-sm">
+        <div class="col-sm-12 col-md-6">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        Line Chart
+                    </div>
+                    <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                    <div class="chartjs-wrapper-demo">
+                        <canvas id="chartLine1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div><!-- col-6 -->
+        <div class="col-sm-12 col-md-6">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        Area Chart
+                    </div>
+                    <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                    <div class="chartjs-wrapper-demo">
+                        <canvas id="chartArea1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div><!-- col-6 -->
+    </div>
+    <!-- /row -->
 
-        {{--            </div>--}}
-        {{--        </div>--}}
-        {{--    </div>--}}
+    <!-- row -->
+    <div class="row row-sm">
+        <div class="col-sm-12 col-md-6">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        Stacked Bar Chart
+                    </div>
+                    <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                    <div class="chartjs-wrapper-demo">
+                        <canvas id="chartStacked1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div><!-- col-6 -->
+        <div class="col-sm-12 col-md-6">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        Stacked Bar Chart
+                    </div>
+                    <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                    <div class="chartjs-wrapper-demo">
+                        <canvas id="chartStacked2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div><!-- col-6 -->
+    </div>
+    <!-- /row -->
 
+    <!-- row -->
+    <div class="row row-sm">
+        <div class="col-md-12">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="row row-sm">
+                        <div class="col-sm-12 col-md-6 col-xl-4">
+                            <div class="main-content-label tx-12 mg-b-15">
+                                Solid Color
+                            </div>
+                            <div class="ht-200 ht-lg-250">
+                                <canvas id="chartBar1"></canvas>
+                            </div>
+                        </div><!-- col-6 -->
+                        <div class="col-sm-12 col-md-6 col-xl-4 mg-t-20 mg-md-t-0">
+                            <div class="main-content-label tx-12 mg-b-15">
+                                With Transparency
+                            </div>
+                            <div class="ht-200 ht-lg-250">
+                                <canvas id="chartBar2"></canvas>
+                            </div>
+                        </div><!-- col-6 -->
+                        <div class="col-sm-12 col-md-6 col-xl-4 mg-t-20 mg-xl-t-0">
+                            <div class="main-content-label tx-12 mg-b-15">
+                                Using Gradient Color
+                            </div>
+                            <div class="ht-200 ht-lg-250">
+                                <canvas id="chartBar3"></canvas>
+                            </div>
+                        </div><!-- col-6 -->
+                    </div>
+                </div><!-- col-12 -->
+            </div><!-- col-12 -->
+        </div><!-- col-12 -->
+    </div>
+    <!-- /row -->
+
+    <!-- row -->
+    <div class="row row-sm">
+        <div class="col-sm-12 col-md-6">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        Horizontal Bar Chart
+                    </div>
+                    <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                    <div class="chartjs-wrapper-demo">
+                        <canvas id="chartBar4"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div><!-- col-6 -->
+        <div class="col-sm-12 col-md-6">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        Horizontal Bar Chart
+                    </div>
+                    <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                    <div class="chartjs-wrapper-demo">
+                        <canvas id="chartBar5"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div><!-- col-6 -->
+    </div>
+    <!-- /row -->
+
+    <!-- row -->
+    <div class="row row-sm">
+        <div class="col-sm-12 col-md-6">
+            <div class="card mg-b-md-20 overflow-hidden">
+                <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        Pie Chart
+                    </div>
+                    <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                    <div class="chartjs-wrapper-demo">
+                        <canvas id="chartPie"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div><!-- col-6 -->
+        <div class="col-sm-12 col-md-6">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        Donut Chart
+                    </div>
+                    <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                    <div class="chartjs-wrapper-demo">
+                        <canvas id="chartDonut"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div><!-- col-6 -->
     </div>
 
 
@@ -191,41 +344,15 @@
     <!--Internal  index js -->
     <script src="{{asset('Dashboard/js/index.js')}}"></script>
     <script src="{{asset('Dashboard/js/jquery.vmap.sampledata.js')}}"></script>
-    <script>
-         Chart.defaults.global.defaultFontColor = '#858796';
 
-         var ctx = document.getElementById("myPieChart");
-        var myPieChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ["Wins", "Draws", "Losses"],
-                datasets: [{
-                    data: [55, 30, 15],
-                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-                    hoverBorderColor: "rgba(234, 236, 244, 1)",
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                tooltips: {
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyFontColor: "#858796",
-                    borderColor: '#dddfeb',
-                    borderWidth: 1,
-                    xPadding: 15,
-                    yPadding: 15,
-                    displayColors: false,
-                    caretPadding: 10,
-                },
-                legend: {
-                    display: false
-                },
-                cutoutPercentage: 80,
-            },
-        });
-
-    </script>
+    <!--Internal  Datepicker js -->
+    <script src="{{URL::asset('plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+    <!--Internal  Chart.bundle js -->
+    <script src="{{URL::asset('plugins/chart.js/Chart.bundle.min.js')}}"></script>
+    <!-- Internal Select2 js-->
+    <script src="{{URL::asset('plugins/select2/js/select2.min.js')}}"></script>
+    <!--Internal Chartjs js -->
+    <script src="{{URL::asset('js/chart.chartjs.js')}}"></script>
 
 @endsection
 
