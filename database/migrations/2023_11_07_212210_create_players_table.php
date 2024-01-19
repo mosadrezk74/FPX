@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('shirt_number') ->nullable();
 
 
-            $table->integer('stats_id') ->nullable();
+//            $table->integer('stats_id') ->nullable();
 
             $table->unsignedBigInteger('club_id');
             $table->foreign('club_id')
