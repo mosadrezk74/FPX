@@ -3,9 +3,14 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Statistics;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,8 +30,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@yahoo.com',
             'password' => Hash::make('123123123'),
         ]);
-
-
 
     }
 }

@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Statistics extends Model
 {
-    protected $table = 'statistics';
+
+   protected $table='stats';
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class);
+    }
+
  }

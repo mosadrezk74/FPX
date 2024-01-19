@@ -22,10 +22,14 @@ return new class extends Migration
             $table->string('position');
             $table->integer('shirt_number') ->nullable();
 
+
+            $table->integer('stats_id') ->nullable();
+
             $table->unsignedBigInteger('club_id');
             $table->foreign('club_id')
                 ->references('id')
                 ->on('clubs')->onDelete('cascade');
+
 
 
             $table->string('email')->unique();

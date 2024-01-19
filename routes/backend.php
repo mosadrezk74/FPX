@@ -76,15 +76,11 @@ Route::group(
     Route::get('/get-available-shirt-numbers/{club_id}', [PlayerController::class, 'getAvailableShirtNumbers']);
     Route::get('/send-notification', [NotificationController::class, 'sendOfferNotification']);
     //--------------------End Admin Routes------------------------------------------------------
-
-
     //------------------------- Start Coach Routes -------------------------------------------
         Route::get('dashboard/coach/player/stats', [CaochController::class, 'stats'])->name('coach.stats');
         Route::get('dashboard/coach/player/contact', [CaochController::class, 'contact'])->name('coach.contact');
-
-
-        //------------------------- End Coach Routes -------------------------------------------
-
+     //------------------------- End Coach Routes -------------------------------------------
+     //------------------------- End Coach Routes -------------------------------------------
 
 
 

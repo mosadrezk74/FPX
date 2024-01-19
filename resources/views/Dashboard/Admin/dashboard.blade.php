@@ -82,9 +82,8 @@
 
 
                             <ul>
-                                @foreach ($data as $team)
-                                    <li>{{ $team->name }} - Points: {{ $team->points }}</li>
-                                @endforeach
+
+
                             </ul>
 
 

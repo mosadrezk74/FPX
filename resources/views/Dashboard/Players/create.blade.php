@@ -176,6 +176,24 @@
                                                     </div>
                                                     @enderror
                                                 </div>
+                                                <div class="col-md-4">
+                                                    <label for="position" class="control-label mb-1">احصائيات</label>
+                                                    <input type="text" list="player_stats_list" id="position" name="position" class="form-control" placeholder="اختر اسم اللاعب-" required>
+
+                                                    <datalist id="player_stats_list">
+                                                        <option value="{{trans('index.clubs')}}" disabled></option>
+                                                        @foreach($player_stats as $st)
+                                                            <option value="{{$st->Name}}">{{$st->id}}</option>
+                                                        @endforeach
+                                                    </datalist>
+
+                                                    @error('position')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+
 
 
 
@@ -209,6 +227,7 @@
 
 
 @endsection
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

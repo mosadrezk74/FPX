@@ -43,7 +43,10 @@ class Player extends Authenticatable
 
     ];
 
-
+    public function stats()
+    {
+        return $this->hasOne(Statistics::class);
+    }
 
     public function club(){
         return $this->belongsTo(Club::class,'club_id','id');

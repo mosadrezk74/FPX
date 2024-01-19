@@ -32,13 +32,10 @@ class ClubController extends Controller
             return $this->returnError('001','مفيش نادي مسجل بالرقم دا .. حاول تاني ');
         }
         return $this->returnData('club_info',$club,'تم تحميل بيانات النادي بنجاح');
-//        return response()->json($club);
+
     }
 
-    public function create()
-    {
-        //
-    }
+
 
     public function store(Request $request)
     {

@@ -56,39 +56,104 @@
                             </thead>
                             <tbody>
 
+                            @foreach($stats as $stat)
+                                    <tr>
+                                        <td>{{$stat->Jersey}}</td>
+                                        <td>
+                                            {{$stat->Name}}
+                                        </td>
+
+{{--                                        <td>--}}
+{{--                                            <form action="{{ route('player.destroy',  $player->id) }}" method="post">--}}
+{{--                                                @csrf--}}
+{{--                                                @method('DELETE')--}}
+
+{{--                                                <a href="{{ route('player.edit',  $player->id) }}"--}}
+{{--                                                   class="btn btn-success btn-sm">--}}
+{{--                                                    {{trans('player.edit_player')}}--}}
+{{--                                                </a>--}}
+
+{{--                                                <button type="submit" class="btn btn-danger btn-sm">--}}
+{{--                                                    {{trans('player.delete_player')}}--}}
+{{--                                                </button>--}}
+{{--                                            </form>--}}
+{{--                                        </td>--}}
+                                    </tr>
+
+                             @endforeach
+
+
 
                             </tbody>
 
                         </table>
+
+                        {{ $stats->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 
 
 @endsection
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+@section('js')
+    <!-- Internal Data tables -->
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/jquery.dataTables.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/jszip.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/pdfmake.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/vfs_fonts.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/buttons.print.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
+    <!--Internal  Datatable js -->
+    <script src="{{URL::asset('Dashboard/js/table-data.js')}}"></script>
+
+    <!--Internal  Notify js -->
+    <script src="{{URL::asset('dashboard/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
+
     <script>
-        $(document).ready(function () {
-            $('#searchInput').on('input', function () {
-                var searchValue = $(this).val().toLowerCase();
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
 
-                $('.player-table tbody tr').each(function () {
-                    var playerName = $(this).find('td:eq(2)').text().toLowerCase();
-                    var clubName = $(this).find('td:eq(3) a').text().toLowerCase();
 
-                    if (playerName.includes(searchValue) || clubName.includes(searchValue)) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_delete_all").click(function () {
+                var selected = [];
+                $("#example input[name=delete_select]:checked").each(function () {
+                    selected.push(this.value);
                 });
+
+                if (selected.length > 0) {
+                    $('#delete_select').modal('show')
+                    $('input[id="delete_select_id"]').val(selected);
+                }
             });
         });
     </script>
 
+
+
+@endsection
 
 

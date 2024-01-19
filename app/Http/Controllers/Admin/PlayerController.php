@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\Statistics;
 use App\Models\User;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
@@ -46,10 +47,11 @@ class PlayerController extends Controller
             $countryCode = strtolower($country['cca2']);
             return !in_array($countryCode, array_merge($northAmerica, $asia));
         });
+        $player_stats=Statistics::all();
         $countries = collect($countries)->sortBy('name.common')->all();
         return view('Dashboard.Players.create',
             ['countries' => $countries],
-            compact('players' ,'clubs','notifications'));
+            compact('players' ,'clubs','notifications' , 'player_stats' ));
 
     }
 
