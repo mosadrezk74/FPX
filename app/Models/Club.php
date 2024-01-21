@@ -52,6 +52,11 @@ class Club extends Authenticatable implements JWTSubject
         return $this->hasMany(Coach::class);
     }
 
+    public function table()
+    {
+        return $this->hasMany(Standing::class);
+    }
+
 
     public function getJWTIdentifier()
     {

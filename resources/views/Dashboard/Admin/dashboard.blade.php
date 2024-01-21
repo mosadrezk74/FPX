@@ -75,80 +75,31 @@
                             <th class="wd-lg-10p tx-right">فوز</th>
                             <th class="wd-lg-10p tx-right">تعادل</th>
                             <th class="wd-lg-10p tx-right">خسارة</th>
+                            <th class="wd-lg-10p tx-right">أهداف  له</th>
+                            <th class="wd-lg-10p tx-right">أهداف عليه</th>
+                            <th class="wd-lg-10p tx-right">فرق أهداف</th>
                             <th class="wd-lg-15p tx-right">نقاط</th>
                         </tr>
                         </thead>
                         <tbody>
-
-
-                            <ul>
-
-
-                            </ul>
-
-
+                        @foreach($tables as $table)
 
                         <tr>
-                            <td class="tx-right tx-medium tx-inverse">1</td>
+                            <td class="tx-right tx-medium tx-inverse">{{$loop->iteration}}</td>
 
                             <td class="tx-right tx-medium tx-inverse">
-                                <img src="{{URL::asset('Dashboard/logo/1.jpg')}}" class="wd-30 ht-30" alt="img">
-                                الأهلي</td>
-                            <td class="tx-right tx-medium tx-inverse">10</td>
-                            <td class="tx-right tx-medium tx-inverse">9</td>
-                            <td class="tx-right tx-medium tx-inverse">1</td>
-                            <td class="tx-right tx-medium tx-inverse">0</td>
-                            <td class="tx-right tx-medium tx-danger tx-bold">28</td>
+                                <img src="{{$table->image}}" class="wd-30 ht-30" alt="img">
+                                {{$table->team_ar}}</td>
+                            <td class="tx-right tx-medium tx-inverse">{{$table->mp}}</td>
+                            <td class="tx-right tx-medium tx-inverse">{{$table->won}}</td>
+                            <td class="tx-right tx-medium tx-inverse">{{$table->draw}}</td>
+                            <td class="tx-right tx-medium tx-inverse">{{$table->lost}}</td>
+                            <td class="tx-right tx-medium tx-inverse">{{$table->gf}}</td>
+                            <td class="tx-right tx-medium tx-inverse">{{$table->ga}}</td>
+                            <td class="tx-right tx-medium tx-inverse">{{$table->gd}}</td>
+                            <td class="tx-right tx-medium tx-danger tx-bold">{{$table->points}}</td>
                         </tr>
-{{--                        <tr>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">2</td>--}}
-
-{{--                            <td class="tx-right tx-medium tx-inverse">--}}
-{{--                                <img src="{{URL::asset('Dashboard/logo/2.jpg')}}" class="wd-30 ht-30" alt="img">--}}
-{{--                                بيراميدز</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">10</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">8</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">1</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">1</td>--}}
-{{--                            <td class="tx-right tx-medium tx-danger tx-bold">25</td>--}}
-{{--                        </tr>--}}
-{{--                        <tr>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">3</td>--}}
-
-{{--                            <td class="tx-right tx-medium tx-inverse">--}}
-{{--                                <img src="{{URL::asset('Dashboard/logo/3.jpg')}}" class="wd-30 ht-30" alt="img">--}}
-{{--                                مودرن فيوتشر</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">10</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">6</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">4</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">0</td>--}}
-{{--                            <td class="tx-right tx-medium tx-danger tx-bold">22</td>--}}
-{{--                        </tr>--}}
-{{--                        <tr>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">4</td>--}}
-
-{{--                            <td class="tx-right tx-medium tx-inverse">--}}
-{{--                                <img src="{{URL::asset('Dashboard/logo/4.jpg')}}" class="wd-30 ht-30" alt="img">--}}
-{{--                                سموحة</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">10</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">5</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">3</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">2</td>--}}
-{{--                            <td class="tx-right tx-medium tx-danger tx-bold">18</td>--}}
-{{--                        </tr>--}}
-{{--                        <tr>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">5</td>--}}
-
-{{--                            <td class="tx-right tx-medium tx-inverse">--}}
-{{--                                <img src="{{URL::asset('Dashboard/logo/5.jpg')}}" class="wd-30 ht-30" alt="img">--}}
-{{--                                الزمالك</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">10</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">5</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">0</td>--}}
-{{--                            <td class="tx-right tx-medium tx-inverse">5</td>--}}
-{{--                            <td class="tx-right tx-medium tx-danger tx-bold">15</td>--}}
-{{--                        </tr>--}}
-
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -352,6 +303,7 @@
     <script src="{{URL::asset('plugins/select2/js/select2.min.js')}}"></script>
     <!--Internal Chartjs js -->
     <script src="{{URL::asset('js/chart.chartjs.js')}}"></script>
+
 
 @endsection
 

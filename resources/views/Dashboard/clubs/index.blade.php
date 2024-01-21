@@ -115,6 +115,8 @@
 
                                         <?php } ?>
 
+                                        {{$clubs->links()}}
+
                                         </tbody>
 
                                     </table>

@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\Club;
 use App\Models\Statistics;
 use App\Models\User;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
 use App\Models\Player;
@@ -16,17 +18,16 @@ use Illuminate\Support\Facades\Hash;
 class PlayerController extends Controller
 {
 
-    public function index()
+     public function index()
     {
-
-        $players = \App\Models\Player::with('club')->get();
-         $clubs = \App\Models\Club::all();
+        $players = \App\Models\Player::with('club', 'stat')->get();
+        $clubs = \App\Models\Club::all();
         $notifications = \App\Models\Notification::all();
 
-
-        return view('Dashboard.Players.index',compact('players' ,'clubs','notifications'));
-
+        return view('Dashboard.Players.index', compact('players', 'clubs', 'notifications'));
     }
+
+
 
 
     public function create()
@@ -64,14 +65,17 @@ class PlayerController extends Controller
                 'name_ar' => 'required|string|max:25',
                 'name_en' => 'required|string|max:25',
                 'nationality' => 'required|string|max:25',
-                'age' => 'required',
-                'height' => 'required|numeric',
+//                'age' => 'required',
+//                'height' => 'required|numeric',
                 'position' => 'required|string|max:50',
-                'shirt_number' => 'required|integer',
+//                'shirt_number' => 'required|integer',
                 'club_id' => 'required|exists:clubs,id',
+
                 'email' => 'required|email|unique:players,email',
                 'password' => 'required|string|min:6',
                 'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
+
+
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -86,10 +90,11 @@ class PlayerController extends Controller
             $players->name_ar = $request->name_ar;
             $players->name_en = $request->name_en;
             $players->nationality = $request->nationality;
-            $players->age = $request->age;
-            $players->height = $request->height;
+//            $players->age = $request->age;
+//            $players->height = $request->height;
             $players->position = $request->position;
-            $players->shirt_number = $request->shirt_number;
+//            $players->shirt_number = $request->shirt_number;
+            $players->stat_id  = $request->stat_id ;
             $players->club_id = $request->club_id;
             $players->email = $request->email;
             $players->password = password_hash($request->password, PASSWORD_BCRYPT);
@@ -117,7 +122,7 @@ class PlayerController extends Controller
                 ->withInput();
         } catch (\Exception $e) {
 
-            return redirect()->route('player.create')->withErrors(['error' => 'An error occurred. Please try again.']);
+            return redirect()->route('player.create');
         }
 
 

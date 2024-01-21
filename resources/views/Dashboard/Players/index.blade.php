@@ -69,6 +69,15 @@
                                                                     <th>{{trans('player.club_name')}}</th>
                                                                     <th>{{trans('player.age')}}</th>
                                                                     <th>{{trans('player.nationality')}}</th>
+                                                                    <th>{{trans('index.appearances')}}</th>
+                                                                    <th>{{trans('index.total_play_timein')}}</th>
+                                                                    <th>{{trans('index.average_play_timemin')}}</th>
+{{--                                                                    <th>{{trans('index.substitutions')}}</th>--}}
+                                                                    <th>{{trans('index.yellow_cards')}}</th>
+                                                                    <th>{{trans('index.red_cards')}}</th>
+                                                                    <th>{{trans('index.shots_on_target')}}</th>
+                                                                    <th>{{trans('index.total_goals')}}</th>
+                                                                    <th>{{trans('index.goal_assists')}}</th>
                                                                     <th>{{trans('player.process')}}</th>
                                                                 </tr>
                                                                 </thead>
@@ -76,7 +85,7 @@
                                                                 @foreach($players as $player)
                                                                     @if($player->position==0)
                                                                         <tr>
-                                                                            <td>{{$player->shirt_number}}</td>
+                                                                            <td>{{$player->stat->Jersey}}</td>
                                                                             <td>
                                                                                 <img width="50px" height="50px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
                                                                             </td>
@@ -91,8 +100,17 @@
                                                                                     <a href="{{ route('club.show',  $player->club->id) }}"> {{$player->club->name_en}}</a>
                                                                                 </td>
                                                                             @endif
-                                                                            <td>  {{ now()->diffInYears($player->age) }}  </td>
+                                                                            <td>  {{$player->stat->Age}}  </td>
                                                                             <td>{{$player->nationality}}</td>
+                                                                            <td>{{$player->stat->total_play_timein}}</td>
+                                                                            <td>{{$player->stat->average_play_timemin}}</td>
+                                                                            <td>{{$player->stat->Appearances}}</td>
+{{--                                                                            <td>{{$player->stat->subIns}}</td>--}}
+                                                                            <td>{{$player->stat->yellowCards}}</td>
+                                                                            <td>{{$player->stat->redCards}}</td>
+                                                                            <td>{{$player->stat->shotsOnTarget}}</td>
+                                                                            <td>{{$player->stat->totalGoals}}</td>
+                                                                            <td>{{$player->stat->goalAssists}}</td>
                                                                             <td>
                                                                                 <form action="{{ route('player.destroy',  $player->id) }}" method="post">
                                                                                     @csrf
@@ -115,6 +133,8 @@
 
                                                                 </tbody>
                                                             </table>
+{{--                                                            {{ $players->links() }}--}}
+
                                                         </div>
                                                     </div>
 

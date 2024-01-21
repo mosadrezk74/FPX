@@ -60,6 +60,9 @@ Route::group(
 
     //--------------------Start Admin Routes---------------------------------------------------
   Route::resource('dashboard/admin/player', PlayerController::class);
+
+
+
   //-------------------------------------------------------------------------
   //-------------------------------------------------------------------------
   Route::get('dashboard/admin/player_stats', [PlayerStatsController::class, 'index'])->name('player_stats.index');

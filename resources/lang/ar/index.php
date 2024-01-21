@@ -27,6 +27,17 @@ return [
     'day'=>'اليوم',
     'date'=>'التاريخ',
     'time'=>'الوقت',
+    'total_play_timein'=>'عدد دقائق المبارة',
+    'average_play_timemin'=>'متوسط الوقت بالدقائق',
+    'appearances'=>'عدد مباريات اللاعب',
+    'yellow_cards'=>'كرت أصفر',
+    'red_cards'=>'كرت الاحمر',
+    'substitutions'=>'عدد التبديلات',
+    'shots_on_target'=>'عدد الأهداف',
+    'total_goals'=>'إجمالي الأهداف',
+    'goal_assists'=>'إجمالي المساعدات',
+
+
 
 
 

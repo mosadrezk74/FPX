@@ -17,13 +17,11 @@ class DashboardController extends Controller
     {
         $club_count=Club::all();
         $count=$club_count->count();
-        $jsonFilePath = public_path('Football API.postman_collection.json');
-        $jsonData = File::get($jsonFilePath);
 
-        $standingsData = json_decode($jsonData, true);
+
 
         return view('Dashboard.index'
-        ,compact('count','standingsData'));
+        ,compact('count'));
     }
 
 

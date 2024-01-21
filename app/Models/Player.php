@@ -14,21 +14,8 @@ class Player extends Authenticatable
     public $guard = 'club';
     use Notifiable;
 
+    protected $table = 'players';
 
-    protected $fillable = [
-        'name_ar',
-        'name_en',
-        'email',
-        'password',
-        'photo',
-        'nationality',
-        'age',
-        'height',
-        'position',
-        'shirt_number',
-
-
-    ];
     protected $hidden = [
         'password',
         'remember_token',
@@ -43,10 +30,7 @@ class Player extends Authenticatable
 
     ];
 
-    public function stats()
-    {
-        return $this->hasOne(Statistics::class);
-    }
+
 
     public function club(){
         return $this->belongsTo(Club::class,'club_id','id');
@@ -54,5 +38,11 @@ class Player extends Authenticatable
     public function coach()
     {
         return $this->belongsTo(Coach::class);
+    }
+
+
+    public function stat()
+    {
+        return $this->belongsTo(Statistics::class, 'stat_id');
     }
 }

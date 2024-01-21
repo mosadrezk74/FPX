@@ -23,22 +23,13 @@
     <div class="row row-sm">
         <div class="col-xl-12">
             <div class="card"  >
-                <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <a type="button" class="btn btn-primary" href="{{ route('player_stats.create') }}">
-                            {{trans('player.add_match_stats')}}
-                        </a>
 
-                    </div>
-
-                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table text-md-nowrap" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-15p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('player.photo_player')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('player.name')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('player.match')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('player.position')}}</th>
@@ -50,6 +41,10 @@
                                 <th class="wd-15p border-bottom-0">{{trans('player.xg')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('player.xa')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('player.da')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('player.da')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('player.da')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('player.da')}}</th>
+
 
 
                             </tr>
@@ -59,25 +54,21 @@
                             @foreach($stats as $stat)
                                     <tr>
                                         <td>{{$stat->Jersey}}</td>
-                                        <td>
-                                            {{$stat->Name}}
-                                        </td>
+                                        <td>{{$stat->Name}}</td>
+                                        <td>{{$stat->Weightkg}}</td>
+                                        <td>{{$stat->Heightcm}}</td>
+                                        <td>{{$stat->Age}}</td>
+                                        <td>{{$stat->Citizenship}}</td>
+                                        <td>{{$stat->Team}}</td>
+                                        <td>{{$stat->Citizenship}}</td>
+                                        <td>{{$stat->Position}}</td>
+                                        <td>{{$stat->total_play_timein}}</td>
+                                        <td>{{$stat->average_play_timemin}}</td>
+                                        <td>{{$stat->Appearances}}</td>
+                                        <td>{{$stat->redCards}}</td>
+                                        <td>{{$stat->yellowCards}}</td>
+                                        <td>{{$stat->totalGoals}}</td>
 
-{{--                                        <td>--}}
-{{--                                            <form action="{{ route('player.destroy',  $player->id) }}" method="post">--}}
-{{--                                                @csrf--}}
-{{--                                                @method('DELETE')--}}
-
-{{--                                                <a href="{{ route('player.edit',  $player->id) }}"--}}
-{{--                                                   class="btn btn-success btn-sm">--}}
-{{--                                                    {{trans('player.edit_player')}}--}}
-{{--                                                </a>--}}
-
-{{--                                                <button type="submit" class="btn btn-danger btn-sm">--}}
-{{--                                                    {{trans('player.delete_player')}}--}}
-{{--                                                </button>--}}
-{{--                                            </form>--}}
-{{--                                        </td>--}}
                                     </tr>
 
                              @endforeach

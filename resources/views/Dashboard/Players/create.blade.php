@@ -19,7 +19,7 @@
 @section('content')
 
 	@include('Dashboard.messages_alert')
-	<div style="background-color: white">
+{{--	<div style="background-color: white">--}}
 	<!-- row -->
 	<div class="row" >
 		<div class="col-lg-12 col-md-12">
@@ -74,16 +74,16 @@
                                                     @enderror
 
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <label for="shirt" class="control-label mb-1">{{trans('index.player_shirt')}}</label>
-                                                    <select id="shirt" name="shirt_number" class="form-control" aria-required="true" required>
-                                                     </select>
-                                                    @error('shirt_number')
-                                                    <div class="alert alert-danger mt-2" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
+{{--                                                <div class="col-md-4">--}}
+{{--                                                    <label for="shirt" class="control-label mb-1">{{trans('index.player_shirt')}}</label>--}}
+{{--                                                    <select id="shirt" name="shirt_number" class="form-control" aria-required="true" required>--}}
+{{--                                                     </select>--}}
+{{--                                                    @error('shirt_number')--}}
+{{--                                                    <div class="alert alert-danger mt-2" role="alert">--}}
+{{--                                                        {{ $message }}--}}
+{{--                                                    </div>--}}
+{{--                                                    @enderror--}}
+{{--                                                </div>--}}
 
 
                                                 <div class="col-md-4">
@@ -117,6 +117,48 @@
                                                     @enderror
                                                 </div>
 
+
+
+{{--                                                <div class="col-md-4">--}}
+{{--                                                    <label for="age" class="control-label mb-1">{{trans('index.player_age')}}</label>--}}
+{{--                                                    <input id="age" name="age" type="text" class="form-control" required data-input aria-required="true">--}}
+{{--                                                    @error('age')--}}
+{{--                                                    <div class="alert alert-danger" role="alert">--}}
+{{--                                                        {{ $message }}--}}
+{{--                                                    </div>--}}
+{{--                                                    @enderror--}}
+{{--                                                </div>--}}
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+{{--                                                <div class="col-md-4">--}}
+{{--                                                    <label for="height" class="control-label mb-1">{{trans('index.player_height')}}</label>--}}
+{{--                                                    <input id="height"  name="height" type="text"--}}
+{{--                                                           class="form-control" aria-required="true"  required >--}}
+{{--                                                    @error('height')--}}
+{{--                                                    <div class="alert alert-danger" role="alert">--}}
+{{--                                                        {{ $message }}--}}
+{{--                                                    </div>--}}
+{{--                                                    @enderror--}}
+{{--                                                </div>--}}
+                                                <div class="col-md-4">
+                                                    <label for="position" class="control-label mb-1">{{trans('index.player_position')}}</label>
+                                                    <select id="position" name="position" class="form-control" required>
+                                                        <option value="" disabled selected>{{trans('index.player_position_SS')}}</option>
+                                                        <option value="0">{{trans('index.player_position_GK')}}</option>
+                                                        <option value="1">{{trans('index.player_position_DF')}}</option>
+                                                        <option value="2">{{trans('index.player_position_MF')}}</option>
+                                                        <option value="3">{{trans('index.player_position_FW')}}</option>
+                                                     </select>
+                                                    @error('position')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+
                                                 <div class="col-md-4">
                                                     <label for="nationality" class="control-label mb-1">{{trans('index.player_nation')}}</label>
                                                     <input id="nationality" name="nationality" list="nationalitiesList" class="form-control" required>
@@ -136,64 +178,23 @@
                                                     @enderror
                                                 </div>
 
-
                                                 <div class="col-md-4">
-                                                    <label for="age" class="control-label mb-1">{{trans('index.player_age')}}</label>
-                                                    <input id="age" name="age" type="text" class="form-control" required data-input aria-required="true">
-                                                    @error('age')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label for="height" class="control-label mb-1">{{trans('index.player_height')}}</label>
-                                                    <input id="height"  name="height" type="text"
-                                                           class="form-control" aria-required="true"  required >
-                                                    @error('height')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="position" class="control-label mb-1">{{trans('index.player_position')}}</label>
-                                                    <select id="position" name="position" class="form-control" required>
-                                                        <option value="" disabled selected>{{trans('index.player_position_SS')}}</option>
-                                                        <option value="0">{{trans('index.player_position_GK')}}</option>
-                                                        <option value="1">{{trans('index.player_position_DF')}}</option>
-                                                        <option value="2">{{trans('index.player_position_MF')}}</option>
-                                                        <option value="3">{{trans('index.player_position_FW')}}</option>
-                                                     </select>
-                                                    @error('position')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="position" class="control-label mb-1">احصائيات</label>
-                                                    <input type="text" list="player_stats_list" id="position" name="position" class="form-control" placeholder="اختر اسم اللاعب-" required>
+                                                    <label for="stat_id" class="control-label mb-1">احصائيات</label>
+                                                    <input type="text" list="player_stats_list" id="stat_id" name="stat_id" class="form-control" placeholder="اختر اسم اللاعب-" required>
 
                                                     <datalist id="player_stats_list">
                                                         <option value="{{trans('index.clubs')}}" disabled></option>
                                                         @foreach($player_stats as $st)
-                                                            <option value="{{$st->Name}}">{{$st->id}}</option>
+                                                            <option value="{{$st->id}}">{{$st->Name}}</option>
                                                         @endforeach
                                                     </datalist>
 
-                                                    @error('position')
+                                                    @error('stat_id')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
                                                 </div>
-
 
 
 

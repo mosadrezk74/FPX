@@ -12,7 +12,9 @@ class Statistics extends Model
 
     public function player()
     {
-        return $this->belongsTo(Player::class);
+        return $this->hasOne(Player::class, 'stat_id');
     }
 
- }
+
+
+}
