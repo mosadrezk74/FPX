@@ -26,13 +26,6 @@ class Coach_Dashboard extends Controller
         $count_p = $club->count();
         $players = Player::with('club')->where('club_id', $club_id)->get();
         $tables = Standing::all()->take(10);
-//        $topScorer = Player::select('players.*', 'stats.totalGoals as totalGoals')
-//            ->join('stats', 'players.id', '=', 'stats.player_id')
-//            ->orderByDesc('stats.totalGoals')
-//            ->first();
-//
-//        $playerName = $topScorer->name_ar ?? '';
-//        $maxTotalGoals = $topScorer->totalGoals ?? 0;
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $club_id)
             ->orderByDesc('stats.totalGoals')
@@ -46,6 +39,28 @@ class Coach_Dashboard extends Controller
             'random', 'count_p',
             'clubs', 'club_id', 'tables'
             ,'topGoalScorer'), ['chart' => $chart->build()]);
+    }
+
+
+
+
+    public function stats()
+    {
+        $coach = auth()->guard('coach')->user();
+        $clubs = Club::all();
+        if ($coach) {
+            $club_id = $coach->club_id;
+            $players = Player::where('club_id', $club_id)->with('club')->paginate(8);
+        }
+
+        return view('Dashboard.Coach_Dashboard.stats', compact('coach', 'players', 'clubs', 'club_id'));
+    }
+
+    public function print(string $id)
+    {
+        $player = Player::findorfail($id);
+
+         return view('Dashboard.Coach_Dashboard.print',  compact( 'player'));
     }
 
 }

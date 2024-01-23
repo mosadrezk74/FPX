@@ -6,6 +6,7 @@ use App\Models\Club;
 use App\Models\Coach;
 use App\Models\Player;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
@@ -43,6 +44,8 @@ class AppServiceProvider extends ServiceProvider
         $currentTime = Carbon::now();
         $time = $currentTime->format('H:i:s');
         view()->share('time',$time);
+        $coach = auth()->guard('coach')->user();
+        $clubs = Club::all();
 
 
 

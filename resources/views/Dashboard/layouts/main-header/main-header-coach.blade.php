@@ -1,4 +1,6 @@
-<!-- main-header opened -->
+<style>
+
+</style>
 <div class="main-header sticky side-header nav nav-item">
     <div class="container-fluid">
 
@@ -24,21 +26,18 @@
 
         </div>
         <div class="main-header-right">
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="theme-switch" style=" display: none;" >
-                    <input type="checkbox" id="theme-switch"  />
-                    <span class="slider"></span>
-                </label>
-                <div class="theme-switcher-options">
-                    <button class="btn btn-sm btn-light" id="light-theme">
-                        <i class="fas fa-sun fa-2x-lg"></i>
-                    </button>
-                    <button class="btn btn-sm btn-dark" id="dark-theme">
-                        <i class="fas fa-moon fa-2x-lg"></i>
-                    </button>
-                </div>
 
+            <div class="theme-switch-wrapper">
+                <div class="theme-switcher-options">
+                    <select id="theme-select" class="form-select form-select-sm">
+                        <option value="light">&#9728;</option>
+                        <option value="dark">&#127769;</option>
+                    </select>
+                </div>
             </div>
+
+
+
             <ul class="nav">
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
@@ -185,32 +184,25 @@
 
 
 <script>
-    const themeSwitch = document.getElementById('theme-switch');
-    const lightThemeButton = document.getElementById('light-theme');
-    const darkThemeButton = document.getElementById('dark-theme');
-    document.body.classList.add('dark-theme');
-    themeSwitch.addEventListener('change', () => {
-        if (themeSwitch.checked) {
-            document.body.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.body.classList.remove('dark-theme');
-            localStorage.setItem('theme', 'light');
-        }
-    });
-    lightThemeButton.addEventListener('click', () => {
-        themeSwitch.checked = false;
-        document.body.classList.remove('dark-theme');
-    });
-    darkThemeButton.addEventListener('click', () => {
-        themeSwitch.checked = true;
-        document.body.classList.add('dark-theme');
-    });
+    const themeSwitch = document.getElementById('theme-select');
     const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark') {
-        themeSwitch.checked = true;
-    } else if (storedTheme === 'light') {
-        themeSwitch.checked = false;
-        document.body.classList.remove('dark-theme');
+
+    function setTheme(theme) {
+        document.body.classList.remove('light-theme', 'dark-theme');
+        document.body.classList.add(`${theme}-theme`);
+    }
+
+    themeSwitch.addEventListener('change', function () {
+        var selectedTheme = this.value;
+        setTheme(selectedTheme);
+        localStorage.setItem('theme', selectedTheme);
+    });
+
+    if (storedTheme) {
+        themeSwitch.value = storedTheme;
+        setTheme(storedTheme);
+    } else {
+        setTheme('dark');
+        localStorage.setItem('theme', 'dark');
     }
 </script>

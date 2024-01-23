@@ -27,6 +27,21 @@ return [
     'day'=>'Day',
     'date'=>'Date',
     'time'=>'Time',
+    'y_player'=>'Your Players',
+    'y_stats'=>'Player Statistics',
+    'statistics'=>'Statistics',
+    'info'=>'Seasonal Report From FPX Team.',
+    'info_player'=>'Player Information',
+    'p_info'=>'Player Information',
+    'print'=>'Print',
+    'player_stats'=>'Player Statistics',
+    'Goalkeeper'=>'Goalkeeper',
+    'Defender'=>'Defender',
+    'Midfielder'=>'Midfielder',
+    'Forward'=>'Forward',
+    'view'=>'View',
+    'veiw_all'=>'View All',
+
 
 
 

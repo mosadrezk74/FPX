@@ -17,12 +17,11 @@ class ExpensesChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\DonutChart
     {
-        // Fetch the data from the database
+
         $user = Auth::user();
         $club_id = $user->club_id;
         $stand_data = Standing::with('club')->where('club_id', $club_id)->get()->sortByDesc('n_1')->sortByDesc('n_2')->sortByDesc('n_3')->sortByDesc('n_4')->sortByDesc('n_5')->take(3);
 
-        // Extract the data and labels from the players
         $data = $stand_data->pluck('n_1')->toArray();
         $labels = $stand_data->pluck('name')->toArray();
 

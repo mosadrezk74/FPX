@@ -60,16 +60,6 @@ class CaochController extends Controller
         return redirect()->route('coach.index');
     }
 
-
-    public function stats(){
-
-        $players=Player::with('club')->get();
-
-        return view('Dashboard.Coach_dashboard.stats',compact('players'));
-
-    }
-
-
     public function show(string $id)
     {
         //

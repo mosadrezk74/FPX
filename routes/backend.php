@@ -75,12 +75,18 @@ Route::group(
      Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
   Route::resource('dashboard/admin/coach', \App\Http\Controllers\Admin\CaochController::class);
     Route::get('/search', SearchController::class);
-//    Route::get('/get-available-shirt-numbers/{club_id}', \App\Http\Controllers\Admin\PlayerController::class . 'getAvailableShirtNumbers');
     Route::get('/get-available-shirt-numbers/{club_id}', [PlayerController::class, 'getAvailableShirtNumbers']);
     Route::get('/send-notification', [NotificationController::class, 'sendOfferNotification']);
     //--------------------End Admin Routes------------------------------------------------------
+    //--------------------End Admin Routes------------------------------------------------------
+
+     //------------------------- Start Coach Routes -------------------------------------------
     //------------------------- Start Coach Routes -------------------------------------------
-        Route::get('dashboard/coach/player/stats', [CaochController::class, 'stats'])->name('coach.stats');
+        Route::get('dashboard/coach/player/stats', [Coach_Dashboard::class, 'stats'])->name('coach.stats');
+        Route::get('dashboard/coach/player/stats/{player_id}', [Coach_Dashboard::class, 'stats'])->name('stats.show');
+        Route::get('dashboard/coach/player/stats/print/{player_id}', [Coach_Dashboard::class, 'print'])->name('stats.print');
+
+
         Route::get('dashboard/coach/player/contact', [CaochController::class, 'contact'])->name('coach.contact');
      //------------------------- End Coach Routes -------------------------------------------
      //------------------------- End Coach Routes -------------------------------------------
