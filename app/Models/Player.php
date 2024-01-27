@@ -14,8 +14,20 @@ class Player extends Authenticatable
     public $guard = 'club';
     use Notifiable;
 
-    protected $table = 'players';
+//    protected $table = 'players';
 
+    protected $fillable = [
+        'name_ar',
+        'name_en'
+        ,'email',
+        'password',
+        'photo',
+        'position',
+        'nationality',
+        'club_id',
+        'stat_id',
+
+        ];
     protected $hidden = [
         'password',
         'remember_token',

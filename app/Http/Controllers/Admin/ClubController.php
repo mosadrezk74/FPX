@@ -21,22 +21,6 @@ class ClubController extends Controller
     }
 
 
-    public function get_clubs_api(){
-
-        $clubs=Club::get();
-        return response()->json($clubs);
-    }
-    public function get_club_by_id_api(Request $request){
-        $club=Club::get()->find($request->id);
-        if(!$club){
-            return $this->returnError('001','مفيش نادي مسجل بالرقم دا .. حاول تاني ');
-        }
-        return $this->returnData('club_info',$club,'تم تحميل بيانات النادي بنجاح');
-
-    }
-
-
-
     public function store(Request $request)
     {
         $clubs=new Club();

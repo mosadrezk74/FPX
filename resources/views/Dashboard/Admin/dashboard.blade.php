@@ -30,9 +30,48 @@
                             <i class="icon icon-people"></i>
                         </div>
                         <div class="mr-auto">
-                            <h5 class="tx-13 tx-white-8 mb-3">مجموع اللاعبين</h5>
+                            <h5 class="tx-13 tx-white-8 mb-3">عدد اللاعبين المضافة</h5>
 
                                 <h3 class="counter mb-0 text-white">{{$count}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card  bg-warning-gradient">
+                <div class="card-body">
+                    <div class="counter-status d-flex md-mb-0">
+                        <div style="text-align: center;">
+                            <img alt="image" style="width: 80px; height: 60px;"
+                                 src="{{ asset('uploads/players/'. $topGoalScorer->photo) }}" />
+                         </div>
+                        <div class="mr-auto">
+                            <h5 class="tx-13 tx-white-8 mb-3">أكثر من سجل في الدوري</h5>
+
+                                <h3 class="counter mb-0 text-white">{{$topGoalScorer->stat->totalGoals}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card  bg-info-gradient">
+                <div class="card-body">
+                    <div class="counter-status d-flex md-mb-0">
+                        <div style="text-align: center;">
+                            <img alt="image" style="width: 80px; height: 60px;"
+                                 src="{{ asset('uploads/players/'. $topAssister->photo) }}" />
+                         </div>
+                        <div class="mr-auto">
+                            <h5 class="tx-13 tx-white-8 mb-3"> أكثر من صنع في الدوري  </h5>
+
+                                <h3 class="counter mb-0 text-white">{{$topAssister->stat->goalAssists}}</h3>
                         </div>
                     </div>
                 </div>
