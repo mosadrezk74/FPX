@@ -46,6 +46,9 @@ class AppServiceProvider extends ServiceProvider
         view()->share('time',$time);
         $coach = auth()->guard('coach')->user();
         $clubs = Club::all();
+        view()->share('coach',$coach);
+        view()->share('clubs',$clubs);
+
 
 
 

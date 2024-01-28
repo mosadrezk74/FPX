@@ -24,8 +24,8 @@
         <div class="app-sidebar__user clearfix">
             <div class="dropdown user-pro-body">
                 <div class="">
-                        <img alt="user-img" class="avatar avatar-xl brround"
-                             src="{{ asset('uploads/coach_logo/'. $coach->photo) }}">
+{{--                        <img alt="user-img" class="avatar avatar-xl brround"--}}
+{{--                             src="{{ asset('uploads/coach_logo/'. $coach->photo) }}">--}}
                     <span class="avatar-status profile-status bg-green"></span>
                 </div>
                 <div class="user-info">
@@ -64,6 +64,25 @@
                 </a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('coach.stats') }}">{{trans('index.y_stats')}}</a></li>
+                </ul>
+            </li>
+
+
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclude" viewBox="0 0 16 16">
+                            <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>
+                        </svg>
+
+                        <span class="side-menu__label">
+                            {{trans('index.fixtures')}}
+                        </span>
+                        <i class="angle fe fe-chevron-down"></i>
+                    </svg>
+                </a>
+                <ul class="slide-menu">
+                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.fixtures_time')}}</a></li>
                 </ul>
             </li>
 

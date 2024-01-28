@@ -36,6 +36,15 @@ class CaochController extends Controller
         ,compact('coaches','clubs'));
     }
 
+
+
+    public function calendar(){
+        return view('Dashboard.Coach.calendar');
+    }
+
+
+
+
     public function store(Request $request)
     {
         $coaches=new Coach();

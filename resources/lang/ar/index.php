@@ -50,12 +50,27 @@ return [
     'Forward'=>'مهاجم',
     'view'=>'عرض',
     'veiw_all'=>'عرض الكل',
-
-
-
-
-
-
-
+    'top_goal_scorer'=>'هداف الدوري',
+'goal'=>'هدف',
+'top_assister'=>'أكثر من صتع أهداف',
+'assist'=>'أسيست',
+    'recent_players'=>'أخر اللاعبين المضافين',
+    'standings'=>'ترتيب الدوري المصري',
+    'standing'=>'ترتيب  ',
+    'team_name'=>'اسم الفريق  ',
+    'played'=>'  لعب  ',
+    'won'=>'  فوز  ',
+    'draw'=>'  تعادل  ',
+    'lost'=>'  خسارة  ',
+    'goal_in'=>'  أهداف  له  ',
+    'goal_out'=>'  أهداف عليه  ',
+    'goal_diff'=>'  فرق أهداف  ',
+    'points'=>'  نقاط  ',
+    'team_pl'=>'عدد لاعبي فريقك '
+    ,'top_team_scorer'=>'هداف الفريق',
+    'player'=>'لاعب',
+    'top_team_assist'=>'أكثر من صنع في الفريق',
+    'fixtures'=>'المباريات',
+    'fixtures_time'=>'مواعيد  المباريات',
 
 ];

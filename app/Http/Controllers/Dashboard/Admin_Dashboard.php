@@ -17,6 +17,7 @@ class Admin_Dashboard extends Controller
     {
         $tables=Standing::all()->take(12);
 
+        $recentes=Player::all()->take(10);
 
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
 
@@ -34,7 +35,7 @@ class Admin_Dashboard extends Controller
          return view('Dashboard.Admin.dashboard'
         , compact('tables' ,'topGoalScorer'
 
-             ,'topAssister'
+             ,'topAssister','recentes'
              ));
     }
 

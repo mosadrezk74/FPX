@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Charts\ExpensesChart;
 use App\Models\Club;
+use App\Models\Fixure;
 use App\Models\fs;
 use App\Models\Player;
 use App\Models\Standing;
@@ -20,6 +21,7 @@ class Coach_Dashboard extends Controller
         $coach = auth()->guard('coach')->user();
         $clubs = Club::all();
         $random = rand(1, 10);
+
         $user = Auth::user();
         $club_id = $user->club_id;
         $club = Player::with('club')->where('club_id', $club_id)->get();
@@ -32,12 +34,27 @@ class Coach_Dashboard extends Controller
             ->select('players.*', 'stats.totalGoals as totalGoals')
             ->first();
 
+        $topAssister = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->where('players.club_id', $club_id)
+            ->orderByDesc('stats.goalAssists')
+            ->select('players.*', 'stats.goalAssists as goalAssists')
+            ->first();
+
+//        $upcomingMatches = DB::table('fixtures')
+//            ->where('date', '>=', now())
+//            ->where(function ($query) use ($club_id) {
+//                $query->where('club_id', $club_id)
+//                    ->orWhere('club_id_two', $club_id);
+//            })
+//            ->orderBy('date', 'asc')
+//            ->get();
+
 
         return view('Dashboard.Coach_Dashboard.dashboard', compact('coach'
             ,
             'players',
             'random', 'count_p',
-            'clubs', 'club_id', 'tables'
+            'clubs', 'club_id', 'tables' , 'topAssister'
             ,'topGoalScorer'), ['chart' => $chart->build()]);
     }
 

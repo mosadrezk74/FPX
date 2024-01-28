@@ -87,7 +87,7 @@ Route::group(
         Route::get('dashboard/coach/player/stats/print/{player_id}', [Coach_Dashboard::class, 'print'])->name('stats.print');
 
 
-        Route::get('dashboard/coach/player/contact', [CaochController::class, 'contact'])->name('coach.contact');
+        Route::get('dashboard/coach/player/calendar', [CaochController::class, 'calendar'])->name('coach.calendar');
      //------------------------- End Coach Routes -------------------------------------------
      //------------------------- End Coach Routes -------------------------------------------
 

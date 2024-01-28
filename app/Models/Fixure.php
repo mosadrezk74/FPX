@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Fixure extends Model
 {
     use HasFactory;
-    protected $table='fixutres';
+    protected $table = 'fixtures';
 
 }

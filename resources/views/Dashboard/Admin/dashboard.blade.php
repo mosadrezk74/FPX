@@ -23,55 +23,45 @@
 @section('content')
     <div class="row">
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-primary-gradient">
-                <div class="card-body">
-                    <div class="counter-status d-flex md-mb-0">
-                        <div class="counter-icon">
-                            <i class="icon icon-people"></i>
-                        </div>
-                        <div class="mr-auto">
-                            <h5 class="tx-13 tx-white-8 mb-3">عدد اللاعبين المضافة</h5>
-
-                                <h3 class="counter mb-0 text-white">{{$count}}</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-lg-3 col-md-6">
             <div class="card  bg-warning-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div style="text-align: center;">
-                            <img alt="image" style="width: 80px; height: 60px;"
+                            <img alt="image" style="width: 100px; height: 100px;"
                                  src="{{ asset('uploads/players/'. $topGoalScorer->photo) }}" />
                          </div>
                         <div class="mr-auto">
-                            <h5 class="tx-13 tx-white-8 mb-3">أكثر من سجل في الدوري</h5>
+                            <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;">{{trans('index.top_goal_scorer')}}</h2>
+                            @if(App::getLocale() == "ar")
+                            <h3 class="tx-13 tx-white-8 mb-3" style="text-align: center;" > {{$topGoalScorer->name_ar}} </h3>
+                            @else
+                                <h3 class="tx-13 tx-white-8 mb-3" style="text-align: center;" > {{$topGoalScorer->name_en}} </h3>
+                            @endif
 
-                                <h3 class="counter mb-0 text-white">{{$topGoalScorer->stat->totalGoals}}</h3>
+                            <h3 class="counter mb-0 text-white" style="text-align: center;">{{$topGoalScorer->stat->totalGoals}} {{trans('index.goal')}} </h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-info-gradient">
+            <div class="card  bg-danger-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div style="text-align: center;">
-                            <img alt="image" style="width: 80px; height: 60px;"
+                            <img alt="image" style="width: 100px; height: 100px;"
                                  src="{{ asset('uploads/players/'. $topAssister->photo) }}" />
                          </div>
                         <div class="mr-auto">
-                            <h5 class="tx-13 tx-white-8 mb-3"> أكثر من صنع في الدوري  </h5>
+                            <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;" > {{trans('index.top_assister')}} </h2>
+                            @if(App::getlocale() == "ar")
+                                <h3 class="tx-13 tx-white-8 mb-3" style="text-align: center;"> {{$topAssister->name_ar}} </h3>
+                            @else
+                                <h3 class="tx-13 tx-white-8 mb-3" style="text-align: center;"> {{$topAssister->name_en}} </h3>
+                            @endif
 
-                                <h3 class="counter mb-0 text-white">{{$topAssister->stat->goalAssists}}</h3>
+                                <h3 class="counter mb-0 text-white" style="text-align: center;">{{$topAssister->stat->goalAssists}}
+                                    {{trans('index.assist')}}</h3>
                         </div>
                     </div>
                 </div>
@@ -83,15 +73,20 @@
     <div class="row row-sm row-deck">
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">أخر اللاعبين المضافين</h6>
-                <span class="d-block mg-b-10 text-muted tx-12">اخر 10 لاعبين مضافين </span>
-                <div class="list-group">
-                    @foreach($players as $player)
+                <h6 class="card-title">{{trans('index.recent_players')}}</h6>
+                 <div class="list-group">
+                    @foreach($recentes as $recent)
                         <div class="list-group-item border-top-0">
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
-                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                  src="{{ asset('uploads/players/'. $recent->photo) }}" />
+                            @if(App::getlocale() == "ar")
+                                <p>{{$recent->name_ar}}</p>
+                                <span><a href="">{{$recent->club->name_ar}}</a></span>
+                            @else
+                                <p>{{$recent->name_en}}</p>
+                                <span><a href="">{{$recent->club->name_en}}</a></span>
+                            @endif
 
-                            <p>{{$player->name_ar}}</p><span><a href="">{{$player->club->name_ar}}</a></span>
                         </div>
                     @endforeach
                 </div>
@@ -101,23 +96,23 @@
         <div class="col-md-12 col-lg-8 col-xl-8">
             <div class="card card-table-two">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mb-1">ترتيب الدوري المصري</h4>
+                    <h4 class="card-title mb-1">{{trans('index.standings')}}</h4>
                     <i class="mdi mdi-dots-horizontal text-gray"></i>
                 </div>
                 <div class="table-responsive country-table">
                     <table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
                         <thead>
                         <tr>
-                            <th class="wd-lg-10p">ترتيب</th>
-                            <th class="wd-lg-30p">اسم الفريق</th>
-                            <th class="wd-lg-10p tx-right">لعب</th>
-                            <th class="wd-lg-10p tx-right">فوز</th>
-                            <th class="wd-lg-10p tx-right">تعادل</th>
-                            <th class="wd-lg-10p tx-right">خسارة</th>
-                            <th class="wd-lg-10p tx-right">أهداف  له</th>
-                            <th class="wd-lg-10p tx-right">أهداف عليه</th>
-                            <th class="wd-lg-10p tx-right">فرق أهداف</th>
-                            <th class="wd-lg-15p tx-right">نقاط</th>
+                            <th class="wd-lg-10p">{{trans('index.standing')}}</th>
+                            <th class="wd-lg-30p">{{trans('index.team_name')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.played')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.won')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.draw')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.lost')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.goal_in')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.goal_out')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.goal_diff')}}</th>
+                            <th class="wd-lg-15p tx-right">{{trans('index.points')}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -126,9 +121,18 @@
                         <tr>
                             <td class="tx-right tx-medium tx-inverse">{{$loop->iteration}}</td>
 
+                            @if(App::getlocale() == 'ar')
                             <td class="tx-right tx-medium tx-inverse">
                                 <img src="{{$table->image}}" class="wd-30 ht-30" alt="img">
-                                {{$table->team_ar}}</td>
+                                {{$table->team_ar}}
+                            </td>
+                            @else
+                                <td class="tx-right tx-medium tx-inverse">
+                                    <img src="{{ $table->image }}" class="wd-30 ht-30" alt="img" style="float: left; margin-right: 10px;">
+                                    {{ $table->team_en }}
+                                </td>
+
+                            @endif
                             <td class="tx-right tx-medium tx-inverse">{{$table->mp}}</td>
                             <td class="tx-right tx-medium tx-inverse">{{$table->won}}</td>
                             <td class="tx-right tx-medium tx-inverse">{{$table->draw}}</td>
