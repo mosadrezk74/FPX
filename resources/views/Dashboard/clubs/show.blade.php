@@ -37,7 +37,7 @@
 								<div class="pl-0">
 									<div class="main-profile-overview">
 										<div class="main-img-user profile-user">
-                                            <img  alt="image" src="{{ asset('uploads/club_logo/' . $club->image) }}"/><a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
+                                            <img  alt="image"   src="{{$club->image }}" /><a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
 
 										</div>
 										<div class="d-flex justify-content-between mg-b-20">
@@ -78,7 +78,7 @@
 											</div>
 											<div class="mr-auto">
 												<h5 class="tx-13">اسم المدرب</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">46,782</h2>
+												<h6 class="mb-0 tx-15 mb-1 mt-1">{{$club->coach->name_ar}}</h6>
 												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
 											</div>
 										</div>
@@ -94,7 +94,7 @@
 											</div>
 											<div class="mr-auto">
 												<h5 class="tx-13">اسم الملعب</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">1,890</h2>
+												<h2 class="mb-0 tx-15 mb-1 mt-1">{{$club->staduim_en}}</h2>
 												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
 											</div>
 										</div>

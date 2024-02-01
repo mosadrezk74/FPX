@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Club;
 use App\Models\Coach;
 use App\Models\Player;
+use App\Models\Standing;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -45,9 +46,16 @@ class AppServiceProvider extends ServiceProvider
         $time = $currentTime->format('H:i:s');
         view()->share('time',$time);
         $coach = auth()->guard('coach')->user();
-        $clubs = Club::all();
         view()->share('coach',$coach);
-        view()->share('clubs',$clubs);
+        $coach_info=Coach::with('club')->get();
+        view()->share('coach_info',$coach_info);
+
+
+
+
+
+
+
 
 
 

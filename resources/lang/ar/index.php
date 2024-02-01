@@ -36,8 +36,8 @@ return [
     'shots_on_target'=>'عدد الأهداف',
     'total_goals'=>'إجمالي الأهداف',
     'goal_assists'=>'إجمالي المساعدات',
-    'y_player'=>'لاعبين الفريق'
-    ,'y_stats'=>'إحصائيات اللاعبين',
+    'y_player'=>' الفريق'
+    ,'y_stats'=>'إحصائيات اللاعبون',
 'statistics'=>'احصائيات',
     'info'=>'تقرير موسمي مقدم من  FPX',
     'info_player'=>'إحصائيات اللاعب',
@@ -51,7 +51,7 @@ return [
     'view'=>'عرض',
     'veiw_all'=>'عرض الكل',
     'top_goal_scorer'=>'هداف الدوري',
-'goal'=>'هدف',
+'goal'=>'أهداف',
 'top_assister'=>'أكثر من صتع أهداف',
 'assist'=>'أسيست',
     'recent_players'=>'أخر اللاعبين المضافين',
@@ -70,7 +70,42 @@ return [
     ,'top_team_scorer'=>'هداف الفريق',
     'player'=>'لاعب',
     'top_team_assist'=>'أكثر من صنع في الفريق',
-    'fixtures'=>'المباريات',
+    'fixtures'=>'الدوري',
     'fixtures_time'=>'مواعيد  المباريات',
+    'compare'=>'مقارنة اللاعبون',
+    'pub_info'=>'معلومات  عن الفريق',
+    'pub_info_leg'=>'معلومات  عن الدوري',
+'stats'=>'احصائيات',
+    'predictions'=>'تبنوأت  للمباريات',
+'other_teams'=>'احصائيات الدوري',
+'other_players'=>'احصائيات لاعبون الدوري',
+'reports'=>'تقارير',
+    'create_reports'=>'إنشاء تقرير',
+    'contact'=>'تواصل',
+    'contact_player'=>'  تواصل مع لاعب ',
+    'contact_club'=>'تواصل مع النادي',
+    'contact_coach'=>' تواصل مع المدرب',
+    'settings'=>'الإعدادات',
+    'random'=>'أكثر  لعبا للمباريات',
+    'stand_table'=>'ترتيب الفريق الحالي  في الدوري ',
+    'stand_history'=>'احصائيات عن الفريق  عبر التاريخ ',
+'gen_info'=>'معلومات عن الفريق',
+    'current_stad'=>'الترتيب الحالي للفريق',
+    'staduim'=>'ملعب الفريق',
+    'top_team_scorer_all'=>'هدافي  الفريق',
+    'top_team_assist_all'=>'أكثر صنع في الفريق',
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ];

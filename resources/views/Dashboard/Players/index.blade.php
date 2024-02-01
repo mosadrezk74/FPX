@@ -69,15 +69,6 @@
                                                                     <th>{{trans('player.club_name')}}</th>
                                                                     <th>{{trans('player.age')}}</th>
                                                                     <th>{{trans('player.nationality')}}</th>
-                                                                    <th>{{trans('index.appearances')}}</th>
-                                                                    <th>{{trans('index.total_play_timein')}}</th>
-                                                                    <th>{{trans('index.average_play_timemin')}}</th>
-{{--                                                                    <th>{{trans('index.substitutions')}}</th>--}}
-                                                                    <th>{{trans('index.yellow_cards')}}</th>
-                                                                    <th>{{trans('index.red_cards')}}</th>
-                                                                    <th>{{trans('index.shots_on_target')}}</th>
-                                                                    <th>{{trans('index.total_goals')}}</th>
-                                                                    <th>{{trans('index.goal_assists')}}</th>
                                                                     <th>{{trans('player.process')}}</th>
                                                                 </tr>
                                                                 </thead>
@@ -102,15 +93,7 @@
                                                                             @endif
                                                                             <td>  {{$player->stat->Age}}  </td>
                                                                             <td>{{$player->nationality}}</td>
-                                                                            <td>{{$player->stat->total_play_timein}}</td>
-                                                                            <td>{{$player->stat->average_play_timemin}}</td>
-                                                                            <td>{{$player->stat->Appearances}}</td>
-{{--                                                                            <td>{{$player->stat->subIns}}</td>--}}
-                                                                            <td>{{$player->stat->yellowCards}}</td>
-                                                                            <td>{{$player->stat->redCards}}</td>
-                                                                            <td>{{$player->stat->shotsOnTarget}}</td>
-                                                                            <td>{{$player->stat->totalGoals}}</td>
-                                                                            <td>{{$player->stat->goalAssists}}</td>
+
                                                                             <td>
                                                                                 <form action="{{ route('player.destroy',  $player->id) }}" method="post">
                                                                                     @csrf

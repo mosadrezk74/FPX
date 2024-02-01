@@ -59,7 +59,7 @@
                             @if($club->id == $club_id)
 
                                 <img  alt="image"  style="width: 100px; height: 100px;"
-                                      src="{{ asset('uploads/club_logo/'. $club->image) }}" />
+                                      src="{{$club->image }}" />
 
                             @endif
                         @endforeach

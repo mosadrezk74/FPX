@@ -60,11 +60,14 @@
                                                     <select id="club" name="club_id" class="form-control" required>
                                                         <option value="">{{trans('index.clubs')}}</option>
                                                         @foreach($clubs as $club)
+                                                            @if($club->status==1)
                                                             @if (App::getLocale() == 'ar')
                                                             <option value="{{$club->id}}">{{$club->name_ar}}</option>
                                                             @else
                                                                 <option value="{{$club->id}}">{{$club->name_en}}</option>
                                                             @endif
+                                                            @endif
+
                                                         @endforeach
                                                     </select>
                                                     @error('club_id')

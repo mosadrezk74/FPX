@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Club;
+use App\Models\Coach;
 use App\Models\Player;
 use App\Trait\GeneralTrait;
 use Illuminate\Http\Request;
@@ -15,44 +16,43 @@ class ClubController extends Controller
 
     public function index()
     {
-        $clubs = Club::paginate(3);
+        $clubs = Club::paginate(9);
 
-        return view('Dashboard.Clubs.index' , compact('clubs') );
+        return view('Dashboard.Clubs.index' , compact('clubs' ) );
+    }
+    public function toggleStatus($status, $id)
+    {
+        $club = Club::find($id);
+        $club->status = $status;
+        $club->save();
+
+        return redirect()->route('club.index')
+            ->with('message', 'Club status successfully updated.');
     }
 
 
     public function store(Request $request)
     {
         $clubs=new Club();
-        $clubs->name_ar=$request->name_ar;
-        $clubs->name_en=$request->name_en;
+        $clubs->select_name=$request->select_name;
+        $clubs->status=$request->status;
         $clubs->email = $request->email;
         $clubs->password = password_hash($request->password, PASSWORD_BCRYPT);
-        if($request->hasfile('image'))
-        {
-            $file = $request->file('image');
-            $extenstion = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extenstion;
-            $file->move('uploads/club_logo/', $filename);
-            $clubs->image = $filename;
-        }
-        $clubs->date=$request->date;
         $clubs->save();
-        session()->flash('add');
+
+         session()->flash('add');
         return redirect()->route('club.index');
 
     }
 
     public function show($clubId)
     {
-        $club=Club::findorFail($clubId);
+        $club = Club::with('coach')->findOrFail($clubId);
         $players = Player::where('club_id', $clubId)->get();
+        $count_players = $players->count();
 
-        $count_players=$players->count();
+        return view('Dashboard.Clubs.show', compact('club', 'players', 'count_players'));
 
-        return view('Dashboard.Clubs.show', ['club' => $club]
-        , compact('players' , 'count_players' )
-        );
 
     }
 

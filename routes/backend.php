@@ -3,17 +3,13 @@
 use App\Http\Controllers\Admin\CaochController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\PlayerStatsController;
-use App\Http\Controllers\ChartController;
-use App\Http\Controllers\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\Admin_Dashboard;
+use App\Http\Controllers\Dashboard\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
-use App\Livewire\PlayerStats;
-use Illuminate\Support\Facades\Route;
+ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
-
 
 
 Route::group(
@@ -25,9 +21,6 @@ Route::group(
         ->middleware(['auth', 'verified'])
         ->name('dashboard');
 
-           Route::get('/test', function () {
-        return view('Dashboard.pages.dropdown');
-    });
 
     //-----------------------------------------------------------------------
     Route::get('/dashboard/user', function () {
@@ -41,7 +34,7 @@ Route::group(
         ->name('dashboard.admin');
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
-    Route::get('dashboard/coach', [\App\Http\Controllers\Coach_Dashboard::class, 'index'])
+    Route::get('dashboard/coach', [\App\Http\Controllers\Dashboard\Coach_Dashboard::class, 'index'])
         ->middleware(['auth:coach'])
         ->name('dashboard.coach');
     //-----------------------------------------------------------------------
@@ -69,10 +62,13 @@ Route::group(
   Route::get('dashboard/admin/player_stats/add_player_stats', [PlayerStatsController::class, 'create'])->name('player_stats.create');
   Route::get('dashboard/admin/player_stats/add_player_stats/store', [PlayerStatsController::class, 'store'])->name('player_stats.store');
   Route::get('/get-players/{clubId}', [PlayerStatsController::class, 'getPlayers'])->name('getPlayers');
-
     //-------------------------------------------------------------------------
     //-------------------------------------------------------------------------
      Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
+    Route::get('dashboard/admin/club/status/{status}/{id}', [\App\Http\Controllers\Admin\ClubController::class, 'toggleStatus'])
+        ->name('club.toggleStatus');
+
+
   Route::resource('dashboard/admin/coach', \App\Http\Controllers\Admin\CaochController::class);
     Route::get('/search', SearchController::class);
     Route::get('/get-available-shirt-numbers/{club_id}', [PlayerController::class, 'getAvailableShirtNumbers']);
@@ -82,9 +78,14 @@ Route::group(
 
      //------------------------- Start Coach Routes -------------------------------------------
     //------------------------- Start Coach Routes -------------------------------------------
-        Route::get('dashboard/coach/player/stats', [Coach_Dashboard::class, 'stats'])->name('coach.stats');
-        Route::get('dashboard/coach/player/stats/{player_id}', [Coach_Dashboard::class, 'stats'])->name('stats.show');
-        Route::get('dashboard/coach/player/stats/print/{player_id}', [Coach_Dashboard::class, 'print'])->name('stats.print');
+        Route::get('dashboard/coach/club/statistics', [Coach_Dashboard::class, 'stats'])->name('coach.stats');
+        Route::get('dashboard/coach/club/statistics/{player_id}', [Coach_Dashboard::class, 'stats'])->name('stats.show');
+        Route::get('dashboard/coach/club/statistics/print/{player_id}', [Coach_Dashboard::class, 'print'])->name('stats.print');
+
+
+
+        Route::get('dashboard/coach/player/club/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');
+
 
 
         Route::get('dashboard/coach/player/calendar', [CaochController::class, 'calendar'])->name('coach.calendar');

@@ -16,14 +16,7 @@ class Club extends Authenticatable implements JWTSubject
 
      public $guard = 'club';
 
-    protected $fillable = [
-       'name_ar',
-       'name_en',
-       'email',
-       'password',
-        'image',
-        'date'
-    ];
+     protected $table = 'clubs';
     protected $hidden = [
         'password',
         'remember_token',
@@ -49,8 +42,15 @@ class Club extends Authenticatable implements JWTSubject
     }
     public function coach()
     {
-        return $this->hasMany(Coach::class);
+        return $this->hasOne(Coach::class);
     }
+
+
+    public function history()
+    {
+        return $this->hasOne(History::class);
+    }
+
 
     public function table()
     {

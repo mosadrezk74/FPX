@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Standing extends Model
+class History extends Model
 {
-    use HasFactory;
-    protected $table = 'standings';
-
+    protected $table='history';
     public function club(){
-        return $this->belongsTo(Club::class,'club_id','id');
+        return $this->belongsTo(Club::class);
     }
+
+    use HasFactory;
 }
