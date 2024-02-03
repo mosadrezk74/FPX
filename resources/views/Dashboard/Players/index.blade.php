@@ -52,6 +52,7 @@
                                                         <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">{{trans('player.forward')}}</a></li>
                                                      </ul>
                                                 </div>
+
                                             </div>
 
                                             <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">

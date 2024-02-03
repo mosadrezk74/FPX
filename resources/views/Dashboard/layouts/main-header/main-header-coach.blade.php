@@ -184,22 +184,28 @@
 
 
 <script>
-    const themeSwitch = document.getElementById('theme-select');
+    const themeSelect = document.getElementById('theme-select');
     const storedTheme = localStorage.getItem('theme');
 
     function setTheme(theme) {
         document.body.classList.remove('light-theme', 'dark-theme');
         document.body.classList.add(`${theme}-theme`);
+
+         if (theme === 'light') {
+            themeSelect.style.backgroundColor = '#ffffff';
+        } else {
+            themeSelect.style.backgroundColor = '#1e1e1e';
+        }
     }
 
-    themeSwitch.addEventListener('change', function () {
+    themeSelect.addEventListener('change', function () {
         var selectedTheme = this.value;
         setTheme(selectedTheme);
         localStorage.setItem('theme', selectedTheme);
     });
 
     if (storedTheme) {
-        themeSwitch.value = storedTheme;
+        themeSelect.value = storedTheme;
         setTheme(storedTheme);
     } else {
         setTheme('dark');

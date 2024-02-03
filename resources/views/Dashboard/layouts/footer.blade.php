@@ -1,7 +1,10 @@
-<!-- Footer opened -->
-	<div class="main-footer ht-40">
+<div class="main-footer ht-40">
 		<div class="container-fluid pd-t-0-f ht-100p">
-			<span>Copyright © 2024 <a href="#">FPX</a>. All rights reserved.</span>
+            <center>
+
+			<span>Copyright © 2024 <a href="#" class="text-primary" >FPX</a>. All rights reserved.</span>
+
+            </center>
 		</div>
 	</div>
 <!-- Footer closed -->

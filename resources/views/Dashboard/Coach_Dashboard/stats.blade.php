@@ -31,9 +31,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- breadcrumb -->
 @endsection
-<!-- breadcrumb -->
 
 	@section('content')
 		@include('Dashboard.Clubs.messages_alert')
@@ -45,61 +43,59 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="tab-content border-left border-bottom border-right border-top-0 p-4">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    @php
+                                        $sortedPlayers = $players->sortBy('position')->values();
+                                    @endphp
+                                         <table id="example-delete" class="table text-md-nowrap">
+                                            <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>اسم اللاعب</th>
+                                             <th>صورة اللاعب</th>
 
-							<div class="tab-pane active" id="home">
-								<div class="row">
-									@php
-										$sortedPlayers = $players->sortBy('position')->values();
-									@endphp
-									@foreach($sortedPlayers as $player)
-										<div class="col-md-3"> <!-- Adjust the column size based on your design -->
-											<div class="border p-1 card thumb">
-												<a href="#" class="image-popup" title="Screenshot-2">
-													<img width="40px" height="100px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
-												</a>
-												<h4 class="text-center tx-14 mt-3 mb-0">
-													<a   style="color:#0040ce;" >
-														@if(App::getLocale() == 'ar')
-															{{$player->name_ar}}
-														@else
-															{{$player->name_en}}
-														@endif
-													</a>
-												</h4>
-												<div class="ga-border text-center">
-													<div class="NNN">
-														<a href="{{route('stats.show',$player->id)}}"  class="btn btn-sm btn-success">{{trans('index.view')}}</a>
-														<a href="{{route('stats.print',$player->id)}}" class="btn btn-primary btn-sm" target="_blank" title="طباعه احصائيات لاعب">{{trans('index.print')}}</a>
-													</div>
-												</div>
-												<p class="text-muted text-center"><small>{{$player->shirt_number}}</small></p>
-												@if($player->position == 0)
-													<h4 class="text-center tx-14 mt-3 mb-0 position-bg ">{{trans('index.Goalkeeper')}}</h4>
-												@elseif($player->position == 1)
-													<h4 class="text-center tx-14 mt-3 mb-0 position-bg">{{trans('index.Defender')}}</h4>
-												@elseif($player->position == 2)
-													<h4 class="text-center tx-14 mt-3 mb-0 position-bg ">{{trans('index.Midfielder')}}</h4>
-												@elseif($player->position == 3)
-													<h4 class="text-center tx-14 mt-3 mb-0 position-bg ">{{trans('index.Forward')}}</h4>
-												@endif
-											</div>
-										</div>
-									@endforeach
-								</div>
-							</div>
-                            {{$players->links()}}
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($sortedPlayers as $player)
+                                        <tr>
+                                            <th >{{$loop->iteration}}</th>
 
+                                            <td>
+                                                <a   style="color:#0040ce;" href="{{route('stats.show',$player->id)}}">
+                                                    @if(App::getLocale() == 'ar')
+                                                        {{$player->name_ar}}
+                                                    @else
+                                                        {{$player->name_en}}
+                                                    @endif
+                                                </a>
+                                            </td>
+                                            <td  style="width:80px" >
+                                                <img  alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                            </td>
+                                            <td>
+                                                <div class="NNN">
+                                                    <a href="{{route('stats.show',$player->id)}}"  class="btn btn-sm btn-success">{{trans('index.view')}}</a>
+                                                    <a href="{{route('stats.print',$player->id)}}" class="btn btn-primary btn-sm" target="_blank" title="طباعه احصائيات لاعب">{{trans('index.print')}}</a>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- row closed -->
 
 		</div>
-			<!-- Container closed -->
 		</div>
-		<!-- main-content closed -->
 @endsection
 @section('js')
 @endsection

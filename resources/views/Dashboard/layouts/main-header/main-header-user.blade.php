@@ -183,34 +183,32 @@
 </div>
 
 
-
 <script>
-    const themeSwitch = document.getElementById('theme-switch');
-    const lightThemeButton = document.getElementById('light-theme');
-    const darkThemeButton = document.getElementById('dark-theme');
-    document.body.classList.add('dark-theme');
-    themeSwitch.addEventListener('change', () => {
-        if (themeSwitch.checked) {
-            document.body.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.body.classList.remove('dark-theme');
-            localStorage.setItem('theme', 'light');
-        }
-    });
-    lightThemeButton.addEventListener('click', () => {
-        themeSwitch.checked = false;
-        document.body.classList.remove('dark-theme');
-    });
-    darkThemeButton.addEventListener('click', () => {
-        themeSwitch.checked = true;
-        document.body.classList.add('dark-theme');
-    });
+    const themeSelect = document.getElementById('theme-select');
     const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark') {
-        themeSwitch.checked = true;
-    } else if (storedTheme === 'light') {
-        themeSwitch.checked = false;
-        document.body.classList.remove('dark-theme');
+
+    function setTheme(theme) {
+        document.body.classList.remove('light-theme', 'dark-theme');
+        document.body.classList.add(`${theme}-theme`);
+
+        if (theme === 'light') {
+            themeSelect.style.backgroundColor = '#ffffff';
+        } else {
+            themeSelect.style.backgroundColor = '#1e1e1e';
+        }
+    }
+
+    themeSelect.addEventListener('change', function () {
+        var selectedTheme = this.value;
+        setTheme(selectedTheme);
+        localStorage.setItem('theme', selectedTheme);
+    });
+
+    if (storedTheme) {
+        themeSelect.value = storedTheme;
+        setTheme(storedTheme);
+    } else {
+        setTheme('dark');
+        localStorage.setItem('theme', 'dark');
     }
 </script>
