@@ -82,7 +82,14 @@ Route::group(
         Route::get('dashboard/coach/club/statistics/{player_id}', [Coach_Dashboard::class, 'stats'])->name('stats.show');
         Route::get('dashboard/coach/club/statistics/print/{player_id}', [Coach_Dashboard::class, 'print'])->name('stats.print');
         Route::get('dashboard/coach/club/statistics/show/{player_id}', [Coach_Dashboard::class, 'show'])->name('stats.show');
+        //--------------------------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------------------------
 
+        Route::post('ajaxRequest' ,[Coach_Dashboard::class, 'ajaxRequest'] )->name('ajaxRequest');
+    //--------------------------------------------------------------------------------------------------------
+       //--------------------------------------------------------------------------------------------------------
+        Route::get('dashboard/coach/club/statistics/comparison/{player_id}', [Coach_Dashboard::class, 'compare'])->name('compare');
+        Route::post('dashboard/coach/club/statistics/comparison/{player_id}', [Coach_Dashboard::class, 'comparePlayers'])->name('compare.players');
 
 
         Route::get('dashboard/coach/player/club/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');

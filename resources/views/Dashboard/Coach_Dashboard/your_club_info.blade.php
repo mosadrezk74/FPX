@@ -23,8 +23,10 @@
 
 	@section('content')
 		@include('Dashboard.Clubs.messages_alert')
-		<div class="row row-sm">
 
+
+
+		<div class="row row-sm">
 		@foreach($tables as $table)
 
 			<div class="col-lg-3 col-md-6">

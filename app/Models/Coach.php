@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Coach extends Authenticatable
 {
     public $guard = 'coach';
-
+    use Notifiable;
 
     protected $fillable = [
         'name_ar',
@@ -48,4 +48,15 @@ class Coach extends Authenticatable
     {
         return $this->hasMany(Player::class);
     }
+
+    public function followedPlayers()
+    {
+        return $this->belongsToMany(Player::class, 'user_player', 'user_id', 'player_id');
+    }
+
+
+
+
+
+
 }

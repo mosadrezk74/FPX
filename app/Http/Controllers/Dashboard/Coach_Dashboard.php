@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Dashboard;
 use App\Charts\ExpensesChart;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
+use App\Models\FollowedPlayer;
 use App\Models\History;
 use App\Models\Player;
 use App\Models\Standing;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Cookie;
+
+
 use Illuminate\Support\Facades\DB;
 
 class Coach_Dashboard extends Controller
@@ -38,6 +44,12 @@ class Coach_Dashboard extends Controller
             ->select('players.*', 'stats.goalAssists as goalAssists')
             ->first();
 
+
+        $followedPlayers = request()->cookie('followed_players');
+        $followedPlayers = $followedPlayers ? unserialize($followedPlayers) : [];
+        $players_followed = Player::whereIn('id', $followedPlayers)->get();
+
+
 //        $upcomingMatches = DB::table('fixtures')
 //            ->where('date', '>=', now())
 //            ->where(function ($query) use ($club_id) {
@@ -53,7 +65,11 @@ class Coach_Dashboard extends Controller
             'players',
             'random', 'count_p',
             'clubs', 'club_id', 'tables' , 'topAssister'
-            ,'topGoalScorer'), ['chart' => $chart->build()]);
+            ,'topGoalScorer'
+            ,'players_followed'
+
+
+        ), ['chart' => $chart->build()]);
     }
 
 
@@ -146,6 +162,7 @@ class Coach_Dashboard extends Controller
             ->get();
 
 
+
         return view('Dashboard.Coach_Dashboard.your_club_info'
         ,compact('coach',  'club',  'tables' , 'club_st','count_p'
             ,'upcomingMatches'
@@ -153,11 +170,41 @@ class Coach_Dashboard extends Controller
             ,'topGoalScorers'
             ,'topAssisters'
 
-
             ));
     }
 
+    public function compare($player_id){
+        $player1 = Player::findOrFail($player_id);
+        $players = Player::where('id', '<>', $player_id)->get();
 
+        return view('Dashboard.Players.compare', compact('player1', 'players'));
+    }
+
+    public function comparePlayers(Request $request, $player_id){
+        $player1 = Player::findOrFail($player_id);
+        $player2_id = $request->input('player2_id');
+
+        if ($player2_id) {
+            $player2 = Player::findOrFail($player2_id);
+        } else {
+            $player2 = null;
+        }
+
+        return view('Dashboard.Players.compare', compact('player1', 'player2'));
+    }
+
+
+
+
+
+
+    public function ajaxRequest(Request $request){
+
+        $player = Player::find($request->user_id);
+        $response = auth()->user()->toggleFollow($player);
+
+        return response()->json(['success'=>$response]);
+    }
 
 
 

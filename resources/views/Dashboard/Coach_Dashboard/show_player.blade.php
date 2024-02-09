@@ -1,5 +1,14 @@
 @extends('Dashboard.layouts.master')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<style>
+    .bg-success {
+        background-color: #00ff00;
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+
+</style>
 @section('title')
 	{{trans('index.statistics')}}
 @stop
@@ -18,94 +27,88 @@
 	@section('content')
 		@include('Dashboard.Clubs.messages_alert')
 
+
 		<!-- row -->
-        <div class="row row-sm">
-            <div class="col-lg-4">
-                <div class="card mg-b-20">
-                    <div class="card-body">
-                        <div class="pl-0">
-                            <div class="main-profile-overview">
-                                <div class="main-img-user profile-user">
-                                    <img alt="" src="{{ asset('uploads/players/'. $player->photo) }}" class="brround "><a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
-                                </div>
-                                <div class="d-flex justify-content-between mg-b-20">
-                                    <div>
-                                        <h5 class="main-profile-name">{{$player->name_ar}}</h5>
-                                        <p class="main-profile-name-text">{{$player->club->name_ar}}</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <p class="col-sm-6 mb-0 font-weight-bold">Personal Details</p>
-                                <hr>
-                                <div class="row">
-
-
-
-                                    <div class="col-md-4 col mb20">
-                                        <h6 class="text-small text-muted mb-0">Age</h6>
-                                        <h5>{{$player->stat->Age}}</h5>
-                                    </div>
-
-                                    <div class="col-md-4 col mb20">
-                                        <h6 class="text-small text-muted mb-0">Height</h6>
-                                        <h5>{{$player->stat->Heightcm}}</h5>
-                                    </div>
-
-                                    <div class="col-md-4 col mb20">
-                                        <h6 class="text-small text-muted mb-0">Nationality</h6>
-                                        <h5>{{$player->nationality}}</h5>
-                                    </div>
-
-{{--                                    <div class="col-md-4 col mb20">--}}
-{{--                                        <h6 class="text-small text-muted mb-0">Position</h6>--}}
-{{--                                        @if($player->position == 0)--}}
-{{--                                            <h5>{{trans('index.Goalkeeper')}}</h5>--}}
-{{--                                        @elseif($player->position == 1)--}}
-{{--                                            <h5 >{{trans('index.Defender')}}</h5>--}}
-{{--                                        @elseif($player->position == 2)--}}
-{{--                                            <h5 >{{trans('index.Midfielder')}}</h5>--}}
-{{--                                        @elseif($player->position == 3)--}}
-{{--                                            <h5 >{{trans('index.Forward')}}</h5>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-
-
-                                </div>
-                                <hr>
-
-                                <p class="col-sm-6 mb-0 font-weight-bold">League Record</p>
-                                <hr>
-                                <div class="row">
-
-                                    <div class="col-md-4 col mb20">
-                                        <h6 class="text-small text-muted mb-0">Appearances</h6>
-                                        <h5>{{$player->stat->Appearances}}</h5>
-                                    </div>
-
-                                    <div class="col-md-4 col mb20">
-                                        <h6 class="text-small text-muted mb-0">Gaols</h6>
-                                        <h5>{{$player->stat->totalGoals}}</h5>
-                                    </div>
-
-
-                                    <div class="col-md-4 col mb20">
-                                        <h6 class="text-small text-muted mb-0">Assists</h6>
-                                        <h5>{{$player->stat->goalAssists}}</h5>
-                                    </div>
-
-
-                                </div>
-                                <hr class="mg-y-30">
-                                <a href="{{ route('stats.print', $player->id) }}" class="btn btn-primary">{{trans('index.print')}}</a>
-                                <a href="{{ route('stats.print', $player->id) }}" class="btn btn-primary">مقارنة</a>
-                                <a href="{{ route('stats.print', $player->id) }}" class="btn btn-primary">أعجبني</a>
-
-                            </div><!-- main-profile-overview -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="d-flex flex-column   text-center">
+                        <div class="position-relative">
+                            <img alt="" src="{{ asset('uploads/players/'. $player->photo) }}"  width="250" height="250" class="brround img-fluid">
+                            <img alt="Club Logo" src="{{$player->club->image}}" class="club-logo ml-1" width="30" height="30">
+                            <h1 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{$player->name_ar}}</h1>
+                             @if($player->position == 0)
+                                <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">حارس المرمي</h3>
+                            @elseif($player->position == 1)
+                                <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">مدافع</h3>
+                            @elseif($player->position == 2)
+                                <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">وسط ملعب</h3>
+                            @elseif($player->position == 3)
+                                <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">مهاجم</h3>
+                            @endif
+                            <h5 class="card-subtitle mb-2 text-muted align-items-center  " style="padding-left: 15px;">{{$player->stat->Jersey}}#</h5>
                         </div>
                     </div>
+                    <br>
+
                 </div>
+
+
+                <div class="col-md-8">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-body">
+
+                            <div class="table-responsive hoverable-table">
+                                 <hr class="mg-y-30">
+                            <table class="table table-borderless">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Age</th>
+                                    <td>{{$player->stat->Age}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Height</th>
+                                    <td>{{$player->stat->Heightcm}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Weight</th>
+                                    <td>{{$player->stat->Weightkg}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Nationality</th>
+                                    <td>{{$player->nationality}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Average Rating</th>
+                                    <th>
+                                <p class="card-text">
+                                    @if(rand() > 5)
+                                    <span class="bg-success">{{rand(5,10)}}</span>
+                                    @elseif(rand()<5)
+                                        <span class="bg-danger">{{rand(0,4)}}</span>
+                                    @endif
+                                </p>
+                                    </th>
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            </div>
+
+                            <hr class="mg-y-30">
+                            <a href="{{ route('stats.print', $player->id) }}" class="btn btn-primary">{{trans('index.print')}}</a>
+                            <a href="{{ route('compare', $player->id) }}" class="btn btn-primary">مقارنة</a>
+{{--                            <a href="{{ route('players.follow', $player->id) }}" class="btn btn-primary">متابعــة</a>--}}
+
+                        </div>
+                    </div>
+                 </div>
             </div>
-            <div class="col-lg-8">
+        </div>
+
+
+        <div class="col-lg">
 
                 <div class="card">
                     <div class="card-body">
@@ -113,11 +116,21 @@
                             <!-- Tabs -->
                             <ul class="nav nav-tabs profile navtab-custom panel-tabs">
                                 <li class="active">
-                                    <a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">ABOUT ME</span> </a>
+                                    <a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">General Stats</span> </a>
                                 </li>
                                 <li class="">
-                                    <a href="#profile" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">GALLERY</span> </a>
+                                    <a href="#attack" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">Attack</span> </a>
                                 </li>
+                                <li class="">
+                                    <a href="#team_play" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">team_play</span> </a>
+                                </li>
+                                <li class="">
+                                    <a href="#discipline" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">Discipline</span> </a>
+                                </li>
+                                <li class="">
+                                    <a href="#defence" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">Defence</span> </a>
+                                </li>
+
 
                             </ul>
                         </div>
@@ -126,41 +139,99 @@
                                 <h4 class="tx-15 text-uppercase mb-3">Stats</h4>
 
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="card bg-primary">
+                                    <div class="col-lg-3 col-md-3">
+
+                                    <div class="card bg-primary">
                                             <div class="card-body text-center">
-                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.appearances')}}</h1>
                                                 <h1 class=" text-white">{{$player->stat->Appearances}}</h1>
+                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.appearances')}}</h1>
+
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Add more cards here with the same structure -->
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="card bg-primary">
+                                    <div class="col-lg-3 col-md-3">
+
+                                    <div class="card bg-primary">
                                             <div class="card-body text-center">
-                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.goal')}}</h1>
                                                 <h1 class=" text-white">{{$player->stat->totalGoals}}</h1>
+                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.goal')}}</h1>
+
                                             </div>
                                         </div>
                                     </div>
 
+
+
+
                                     <!-- Add more cards here with the same structure -->
-                                    <div class="col-lg-6 col-md-12">
+                                    <div class="col-lg-3 col-md-3">
                                         <div class="card bg-primary">
                                             <div class="card-body text-center">
-                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.assist')}}</h1>
                                                 <h1 class=" text-white">{{$player->stat->goalAssists}}</h1>
+                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.assist')}}</h1>
+
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Add more cards here with the same structure -->
-                                    <div class="col-lg-6 col-md-12">
+                                    <div class="col-lg-3 col-md-3">
                                         <div class="card bg-primary">
                                             <div class="card-body text-center">
-                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">الباصات</h1>
                                                 <h1 class=" text-white">{{rand(500,1000)}}</h1>
+                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">الباصات</h1>
+
+                                            </div>
+                                        </div>
+                                    </div>
+{{--                                    <hr>--}}
+{{--                                    <hr>--}}
+                                    <hr>
+                                    <div class="col-lg-3 col-md-3">
+                                        <hr>
+
+                                        <div class="card bg-warning-gradient text-center">
+
+                                            <div class="card-body">
+                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">XG</h1>
+                                                <h1 class="text-white">{{ mt_rand(50, 100) / 100 }}</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3">
+                                        <hr>
+
+                                        <div class="card bg-warning-gradient text-center">
+
+                                            <div class="card-body">
+                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">XA</h1>
+                                                <h1 class="text-white">{{ mt_rand(30, 80) / 100 }}</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <hr>
+
+                                        <div class="card bg-warning-gradient text-center">
+
+                                            <div class="card-body">
+                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">X(G+A)</h1>
+                                                <h1 class="text-white">{{ mt_rand(30, 70) / 100 }}</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <hr>
+
+                                        <div class="card bg-warning-gradient text-center">
+
+                                            <div class="card-body">
+                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">GOALS PER MATCH	</h1>
+                                                <h1 class="text-white">{{ mt_rand(50, 100) / 100 }}</h1>
+
                                             </div>
                                         </div>
                                     </div>
@@ -203,6 +274,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+
                                     <hr>
                                     <div class="col-xl-12">
                                         <div class="card">
@@ -317,12 +390,166 @@
                                     </div>
 
 
-
                                 </div>
 
 
                             </div>
-                            <div class="tab-pane" id="profile">
+                            <div class="tab-pane" id="attack">
+                                <div class="row">
+                                         <div class="col-lg-3 col-md-3">
+                                            <hr>
+
+                                            <div class="card bg-warning-gradient text-center">
+
+                                                <div class="card-body">
+                                                    <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">XG</h1>
+                                                    <h1 class="text-white">{{ mt_rand(50, 100) / 100 }}</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3">
+                                            <hr>
+
+                                            <div class="card bg-warning-gradient text-center">
+
+                                                <div class="card-body">
+                                                    <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">XA</h1>
+                                                    <h1 class="text-white">{{ mt_rand(30, 80) / 100 }}</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3">
+                                            <hr>
+
+                                            <div class="card bg-warning-gradient text-center">
+
+                                                <div class="card-body">
+                                                    <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">X(G+A)</h1>
+                                                    <h1 class="text-white">{{ mt_rand(30, 70) / 100 }}</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3">
+                                            <hr>
+
+                                            <div class="card bg-warning-gradient text-center">
+
+                                                <div class="card-body">
+                                                    <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">GOALS PER MATCH	</h1>
+                                                    <h1 class="text-white">{{ mt_rand(50, 100) / 100 }}</h1>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="team_play">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="border p-1 card thumb">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/7.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/8.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/9.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb  mb-xl-0">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/10.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb  mb-xl-0">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/6.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb  mb-xl-0">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/5.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="discipline">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="border p-1 card thumb">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/7.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/8.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/9.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb  mb-xl-0">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/10.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb  mb-xl-0">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/6.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class=" border p-1 card thumb  mb-xl-0">
+                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/5.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
+                                            <div class="ga-border"></div>
+                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="defence">
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="border p-1 card thumb">
@@ -388,4 +615,5 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
+
 @endsection

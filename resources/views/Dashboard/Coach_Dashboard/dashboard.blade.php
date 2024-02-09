@@ -167,8 +167,54 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12 col-lg-4 col-xl-4">
+            <div class="card card-dashboard-eight pb-2">
+                <h6 class="card-title">اللاعبين الذين تتابعهم</h6>
+                <div class="list-group">
+                    @forelse($players_followed as $player)
+                        <div class="list-group-item border-top-0">
+                            <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
+                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                            @if(App::getlocale() == "ar")
+                             <h6><a href="{{route('stats.show', $player->id)}}">{{$player->name_ar}}</a></h6>
+                                <span><a href="{{route('stats.show', $player->id)}}">{{$player->club->name_ar}}</a></span>
+                             @else
+                                <h6><a href="{{route('stats.show', $player->id)}}">{{$player->name_en}}</a></h6>
+                                <span><a href="{{route('stats.show', $player->id)}}">{{$player->club->name_en}}</a></span>
+                              @endif
 
-        <div class="col-md-12 col-lg-8 col-xl-8">
+                        </div>
+                    @empty
+                        <p>{{trans('index.no_followed_players')}}</p>
+                    @endforelse
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-4 col-xl-4">
+            <div class="card card-dashboard-eight pb-2">
+                <h6 class="card-title">{{trans('index.recent_players')}}</h6>
+                <div class="list-group">
+                    @foreach($players as $player)
+                        <div class="list-group-item border-top-0">
+                            <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
+                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                            @if(App::getlocale() == "ar")
+                                <p>{{$player->name_ar}}</p>
+                                <span><a href="">{{$player->club->name_ar}}</a></span>
+                            @else
+                                <p>{{$player->name_en}}</p>
+                                <span><a href="">{{$player->club->name_en}}</a></span>
+                            @endif
+
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-0 col-lg-0 col-xl-8">
             <div class="card card-table-two">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mb-1">{{trans('index.standings')}}</h4>

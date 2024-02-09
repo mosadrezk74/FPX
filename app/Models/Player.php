@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
  use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Overtrue\LaravelFollow\Traits\Followable;
+
 
 class Player extends Authenticatable
 {
 
     public $guard = 'club';
-    use Notifiable;
+     use Notifiable;
+
+
 
 //    protected $table = 'players';
 
@@ -51,6 +55,10 @@ class Player extends Authenticatable
     {
         return $this->belongsTo(Coach::class);
     }
+
+
+
+
 
 
     public function stat()

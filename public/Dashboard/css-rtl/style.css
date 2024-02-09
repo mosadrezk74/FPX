@@ -6390,7 +6390,9 @@ textarea.form-control.is-invalid, textarea.form-control.parsley-error {
     border: 1px solid #dde2ef; }
 
 .table-borderless th, .table-borderless td, .table-borderless thead th, .table-borderless tbody + tbody {
-    border: 0; }
+    border: 0;
+
+}
 
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #ecf0fa; }
