@@ -1,4 +1,6 @@
-<!-- main-header opened -->
+<style>
+
+</style>
 <div class="main-header sticky side-header nav nav-item">
     <div class="container-fluid">
 
@@ -24,21 +26,11 @@
 
         </div>
         <div class="main-header-right">
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="theme-switch" style=" display: none;" >
-                    <input type="checkbox" id="theme-switch"  />
-                    <span class="slider"></span>
-                </label>
-                <div class="theme-switcher-options">
-                    <button class="btn btn-sm btn-light" id="light-theme">
-                        <i class="fas fa-sun fa-2x-lg"></i>
-                    </button>
-                    <button class="btn btn-sm btn-dark" id="dark-theme">
-                        <i class="fas fa-moon fa-2x-lg"></i>
-                    </button>
-                </div>
 
-            </div>
+
+
+
+
             <ul class="nav">
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
@@ -46,15 +38,15 @@
                            aria-expanded="false">
                             @if (App::getLocale() == 'ar')
                                 <span class="avatar country-Flag mr-0 align-self-center bg-transparent"><img
-                                            src="{{URL::asset('Dashboard/img/flags/egypt_flag.jpg')}}" alt="img"></span>
+                                        src="{{URL::asset('Dashboard/img/flags/egypt_flag.jpg')}}" alt="img"></span>
                                 <strong
-                                        class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
+                                    class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
                             @else
                                 <span class="avatar country-Flag mr-0 align-self-center bg-transparent">
                                     <img
-                                            src="{{URL::asset('Dashboard/img/flags/us_flag.jpg')}}" alt="img"></span>
+                                        src="{{URL::asset('Dashboard/img/flags/us_flag.jpg')}}" alt="img"></span>
                                 <strong
-                                        class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
+                                    class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
                             @endif
                             <div class="my-auto">
                             </div>
@@ -82,7 +74,7 @@
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-maximize">
                             <path
-                                    d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
                         </svg>
                     </a>
                 </div>
@@ -183,32 +175,3 @@
 </div>
 
 
-<script>
-    const themeSelect = document.getElementById('theme-select');
-    const storedTheme = localStorage.getItem('theme');
-
-    function setTheme(theme) {
-        document.body.classList.remove('light-theme', 'dark-theme');
-        document.body.classList.add(`${theme}-theme`);
-
-        if (theme === 'light') {
-            themeSelect.style.backgroundColor = '#ffffff';
-        } else {
-            themeSelect.style.backgroundColor = '#1e1e1e';
-        }
-    }
-
-    themeSelect.addEventListener('change', function () {
-        var selectedTheme = this.value;
-        setTheme(selectedTheme);
-        localStorage.setItem('theme', selectedTheme);
-    });
-
-    if (storedTheme) {
-        themeSelect.value = storedTheme;
-        setTheme(storedTheme);
-    } else {
-        setTheme('dark');
-        localStorage.setItem('theme', 'dark');
-    }
-</script>

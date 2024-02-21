@@ -6,6 +6,7 @@ return [
     'name'=>'Name',
     'age'=>'Age',
     'height'=>'Height',
+    'weight'=>'Weight',
     'position'=>'Position',
     'nationality'=>'Nationality',
     'shirt_number'=>'Shirt Number',
@@ -23,6 +24,9 @@ return [
     'show'=>'Show All Players',
     'match'=>'Matches',
     'add_match_stats'=>'Add Match Stats',
+    'avg'=>'Average Rating',
+    'appearances'=>'Appearances',
+
 
 
 

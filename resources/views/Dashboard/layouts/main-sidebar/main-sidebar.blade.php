@@ -1,20 +1,17 @@
 <!-- main-sidebar -->
-		<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-		<aside class="app-sidebar sidebar-scroll">
-			<div class="main-sidebar-header active">
-				<a class="desktop-logo logo-light active" href="{{url('dashboard/admin')}}">
-                    <img src="{{URL::asset('Dashboard/img/brand/logo.png')}}" style="width: 50px; height: 50px;" class="main-logo" alt="logo"></a>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar sidebar-scroll">
+    <div class="main-sidebar-header active">
+        <a class="desktop-logo logo-light active" href="{{url('dashboard/admin')}}">
+            <h1 class="text-light">
+                FPX
+            </h1>
+        </a>
 
-				<a class="desktop-logo logo-dark active" href="{{ url('dashboard/admin') }}">
 
-                    <img src="{{URL::asset('Dashboard/img/brand/logo-white.png')}}" style="width: 50px; height: 50px;"  class="main-logo dark-theme" alt="logo"></a>
-				<a class="logo-icon mobile-logo icon-light active" href="{{ url('dashboard/admin') }}">
 
-                    <img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"   class="logo-icon" alt="logo"></a>
-				<a class="logo-icon mobile-logo icon-dark active" href="{{ url('dashboard/admin') }}">
 
-                    <img src="{{URL::asset('Dashboard/img/brand/favicon-white.png')}}"    class="logo-icon dark-theme" alt="logo"></a>
-			</div>
+    </div>
 			<div class="main-sidemenu">
 				<div class="app-sidebar__user clearfix">
 					<div class="dropdown user-pro-body">

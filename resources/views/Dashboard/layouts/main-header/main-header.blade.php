@@ -7,7 +7,7 @@
         <div class="main-header-left ">
             <div class="responsive-logo">
                 <a href="{{ url('/' . $page='index') }}" ><img src="{{URL::asset('Dashboard/img/brand/logo.png')}}"
-                                                              class="logo-1" alt="logo"></a>
+                                                               class="logo-1" alt="logo"></a>
                 <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/logo-white.png')}}"
                                                               class="dark-logo-1" alt="logo"></a>
                 <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
@@ -27,14 +27,7 @@
         </div>
         <div class="main-header-right">
 
-            <div class="theme-switch-wrapper">
-                <div class="theme-switcher-options">
-                    <select id="theme-select" class="form-select form-select-sm">
-                        <option value="light">&#9728;</option>
-                        <option value="dark">&#127769;</option>
-                    </select>
-                </div>
-            </div>
+
 
 
 
@@ -131,7 +124,7 @@
 
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     <a class="profile-user d-flex" href="" data-toggle="dropdown" data-bs-dismiss="dropdown"><img alt=""
-                                                                src="{{URL::asset('Dashboard/img/faces/6.jpg')}}"></a>
+                                                                                                                  src="{{URL::asset('Dashboard/img/faces/6.jpg')}}"></a>
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
@@ -139,7 +132,7 @@
                                                                 class=""></div>
                                 <div class="mr-3 my-auto">
                                     @auth
-                                    <h6>{{Auth::user()->name_ar}}</h6><span>{{trans('Dashboard/main-header_trans.admin')}} </span>
+                                        <h6>{{Auth::user()->name_ar}}</h6><span>{{trans('Dashboard/main-header_trans.admin')}} </span>
                                     @endauth
                                 </div>
                             </div>
@@ -160,12 +153,12 @@
                                                         @elseif(Auth('coach')->check())
                                                             <form method="POST" action="{{ route('logout.coach') }}">
 
-                                                @endif
-                                                @csrf
-                                        <a class="dropdown-item" href="#"
-                                           onclick="event.preventDefault();
+                                                                @endif
+                                                                @csrf
+                                                                <a class="dropdown-item" href="#"
+                                                                   onclick="event.preventDefault();
                                         this.closest('form').submit();"><i class="bx bx-log-out"></i>{{trans('Dashboard/main-header_trans.logout')}}</a>
-                                    </form>
+                                                            </form>
 
                     </div>
                 </div>
@@ -182,33 +175,3 @@
 </div>
 
 
-
-<script>
-    const themeSelect = document.getElementById('theme-select');
-    const storedTheme = localStorage.getItem('theme');
-
-    function setTheme(theme) {
-        document.body.classList.remove('light-theme', 'dark-theme');
-        document.body.classList.add(`${theme}-theme`);
-
-        if (theme === 'light') {
-            themeSelect.style.backgroundColor = '#ffffff';
-        } else {
-            themeSelect.style.backgroundColor = '#1e1e1e';
-        }
-    }
-
-    themeSelect.addEventListener('change', function () {
-        var selectedTheme = this.value;
-        setTheme(selectedTheme);
-        localStorage.setItem('theme', selectedTheme);
-    });
-
-    if (storedTheme) {
-        themeSelect.value = storedTheme;
-        setTheme(storedTheme);
-    } else {
-        setTheme('dark');
-        localStorage.setItem('theme', 'dark');
-    }
-</script>

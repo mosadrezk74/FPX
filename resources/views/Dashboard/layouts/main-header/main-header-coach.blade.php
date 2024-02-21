@@ -27,14 +27,7 @@
         </div>
         <div class="main-header-right">
 
-            <div class="theme-switch-wrapper">
-                <div class="theme-switcher-options">
-                    <select id="theme-select" class="form-select form-select-sm">
-                        <option value="light">&#9728;</option>
-                        <option value="dark">&#127769;</option>
-                    </select>
-                </div>
-            </div>
+
 
 
 
@@ -182,33 +175,3 @@
 </div>
 
 
-
-<script>
-    const themeSelect = document.getElementById('theme-select');
-    const storedTheme = localStorage.getItem('theme');
-
-    function setTheme(theme) {
-        document.body.classList.remove('light-theme', 'dark-theme');
-        document.body.classList.add(`${theme}-theme`);
-
-         if (theme === 'light') {
-            themeSelect.style.backgroundColor = '#ffffff';
-        } else {
-            themeSelect.style.backgroundColor = '#1e1e1e';
-        }
-    }
-
-    themeSelect.addEventListener('change', function () {
-        var selectedTheme = this.value;
-        setTheme(selectedTheme);
-        localStorage.setItem('theme', selectedTheme);
-    });
-
-    if (storedTheme) {
-        themeSelect.value = storedTheme;
-        setTheme(storedTheme);
-    } else {
-        setTheme('dark');
-        localStorage.setItem('theme', 'dark');
-    }
-</script>

@@ -52,7 +52,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-danger-gradient">
+            <div class="card  bg-success-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         @foreach($clubs as $club)
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-primary-gradient">
+            <div class="card  bg-success-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div class="counter-icon">
@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-warning-gradient">
+            <div class="card  bg-success-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div style="text-align: center;">
@@ -270,6 +270,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="p-6 m-20 bg-white rounded shadow">
 

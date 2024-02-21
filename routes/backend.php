@@ -90,7 +90,7 @@ Route::group(
        //--------------------------------------------------------------------------------------------------------
         Route::get('dashboard/coach/club/statistics/comparison/{player_id}', [Coach_Dashboard::class, 'compare'])->name('compare');
         Route::post('dashboard/coach/club/statistics/comparison/{player_id}', [Coach_Dashboard::class, 'comparePlayers'])->name('compare.players');
-
+        Route::post('dashboard/coach/club/statistics/comparison/{player_id}', [Coach_Dashboard::class, 'comparePlayers'])->name('players.follow');
 
         Route::get('dashboard/coach/player/club/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');
 

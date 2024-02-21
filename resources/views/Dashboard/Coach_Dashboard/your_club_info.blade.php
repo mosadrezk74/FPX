@@ -3,6 +3,16 @@
 @section('title')
 {{trans('index.gen_info')}}
 @stop
+
+<style>
+    td,
+    th{
+        background-color: white;
+    }
+
+</style>
+
+
 @section('page-header')
 	<!-- breadcrumb -->
 	<div class="breadcrumb-header justify-content-between">
@@ -30,7 +40,7 @@
 		@foreach($tables as $table)
 
 			<div class="col-lg-3 col-md-6">
-				<div class="card  bg-primary-gradient">
+				<div class="card  bg-primary">
 					<div class="card-body">
 						<div class="counter-status d-flex md-mb-0">
 							<div class="counter-icon">
@@ -49,7 +59,7 @@
 		@endforeach
 
 			<div class="col-lg-3 col-md-6">
-			<div class="card  bg-warning-gradient">
+			<div class="card  bg-primary">
 				<div class="card-body">
 					<div class="counter-status d-flex md-mb-0">
 						<div class="counter-icon">
@@ -70,7 +80,7 @@
 		</div>
 
 			<div class="col-lg-3 col-md-6">
-				<div class="card  bg-info-gradient">
+				<div class="card  bg-primary">
 					<div class="card-body">
 						<div class="counter-status d-flex md-mb-0">
 							<div class="counter-icon">
@@ -88,7 +98,7 @@
 
 
             <div class="col-lg-3 col-md-6">
-                <div class="card  bg-danger-gradient">
+                <div class="card  bg-primary">
                     <div class="card-body">
                         <div class="counter-status d-flex md-mb-0">
                             <div class="counter-icon">
@@ -202,9 +212,9 @@
                             </div>
 
 
-                                                        <h1 class="tx-13 tx-dark-8 mb-3" style="font-weight: bold">{{trans('index.stand_history')}}</h1>
+                            <h1 class="tx-13 tx-dark-8 mb-3" style="font-weight: bold">{{trans('index.stand_history')}}</h1>
 
-                                <table    class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
+                                <table  class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap ">
                                     <thead>
                                     <tr>
                                         <th class="wd-lg-40p">{{trans('index.team_name')}}</th>

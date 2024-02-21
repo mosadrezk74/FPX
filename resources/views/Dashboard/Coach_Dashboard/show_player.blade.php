@@ -1,14 +1,10 @@
 @extends('Dashboard.layouts.master')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@php
+$rating=[1,1.5,2.5,2,3.5,3,4,4.5,5,5.5,6,6.5,7,7.5,8,9,10,8.5,9.5];
+$random_key = array_rand($rating);
+$random_number = $rating[$random_key];
+@endphp
 
-<style>
-    .bg-success {
-        background-color: #00ff00;
-        padding: 2px 5px;
-        border-radius: 3px;
-    }
-
-</style>
 @section('title')
 	{{trans('index.statistics')}}
 @stop
@@ -20,21 +16,15 @@
 			</div>
 		</div>
 	</div>
-	<!-- breadcrumb -->
 @endsection
-<!-- breadcrumb -->
-
 	@section('content')
-		@include('Dashboard.Clubs.messages_alert')
 
-
-		<!-- row -->
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="d-flex flex-column   text-center">
+                    <div class="d-flex flex-column text-center">
                         <div class="position-relative">
-                            <img alt="" src="{{ asset('uploads/players/'. $player->photo) }}"  width="250" height="250" class="brround img-fluid">
+                            <img alt="" src="{{ asset('uploads/players/'. $player->photo) }}"  width="200px" height="200px" class="brround img-fluid">
                             <img alt="Club Logo" src="{{$player->club->image}}" class="club-logo ml-1" width="30" height="30">
                             <h1 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{$player->name_ar}}</h1>
                              @if($player->position == 0)
@@ -50,56 +40,68 @@
                         </div>
                     </div>
                     <br>
-
                 </div>
-
 
                 <div class="col-md-8">
                     <div class="card mb-4 box-shadow">
                         <div class="card-body">
-
                             <div class="table-responsive hoverable-table">
-                                 <hr class="mg-y-30">
-                            <table class="table table-borderless">
-                                <tbody>
+                                 <table class="table table-borderless">
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">Age</th>
+                                        <td>{{$player->stat->Age}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Height</th>
+                                        <td>{{$player->stat->Heightcm}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Weight</th>
+                                        <td>{{$player->stat->Weightkg}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nationality</th>
+                                        <td>{{$player->nationality}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Average Rating</th>
+                                        <th>
+                                            <p class="card-text">
+                                                @if(rand() > 5)
+                                                    <span class="bg-success text-white">{{rand(5,10)}}</span>
+                                                @elseif(rand()<5)
+                                                    <span class="bg-danger text-white">{{rand(0,4)}}</span>
+                                                @endif
+                                            </p>
+                                        </th>
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="follow-table" >
+                            <table class="table table-bordered border-primary text-center text-primary bg-light">
+                                <thead>
                                 <tr>
-                                    <th scope="row">Age</th>
-                                    <td>{{$player->stat->Age}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Height</th>
-                                    <td>{{$player->stat->Heightcm}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Weight</th>
-                                    <td>{{$player->stat->Weightkg}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nationality</th>
-                                    <td>{{$player->nationality}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Average Rating</th>
-                                    <th>
-                                <p class="card-text">
-                                    @if(rand() > 5)
-                                    <span class="bg-success">{{rand(5,10)}}</span>
-                                    @elseif(rand()<5)
-                                        <span class="bg-danger">{{rand(0,4)}}</span>
-                                    @endif
-                                </p>
+                                    <th scope="col"><i class="fas fa-balance-scale fa-lg d-sm-none"></i>
+                                        <a href="{{ route('compare', $player->id) }}"  >مقارنة</a>
+                                    </th>
+                                    <th scope="col"><i class="fas fa-user-plus fa-lg d-sm-none"></i>
+                                        <a href="{{ route('players.follow', $player->id) }}"  >متابعــة</a>
+                                    </th>
+                                    <th scope="col"><i class="fas fa-print fa-lg d-sm-none"></i>
+                                        <a href="{{ route('stats.print', $player->id) }}">{{trans('index.print')}}</a>
                                     </th>
 
                                 </tr>
+                                </thead>
 
-                                </tbody>
                             </table>
-                            </div>
+                        </div>
 
-                            <hr class="mg-y-30">
-                            <a href="{{ route('stats.print', $player->id) }}" class="btn btn-primary">{{trans('index.print')}}</a>
-                            <a href="{{ route('compare', $player->id) }}" class="btn btn-primary">مقارنة</a>
-{{--                            <a href="{{ route('players.follow', $player->id) }}" class="btn btn-primary">متابعــة</a>--}}
+
 
                         </div>
                     </div>
@@ -116,20 +118,24 @@
                             <!-- Tabs -->
                             <ul class="nav nav-tabs profile navtab-custom panel-tabs">
                                 <li class="active">
-                                    <a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">General Stats</span> </a>
+                                    <a href="#home" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"></span> <span class="hidden-xs">General</span> </a>
                                 </li>
                                 <li class="">
-                                    <a href="#attack" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">Attack</span> </a>
+                                    <a href="#attack" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"></span><span class="hidden-xs">Goals , xG , Shots</span> </a>
                                 </li>
                                 <li class="">
-                                    <a href="#team_play" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">team_play</span> </a>
+                                    <a href="#team_play" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"></span><span class="hidden-xs">Assists & Passes</span> </a>
                                 </li>
                                 <li class="">
-                                    <a href="#discipline" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">Discipline</span> </a>
+                                    <a href="#discipline" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"> </span><span class="hidden-xs">Cards & Fouls</span> </a>
                                 </li>
                                 <li class="">
-                                    <a href="#defence" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">Defence</span> </a>
+                                    <a href="#defence" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"> </span><span class="hidden-xs">Defending</span> </a>
                                 </li>
+                                <li class="">
+                                    <a href="#penalty" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"></span><span class="hidden-xs">Penalties</span> </a>
+                                </li>
+
 
 
                             </ul>
@@ -186,58 +192,7 @@
                                             </div>
                                         </div>
                                     </div>
-{{--                                    <hr>--}}
-{{--                                    <hr>--}}
                                     <hr>
-                                    <div class="col-lg-3 col-md-3">
-                                        <hr>
-
-                                        <div class="card bg-warning-gradient text-center">
-
-                                            <div class="card-body">
-                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">XG</h1>
-                                                <h1 class="text-white">{{ mt_rand(50, 100) / 100 }}</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3">
-                                        <hr>
-
-                                        <div class="card bg-warning-gradient text-center">
-
-                                            <div class="card-body">
-                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">XA</h1>
-                                                <h1 class="text-white">{{ mt_rand(30, 80) / 100 }}</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3">
-                                        <hr>
-
-                                        <div class="card bg-warning-gradient text-center">
-
-                                            <div class="card-body">
-                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">X(G+A)</h1>
-                                                <h1 class="text-white">{{ mt_rand(30, 70) / 100 }}</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3">
-                                        <hr>
-
-                                        <div class="card bg-warning-gradient text-center">
-
-                                            <div class="card-body">
-                                                <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">GOALS PER MATCH	</h1>
-                                                <h1 class="text-white">{{ mt_rand(50, 100) / 100 }}</h1>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
                                     <div class="col-xl-12">
                                         <div class="card">
                                             <div class="card-header pb-0">
@@ -247,163 +202,449 @@
                                                 </div>
                                             </div>
                                             <div class="card-body">
-                                                <div class="table-responsive hoverable-table">
-                                                    <table id="example-delete" class="table text-md-nowrap "   style="text-align: center">
-                                                        <thead>
+                                                <div class="table-responsive">
+                                                    <table class="table text-md-nowrap text-center" id="example1">
+
                                                         <tr>
-                                                            <th>Goals</th>
-                                                            <th>Goals per match</th>
-                                                            <th>Headed goals</th>
-                                                            <th>Penalties scored</th>
-                                                            <th>Shots on target</th>
-                                                         </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>{{$player->stat->totalGoals}}</td>
-                                                            <td>{{ mt_rand(100, 150) / 100 }}</td>
-                                                            <td>{{rand(1,10)}}</td>
-                                                            <td>{{rand(5,10)}}</td>
-                                                            <td>{{$player->stat->totalShots}}</td>
-                                                         </tr>
-
-                                                        </tbody>
-
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <hr>
-                                    <div class="col-xl-12">
-                                        <div class="card">
-                                            <div class="card-header pb-0">
-                                                <div class="d-flex justify-content-between">
-                                                    <h4 class="card-title mg-b-0">Team Play</h4>
-                                                    <i class="mdi mdi-dots-horizontal text-gray"></i>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive hoverable-table">
-                                                    <table id="example-delete" class="table text-md-nowrap" style="text-align: center">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>Assists</th>
-                                                            <th>Passes</th>
-                                                            <th>Passes per match</th>
-                                                            <th>Big Chances Created</th>
-                                                            <th>Crosses</th>
-                                                         </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>{{$player->stat->goalAssists}}</td>
-                                                            <td>{{rand(500,1000)}}</td>
-                                                            <td>{{ mt_rand(100, 150) / 100 }}</td>
-                                                            <td>{{$player->stat->goalsConceded}}</td>
-                                                            <td>{{$player->stat->shotsOnTarget}}</td>
-                                                         </tr>
-
-                                                        </tbody>
-
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <hr>
-                                    <div class="col-xl-12" >
-                                        <div class="card">
-                                            <div class="card-header pb-0">
-                                                <div class="d-flex justify-content-between">
-                                                    <h4 class="card-title mg-b-0">Discipline</h4>
-                                                    <i class="mdi mdi-dots-horizontal text-gray"></i>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive hoverable-table">
-                                                    <table id="example-delete" class="table text-md-nowrap" style="text-align: center">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>Yellow cards </th>
-                                                            <th>Red  cards</th>
-                                                            <th>Fouls</th>
-                                                            <th>Offsides</th>
-                                                          </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>{{$player->stat->yellowCards}}</td>
-                                                            <td>{{$player->stat->redCards}}</td>
-                                                            <td>{{$player->stat->foulsSuffered}}</td>
-                                                            <td>{{$player->stat->offsides}}</td>
-
-                                                         </tr>
-
-                                                        </tbody>
-
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="col-xl-12">
-                                        <div class="card">
-                                            <div class="card-header pb-0">
-                                                <div class="d-flex justify-content-between">
-                                                    <h4 class="card-title mg-b-0">Defence</h4>
-                                                    <i class="mdi mdi-dots-horizontal text-gray"></i>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive hoverable-table">
-                                                    <table id="example-delete" class="table text-md-nowrap" style="text-align: center">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>Tackles </th>
-                                                            <th>Blocked shots</th>
-                                                            <th>Interceptions</th>
-                                                            <th>Clearances</th>
-                                                            <th>Headed Clearance</th>
+                                                            <th style="font-weight: 1000">احصائيات عامه</th>
+                                                            <th style="font-weight: 1000">إجمالي</th>
+                                                            <th style="font-weight: 1000"> متوسط في كل 90 دقيقه</th>
+                                                            <th style="font-weight: 1000">نسبه مئويه %</th>
                                                         </tr>
-                                                        </thead>
-                                                        <tbody>
+
                                                         <tr>
+                                                            <th style="font-weight: 1000">عدد المباريات</th>
+                                                            <td>{{$player->stat->Appearances}}</td>
                                                             <td>{{$player->stat->average_play_timemin}}</td>
-                                                            <td>{{ mt_rand(100, 150)  }}</td>
-                                                            <td>{{rand(100,500)}}</td>
-                                                            <td>{{rand(55,100)}}</td>
-                                                            <td>{{rand(20,90)}}</td>
+                                                            @php
+                                                                $totalMatches = 13;
+                                                                $percentage = ($player->stat->Appearances / $totalMatches) * 100;
+                                                            @endphp
+                                                            <td>
+                                                                @if($percentage >= 85)
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                                         style="width: {{$percentage}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                         aria-valuemax="100">{{round($percentage)}}%</div>
+                                                                </div>
+
+                                                            @elseif($percentage >= 75)
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-warning" role="progressbar"
+                                                                         style="width: {{$percentage}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                         aria-valuemax="100">{{round($percentage)}}%</div>
+                                                                </div>
+
+                                                            @elseif($percentage >= 50)
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-secondary" role="progressbar"
+                                                                         style="width: {{$percentage}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                         aria-valuemax="100">{{round($percentage)}}%</div>
+                                                                </div>
+
+                                                                @elseif($percentage >=25)
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-danger" role="progressbar"
+                                                                         style="width: {{$percentage}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                         aria-valuemax="100">{{round($percentage)}}%</div>
+                                                                </div>
+
+                                                                @elseif($percentage >=0)
+
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-danger" role="progressbar"
+                                                                         style="width: {{$percentage}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                         aria-valuemax="100">{{round($percentage)}}%</div>
+                                                                </div>
+
+                                                            @endif
+                                                            </td>
+
+
+                                                        </tr>
+                                                        @php
+                                                        $totalminutes = $player->stat->total_play_timein;
+                                                        $totalgoals = $player->stat->totalGoals;
+                                                        $totalassists = $player->stat->goalAssists;
+                                                        $percentage_goals = ( $totalgoals/ $player->stat->Appearances) * 100;
+                                                        $percentage_assists = ( $totalassists/ $player->stat->Appearances) * 100;
+                                                        @endphp
+
+                                                        <tr>
+                                                            <th style="font-weight: 1000">أهداف</th>
+                                                            <td>{{$player->stat->totalGoals}}</td>
+                                                            <td>{{number_format(($totalgoals/$totalminutes)*90 ,2 )}}</td>
+
+                                                            <td>
+                                                                @if($percentage_assists >= 85)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                                             style="width: {{$percentage_assists}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_assists)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_goals >= 75)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                                             style="width: {{$percentage_goals}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_goals)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_goals >= 50)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                                             style="width: {{$percentage_goals}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_goals)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_goals >=25)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_goals}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_goals)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_goals >=0)
+
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_goals}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_goals)}}%</div>
+                                                                    </div>
+
+                                                            @endif
+                                                            </td>
+
+
                                                         </tr>
 
-                                                        </tbody>
+
+                                                        <tr>
+                                                            <th style="font-weight: 1000">صناعة أهداف</th>
+                                                            <td>{{$player->stat->goalAssists}}</td>
+                                                            <td>{{number_format(($totalassists/$totalminutes)*90 ,2 )}}</td>
+
+                                                            <td>
+                                                                @if($percentage_goals >= 85)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                                             style="width: {{$percentage_assists}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_assists)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_assists >= 75)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                                             style="width: {{$percentage_assists}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_assists)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_assists >= 50)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                                             style="width: {{$percentage_assists}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_assists)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_assists >=25)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_assists}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_assists)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_assists >=0)
+
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_assists}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_assists)}}%</div>
+                                                                    </div>
+
+                                                            @endif
+                                                            </td>
+
+
+                                                        </tr>
+                                                        @php
+                                                            $random= mt_rand(50, 100) / 100;
+                                                            $random_xa=mt_rand(50,100)/100;
+                                                            $percentage_xg = $random*100;
+                                                            $percentage_xa = $random_xa*100;
+                                                        @endphp
+                                                        <tr>
+                                                            <th style="font-weight: 1000">أهداف متوقعه</th>
+                                                            <td>{{ $random }}</td>
+                                                            <td style="color: silver" >N/A</td>
+
+                                                            <td>
+                                                                @if($percentage_xg >= 85)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                                             style="width: {{$percentage_xg}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xg)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_xg >= 75)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                                             style="width: {{$percentage_xg}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xg)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_xg >= 50)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                                             style="width: {{$percentage_xg}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xg)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_xg >=25)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_xg}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xg)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_xg >=0)
+
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_xg}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xg)}}%</div>
+                                                                    </div>
+
+                                                                @endif
+                                                            </td>
+
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th style="font-weight: 1000">أسيستات متوقعه</th>
+                                                            <td>{{$random_xa}}</td>
+                                                            <td style="color: silver" >N/A</td>
+                                                            <td>
+                                                                @if($percentage_xa >= 85)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                                             style="width: {{$percentage_xa}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xa)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_xa >= 75)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                                             style="width: {{$percentage_xa}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xa)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_xa >= 50)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                                             style="width: {{$percentage_xa}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xa)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_xa >=25)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_xa}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xa)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_xa >=0)
+
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_xa}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_xa)}}%</div>
+                                                                    </div>
+
+                                                                @endif
+                                                            </td>
+
+                                                        </tr>
+                                                        @php
+
+                                                            $totalpasses = rand(1500, 2500);
+                                                            $totalpasses_correct = rand(50, 100)/100;
+                                                            $appearances = $player->stat->Appearances;
+                                                            $avg_passes_per_appearance = $totalpasses / $appearances;
+                                                            $avg_passes_per_90_minutes = ($avg_passes_per_appearance / 90) * 90;
+                                                            $percentage_passes = $totalpasses_correct * 100;
+
+                                                        @endphp
+                                                        <tr>
+                                                            <th style="font-weight: 1000"> عدد التمريرات الكلي</th>
+                                                            <td>{{$totalpasses}}</td>
+                                                            <td>{{round($avg_passes_per_90_minutes)}}</td>
+                                                            <td title="نسبه عدد التمريرات الصحيحه في 90 دقيقه">
+                                                                @if($percentage_passes >= 85)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                                             style="width: {{$percentage_passes}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_passes)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_passes >= 75)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                                             style="width: {{$percentage_passes}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_passes)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_passes >= 50)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                                             style="width: {{$percentage_passes}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_passes)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_passes >=25)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_passes}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_passes)}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_passes >=0)
+
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_passes}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{round($percentage_passes)}}%</div>
+                                                                    </div>
+
+                                                                @endif
+                                                            </td>
+
+                                                        </tr>
+
+                                                        @php
+                                                        $percentage_card=$player->stat->yellowCards/$player->stat->Appearances;
+                                                        $percentage_card_red=$player->stat->redCards/$player->stat->Appearances;
+                                                        @endphp
+
+
+                                                        <tr>
+                                                            <th style="font-weight: 1000">كروت صفراء</th>
+                                                            <td>{{$player->stat->yellowCards}}</td>
+                                                            <td style="color: silver" >N/A</td>
+                                                            <td title=" عدد الكروت الصفراء في كل 90 دقيقه">
+                                                                @if($percentage_card >= 85)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                                             style="width: {{$percentage_card}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_card >= 75)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                                             style="width: {{$percentage_card}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_card >= 50)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                                             style="width: {{$percentage_card}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_card >=25)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_card}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_card >=0)
+
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_card}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @endif
+                                                            </td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th style="font-weight: 1000">كروت حمراء</th>
+                                                            <td>{{$player->stat->redCards}}</td>
+                                                            <td style="color: silver" >N/A</td>
+                                                            <td title=" عدد الكروت الصفراء في كل 90 دقيقه">
+                                                                @if($percentage_card_red >= 85)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                                             style="width: {{$percentage_card_red}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card_red , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_card_red >= 75)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                                             style="width: {{$percentage_card_red}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card_red , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_card_red >= 50)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                                             style="width: {{$percentage_card_red}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card_red , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_card_red >=25)
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_card_red}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card_red , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @elseif($percentage_card_red >=0)
+
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                                             style="width: {{$percentage_card_red}}%" aria-valuenow="25" aria-valuemin="0"
+                                                                             aria-valuemax="100">{{number_format($percentage_card_red , 2 )}}%</div>
+                                                                    </div>
+
+                                                                @endif
+                                                            </td>
+
+                                                        </tr>
+
+
+
 
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
 
 
                                 </div>
-
-
                             </div>
+
                             <div class="tab-pane" id="attack">
                                 <div class="row">
                                          <div class="col-lg-3 col-md-3">
                                             <hr>
 
-                                            <div class="card bg-warning-gradient text-center">
+                                            <div class="card text-center">
 
                                                 <div class="card-body">
-                                                    <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">XG</h1>
-                                                    <h1 class="text-white">{{ mt_rand(50, 100) / 100 }}</h1>
+                                                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">XG</h1>
+                                                    <h1 class="text-black">{{ mt_rand(50, 100) / 100 }}</h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -411,33 +652,33 @@
                                         <div class="col-lg-3 col-md-3">
                                             <hr>
 
-                                            <div class="card bg-warning-gradient text-center">
+                                            <div class="card text-center">
 
                                                 <div class="card-body">
-                                                    <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">XA</h1>
-                                                    <h1 class="text-white">{{ mt_rand(30, 80) / 100 }}</h1>
+                                                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">XA</h1>
+                                                    <h1 class="text-black">{{ mt_rand(30, 80) / 100 }}</h1>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-md-3">
                                             <hr>
 
-                                            <div class="card bg-warning-gradient text-center">
+                                            <div class="card text-center">
 
                                                 <div class="card-body">
-                                                    <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">X(G+A)</h1>
-                                                    <h1 class="text-white">{{ mt_rand(30, 70) / 100 }}</h1>
+                                                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">X(G+A)</h1>
+                                                    <h1 class="text-black">{{ mt_rand(30, 70) / 100 }}</h1>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-md-3">
                                             <hr>
 
-                                            <div class="card bg-warning-gradient text-center">
+                                            <div class="card  text-center">
 
                                                 <div class="card-body">
-                                                    <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">GOALS PER MATCH	</h1>
-                                                    <h1 class="text-white">{{ mt_rand(50, 100) / 100 }}</h1>
+                                                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">GOALS PER MATCH	</h1>
+                                                    <h1 class="text-black">{{ mt_rand(50, 100) / 100 }}</h1>
 
                                                 </div>
                                             </div>
@@ -445,160 +686,25 @@
 
                                 </div>
                             </div>
+                            {{--team_play--}}
+                            {{--team_play--}}
                             <div class="tab-pane" id="team_play">
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/7.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/8.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/9.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/10.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/6.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/5.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
+                            {{--discipline--}}
+                            {{--discipline--}}
                             <div class="tab-pane" id="discipline">
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/7.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/8.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/9.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/10.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/6.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/5.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
+                            {{--Defence--}}
+                            {{--Defence--}}
                             <div class="tab-pane" id="defence">
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/7.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/8.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/9.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/10.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/6.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/5.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                          </div>

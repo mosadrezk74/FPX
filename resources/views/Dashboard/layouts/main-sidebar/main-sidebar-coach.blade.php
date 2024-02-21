@@ -3,8 +3,9 @@
 <aside class="app-sidebar sidebar-scroll">
     <div class="main-sidebar-header active">
         <a class="desktop-logo logo-light active" href="{{url('dashboard/admin')}}">
-            <img src="{{URL::asset('Dashboard/img/brand/logo.png')}}" style="width: 50px; height: 50px;" class="main-logo" alt="logo"></a>
-
+            <h1 class="text-light">
+                FPX
+            </h1>
         <a class="desktop-logo logo-dark active" href="{{ url('dashboard/admin') }}">
 
             <img src="{{URL::asset('Dashboard/img/brand/logo-white.png')}}" style="width: 50px; height: 50px;"  class="main-logo dark-theme" alt="logo"></a>

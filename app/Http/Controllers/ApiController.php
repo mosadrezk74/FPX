@@ -67,17 +67,6 @@ class ApiController extends Controller
     //-------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------------------------------------------------------------------------
 
-    public function admin_api()
-    {
-        $admins = Admin::get();
-        return response()->json($admins);
-    }
-
-    public function get_stats()
-    {
-        $stats = Statistics::get();
-        return response()->json($stats);
-    }
 
     public function get_table()
     {

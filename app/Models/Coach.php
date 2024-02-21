@@ -11,7 +11,9 @@ use Laravel\Sanctum\HasApiTokens;
 class Coach extends Authenticatable
 {
     public $guard = 'coach';
-    use Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
+
+
 
     protected $fillable = [
         'name_ar',

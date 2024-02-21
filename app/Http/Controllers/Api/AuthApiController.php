@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coach;
 use App\Trait\GeneralTrait;
 use Illuminate\Http\Request;
  use Illuminate\Support\Facades\Auth;
@@ -20,73 +21,71 @@ class AuthApiController extends Controller
 
 
 
-    public function login(Request $request){
-        $validator = Validator::make($request->all(), [
+    public function login(Request $request)
+    {
+         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
-        if (! $token = auth()->attempt($validator->validated())) {
+         if (!Auth::guard('coach')->attempt($validator->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->createNewToken($token);
+         $token = Auth::guard('coach')->user()->createToken('Coach Token')->accessToken;
+
+        return response()->json(['token' => $token]);
     }
 
 
-    public function register(Request $request) {
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|min:6',
+    public function login_club(Request $request)
+    {
+         $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string',
         ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
-        $user = User::create(array_merge(
-            $validator->validated(),
-            ['password' => bcrypt($request->password)]
-        ));
+         if (!Auth::guard('club')->attempt($validator->validated())) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
 
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
-        ], 201);
+         $token = Auth::guard('club')->user()->createToken('Club Token')->accessToken;
+
+        return response()->json(['token' => $token]);
     }
 
-
-    public function logout() {
+    public function logout()
+    {
         auth()->logout();
-        return response()->json(['message' => 'User successfully signed out']);
-    }
 
-
-    public function refresh() {
-        return $this->createNewToken(auth()->refresh());
-    }
-
-
-    public function userProfile() {
-        return response()->json(auth()->user());
+        return response()->json(['message' => 'Successfully logged out']);
     }
 
 
 
-    protected function createNewToken($token){
+
+
+
+
+    protected function createNewToken($token)
+    {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => JWTAuth::factory()->getTTL() * 120,
-            'user' => auth('admin-api')->user()
+            'expires_in' => auth()->factory()->getTTL() * 120,
+            'user' => auth()->user()
         ]);
     }
+
 
 
 }

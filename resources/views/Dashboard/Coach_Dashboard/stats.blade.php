@@ -3,26 +3,16 @@
 @section('title')
 	{{trans('index.statistics')}}
 @stop
+@section('css')
+     <link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+@endsection
 
-<style>
-    .position-bg
-    {
 
-        color: #0162e8;
-        padding: 10px;
-        border-radius: 5px;
-    }
-	.NNN{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-	}
-
-	.NNN form input{
-		margin: 10px;
-	}
-</style>
 @section('page-header')
  	<div class="breadcrumb-header justify-content-between">
 		<div class="my-auto">
@@ -42,18 +32,25 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-body">
-						<div class="tab-content border-left border-bottom border-right border-top-0 p-4">
+						<div class="tab-content border-left border-bottom border-right border-top p-4">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     @php
                                         $sortedPlayers = $players->sortBy('position')->values();
                                     @endphp
-                                         <table id="example-delete" class="table text-md-nowrap">
-                                            <thead>
+                                         <table class="table text-md-nowrap text-center" >
+                                             <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>اسم اللاعب</th>
-                                             <th>صورة اللاعب</th>
+                                             <th>#</th>
+                                            <th class="text-center" >{{trans('player.photo_player')}}</th>
+                                            <th  class="text-center">{{trans('player.name')}}</th>
+                                            <th class="text-center" >{{trans('player.appearances')}}</th>
+                                            <th class="text-center" >{{trans('index.totalgoals')}}</th>
+                                            <th class="text-center" >{{trans('index.totalassists')}}</th>
+                                            <th class="text-center" >{{trans('index.xg')}}</th>
+                                            <th class="text-center" >{{trans('index.xa')}}</th>
+                                            <th class="text-center" >{{trans('index.process')}}</th>
+
 
                                         </tr>
                                         </thead>
@@ -61,9 +58,11 @@
                                         @foreach($sortedPlayers as $player)
                                         <tr>
                                             <th >{{$loop->iteration}}</th>
-
+                                            <td style="width:50px" >
+                                                <img  alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                            </td>
                                             <td>
-                                                <a   style="color:#0040ce;" href="{{route('stats.show',$player->id)}}">
+                                                <a   style="font-size: 15px ;" href="{{route('stats.show',$player->id)}}">
                                                     @if(App::getLocale() == 'ar')
                                                         {{$player->name_ar}}
                                                     @else
@@ -71,9 +70,12 @@
                                                     @endif
                                                 </a>
                                             </td>
-                                            <td  style="width:80px" >
-                                                <img  alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
-                                            </td>
+                                            <td>{{$player->stat->Appearances}}</td>
+                                            <td>{{$player->stat->totalGoals}}</td>
+                                            <td>{{$player->stat->goalAssists}}</td>
+                                            <td>{{rand(100,50)/100 }}</td>
+                                            <td>{{rand(100,50)/100 }}</td>
+
                                             <td>
                                                 <div class="NNN">
                                                     <a href="{{route('stats.show',$player->id)}}"  class="btn btn-sm btn-success">{{trans('index.view')}}</a>
@@ -93,6 +95,8 @@
 				</div>
 			</div>
 		</div>
+
+
 
 		</div>
 		</div>

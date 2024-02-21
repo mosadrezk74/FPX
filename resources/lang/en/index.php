@@ -84,7 +84,11 @@ return [
     'gen_info'=>'General Information',
     'current_stad'=>'Current Standings',
     'staduim'=>'Stadium',
-
+    'totalgoals'=>'Total Goals',
+    'totalassists'=>'Total Assists',
+    'xg'=>'XG',
+    'xa'=>'xa',
+    'process'=>'Processes',
 
 
 

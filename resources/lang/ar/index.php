@@ -37,7 +37,7 @@ return [
     'total_goals'=>'إجمالي الأهداف',
     'goal_assists'=>'إجمالي المساعدات',
     'y_player'=>' الفريق'
-    ,'y_stats'=>'إحصائيات اللاعبون',
+    ,'y_stats'=>'إحصائيات الاعبين',
 'statistics'=>'احصائيات',
     'info'=>'تقرير موسمي مقدم من  FPX',
     'info_player'=>'إحصائيات اللاعب',
@@ -72,7 +72,7 @@ return [
     'top_team_assist'=>'أكثر من صنع في الفريق',
     'fixtures'=>'الدوري',
     'fixtures_time'=>'مواعيد  المباريات',
-    'compare'=>'مقارنة اللاعبون',
+    'compare'=>'مقارنة اللاعبين',
     'pub_info'=>'معلومات  عن الفريق',
     'pub_info_leg'=>'معلومات  عن الدوري',
 'stats'=>'احصائيات',
@@ -94,7 +94,11 @@ return [
     'staduim'=>'ملعب الفريق',
     'top_team_scorer_all'=>'هدافي  الفريق',
     'top_team_assist_all'=>'أكثر صنع في الفريق',
-
+    'totalgoals'=>"عدد الأهداف",
+    'totalassists'=>"عدد الأسيستات",
+    'xg'=>'XG',
+    'xa'=>'xa',
+    'process'=>'عمليات',
 
 
 

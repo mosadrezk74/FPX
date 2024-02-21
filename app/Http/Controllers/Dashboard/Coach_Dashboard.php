@@ -91,8 +91,8 @@ class Coach_Dashboard extends Controller
 
     public function show($playerId)
     {
+
         $player = Player::with(['club', 'stat'])->findOrFail($playerId);
-//        $club = Club::where('club_id', $playerId)->get();
 
         return view('Dashboard.Coach_Dashboard.show_player', compact('player'));
 
