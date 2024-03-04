@@ -99,6 +99,9 @@ return [
     'xg'=>'XG',
     'xa'=>'xa',
     'process'=>'عمليات',
+    'date_of_est'=>'تاريخ الانشاء',
+    'user'=>'مستخدم',
+    'clubss'=>'أندية',
 
 
 

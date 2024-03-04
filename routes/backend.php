@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CaochController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\PlayerStatsController;
+use App\Http\Controllers\Auth\CoachLoginController;
 use App\Http\Controllers\Dashboard\Admin_Dashboard;
 use App\Http\Controllers\Dashboard\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -79,11 +80,22 @@ Route::group(
      //------------------------- Start Coach Routes -------------------------------------------
     //------------------------- Start Coach Routes -------------------------------------------
         Route::get('dashboard/coach/club/statistics', [Coach_Dashboard::class, 'stats'])->name('coach.stats');
+        Route::get('dashboard/coach/epl_stats', [Coach_Dashboard::class, 'epl_stats'])->name('coach.epl_stats');
+         ##################################################################################################################
+        Route::get('/dashboard/coach/filter', [Coach_Dashboard::class, 'filter'])->name('coach.filter');
+        ##################################################################################################################
         Route::get('dashboard/coach/club/statistics/{player_id}', [Coach_Dashboard::class, 'stats'])->name('stats.show');
         Route::get('dashboard/coach/club/statistics/print/{player_id}', [Coach_Dashboard::class, 'print'])->name('stats.print');
         Route::get('dashboard/coach/club/statistics/show/{player_id}', [Coach_Dashboard::class, 'show'])->name('stats.show');
+
+        Route::get('dashboard/coach/{id}/edit', [CaochController::class, 'edit'])->name('coach.edit');
+        Route::put('dashboard/coach/{id}/update', [CaochController::class, 'update'])->name('coach.update');
+
+
+
+    //--------------------------------------------------------------------------------------------------------
         //--------------------------------------------------------------------------------------------------------
-        //--------------------------------------------------------------------------------------------------------
+
 
         Route::post('ajaxRequest' ,[Coach_Dashboard::class, 'ajaxRequest'] )->name('ajaxRequest');
     //--------------------------------------------------------------------------------------------------------
@@ -95,8 +107,14 @@ Route::group(
         Route::get('dashboard/coach/player/club/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');
 
 
+        Route::get('dashboard/coach/egyptian_fixtures', [\App\Http\Controllers\GenaralCont::class,
+            'scrapeAndSaveFixtures']);
 
-        Route::get('dashboard/coach/player/calendar', [CaochController::class, 'calendar'])->name('coach.calendar');
+
+
+
+
+    Route::get('dashboard/coach/player/calendar', [CaochController::class, 'calendar'])->name('coach.calendar');
      //------------------------- End Coach Routes -------------------------------------------
      //------------------------- End Coach Routes -------------------------------------------
 

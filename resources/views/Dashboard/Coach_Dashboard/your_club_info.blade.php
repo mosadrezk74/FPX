@@ -10,6 +10,12 @@
         background-color: white;
     }
 
+
+     .chart-container {
+         width:  50%;
+         height: auto;
+     }
+
 </style>
 
 
@@ -86,9 +92,9 @@
 							<div class="counter-icon">
 								<i class="icon icon-people"></i>
 							</div>
-							<div class="mr-auto">
-								<h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;">{{trans('index.team_pl')}}</h1>
-								<h5 class="counter mb-0 text-white" style=" text-align: center;">{{$count_p}} {{trans('index.player')}}</h5>
+							<div class="mr-auto ">
+								<h1 class="tx-13 tx-white-8 mb-3 text-center" style="font-weight: bold; text-align: center;">{{trans('index.date_of_est')}}</h1>
+								<h5 class="counter mb-0 text-white text-center " style=" text-align: center;">{{$club_st->date_of_est}}   </h5>
  							</div>
 						</div>
 					</div>
@@ -159,7 +165,7 @@
 										<td class="tx-right tx-medium tx-inverse">{{$table->mp}}</td>
 										<td class="tx-right tx-medium tx-inverse">{{$table->won}}</td>
 										<td class="tx-right tx-medium tx-inverse">{{$table->draw}}</td>
-										<td class="tx-right tx-medium tx-inverse">{{$table->lost}}</td>
+										<td class="tx-right tx-medium tx-inverse">{{$table->lose}}</td>
 										<td class="tx-right tx-medium tx-inverse">{{$table->gf}}</td>
 										<td class="tx-right tx-medium tx-inverse">{{$table->ga}}</td>
  										<td class="tx-right tx-medium tx-danger tx-bold">{{$table->points}}</td>
@@ -259,11 +265,16 @@
                                 </table>
 
 
+
+
+
                         </div>
 
-                        <br>
-                        <br>
 
+
+
+                         <br>
+                        <br>
 
 
 					</div>
@@ -273,3 +284,37 @@
  			</div>
  		</div>
  @endsection
+@section('js')
+
+    <!--Internal  Chart.bundle js -->
+    <script src="{{asset('Dashboard/plugins/chart.js/Chart.bundle.min.js')}}"></script>
+    <!-- Moment js -->
+    <script src="{{asset('Dashboard/plugins/raphael/raphael.min.js')}}"></script>
+    <!--Internal  Flot js-->
+    <script src="{{asset('Dashboard/plugins/jquery.flot/jquery.flot.js')}}"></script>
+    <script src="{{asset('Dashboard/plugins/jquery.flot/jquery.flot.pie.js')}}"></script>
+    <script src="{{asset('Dashboard/plugins/jquery.flot/jquery.flot.resize.js')}}"></script>
+    <script src="{{asset('Dashboard/plugins/jquery.flot/jquery.flot.categories.js')}}"></script>
+    <script src="{{asset('Dashboard/js/dashboard.sampledata.js')}}"></script>
+    <script src="{{asset('Dashboard/js/chart.flot.sampledata.js')}}"></script>
+    <!--Internal Apexchart js-->
+    <script src="{{asset('Dashboard/js/apexcharts.js')}}"></script>
+    <!-- Internal Map -->
+    <script src="{{asset('Dashboard/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+    <script src="{{asset('Dashboard/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+    <script src="{{asset('Dashboard/js/modal-popup.js')}}"></script>
+    <!--Internal  index js -->
+    <script src="{{asset('Dashboard/js/index.js')}}"></script>
+    <script src="{{asset('Dashboard/js/jquery.vmap.sampledata.js')}}"></script>
+
+    <!--Internal  Datepicker js -->
+    <script src="{{URL::asset('plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+    <!--Internal  Chart.bundle js -->
+    <script src="{{URL::asset('plugins/chart.js/Chart.bundle.min.js')}}"></script>
+    <!-- Internal Select2 js-->
+    <script src="{{URL::asset('plugins/select2/js/select2.min.js')}}"></script>
+    <!--Internal Chartjs js -->
+
+
+
+@endsection

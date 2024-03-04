@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ServiceProvider;
 use App\Models\Club;
 use App\Models\Coach;
 use App\Models\Player;
 use App\Models\Standing;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\ServiceProvider;
+
 use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         Paginator::useBootstrap();
 
         view()->share('auth', 'My Awesome Website');
@@ -49,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('coach',$coach);
         $coach_info=Coach::with('club')->get();
         view()->share('coach_info',$coach_info);
+
 
 
 

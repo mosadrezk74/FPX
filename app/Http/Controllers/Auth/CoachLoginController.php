@@ -38,4 +38,8 @@ class CoachLoginController extends Controller
 
         return redirect('/');
     }
+
+
+
+
 }

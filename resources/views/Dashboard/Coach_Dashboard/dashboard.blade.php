@@ -13,21 +13,7 @@
 					</div>
 
 					<div class="main-dashboard-header-right">
-						<div>
-							<label class="tx-13">{{trans('index.club')}}</label>
-							<div class="main-star">
-								@if(App::getlocale() == 'ar')
-								<a href="{{route('club.show' , $coach->club->id )}}">
-								<h6>{{$coach->club->name_ar}}</h6>
-								</a>
-								@else
-									<a href="{{route('club.show' , $coach->club->id )}}">
-										<h6>{{$coach->club->name_en}}</h6>
-									</a>
-								@endif
 
-							</div>
-						</div>
 						<div>
 							<label class="tx-13">{{trans('index.day')}}</label>
 							@if(app::getlocale() == 'ar')
@@ -55,7 +41,7 @@
             <div class="card  bg-success-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
-                        @foreach($clubs as $club)
+                        @foreach($clubDS as $club)
                             @if($club->id == $club_id)
 
                                 <img  alt="image"  style="width: 100px; height: 100px;"
@@ -169,24 +155,20 @@
         </div>
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">اللاعبين الذين تتابعهم</h6>
+                <h6 class="card-title">
+                    أداء {{$coach->club->name_ar}} في الدوري هذا الموسم
+                </h6>
                 <div class="list-group">
-                    @forelse($players_followed as $player)
-                        <div class="list-group-item border-top-0">
-                            <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
-                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
-                            @if(App::getlocale() == "ar")
-                             <h6><a href="{{route('stats.show', $player->id)}}">{{$player->name_ar}}</a></h6>
-                                <span><a href="{{route('stats.show', $player->id)}}">{{$player->club->name_ar}}</a></span>
-                             @else
-                                <h6><a href="{{route('stats.show', $player->id)}}">{{$player->name_en}}</a></h6>
-                                <span><a href="{{route('stats.show', $player->id)}}">{{$player->club->name_en}}</a></span>
-                              @endif
 
-                        </div>
-                    @empty
-                        <p>{{trans('index.no_followed_players')}}</p>
-                    @endforelse
+
+                                <div class="main-content-label mg-b-5">
+                                </div>
+                                 <div class="chartjs-wrapper-demo">
+                                    <canvas id="chartDonut"></canvas>
+
+
+                    </div><!-- col-6 -->
+
 
                 </div>
             </div>
@@ -194,23 +176,13 @@
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
                 <h6 class="card-title">{{trans('index.recent_players')}}</h6>
-                <div class="list-group">
-                    @foreach($players as $player)
-                        <div class="list-group-item border-top-0">
-                            <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
-                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
-                            @if(App::getlocale() == "ar")
-                                <p>{{$player->name_ar}}</p>
-                                <span><a href="">{{$player->club->name_ar}}</a></span>
-                            @else
-                                <p>{{$player->name_en}}</p>
-                                <span><a href="">{{$player->club->name_en}}</a></span>
-                            @endif
+                     <div class="main-content-label tx-12 mg-b-15">
+                        Solid Color
+                    </div>
+                    <div class="ht-200 ht-lg-250">
+                        <canvas id="chartBar1"></canvas>
+                    </div>
 
-                        </div>
-                    @endforeach
-
-                </div>
             </div>
         </div>
 
@@ -221,7 +193,7 @@
                     <i class="mdi mdi-dots-horizontal text-gray"></i>
                 </div>
                 <div class="table-responsive country-table">
-                    <table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
+                    <table class="table   table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
                         <thead>
                         <tr>
                             <th class="wd-lg-10p">{{trans('index.standing')}}</th>
@@ -257,7 +229,7 @@
                                 <td class="tx-right tx-medium tx-inverse">{{$table->mp}}</td>
                                 <td class="tx-right tx-medium tx-inverse">{{$table->won}}</td>
                                 <td class="tx-right tx-medium tx-inverse">{{$table->draw}}</td>
-                                <td class="tx-right tx-medium tx-inverse">{{$table->lost}}</td>
+                                <td class="tx-right tx-medium tx-inverse">{{$table->lose}}</td>
                                 <td class="tx-right tx-medium tx-inverse">{{$table->gf}}</td>
                                 <td class="tx-right tx-medium tx-inverse">{{$table->ga}}</td>
                                 <td class="tx-right tx-medium tx-inverse">{{$table->gd}}</td>
@@ -269,13 +241,54 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12 col-lg-4 col-xl-4">
+            <div class="card card-dashboard-eight pb-2">
+                <h6 class="card-title">هدافي الدوري المصري</h6>
+                <div class="list-group">
+                    @foreach($topLegScorer as $player)
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                            <p>{{$loop->iteration}} # </p>
+                            <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
+                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                            @if(App::getlocale() == "ar")
+                                <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->totalGoals}} </span>
+                            @else
+                                <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_en}}</a>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->totalGoals}}  </span>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+                <hr>
+                <h6 class="card-title">صانعي الدوري المصري</h6>
+                <div class="list-group">
+                    @foreach($topAssisterLeg as $player)
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                            <p>{{$loop->iteration}} # </p>
+                            <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
+                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                            @if(App::getlocale() == "ar")
+                                <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->goalAssists}} </span>
+                            @else
+                                <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_en}}</a>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->goalAssists}}  </span>
+                            @endif
+                        </div>
+                    @endforeach
+
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
     <div class="p-6 m-20 bg-white rounded shadow">
 
-{{--        {!! $chart->container() !!}--}}
-    </div>
+     </div>
 
     <!-- row -->
 
@@ -329,7 +342,104 @@
 
 
     </script>
-    <script src="{{ $chart->cdn() }}"></script>
-    {{ $chart->script() }}
+    <script>
+
+            'use strict';
+
+            var clubs = {!! json_encode($clubs) !!};
+            const won = [];
+            const draw = [];
+            const lose = [];
+            const total=[];
+            if (Array.isArray(clubs)) {
+            clubs.forEach(function (club) {
+                won.push(club.won);
+                draw.push(club.draw);
+                lose.push(club.lose);
+                total.push(club.total);
+            });
+        }
+            var ctx1 = document.getElementById('chartBar1').getContext('2d');
+
+            new Chart(ctx1, {
+            type: 'bar',
+            data: {
+            labels: ['Win', 'Draw', 'Lose'],
+            datasets: [{
+            label: '# of total',
+            data: [won, draw, lose],
+            backgroundColor: '#285cf7'
+        }]
+        },
+            options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+            display: false,
+            labels: {
+            display: false
+        }
+        },
+            scales: {
+            yAxes: [{
+            ticks: {
+            beginAtZero: true,
+            fontSize: 10,
+            max: 12,
+            fontColor: "rgb(171, 167, 167,0.9)",
+        },
+            gridLines: {
+            display: true,
+            color: 'rgba(171, 167, 167,0.2)',
+            drawBorder: false
+        },
+        }],
+            xAxes: [{
+            barPercentage: 0.6,
+            ticks: {
+            beginAtZero: true,
+            fontSize: 11,
+            fontColor: "rgb(171, 167, 167,0.9)",
+        },
+            gridLines: {
+            display: true,
+            color: 'rgba(171, 167, 167,0.2)',
+            drawBorder: false
+        },
+        }]
+        }
+        }
+        });
+            //*###########################################################################*//
+            //*###########################################################################*//
+            var datapie = {
+                labels: ['Win', 'Draw', 'Lose'],
+
+                datasets: [{
+                    data: [won, draw, lose],
+                    backgroundColor: ['#285cf7', '#f10075', '#8500ff', '#7987a1', '#74de00']
+                }]
+            };
+
+            var optionpie = {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                    display: false,
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            };
+            var ctx7 = document.getElementById('chartDonut');
+            var myPieChart7 = new Chart(ctx7, {
+                type: 'pie',
+                data: datapie,
+                options: optionpie
+            });
+
+    </script>
+
 
 @endsection

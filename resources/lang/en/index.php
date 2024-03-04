@@ -89,6 +89,7 @@ return [
     'xg'=>'XG',
     'xa'=>'xa',
     'process'=>'Processes',
+    'date_of_est'=>'Date of Establishment',
 
 
 

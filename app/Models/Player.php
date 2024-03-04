@@ -7,16 +7,29 @@ use Illuminate\Database\Eloquent\Model;
  use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Overtrue\LaravelFollow\Traits\Followable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-
-class Player extends Authenticatable
+class Player extends Authenticatable implements JWTSubject
 {
 
-    public $guard = 'club';
-     use Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
+
+//    public $guard = 'club';
+    public function unreadNotifications()
+    {
+        return $this->notifications()->whereNull('read_at');
+    }
 
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
 //    protected $table = 'players';
 
@@ -36,10 +49,7 @@ class Player extends Authenticatable
         'password',
         'remember_token',
     ];
-    public function unreadNotifications()
-    {
-        return $this->notifications()->whereNull('read_at');
-    }
+
 
     protected $casts = [
         'email_verified_at' => 'datetime',

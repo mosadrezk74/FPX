@@ -69,39 +69,19 @@
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('coach.club_info') }}">{{trans('index.pub_info')}}</a></li>
                 </ul>
+
+
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('coach.stats') }}">{{trans('index.y_stats')}}</a></li>
                 </ul>
+
+
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('coach.stats') }}">{{trans('index.compare')}}</a></li>
                 </ul>
             </li>
 
 
-            <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
-                                <path d="M4 5.5a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H4zm0 2a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H4zm0 2a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H4zm-2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-.5a.5.5 0 0 0 0 1h.5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h.5a.5.5 0 0 0 0-1h-.5z"/>
-                            </svg>
-                         </svg>
-
-
-                        <span class="side-menu__label">
-                            {{trans('index.fixtures')}}
-                        </span>
-                        <i class="angle fe fe-chevron-down"></i>
-                    </svg>
-                </a>
-                <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.fixtures_time')}}</a></li>
-                </ul>
-
-                <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.pub_info_leg')}}</a></li>
-                </ul>
-            </li>
 
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
@@ -119,7 +99,7 @@
                     </svg>
                 </a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.other_players')}}</a></li>
+                    <li><a class="slide-item" href="{{ route('coach.epl_stats') }}">{{trans('index.other_players')}}</a></li>
                 </ul>
 
                 <ul class="slide-menu">

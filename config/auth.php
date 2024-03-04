@@ -55,6 +55,21 @@ return [
             'provider' => 'admins',
             'hash' => false,
         ],
+        'coach-api' => [
+            'driver' => 'jwt',
+            'provider' => 'coaches',
+            'hash' => false,
+        ],
+        'player-api' => [
+            'driver' => 'jwt',
+            'provider' => 'players',
+            'hash' => false,
+        ],
+        'club-api' => [
+            'driver' => 'jwt',
+            'provider' => 'clubs',
+            'hash' => false,
+        ],
         'user-api' => [
             'driver' => 'jwt',
             'provider' => 'users',

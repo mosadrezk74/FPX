@@ -508,7 +508,7 @@ $(function() {
 			animateRotate: true
 		}
 	};
-	// For a doughnut chart
+
 	var ctx6 = document.getElementById('chartPie');
 	var myPieChart6 = new Chart(ctx6, {
 		type: 'doughnut',

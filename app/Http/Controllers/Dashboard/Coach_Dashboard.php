@@ -9,8 +9,10 @@ use App\Models\FollowedPlayer;
 use App\Models\History;
 use App\Models\Player;
 use App\Models\Standing;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Cookie;
 
@@ -23,12 +25,13 @@ class Coach_Dashboard extends Controller
     public function index(ExpensesChart $chart)
     {
         $coach = auth()->guard('coach')->user();
-        $clubs = Club::all();
-        $random = rand(1, 10);
-
+        $clubDS=Club::all();
         $user = Auth::user();
         $club_id = $user->club_id;
+        $clubs = Standing::where('club_id', $club_id)->get();
         $club = Player::with('club')->where('club_id', $club_id)->get();
+
+
         $count_p = $club->count();
         $players = Player::with('club')->where('club_id', $club_id)->get();
         $tables = Standing::all()->take(10);
@@ -44,32 +47,34 @@ class Coach_Dashboard extends Controller
             ->select('players.*', 'stats.goalAssists as goalAssists')
             ->first();
 
+        $topLegScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
 
-        $followedPlayers = request()->cookie('followed_players');
-        $followedPlayers = $followedPlayers ? unserialize($followedPlayers) : [];
-        $players_followed = Player::whereIn('id', $followedPlayers)->get();
+            ->orderByDesc('stats.totalGoals')
+            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->take(6)->get();
+
+        $topAssisterLeg =Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.goalAssists')
+            ->select('players.*', 'stats.goalAssists as goalAssists')
+            ->take(6)->get();
 
 
-//        $upcomingMatches = DB::table('fixtures')
-//            ->where('date', '>=', now())
-//            ->where(function ($query) use ($club_id) {
-//                $query->where('club_id', $club_id)
-//                    ->orWhere('club_id_two', $club_id);
-//            })
-//            ->orderBy('date', 'asc')
-//            ->get();
+
 
 
         return view('Dashboard.Coach_Dashboard.dashboard', compact('coach'
             ,
             'players',
-            'random', 'count_p',
+                    'count_p',
             'clubs', 'club_id', 'tables' , 'topAssister'
             ,'topGoalScorer'
-            ,'players_followed'
+
+        ,'topLegScorer'
+        ,'topAssisterLeg'
+        ,'clubDS'
 
 
-        ), ['chart' => $chart->build()]);
+        ));
     }
 
 
@@ -87,7 +92,6 @@ class Coach_Dashboard extends Controller
 
         return view('Dashboard.Coach_Dashboard.stats', compact('coach', 'players', 'clubs', 'club_id'));
     }
-
 
     public function show($playerId)
     {
@@ -110,15 +114,13 @@ class Coach_Dashboard extends Controller
         $coach = auth()->guard('coach')->user();
         $club = $coach->club;
         $tables = Standing::where('club_id', $club->id)->get();
+        $clubs=Standing::where('club_id', $club->id)->get();
         $club_history = History::where('club_id', $club->id)->get();
         $coach = auth()->guard('coach')->user();
         $clubId = $coach->club_id;
         $club_st = Club::where('id', $clubId)->find($clubId);
-//        $club_history = History::where('id', $clubId)->find($clubId);
         $club = Player::with('club')->where('club_id', $clubId)->get();
         $count_p = $club->count();
-
-
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
             ->orderByDesc('stats.totalGoals')
@@ -163,15 +165,44 @@ class Coach_Dashboard extends Controller
 
 
 
+
+
+
+
         return view('Dashboard.Coach_Dashboard.your_club_info'
         ,compact('coach',  'club',  'tables' , 'club_st','count_p'
             ,'upcomingMatches'
             ,'topGoalScorer', 'topAssister', 'topPlayer' , 'club_history'
             ,'topGoalScorers'
             ,'topAssisters'
+            ,'clubs'
+
 
             ));
     }
+
+
+
+    public function epl_stats(Request $request)
+    {
+        $coach = auth()->guard('coach')->user();
+        $clubId = $coach->club_id;
+
+        $players = Player::where('club_id', '!=', $clubId)->get();
+        $clubs=Club::all();
+
+        return view('Dashboard.Coach_Dashboard.epl_stats', compact('players'
+        ,'clubs'
+
+        ));
+    }
+
+
+
+
+
+
+
 
     public function compare($player_id){
         $player1 = Player::findOrFail($player_id);
@@ -180,23 +211,15 @@ class Coach_Dashboard extends Controller
         return view('Dashboard.Players.compare', compact('player1', 'players'));
     }
 
-    public function comparePlayers(Request $request, $player_id){
-        $player1 = Player::findOrFail($player_id);
-        $player2_id = $request->input('player2_id');
-
-        if ($player2_id) {
-            $player2 = Player::findOrFail($player2_id);
-        } else {
-            $player2 = null;
-        }
-
-        return view('Dashboard.Players.compare', compact('player1', 'player2'));
-    }
+ ##################################################################################################################################
+ ##################################################################################################################################
 
 
 
 
 
+    ##################################################################################################################################
+    ##################################################################################################################################
 
     public function ajaxRequest(Request $request){
 
@@ -205,6 +228,10 @@ class Coach_Dashboard extends Controller
 
         return response()->json(['success'=>$response]);
     }
+
+
+
+    #####################
 
 
 

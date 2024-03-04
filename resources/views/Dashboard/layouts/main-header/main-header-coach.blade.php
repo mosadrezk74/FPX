@@ -137,7 +137,14 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="dropdown-item" href=><i class="bx bx-user-circle"></i>{{trans('Dashboard/main-header_trans.my_profile')}}</a>
+                        @if($coach)
+                            <a class="dropdown-item" href="{{ route('coach.edit', $coach->id) }}">
+                                @else
+                                    <a class="dropdown-item" href="#">
+                                @endif
+
+                            <i class="bx bx-user-circle">
+                            </i>{{trans('Dashboard/main-header_trans.my_profile')}}</a>
 
                         @if(Auth('web')->check())
                             <form method="POST" action="{{ route('logout.user') }}">

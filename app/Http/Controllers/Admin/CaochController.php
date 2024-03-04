@@ -8,6 +8,8 @@ use App\Models\Coach;
 use App\Models\Player;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class CaochController extends Controller
 {
@@ -77,22 +79,54 @@ class CaochController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $coach = auth()->guard('coach')->user();
+
+
+        $coach_id = Coach::findOrFail($id);
+         return view('Dashboard.Coach_Dashboard.Auth.profile', compact('coach','coach_id',
+             ));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'nullable',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'email' => 'email',
+            'password' => 'nullable|min:6',
+        ]);
+
+        $coach = Coach::findOrFail($id);
+
+        $coach->name_ar = $request->name_ar;
+        $coach->name_en = $request->name_en;
+        $coach->email = $request->email;
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/coach_logo'), $imageName);
+
+            $oldPhotoPath = public_path('uploads/coach_logo/') . $coach->photo;
+            if (file_exists($oldPhotoPath)) {
+                unlink($oldPhotoPath);
+            }
+
+            $coach->photo = $imageName;
+        }
+
+        if ($request->has('password')) {
+            $coach->password = bcrypt($request->password);
+        }
+
+        $coach->save();
+
+        session()->flash('update');
+        return redirect()->back()->with('success', 'تم تحديث بياناتك بنجاح');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
