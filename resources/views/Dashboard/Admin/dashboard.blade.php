@@ -23,7 +23,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-primary-gradient">
+            <div class="card  bg-success-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div style="text-align: center;">
@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-primary-gradient">
+            <div class="card  bg-success-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div style="text-align: center;">
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-primary-gradient">
+            <div class="card  bg-success-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div class="counter-icon">
@@ -80,15 +80,17 @@
                                 </h1>
                             <h3 class="counter mb-0 text-white" style="text-align: center;">
                                 {{$count_users}}<br>
-                                {{trans('index.user')}}
+                                {{trans('index.user')}}<br>
+
                             </h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-primary-gradient">
+            <div class="card  bg-success-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div class="counter-icon">
@@ -185,7 +187,7 @@
 
             </div>
         </div>
-    
+
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
                 <h6 class="card-title">شراكئنا</h6>

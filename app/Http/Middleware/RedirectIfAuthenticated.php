@@ -35,6 +35,10 @@ class RedirectIfAuthenticated
             return redirect(RouteServiceProvider::CLUB);
         }
 
+        if (auth('analysis')->check()){
+            return redirect(RouteServiceProvider::Analysis);
+        }
+
 
         return $next($request);
     }

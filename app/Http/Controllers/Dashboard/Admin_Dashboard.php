@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Charts\ExpensesChart;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
 use App\Models\Coach;
@@ -10,9 +9,8 @@ use App\Models\History;
 use App\Models\Player;
 use App\Models\Standing;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\File;
+
+
 
 class Admin_Dashboard extends Controller
 {
@@ -72,6 +70,18 @@ class Admin_Dashboard extends Controller
             ->take(6);
 
 
+//        $client = new Client();
+//
+//        $response = $client->request('GET', 'https://livescore-api.com/api-client/leagues/table.json', [
+//            'query' => [
+//                'competition_id' => 36,
+//                'key' => 'GyjrD7wQkFXlVCHE',
+//                'secret' => 'hKA9Usbn70zVQslw1FXENtv78st45aJm'
+//            ]
+//        ]);
+//        $data = json_decode($response->getBody(), true);
+
+
 
 
         return view('Dashboard.Admin.dashboard'
@@ -87,10 +97,10 @@ class Admin_Dashboard extends Controller
              ,'topAssisterLeg'
              ,'topLegScorer'
              ,'topAppearancesLeg'
-             ));
+
+             )
+
+        );
     }
-
-
-
 
 }

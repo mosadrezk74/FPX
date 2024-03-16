@@ -10,7 +10,9 @@ use App\Models\Player;
 use App\Models\Standing;
 use App\Models\Statistics;
 use App\Trait\GeneralTrait;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
@@ -73,8 +75,6 @@ class ApiController extends Controller
         $table = Standing::get();
         return response()->json($table);
     }
-
-
 
 
 

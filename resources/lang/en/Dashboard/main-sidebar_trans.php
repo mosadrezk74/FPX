@@ -15,6 +15,10 @@ return [
     'veiw_all_coach'=>'View Coach',
     'admin_dashboard'=>'Admin Dashboard',
     'veiw_stats'=>'Add Stats',
+    'pages'=>'Pages'
+    ,'add_pages'=>'Website Pages',
+
+
 
 
 ];

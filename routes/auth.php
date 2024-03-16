@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AdminController;
 
+use App\Http\Controllers\Auth\AnalysisLoginController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ClubLoginController;
 use App\Http\Controllers\Auth\CoachLoginController;
@@ -119,9 +120,27 @@ Route::post('/logout/player', [PlayerLoginController::class, 'destroy'])
 //#############################################################################################
 
 
+    //#############################################################################################
+
+//################################## Route Player ##############################################
+
+    Route::get('/login/analysis', [AnalysisLoginController::class, 'create'])
+        ->middleware('guest')
+        ->name('login.analysis');
+
+    Route::post('/login/analysis', [AnalysisLoginController::class, 'store'])
+        ->middleware('guest')
+        ->name('login.analysis.post');
+
+    Route::post('/logout/analysis', [AnalysisLoginController::class, 'destroy'])
+        ->middleware('auth:analysis')
+        ->name('logout.analysis');
+//#############################################################################################
 
 
-Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+
+
+    Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
     ->middleware('guest')
     ->name('password.request');
 

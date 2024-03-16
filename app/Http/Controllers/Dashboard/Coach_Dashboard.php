@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\DB;
 class Coach_Dashboard extends Controller
 {
 
-    public function index(ExpensesChart $chart)
+    public function index()
     {
         $coach = auth()->guard('coach')->user();
         $clubDS=Club::all();

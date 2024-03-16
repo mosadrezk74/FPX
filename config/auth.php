@@ -47,6 +47,19 @@ return [
             'driver' => 'session',
             'provider' => 'coaches',
         ],
+
+
+        'analysis' => [
+            'driver' => 'session',
+            'provider' => 'analysis',
+        ],
+
+
+
+
+
+
+
         //start for api//
         //start for api//
 
@@ -114,6 +127,11 @@ return [
         'coaches' => [
             'driver' => 'eloquent',
             'model' => App\Models\Coach::class,
+        ],
+
+        'analysis' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Analysis::class,
         ],
 
 

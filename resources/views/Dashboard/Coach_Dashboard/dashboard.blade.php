@@ -438,8 +438,19 @@
                 data: datapie,
                 options: optionpie
             });
+            //################################################################################//
+            //################################################################################//
+            var ctx6 = document.getElementById('chartPie');
+            var myPieChart6 = new Chart(ctx6, {
+                type: 'doughnut',
+                data: datapie,
+                options: optionpie
+            });
 
     </script>
+
+
+
 
 
 @endsection

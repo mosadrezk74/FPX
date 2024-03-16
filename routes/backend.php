@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\CoachLoginController;
 use App\Http\Controllers\Dashboard\Admin_Dashboard;
 use App\Http\Controllers\Dashboard\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\Player_Dashboard;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
  use Illuminate\Support\Facades\Route;
@@ -54,6 +55,12 @@ Route::group(
 
     //--------------------Start Admin Routes---------------------------------------------------
   Route::resource('dashboard/admin/player', PlayerController::class);
+
+
+
+    Route::get('dashboard/admin/front_pages',
+        [\App\Http\Controllers\PageController::class, 'index'])->name('page.index');
+
 
 
 
@@ -118,7 +125,14 @@ Route::group(
      //------------------------- End Coach Routes -------------------------------------------
      //------------------------- End Coach Routes -------------------------------------------
 
+    //______________________ Start Player Routes ____________________________________________
+        Route::get('dashboard/player', [\App\Http\Controllers\Dashboard\Player_Dashboard::class, 'index'])
+        ->middleware(['auth:player'])
+        ->name('dashboard.player');
 
+    Route::get('dashboard/analysis', [\App\Http\Controllers\Dashboard\Analysis_Dashboard::class, 'index'])
+        ->middleware(['auth:analysis'])
+        ->name('dashboard.analysis');
 
 
 });

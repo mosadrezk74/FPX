@@ -1,16 +1,18 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('Website.index');
-});
-
-
-
+##################################################################################
+Route::get('/', [\App\Http\Controllers\FrontContoller::class, 'index'])
+    ->name('front.index');
+##################################################################################
+Route::get('/player', [\App\Http\Controllers\FrontContoller::class, 'player'])
+    ->name('front.player');
+##################################################################################
 
 
 
