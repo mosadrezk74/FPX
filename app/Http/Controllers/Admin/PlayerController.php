@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Club;
 use App\Models\Statistics;
 use App\Models\User;
+use App\MyEvent;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -32,7 +33,6 @@ class PlayerController extends Controller
 
     public function create()
     {
-
         $players = \App\Models\Player::with('club')->get();
         $clubs = \App\Models\Club::all();
         $notifications = \App\Models\Notification::all();
@@ -50,6 +50,9 @@ class PlayerController extends Controller
         });
         $player_stats=Statistics::all();
         $countries = collect($countries)->sortBy('name.common')->all();
+
+
+
         return view('Dashboard.Players.create',
             ['countries' => $countries],
             compact('players' ,'clubs','notifications' , 'player_stats' ));
@@ -108,9 +111,13 @@ class PlayerController extends Controller
             }
 
             $players->save();
-            $user = User::get();
-            $player_id = \App\Models\Player::all()->first();
-            Notification::send($user, new \App\Notifications\OffersNotification($player_id));
+            ###############################
+            ###############################
+            $data = [
+                'name_ar' => $players->name_ar,
+                'nationality' => $players->nationality,
+            ];
+            event(new MyEvent($data));
 
             session()->flash('add');
 

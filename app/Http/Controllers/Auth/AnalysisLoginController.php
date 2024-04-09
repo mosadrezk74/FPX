@@ -24,7 +24,7 @@ class AnalysisLoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::Analysis);
+        return redirect()->intended(RouteServiceProvider::ANALYSIS);
     }
 
     /**

@@ -52,10 +52,17 @@ Route::group(
         ## Start Players Name##
         Route::post('get_players_api', [ApiController::class, 'get_players_api'])->name('get_players_api');
         Route::post('get_players_by_id_api', [ApiController::class, 'get_players_by_id_api'])->name('get_players_by_id_api');
+        ####################
+        Route::post('get_all_stats', [ApiController::class, 'get_all_stats'])->name('get_all_stats');
+        Route::post('get_stats_by_id_api', [ApiController::class, 'get_stats_by_id_api'])->name('get_stats_by_id_api');
+        ####################
         ## End Players Name##
         //############################################################################################################//
         ## شويه apis متنوعه ##
         Route::post('/get_current_standing', [ApiController::class, 'get_table']);
+        Route::post('/get_theTop_player_score', [ApiController::class, 'top_player']);
+        Route::post('/get_theTop_player_assist', [ApiController::class, 'top_assist']);
+        Route::post('/get_theTop_player_Rate', [ApiController::class, 'top_rating']);
         ## شويه apis متنوعه ##
         //############################################################################################################//
 

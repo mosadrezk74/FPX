@@ -1,4 +1,9 @@
 @extends('Website.layout')
+
+@section('css')
+    <link rel="stylesheet" href="{{asset('Website/css/style.css')}}" />
+@endsection
+
 @section('contact')
 
       <div class="heroContent">
@@ -9,10 +14,9 @@
                 <h1>Footy</h1>
                 <span>Prospect X</span>
                 <p>
-                  Analyzing players data discovering them and developing their
-                  skills
+                  {{trans('website/index.main')}}
                 </p>
-                <button class="sapmit">Discover More</button>
+                <button class="sapmit">{{trans('website/index.more')}}</button>
               </div>
             </div>
 
@@ -30,16 +34,31 @@
       <!-- heroContent -->
     </section>
     <!-- hero -->
+@if(App::getLocale() == 'ar')
 
     <section class="join">
       <div class="join-footy">
-        <h1>join <span>FOOTY PROSPECT X</span></h1>
+        <h1>انضم الينا </h1>
         <p>
-          Analyzing players data discovering them and developing their skills
+            <span>
+
+            أول شركة مصرية لجمع و تحليل بيانات للدوري المصري
+            </span>
+
         </p>
       </div>
     </section>
     <!-- join -->
+@else
+    <section class="join">
+        <div class="join-footy">
+            <h1>join <span>FOOTY PROSPECT X</span></h1>
+            <p>
+                Analyzing players data discovering them and developing their skills
+            </p>
+        </div>
+    </section>
+@endif
 
     <section class="fpxContainer">
       <div class="fpx">

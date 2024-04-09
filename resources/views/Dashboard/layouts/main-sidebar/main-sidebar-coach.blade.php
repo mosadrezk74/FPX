@@ -130,7 +130,7 @@
                     </svg>
                 </a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.create_reports')}}</a></li>
+                    <li><a class="slide-item" href="{{ route('coach.Report') }}">{{trans('index.create_reports')}}</a></li>
                 </ul>
 
             </li>

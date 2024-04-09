@@ -11,7 +11,7 @@
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
                                             <h2>{{trans('Dashboard/login-page.player')}}</h2>
-                                            {{--												<h2>{{trans('Dashboard/login-page.Admin2')}}</h2>--}}
+                                            												<h2>{{trans('Dashboard/login-page.Admin2')}}</h2>
                                             <form method="POST" action="{{ route('login.analysis') }}">
                                                 @csrf
                                                 <div class="form-group">

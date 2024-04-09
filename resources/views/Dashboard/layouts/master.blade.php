@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
      @include('Dashboard.layouts.head')
 
-
+    @livewireStyles
 </head>
 
 <body class="main-body app sidebar-mini">
@@ -73,6 +73,10 @@
 
     </div>
 </div>
+
+
+@livewireScripts
+
 
 </body>
 </html>

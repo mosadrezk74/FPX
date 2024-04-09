@@ -22,7 +22,7 @@
         <div class="col-lg-3 col-md-3">
             <hr>
 
-            <div class="card text-center">
+            <div class="card text-center bg-success-gradient text-white ">
 
                 <div class="card-body">
                     <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">عدد المباريات </h1>
@@ -36,7 +36,7 @@
         <div class="col-lg-3 col-md-3">
             <hr>
 
-            <div class="card text-center">
+            <div class="card text-center bg-success-gradient text-white ">
 
                 <div class="card-body">
                     <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">عدد أهدافك</h1>
@@ -49,7 +49,7 @@
         <div class="col-lg-3 col-md-3">
             <hr>
 
-            <div class="card text-center">
+            <div class="card text-center bg-success-gradient text-white ">
 
                 <div class="card-body">
                     <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">عدد اسيستاتك</h1>
@@ -61,7 +61,7 @@
         <div class="col-lg-3 col-md-3">
             <hr>
 
-            <div class="card  text-center">
+            <div class="card text-center bg-success-gradient text-white ">
 
                 <div class="card-body">
                     <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">متوسط التقييم</h1>
@@ -71,6 +71,7 @@
             </div>
             <hr>
         </div>
+
 
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
@@ -88,6 +89,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
                 <div class="main-content-label tx-12 mg-b-15">
@@ -149,6 +151,107 @@
             </div>
         </div>
 
+        <div class="col-md-12 col-lg-4 col-xl-4">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="d-flex justify-content-between">
+                        <a href="{{route('player.stats', $player->id)}}" class="card-title mg-b-0" >الإحصايئات   </a>
+                        <i class="mdi mdi-dots-horizontal text-gray"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table text-md-nowrap text-center" id="example1">
+
+                            <tr>
+                                <th style="font-weight: 1000">احصائيات عامه</th>
+                                <th style="font-weight: 1000">إجمالي</th>
+                                <th style="font-weight: 1000"> المتوسط</th>
+
+                            </tr>
+
+                            <tr>
+                                <th style="font-weight: 1000">عدد المباريات</th>
+                                <td>{{$player->stat->Appearances}}</td>
+                                <td>{{$player->stat->average_play_timemin}}</td>
+                                @php
+                                    $totalMatches = 13;
+                                    $percentage = ($player->stat->Appearances / $totalMatches) * 100;
+                                @endphp
+
+
+                            </tr>
+                            @php
+                                $totalminutes = $player->stat->total_play_timein;
+                                $totalgoals = $player->stat->totalGoals;
+                                $totalassists = $player->stat->goalAssists;
+                                $percentage_goals = ( $totalgoals/ $player->stat->Appearances) * 100;
+                                $percentage_assists = ( $totalassists/ $player->stat->Appearances) * 100;
+                            @endphp
+
+                            <tr>
+                                <th style="font-weight: 1000">أهداف</th>
+                                <td>{{$player->stat->totalGoals}}</td>
+                                <td>{{number_format(($totalgoals/$totalminutes)*90 ,2 )}}</td>
+
+
+
+
+                            </tr>
+
+
+                            <tr>
+                                <th style="font-weight: 1000">صناعة أهداف</th>
+                                <td>{{$player->stat->goalAssists}}</td>
+                                <td>{{number_format(($totalassists/$totalminutes)*90 ,2 )}}</td>
+
+
+
+                            </tr>
+                            @php
+                                $random= mt_rand(50, 100) / 100;
+                                $random_xa=mt_rand(50,100)/100;
+                                $percentage_xg = $random*100;
+                                $percentage_xa = $random_xa*100;
+                            @endphp
+                            <tr>
+                                <th style="font-weight: 1000">أهداف متوقعه</th>
+                                <td>{{ $random }}</td>
+                                <td style="color: silver" >N/A</td>
+
+
+
+
+
+                            </tr>
+
+                            <tr>
+                                <th style="font-weight: 1000">أسيستات متوقعه</th>
+                                <td>{{$random_xa}}</td>
+                                <td style="color: silver" >N/A</td>
+
+
+                            </tr>
+                            @php
+                                $totalpasses = rand(1500, 2500);
+                                $totalpasses_correct = rand(50, 100)/100;
+                                $appearances = $player->stat->Appearances;
+                                $avg_passes_per_appearance = $totalpasses / $appearances;
+                                $avg_passes_per_90_minutes = ($avg_passes_per_appearance / 90) * 90;
+                                $percentage_passes = $totalpasses_correct * 100;
+                            @endphp
+                            <tr>
+                                <th style="font-weight: 1000"> عدد التمريرات </th>
+                                <td>{{$totalpasses}}</td>
+                                <td>{{round($avg_passes_per_90_minutes)}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
 
     </div>
 

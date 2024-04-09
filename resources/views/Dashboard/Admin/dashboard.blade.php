@@ -38,7 +38,7 @@
                                 <h3 class="tx-13 tx-white-8 mb-3" style="text-align: center;" > {{$topGoalScorer->name_en}} </h3>
                             @endif
 
-                            <h3 class="counter mb-0 text-white" style="text-align: center;">{{$topGoalScorer->stat->totalGoals}} {{trans('index.goal')}} </h3>
+                            <h3 class="counter mb-0 text-white" style="text-align: center;">{{$topGoalScorer->stat->Goals}} {{trans('index.goal')}} </h3>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                                 <h3 class="tx-13 tx-white-8 mb-3" style="text-align: center;"> {{$topAssister->name_en}} </h3>
                             @endif
 
-                                <h3 class="counter mb-0 text-white" style="text-align: center;">{{$topAssister->stat->goalAssists}}
+                                <h3 class="counter mb-0 text-white" style="text-align: center;">{{$topAssister->stat->Assists}}
                                     {{trans('index.assist')}}</h3>
                         </div>
                     </div>
@@ -124,10 +124,10 @@
                                   src="{{ asset('uploads/players/'. $player->photo) }}" />
                             @if(App::getlocale() == "ar")
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
-                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->totalGoals}} </span>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Goals}} </span>
                             @else
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_en}}</a>
-                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->totalGoals}}  </span>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Goals}}  </span>
                             @endif
                         </div>
                     @endforeach
@@ -148,10 +148,10 @@
                                   src="{{ asset('uploads/players/'. $player->photo) }}" />
                             @if(App::getlocale() == "ar")
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
-                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->goalAssists}} </span>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Assists}} </span>
                             @else
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_en}}</a>
-                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->goalAssists}}  </span>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Assists}}  </span>
                             @endif
                         </div>
                     @endforeach
@@ -175,10 +175,10 @@
                                   src="{{ asset('uploads/players/'. $player->photo) }}" />
                             @if(App::getlocale() == "ar")
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
-                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Appearances}} </span>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->MP}} </span>
                             @else
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_en}}</a>
-                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Appearances}}  </span>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->MP}}  </span>
                             @endif
                         </div>
                     @endforeach

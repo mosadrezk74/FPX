@@ -51,7 +51,7 @@ return [
 
         'analysis' => [
             'driver' => 'session',
-            'provider' => 'analysis',
+            'provider' => 'analysis_table',
         ],
 
 
@@ -129,7 +129,7 @@ return [
             'model' => App\Models\Coach::class,
         ],
 
-        'analysis' => [
+        'analysis_table' => [
             'driver' => 'eloquent',
             'model' => App\Models\Analysis::class,
         ],
@@ -148,16 +148,7 @@ return [
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Password Confirmation Timeout
-    |--------------------------------------------------------------------------
-    |
-    | Here you may define the amount of seconds before a password confirmation
-    | times out and the user is prompted to re-enter their password via the
-    | confirmation screen. By default, the timeout lasts for three hours.
-    |
-    */
+
 
     'password_timeout' => 10800,
 

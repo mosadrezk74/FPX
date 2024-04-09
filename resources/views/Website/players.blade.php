@@ -1,4 +1,9 @@
 @extends('Website.layout')
+@section('css')
+
+    <link rel="stylesheet" href="{{asset('Website/css/players.css')}}" />
+
+@endsection
 @section('contact')
 
     <section class="hero">

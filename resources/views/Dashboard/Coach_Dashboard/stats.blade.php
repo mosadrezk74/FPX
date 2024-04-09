@@ -25,8 +25,8 @@
 
 	@section('content')
 		@include('Dashboard.Clubs.messages_alert')
-
-		<!-- row -->
+        <livewire:Chat.createchat />
+        <!-- row -->
 		<div class="row row-sm">
 
 			<div class="col-lg-12">
@@ -79,7 +79,7 @@
                                             <td>
                                                 <div class="NNN">
                                                     <a href="{{route('stats.show',$player->id)}}"  class="btn btn-sm btn-success">{{trans('index.view')}}</a>
-                                                    <a href="{{route('stats.print',$player->id)}}" class="btn btn-primary btn-sm" target="_blank" title="طباعه احصائيات لاعب">{{trans('index.print')}}</a>
+                                                     <a href="{{route('stats.print',$player->id)}}" class="btn btn-primary btn-sm" target="_blank" title="طباعه احصائيات لاعب">{{trans('index.print')}}</a>
 
                                                 </div>
                                             </td>

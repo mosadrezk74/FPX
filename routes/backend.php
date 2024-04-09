@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AnalysisController;
 use App\Http\Controllers\Admin\CaochController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\PlayerStatsController;
@@ -55,7 +56,15 @@ Route::group(
 
     //--------------------Start Admin Routes---------------------------------------------------
   Route::resource('dashboard/admin/player', PlayerController::class);
-
+  #-----------------#############################-------------------------------#
+  Route::get('/dashboard/admin/analysis', [AnalysisController::class, 'index'])->name('analysis.index');
+  Route::get('/dashboard/admin/analysis/create', [AnalysisController::class, 'create'])->name('analysis.create');
+  Route::post('/dashboard/admin/analysis', [AnalysisController::class, 'store'])->name('analysis.store');
+  Route::get('/dashboard/admin/analysis/{id}', [AnalysisController::class, 'show'])->name('analysis.show');
+  Route::get('/dashboard/admin/analysis/{id}/edit', [AnalysisController::class, 'edit'])->name('analysis.edit');
+  Route::put('/dashboard/admin/analysis/{id}', [AnalysisController::class, 'update'])->name('analysis.update');
+  Route::delete('/dashboard/admin/analysis/{id}', [AnalysisController::class, 'destroy'])->name('analysis.destroy');
+  #-----------------#############################-------------------------------#
 
 
     Route::get('dashboard/admin/front_pages',
@@ -113,9 +122,15 @@ Route::group(
 
         Route::get('dashboard/coach/player/club/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');
 
+        Route::get('dashboard/coach/report',
+            [Coach_Dashboard::class, 'createReport'])->name('coach.Report');
 
-        Route::get('dashboard/coach/egyptian_fixtures', [\App\Http\Controllers\GenaralCont::class,
-            'scrapeAndSaveFixtures']);
+    Route::get('dashboard/coach/report/add',
+        [Coach_Dashboard::class, 'addReport'])->name('report.add');
+
+    Route::get('dashboard/coach/player/club/report/add/store',
+        [Coach_Dashboard::class, 'store'])->name('report.store');
+
 
 
 
@@ -133,6 +148,110 @@ Route::group(
     Route::get('dashboard/analysis', [\App\Http\Controllers\Dashboard\Analysis_Dashboard::class, 'index'])
         ->middleware(['auth:analysis'])
         ->name('dashboard.analysis');
+
+
+    Route::get('dashboard/player/stats',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'stats'])->name('player.stats');
+
+
+    Route::get('dashboard/player/matches_rating',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'rating'])->name('player.match_rating');
+
+
+    Route::get('dashboard/player/compare',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'compare'])->name('player.compare');
+
+    Route::get('dashboard/player/coach_discussion',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'coach_discussion'])->name('player.coach');
+
+
+    Route::get('dashboard/player/analysis_discussion',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'analysis_discussion'])->name('player.analysis');
+
+
+    Route::get('dashboard/player/develop',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'develop'])->name('player.develop');
+#########################################################
+#########################################################
+    Route::get('dashboard/player/chat_player',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'chat_coach'])->name('player.chat_coach');
+
+    Route::get('/chat/send-message',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'sendMessage'])->name('chat.send');
+
+    Route::get('dashboard/coach/chat_coach',
+        [\App\Http\Controllers\Dashboard\Coach_Dashboard::class,
+            'chat_coach'])->name('coach.chat_coach');
+
+    Route::get('/chat/send-message',
+        [\App\Http\Controllers\Dashboard\Coach_Dashboard::class,
+            'sendMessage'])->name('chat.send');
+
+
+
+
+    #Start Chat Route#
+
+        Route::get('list/players',\App\Livewire\Chat\Createchat::class)->name('list.players');
+
+
+    #End Chat Route#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 });

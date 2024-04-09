@@ -12,6 +12,7 @@ use App\Models\Statistics;
 use App\Trait\GeneralTrait;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -66,6 +67,23 @@ class ApiController extends Controller
         return $this->returnData('player_info', $player, 'تم تحميل بيانات اللاعب بنجاح');
     }
 
+    public function get_all_stats()
+    {
+        $stats=Statistics::all();
+        return response()->json($stats);
+    }
+
+    public function get_stats_by_id_api(Request $request)
+    {
+        $stats = Statistics::find($request->id);
+        if (!$stats) {
+            return $this->returnError('001', 'مفيش لاعب مسجل بالرقم دا .. حاول تاني ');
+        }
+        return $this->returnData('player_info', $stats, 'تم تحميل احصائيات اللاعب بنجاح');
+    }
+
+
+
     //-------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------------------------------------------------------------------------
 
@@ -76,11 +94,42 @@ class ApiController extends Controller
         return response()->json($table);
     }
 
+    public function top_player()
+    {
+        $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.totalGoals')
+            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->first();
+
+        return response()->json($topGoalScorer);
+    }
+    #############################################
+    public function top_assist()
+    {
+        $topAssister = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.goalAssists')
+            ->select('players.*', 'stats.goalAssists as goalAssists')
+            ->first();
+
+        return response()->json($topAssister);
+    }
+
+    public function top_rating()
+    {
+        $topRatePlayer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.totalGoals')
+            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->take(5)
+            ->get();
+
+
+        return response()->json($topRatePlayer);
+    }
 
 
 
-
-
+    //-------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------
 
 
 

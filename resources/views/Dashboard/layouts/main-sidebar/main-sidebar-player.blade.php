@@ -50,16 +50,16 @@
                             </svg>
                         </a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('club.index') }}">إحصائيات </a></li>
+							<li><a class="slide-item" href="{{ route('player.stats') }}">إحصائيات </a></li>
 
 						</ul>
                         <ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('club.index') }}">تقييمات المباراة </a></li>
+							<li><a class="slide-item" href="{{ route('player.match_rating') }}">تقييمات المباراة </a></li>
 
 						</ul>
 
                         <ul class="slide-menu">
-                            <li><a class="slide-item" href="{{ route('club.index') }}">مقارنة الأداء   </a></li>
+                            <li><a class="slide-item" href="{{ route('player.compare') }}">مقارنة الأداء   </a></li>
 
                         </ul>
 
@@ -76,11 +76,11 @@
                             </svg>
                         </a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('club.index') }}">تقييمات من المدرب </a></li>
+							<li><a class="slide-item" href="{{ route('player.coach') }}">تقييمات من المدرب </a></li>
 
 						</ul>
                         <ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('club.index') }}">تقييمات من محللين الاداء </a></li>
+							<li><a class="slide-item" href="{{ route('player.analysis') }}">توصيات من محللين الاداء </a></li>
 
 						</ul>
 
@@ -97,8 +97,7 @@
                             </svg>
                         </a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('club.index') }}">التطور و الأداء </a></li>
-
+							<li><a class="slide-item" href="{{ route('player.develop') }}">التطور و الأداء </a></li>
 						</ul>
 
 
@@ -115,12 +114,12 @@
                             </svg>
                         </a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('club.index') }}">تواصل مع المدرب </a></li>
+							<li><a class="slide-item" href="{{ route('player.chat_coach') }}">تواصل مع المدرب </a></li>
 
-						</ul><ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('club.index') }}"> زملاء الفريق </a></li>
+{{--						</ul><ul class="slide-menu">--}}
+{{--							<li><a class="slide-item" href="{{ route('player.chat_player') }}"> زملاء الفريق </a></li>--}}
 
-						</ul>
+{{--						</ul>--}}
 
 
 					</li>

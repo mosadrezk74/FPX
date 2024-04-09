@@ -56,6 +56,10 @@ use Laravel\Sanctum\HasApiTokens;
         return $this->hasMany(Player::class);
     }
 
+     public function report()
+     {
+         return $this->hasMany(Report::class);
+     }
     public function followedPlayers()
     {
         return $this->belongsToMany(Player::class, 'user_player', 'user_id', 'player_id');

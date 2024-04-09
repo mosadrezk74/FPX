@@ -24,13 +24,13 @@ class Admin_Dashboard extends Controller
 
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
 
-            ->orderByDesc('stats.totalGoals')
-            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->orderByDesc('stats.Goals')
+            ->select('players.*', 'stats.Goals as Goals')
             ->first();
 
         $topAssister = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.goalAssists')
-            ->select('players.*', 'stats.goalAssists as goalAssists')
+            ->orderByDesc('stats.Assists')
+            ->select('players.*', 'stats.Assists as Assists')
             ->first();
 
         $clubs=Club::all()->where('status',1);
@@ -51,19 +51,19 @@ class Admin_Dashboard extends Controller
         $count_users = User::count();
         $topLegScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
 
-            ->orderByDesc('stats.totalGoals')
-            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->orderByDesc('stats.Goals')
+            ->select('players.*', 'stats.Goals as Goals')
             ->take(6)->get();
 
         $topAssisterLeg =Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.goalAssists')
-            ->select('players.*', 'stats.goalAssists as goalAssists')
+            ->orderByDesc('stats.Assists')
+            ->select('players.*', 'stats.Assists as Assists')
             ->take(6)->get();
 
 
         $topAppearancesLeg = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.Appearances')
-            ->select('players.*', 'stats.Appearances as Appearances')
+            ->orderByDesc('stats.MP')
+            ->select('players.*', 'stats.MP as MP')
             ->take(6)
             ->get()
             ->shuffle()

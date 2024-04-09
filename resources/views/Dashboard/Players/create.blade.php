@@ -242,7 +242,19 @@
         });
     </script>
 
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script>
+    Pusher.logToConsole = true;
 
+    var pusher = new Pusher('09e3705206806b30572a', {
+        cluster: 'mt1'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('App\\Events\\MyEvent', function(data) {
+        alert(JSON.stringify(data.name_ar));
+    });
+</script>
 
 
 

@@ -9,6 +9,7 @@ use App\Models\FollowedPlayer;
 use App\Models\History;
 use App\Models\Player;
 use App\Models\Standing;
+use App\MyEvent;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Cookie;
 
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use function Ramsey\Uuid\v1;
 
 class Coach_Dashboard extends Controller
 {
@@ -85,20 +89,24 @@ class Coach_Dashboard extends Controller
 
         $coach = auth()->guard('coach')->user();
         $clubs = Club::all();
+        $random_clubs = Club::all()->random(5);
+
         if ($coach) {
             $club_id = $coach->club_id;
             $players = Player::where('club_id', $club_id)->with('club')->paginate(8);
         }
 
-        return view('Dashboard.Coach_Dashboard.stats', compact('coach', 'players', 'clubs', 'club_id'));
+        return view('Dashboard.Coach_Dashboard.stats', compact('coach', 'players',
+            'clubs', 'club_id', 'random_clubs'));
     }
 
     public function show($playerId)
     {
 
         $player = Player::with(['club', 'stat'])->findOrFail($playerId);
+        $random_clubs = Club::all()->random(5);
 
-        return view('Dashboard.Coach_Dashboard.show_player', compact('player'));
+        return view('Dashboard.Coach_Dashboard.show_player', compact('player','random_clubs'));
 
 
     }
@@ -214,10 +222,10 @@ class Coach_Dashboard extends Controller
  ##################################################################################################################################
  ##################################################################################################################################
 
-
-
-
-
+    public function chat_coach()
+    {
+        return view('Dashboard.Coach_Dashboard.chat');
+    }
     ##################################################################################################################################
     ##################################################################################################################################
 

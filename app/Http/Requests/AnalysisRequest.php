@@ -28,7 +28,7 @@ class AnalysisRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (auth('club')->attempt($this->only('email', 'password'), $this->filled('remember'))) {
+        if (auth('analysis')->attempt($this->only('email', 'password'), $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

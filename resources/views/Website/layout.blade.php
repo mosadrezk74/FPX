@@ -6,12 +6,11 @@
     <title>FPX</title>
     <link rel="stylesheet" href="{{asset('Website/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('Website/css/all.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('Website/css/style.css')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('Website/css/players.css')}}" />
+    @yield('css')
 
 </head>
 <body>
@@ -41,20 +40,20 @@
                         <div class="mt-5">
                             <ul class="vertical_nav">
                                 <li>
-                                    <a href="{{route('front.index')}}">Home</a>
+                                    <a href="{{route('front.index')}}">{{trans('Website/index.home')}}</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('front.player')}}">Players</a>
+                                    <a href="{{route('front.player')}}">{{trans('Website/index.players')}}</a>
                                 </li>
                                 <li>
-                                    <a href="#">Clubs</a>
+                                    <a href="#">{{trans('Website/index.clubs')}}</a>
                                 </li>
                                 <li>
-                                    <a href="#">Revent Change</a>
+                                    <a href="#">{{trans('Website/index.revent')}}</a>
                                 </li>
                                 <hr />
                                 <li>
-                                    <a href="#">About</a>
+                                    <a href="#">{{trans('Website/index.about')}}</a>
                                 </li>
                                 <hr/>
                                 <div class="dropdown">
@@ -103,7 +102,7 @@
                         <img class="menuImg" src="{{asset('Website/images/navbar/menu.png')}}" alt="" />
                     </a>
                 </li>
-                <li class="verNavLinks"><a href="#">REVENT GHANGE</a></li>
+                <li class="verNavLinks"><a href="#">{{trans('Website/index.revent')}}</a></li>
                 <li class="verNavLinks">
                     <div class="dropdown">
                         <button
@@ -113,7 +112,7 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            DISCOVER
+                            {{trans('Website/index.discover')}}
                         </button>
                         <ul
                             class="dropdown-menu py-3"
@@ -121,10 +120,11 @@
                             style="background: #2a2a2a"
                         >
                             <li>
-                                <a class="dropdown-item" href="{{route('front.player')}}"> PLAYERS </a>
+                                <a class="dropdown-item" href="{{route('front.player')}}">
+                                    {{trans('Website/index.players')}} </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">SCOUT \ CLUBS</a>
+                                <a class="dropdown-item" href="#">{{trans('Website/index.clubs')}}</a>
                             </li>
                         </ul>
                     </div>
@@ -144,19 +144,19 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            CONTACT
+                            {{trans('Website/index.contact')}}
                         </button>
                         <ul
                             class="dropdown-menu py-3"
                             aria-labelledby="dropdownMenuButton3"
                             style="background: #2a2a2a"
                         >
-                            <li><a class="dropdown-item" href="#"> Contact us </a></li>
+                            <li><a class="dropdown-item" href="#"> {{trans('Website/index.contact')}} </a></li>
                             <li>
-                                <a class="dropdown-item" href="#">Join us</a>
+                                <a class="dropdown-item" href="#">{{trans('Website/index.join')}}</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Service provider</a>
+                                <a class="dropdown-item" href="#">{{trans('Website/index.server')}}</a>
                             </li>
                         </ul>
                     </div>
@@ -169,7 +169,7 @@
                             type="text"
                             id="search"
                             name="search"
-                            placeholder="search"
+                            placeholder="{{trans('Website/index.search')}}"
                         />
                     </form>
                 </li>

@@ -56,8 +56,6 @@ class Player extends Authenticatable implements JWTSubject
 
     ];
 
-
-
     public function club(){
         return $this->belongsTo(Club::class,'club_id','id');
     }
@@ -65,11 +63,6 @@ class Player extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(Coach::class);
     }
-
-
-
-
-
 
     public function stat()
     {

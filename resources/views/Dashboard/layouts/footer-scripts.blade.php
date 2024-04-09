@@ -32,4 +32,4 @@
 <script src="{{URL::asset('js/custom.js')}}"></script><!-- Left-menu js-->
 <script src="{{URL::asset('plugins/side-menu/sidemenu.js')}}"></script>
 
-<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
