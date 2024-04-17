@@ -11,13 +11,15 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Club extends Authenticatable implements JWTSubject
 {
+    protected $table = 'clubs';
+    protected $primaryKey = 'id';
+
     use HasApiTokens, HasFactory, Notifiable;
 
 
      public $guard = 'club';
 
-     protected $table = 'clubs';
-    protected $hidden = [
+     protected $hidden = [
         'password',
         'remember_token',
     ];

@@ -25,7 +25,7 @@
 
 	@section('content')
 		@include('Dashboard.Clubs.messages_alert')
-        <livewire:Chat.createchat />
+
         <!-- row -->
 		<div class="row row-sm">
 
@@ -70,9 +70,9 @@
                                                     @endif
                                                 </a>
                                             </td>
-                                            <td>{{$player->stat->Appearances}}</td>
-                                            <td>{{$player->stat->totalGoals}}</td>
-                                            <td>{{$player->stat->goalAssists}}</td>
+                                            <td>{{$player->stat->MP}}</td>
+                                            <td>{{$player->stat->Goals}}</td>
+                                            <td>{{$player->stat->Assists}}</td>
                                             <td>{{rand(100,50)/100 }}</td>
                                             <td>{{rand(100,50)/100 }}</td>
 

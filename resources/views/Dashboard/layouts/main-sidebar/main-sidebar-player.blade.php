@@ -114,7 +114,7 @@
                             </svg>
                         </a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('player.chat_coach') }}">تواصل مع المدرب </a></li>
+							<li><a class="slide-item" href="{{ route('player.chat') }}">تواصل مع المدرب </a></li>
 
 {{--						</ul><ul class="slide-menu">--}}
 {{--							<li><a class="slide-item" href="{{ route('player.chat_player') }}"> زملاء الفريق </a></li>--}}

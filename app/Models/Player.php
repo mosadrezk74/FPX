@@ -15,7 +15,11 @@ class Player extends Authenticatable implements JWTSubject
     use HasApiTokens, HasFactory, Notifiable;
 
 //    public $guard = 'club';
-    public function unreadNotifications()
+
+    protected $primaryKey = 'id';
+    use Notifiable;
+    protected $table = 'players';
+     public function unreadNotifications()
     {
         return $this->notifications()->whereNull('read_at');
     }

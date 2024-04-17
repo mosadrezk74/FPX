@@ -35,7 +35,6 @@ class Player_Dashboard extends Controller
 
 
         $random_clubs = Club::all()->random(5);
-        $event_player= event(new MyEvent('hello world' , auth()->user()->name_ar));
 
 
         return view('Dashboard.Player_Dashboard.dashboard', compact(
@@ -47,7 +46,7 @@ class Player_Dashboard extends Controller
             ,'totalGoals'
             ,'clubDS'
             ,'random_clubs'
-            ,'event_player'
+
         ));
     }
 

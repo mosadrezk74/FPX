@@ -11,8 +11,9 @@ use Laravel\Sanctum\HasApiTokens;
 
  class Coach extends Authenticatable implements JWTSubject
 {
-    public $guard = 'coach';
-    use HasApiTokens, HasFactory, Notifiable;
+     protected $table = 'coaches';
+     protected $primaryKey = 'id';
+     use HasApiTokens, HasFactory, Notifiable;
 
     public function getJWTIdentifier()
     {
@@ -56,10 +57,7 @@ use Laravel\Sanctum\HasApiTokens;
         return $this->hasMany(Player::class);
     }
 
-     public function report()
-     {
-         return $this->hasMany(Report::class);
-     }
+
     public function followedPlayers()
     {
         return $this->belongsToMany(Player::class, 'user_player', 'user_id', 'player_id');

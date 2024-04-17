@@ -8,9 +8,12 @@
     <link href="{{URL::asset('Dashboard/my-css/style.css')}}" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+
      @include('Dashboard.layouts.head')
 
-    @livewireStyles
+
 </head>
 
 <body class="main-body app sidebar-mini">
@@ -75,7 +78,6 @@
 </div>
 
 
-@livewireScripts
 
 
 </body>

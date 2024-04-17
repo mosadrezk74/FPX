@@ -152,12 +152,10 @@
                     </svg>
                 </a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.contact_player')}}</a></li>
+                    <li><a class="slide-item" href="{{ route('coach.chat') }}">{{trans('index.contact_player')}}</a></li>
                 </ul>
 
-                <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.contact_club')}}</a></li>
-                </ul>
+
 
             </li>
 

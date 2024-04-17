@@ -113,7 +113,7 @@
                             <div class="mr-auto">
                                 <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;">{{trans('index.random')}}</h1>
 								<a href="" class="counter mb-0 text-white" style="text-align: center; color: #fff; transition: color 0.3s;">
-									{{$topPlayer->name_ar}} ({{$topPlayer->Appearances}})
+									{{$topPlayer->name_ar}} ({{$topPlayer->MP}})
 								</a>
                             </div>
                         </div>
@@ -186,10 +186,10 @@
                                                      src="{{ asset('uploads/players/'. $player->photo) }}" />
                                                 @if(App::getlocale() == "ar")
                                                     <p>{{$player->name_ar}}</p>
-                                                    <span>{{$player->stat->totalGoals}}   </span>
+                                                    <span>{{$player->stat->Goals}}   </span>
                                                 @else
                                                     <p>{{$player->name_en}}</p>
-                                                    <span>{{$player->stat->totalGoals}}  </span>
+                                                    <span>{{$player->stat->Goals}}  </span>
                                                 @endif
                                             </div>
                                         @endforeach
@@ -206,10 +206,10 @@
                                                      src="{{ asset('uploads/players/'. $player->photo) }}" />
                                                 @if(App::getlocale() == "ar")
                                                     <p>{{$player->name_ar}}</p>
-                                                    <span>{{$player->stat->goalAssists}}  </span>
+                                                    <span>{{$player->stat->Assists}}  </span>
                                                 @else
                                                     <p>{{$player->name_en}}</p>
-                                                    <span>{{$player->stat->goalAssists}} </span>
+                                                    <span>{{$player->stat->Assists}} </span>
                                                 @endif
                                             </div>
                                         @endforeach

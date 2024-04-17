@@ -157,7 +157,7 @@ $random_number = $rating[$random_key];
                                     <div class="col-lg-3 col-md-3">
                                         <div class="card bg-primary">
                                             <div class="card-body text-center">
-                                                <h1 class=" text-white">{{($player->stat->PasTotCmp*10)*5  }}</h1>
+                                                <h1 class=" text-white">{{($player->stat->PasTotCmp*10)*3  }}</h1>
                                                 <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.passes')}}</h1>
 
                                             </div>
@@ -573,12 +573,12 @@ $random_number = $rating[$random_key];
                                     <div class="col-md-12 col-lg-4 col-xl-4">
                                         <div class="card card-dashboard-eight pb-2">
                                             <div class="main-content-label tx-12 mg-b-15">
-                                               Seoson HeatMap
+                                               Season HeatMap
                                             </div>
                                             <div class="ht-200 ht-lg-250">
                                                 <div class="list-group-item border-top-0">
                                                     <img
-                                                        src="{{URL::asset('Dashboard/heat.png')}}" style="width: 600px; height: 250px;"
+                                                        src="{{URL::asset('Dashboard/heat.png')}}" style="width: 600px; height: 230px;"
                                                     >
                                                 </div>
                                             </div>
@@ -587,6 +587,357 @@ $random_number = $rating[$random_key];
                                     </div>
 
 
+                                    <div class="col-md-12 col-lg-6 col-xl-6">
+                                        <div class="card card-dashboard-eight pb-4">
+                                            <div class="main-content-label tx-12 mg-b-15">
+                                                التسديد علي المرمي
+                                            </div>
+                                            <div class="ht-200 ht-lg-250">
+                                                <table class="table" id="example1">
+                                                    <tr  title="عدد المحاولات التي قام بها اللاعب للتسديد على المرمى">
+                                                        <th>عدد المحاولات علي المرمي </th>
+                                                        <th>{{intval($player->stat->Shots*100/3)}}</th>
+                                                    </tr>
+
+
+                                                    <tr title="نسبة التسديدات الدقيقة إلى عدد التسديدات الكلي">
+                                                        <th>
+                                                            نسبه التسديدات الدقيقة
+                                                        </th>
+                                                        <th>{{$player->stat->SoT_per}} % </th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th>XG</th>
+                                                        <th>{{$player->stat->SoT}}</th>
+                                                    </tr>
+
+
+
+{{--                                                    <tr title="  نسبه الأهداف المسجلة من التسديدات على المرمى" >--}}
+{{--                                                        <th>--}}
+{{--                                                              الأهداف المسجلة من التسديد--}}
+{{--                                                        </th>--}}
+{{--                                                        <th>{{$player->stat->G_Sh}}</th>--}}
+{{--                                                    </tr>--}}
+
+
+
+
+                                                    <tr title="متوسط مسافة التسديدات باليردات">
+                                                        <th>
+                                                            متوسط مسافة التسديدات
+                                                        </th>
+                                                        <th>{{$player->stat->ShoDist}}</th>
+                                                    </tr>
+
+                                                    <tr title="عدد التسديدات من ركلات حرة">
+                                                        <th>  الركلات الحرة (المسجلة)</th>
+                                                        <th>
+                                                            {{$player->stat->ShoFK*100}}
+                                                            ({{intval($player->stat->ShoFK)/2}})
+                                                        </th>
+                                                    </tr>
+
+                                                    <tr title="عدد التسديدات من ركلات الجزاء">
+                                                        <th>ضربات الجزاء (المسجلة)</th>
+                                                        <th>
+                                                            {{$player->stat->Pkatt*100}}
+                                                            ({{intval($player->stat->Pkatt*100)}})
+
+                                                        </th>
+                                                    </tr>
+
+
+
+
+
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-lg-3 col-xl-6">
+                                        <div class="card card-dashboard-eight pb-4">
+                                            <div class="main-content-label tx-12 mg-b-15">
+                                                التمريرات
+                                            </div>
+                                            <div class="ht-200 ht-lg-250">
+                                                <table class="table" id="example1">
+                                                    <tr title="عدد التمريرات الكلية التي نجح في تنفيذها اللاعب">
+                                                        <th>التمريرات المكتملة</th>
+                                                        <th>{{($player->stat->PasTotCmp*10)*3}}</th>
+                                                    </tr>
+
+                                                    <tr title="عدد التمريرات الكلية التي حاول تنفيذها اللاعب">
+                                                        <th>عدد المحاولات للتمرير</th>
+                                                        <th>{{($player->stat->PasTotAtt*10)*3}}</th>
+                                                    </tr>
+
+
+                                                    <tr title="نسبة نجاح التمريرات الكلية">
+                                                        <th>
+                                                            نسبة نجاح التمريرات
+                                                        </th>
+                                                        <th>
+                                                            {{$player->stat->PasTotCmp_per}}%
+                                                        </th>
+                                                    </tr>
+
+
+                                                    <tr title="عدد التمريرات الناجحة في مناطق التسديد">
+                                                        <th>
+                                                            عدد التمريرات في الثلث الأخير
+                                                        </th>
+                                                        <th>{{intval(($player->stat->Pas3rd*20)*3)}}</th>
+                                                    </tr>
+
+
+                                                    <tr title="عدد التمريرات الناجحة في مناطق التسديد">
+                                                        <th>
+                                                            نسبه نجاح  التمريرات في الثلث الأخير
+                                                        </th>
+                                                        <th>
+                                                            {{($player->stat->PasShoCmp_per)}}%
+                                                        </th>
+                                                    </tr>
+
+
+                                                    <tr title="عدد التمريرات التي أدت إلى تسجيل هدف">
+                                                        <th> تمريرات أدت إلى تسجيل هدف</th>
+
+                                                        <th>{{intval(($player->stat->PPA*20)*3)}}</th>
+                                                    </tr>
+
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-3 col-xl-6">
+                                        <div class="card card-dashboard-eight pb-5">
+                                            <div class="main-content-label tx-12 mg-b-15">
+                                                هجوم
+                                            </div>
+                                            <div class="ht-200 ht-lg-250">
+                                                <table class="table" id="example1">
+                                                    <tr title="مجموع المحاولات الهجومية ">
+                                                        <th>  مجموع المحاولات الهجومية</th>
+                                                        <th>{{($player->stat->SCA)}}</th>
+                                                    </tr>
+
+                                                    <tr title="عدد المحاولات الهجومية من التمريرات الحية ">
+                                                        <th>عدد المحاولات الهجومية من التمريرات الحية</th>
+                                                        <th>{{($player->stat->ScaPassLive)}}</th>
+                                                    </tr>
+
+
+                                                    <tr title="عدد المحاولات الهجومية من التمريرات الميتة ">
+                                                        <th>عدد المحاولات الهجومية من التمريرات الميتة</th>
+                                                        <th>{{($player->stat->ScaPassDead)}}</th>
+                                                    </tr>
+
+                                                    <tr title="عدد المحاولات الهجومية من المراوغات ">
+                                                        <th>عدد المحاولات الهجومية من المراوغات</th>
+                                                        <th>{{($player->stat->ScaDrib)}}</th>
+                                                    </tr>
+
+
+
+{{--                                                    <tr title="نسبه عدد المرواغات في كل مباراة">--}}
+{{--                                                        <th> عدد المرواغات  </th>--}}
+{{--                                                        <th>{{($player->stat->Sw)}}</th>--}}
+{{--                                                    </tr>--}}
+
+                                                    <tr title="التمريرات العرضية " >
+                                                        <th>كرات عرضيه  </th>
+                                                        <td>{{ intval($player->stat->Crs*10)*3}}</td>
+                                                    </tr>
+                                                    <tr title="عدد الإسهامات في الأهداف من المجال الهجومي">
+                                                        <th> عدد الأهداف  </th>
+                                                        <th>{{intval(($player->stat->Goals))}}</th>
+                                                    </tr>
+
+
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-3 col-xl-6">
+                                        <div class="card card-dashboard-eight pb-5">
+                                            <div class="main-content-label tx-12 mg-b-15">
+                                                دفاع
+                                            </div>
+                                            <div class="ht-200 ht-lg-250">
+                                                <table class="table" id="example1">
+                                                    <tr title="عدد التدخلات الناجحة ">
+                                                        <th>  عدد التدخلات الناجحة</th>
+                                                        <th>{{intval($player->stat->Tkl*10)*3}}</th>
+                                                    </tr>
+
+                                                    <tr title="عدد التدخلات الناجحة ">
+                                                        <th> عدد التدخلات الصحيحة  </th>
+                                                        <th>{{intval($player->stat->TklWon*10)*3}}</th>
+                                                    </tr>
+                                                    <tr title="عدد التدخلات في الثلث الأخير من الملعب ">
+                                                        <th> عدد التدخلات في الثلث الأخير من الملعب  </th>
+                                                        <th>{{intval($player->stat->TklDef3rd*10)*3}}</th>
+                                                    </tr>
+                                                    <tr title="عدد التدخلات في منتصف الملعب">
+                                                        <th> عدد التدخلات في منتصف الملعب  </th>
+                                                        <th>{{intval($player->stat->TklMid3rd*10)*3}}</th>
+                                                    </tr>
+                                                    <tr title=" عدد التدخلات في ثلث الهجوم">
+                                                        <th>  عدد التدخلات في الثلث الهجوم  </th>
+                                                        <th>{{intval($player->stat->TklAtt3rd*10)*3}}</th>
+                                                    </tr>
+
+                                                    <tr title="نسبة نجاح التدخلات في مواجهة المراوغات">
+                                                        <th>  نسبة نجاح التدخلات في مواجهة المراوغات  </th>
+                                                        <th>{{intval($player->stat->TklDri_per)}}%</th>
+                                                    </tr>
+{{--                                                    <tr title="عدد المراوغات التي تم تجاوزها بنجاح من قبل الخصم">--}}
+{{--                                                        <th> عدد المراوغات التي تم تجاوزها بنجاح من قبل الخصم  </th>--}}
+{{--                                                        <th>{{intval($player->stat->TklDriPast*10)*3}}</th>--}}
+{{--                                                    </tr>--}}
+
+
+
+
+
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--############################################################################--}}
+                                    <div class="col-md-12 col-lg-4 col-xl-4">
+                                        <div class="card card-dashboard-eight pb-2">
+                                            <div class="main-content-label tx-12 mg-b-15">
+                                                لمسات للكرة
+                                            </div>
+                                            <div class="ht-200 ht-lg-250">
+                                                <table class="table" id="example1">
+                                                    <tr title="عدد لمسات الكرة " >
+                                                        <th>لمسات للكرة</th>
+                                                        <td>{{ intval($player->stat->Touches*10)*3}}</td>                                                    </tr>
+
+                                                    <tr title="عدد اللمسات داخل منطقة الدفاع" >
+                                                        <th>داخل منطقة الدفاع</th>
+                                                        <td>{{ intval($player->stat->TouDef3rd*10)*3}}</td>                                                    </tr>
+
+
+                                                    <tr title="عدد اللمسات في منتصف الملعب" >
+                                                        <th> منتصف الملعب</th>
+                                                        <td>{{ intval($player->stat->TouMid3rd*10)*3}}</td>
+                                                    </tr>
+
+
+                                                    <tr title="عدد اللمسات في الثلث الهجومي" >
+                                                    <th> الثلث الهجومي</th>
+                                                        <td>{{ intval($player->stat->TouAtt3rd*10)*3}}</td>
+                                                    </tr>
+                                                    <tr title="عدد اللمسات داخل منطقة الجزاء" >
+                                                    <th>داخل منطقة الجزاء</th>
+                                                        <td>{{ intval($player->stat->TouAttPen*10)*3}}</td>
+                                                    </tr>
+
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-4 col-xl-4">
+                                        <div class="card card-dashboard-eight pb-2">
+                                            <div class="main-content-label tx-12 mg-b-15">
+                                                المرواغة
+                                            </div>
+                                            <div class="ht-200 ht-lg-250">
+                                                <table class="table" id="example1">
+                                                    <tr title="عدد محاولات المرواغة  " >
+                                                        <th>  المرواغات  </th>
+                                                        <td>{{ intval($player->stat->ToAtt*10)*3}}</td>                                                    </tr>
+
+                                                    <tr title="عدد المرواغات الناجحة" >
+                                                        <th>المرواغات الناجحة</th>
+                                                        <td>{{ intval($player->stat->ToSuc*10)*3}}</td>                                                    </tr>
+
+
+                                                    <tr title="نسبة نجاح المراوغات" >
+                                                        <th> نسبة نجاح المراوغات</th>
+                                                        <td>{{ ($player->stat->ToSuc_per)}}%</td>
+                                                    </tr>
+
+
+                                                    <tr title="عدد المرات التي تم التدخل فيها بالمراوغة" >
+                                                    <th>التدخل عند المرواغة</th>
+                                                        <td>{{ intval($player->stat->ToTkl*10)*3}}</td>
+                                                    </tr>
+                                                    <tr title="نسبه التدخل عند المرواغة" >
+                                                    <th>نسبه التدخل عند المرواغة</th>
+                                                        <td>{{ intval($player->stat->ToTkl_per)}}%</td>
+                                                    </tr>
+
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-4 col-xl-4">
+                                        <div class="card card-dashboard-eight pb-2">
+                                            <div class="main-content-label tx-12 mg-b-15">
+                                               اللعب - التسلسل - الأخطاء
+                                            </div>
+                                            <div class="ht-200 ht-lg-250">
+                                                <table class="table" id="example1">
+
+                                                    <tr title="عدد الفرص الخطيرة التي تم إنشاؤها" >
+                                                    <th>الفرص الخطيرة </th>
+                                                        <td>{{ intval($player->stat->CPA*10)*3}}</td>
+                                                    </tr>
+
+                                                    <tr title="عدد مرات استرجاع الكرة من الخصم " >
+                                                    <th>استرجاعات الكرة </th>
+                                                        <td>{{ intval($player->stat->Rec*2) }}</td>
+                                                    </tr>
+
+
+                                                    <tr title="عدد استرجاع الكرة الذي أدى إلى تقدم الفريق " >
+                                                        <th>استرجاع أدي الي تقدم الفريق  </th>
+                                                        <td>{{ intval($player->stat->RecProg*2) }}</td>
+                                                    </tr>
+
+                                                    <tr title="الكرات الضائعة " >
+                                                        <th>عدد الكرات الضائعة  </th>
+                                                        <td>{{ intval($player->stat->Crs*10)*3}}</td>
+                                                    </tr>
+
+                                                    <tr title="عدد المرات التي تم التسلل فيها " >
+                                                        <th>التسلسلات  </th>
+                                                        <td>{{ intval($player->stat->Off*10)*3}}</td>
+                                                    </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--##############################################################################--}}
 
 
 

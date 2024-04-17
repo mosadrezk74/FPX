@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Charts\ExpensesChart;
+use App\Events\ChatMessageSent;
+use App\Events\PusherBroadcast;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
 use App\Models\FollowedPlayer;
 use App\Models\History;
+use App\Models\Message;
 use App\Models\Player;
 use App\Models\Standing;
 use App\MyEvent;
@@ -41,25 +44,25 @@ class Coach_Dashboard extends Controller
         $tables = Standing::all()->take(10);
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $club_id)
-            ->orderByDesc('stats.totalGoals')
-            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->orderByDesc('stats.Goals')
+            ->select('players.*', 'stats.Goals as Goals')
             ->first();
 
         $topAssister = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $club_id)
-            ->orderByDesc('stats.goalAssists')
-            ->select('players.*', 'stats.goalAssists as goalAssists')
+            ->orderByDesc('stats.Assists')
+            ->select('players.*', 'stats.Assists as Assists')
             ->first();
 
         $topLegScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
 
-            ->orderByDesc('stats.totalGoals')
-            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->orderByDesc('stats.Goals')
+            ->select('players.*', 'stats.Goals as Goals')
             ->take(6)->get();
 
         $topAssisterLeg =Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.goalAssists')
-            ->select('players.*', 'stats.goalAssists as goalAssists')
+            ->orderByDesc('stats.Assists')
+            ->select('players.*', 'stats.Assists as Assists')
             ->take(6)->get();
 
 
@@ -131,38 +134,38 @@ class Coach_Dashboard extends Controller
         $count_p = $club->count();
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
-            ->orderByDesc('stats.totalGoals')
+            ->orderByDesc('stats.Goals')
             ->inRandomOrder()
-            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->select('players.*', 'stats.Goals as Goals')
             ->first();
 
         $topGoalScorers = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
-            ->orderByDesc('stats.totalGoals')
+            ->orderByDesc('stats.Goals')
             ->limit(5)
-            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->select('players.*', 'stats.Goals as Goals')
             ->get();
 
         $topAssisters = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
-            ->orderByDesc('stats.goalAssists')
+            ->orderByDesc('stats.Assists')
             ->limit(5)
-            ->select('players.*', 'stats.goalAssists as goalAssists')
+            ->select('players.*', 'stats.Assists as Assists')
             ->get();
 
 
         $topAssister = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
-            ->orderByDesc('stats.goalAssists')
+            ->orderByDesc('stats.Assists')
             ->inRandomOrder()
-            ->select('players.*', 'stats.goalAssists as goalAssists')
+            ->select('players.*', 'stats.Assists as Assists')
             ->first();
 
         $topPlayer= Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
-            ->orderByDesc('stats.Appearances')
+            ->orderByDesc('stats.MP')
             ->inRandomOrder()
-            ->select('players.*', 'stats.Appearances as Appearances')
+            ->select('players.*', 'stats.MP as MP')
             ->first();
 
 
@@ -222,13 +225,6 @@ class Coach_Dashboard extends Controller
  ##################################################################################################################################
  ##################################################################################################################################
 
-    public function chat_coach()
-    {
-        return view('Dashboard.Coach_Dashboard.chat');
-    }
-    ##################################################################################################################################
-    ##################################################################################################################################
-
     public function ajaxRequest(Request $request){
 
         $player = Player::find($request->user_id);
@@ -239,7 +235,35 @@ class Coach_Dashboard extends Controller
 
 
 
-    #####################
+    #############################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

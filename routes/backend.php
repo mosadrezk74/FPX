@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CaochController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\PlayerStatsController;
 use App\Http\Controllers\Auth\CoachLoginController;
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\Dashboard\Admin_Dashboard;
 use App\Http\Controllers\Dashboard\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -200,7 +201,37 @@ Route::group(
 
     #Start Chat Route#
 
-        Route::get('list/players',\App\Livewire\Chat\Createchat::class)->name('list.players');
+    Route::get('/dashboard/coach/chat',
+        [ContactsController::class, 'index'])
+        ->middleware('auth:coach')
+        ->name('coach.chat')
+    ;
+    ###########################################################
+    Route::get('/dashboard/player/chat',
+        [ContactsController::class, 'index_player'])
+        ->middleware('auth:player')
+    ->name('player.chat')
+    ;
+    ###########################################################
+    Route::get('/checkConvo/{recieverId}',
+        [ContactsController::class, 'check'])->middleware('auth:coach');
+    ###########################################################
+    Route::post('/sendMessage',
+        [ContactsController::class, 'store'])->middleware('auth:coach')
+        ->name('sendMessage');
+    ###########################################################
+
+    Route::get('/loadMessage/{reciever}/{sender}',
+        [ContactsController::class, 'load'])->middleware('auth:coach');
+
+
+
+    Route::get('/retrieveMessages/{reciever}/{sender}/{lastMsgId}',
+        [ContactsController::class, 'retrieveNew'])->middleware('auth:coach');
+
+
+
+
 
 
     #End Chat Route#
