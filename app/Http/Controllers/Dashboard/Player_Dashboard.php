@@ -27,10 +27,10 @@ class Player_Dashboard extends Controller
         $players = Player::with('club')->where('club_id', $club_id)->get();
         $tables = Standing::all()->take(10);
 
-        $totalGoals = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+        $Goals = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $club_id)
-            ->orderByDesc('stats.goalAssists')
-            ->select('players.*', 'stats.totalGoals as totalGoals')
+            ->orderByDesc('stats.Assists')
+            ->select('players.*', 'stats.Goals as Goals')
             ->first();
 
 
@@ -43,7 +43,7 @@ class Player_Dashboard extends Controller
             'count_p',
             'club_id',
             'clubs', 'player_id', 'tables'
-            ,'totalGoals'
+            ,'Goals'
             ,'clubDS'
             ,'random_clubs'
 

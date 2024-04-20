@@ -123,14 +123,25 @@ Route::group(
 
         Route::get('dashboard/coach/player/club/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');
 
+        ##------------------------Report--------------------------##
+        ##------------------------Report--------------------------##
         Route::get('dashboard/coach/report',
-            [Coach_Dashboard::class, 'createReport'])->name('coach.Report');
+            [Coach_Dashboard::class, 'createReport'])
+            ->middleware('auth:coach')
+            ->name('report.index');
 
-    Route::get('dashboard/coach/report/add',
-        [Coach_Dashboard::class, 'addReport'])->name('report.add');
 
-    Route::get('dashboard/coach/player/club/report/add/store',
+        Route::get('dashboard/coach/report/add',
+        [Coach_Dashboard::class, 'addReport'])
+            ->middleware('auth:coach')
+            ->name('report.create');
+
+
+        Route::post('dashboard/coach/player/club/report/add/store',
         [Coach_Dashboard::class, 'store'])->name('report.store');
+
+    ##------------------------EReport--------------------------##
+    ##------------------------EReport--------------------------##
 
 
 
@@ -223,18 +234,15 @@ Route::group(
 
     Route::get('/loadMessage/{reciever}/{sender}',
         [ContactsController::class, 'load'])->middleware('auth:coach');
-
-
-
     Route::get('/retrieveMessages/{reciever}/{sender}/{lastMsgId}',
         [ContactsController::class, 'retrieveNew'])->middleware('auth:coach');
-
-
-
-
-
-
     #End Chat Route#
+
+
+
+
+
+
 
 
 

@@ -36,6 +36,8 @@
 				</div>
 @endsection
 @section('content')
+    @if($coach->role==0)
+
     <div class="row">
         <div class="col-lg-3 col-md-6">
             <div class="card  bg-success-gradient">
@@ -49,7 +51,7 @@
 
                             @endif
                         @endforeach
-                        <div class="mr-auto">
+                         <div class="mr-auto">
                             <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;">{{trans('index.club')}}</h2>
                             @if(App::getlocale('ar'))
                                 <h3 class="counter mb-0 text-white" style="text-align: center;">{{$coach->club->name_ar}}</h3>
@@ -290,8 +292,9 @@
 
      </div>
 
-    <!-- row -->
-
+    @elseif($coach->role == 1)
+            @include('Dashboard.Coach_Dashboard.analysis')
+    @endif
 
 
     </div>

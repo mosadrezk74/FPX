@@ -72,4 +72,13 @@ class Player extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(Statistics::class, 'stat_id');
     }
+
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
+
+
+
 }

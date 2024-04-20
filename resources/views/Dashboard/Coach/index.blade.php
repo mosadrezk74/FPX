@@ -64,10 +64,18 @@
                                                     <td>{{$coach->name_en}}</td>
                                                 @endif
 {{--                                            <td>{{ $coach->age }}</td>--}}
-                                            @if(App::getLocale() == 'ar')
-                                            <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_ar }}</a></td>
+                                                @if(App::getLocale() == 'ar')
+                                                    @if($coach->club != null)
+                                                        <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_ar }}</a></td>
+                                                    @else
+                                                        <td>فريق FPX</td>
+                                                    @endif
                                                 @else
-                                                    <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_en }}</a></td>
+                                                    @if($coach->club != null)
+                                                        <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_en }}</a></td>
+                                                    @else
+                                                        <td>FPX TEAM.</td>
+                                                    @endif
                                                 @endif
 
                                             <td>{{ $coach->created_at->diffForHumans() }}</td>
@@ -134,14 +142,18 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <label for="exampleInputPassword1">{{trans('coach.date')}}</label>
-                                    <input type="text" name="age" class="form-control">
+                                    <label for="exampleInputPassword1">{{trans('coach.role')}}</label>
+                                    <select id="role" name="role" class="form-control" required>
+                                        <option value="">{{trans('index.role')}}</option>
+                                        <option value="0">{{trans('coach.coach')}}</option>
+                                        <option value="1">{{trans('coach.analysis')}}</option>
+                                    </select>
                                 </div>
 
                                 <div class="modal-body">
-                                    <label for="exampleInputPassword1">{{trans('coach.date')}}</label>
-                                    <select id="club" name="club_id" class="form-control" required>
-                                        <option value="">{{trans('index.clubs')}}</option>
+                                    <label for="exampleInputPassword1">{{trans('coach.club')}}</label>
+                                    <select id="club" name="club_id" class="form-control">
+                                        <option value="">{{trans('index.clubs')}}(can be null)</option>
                                         @foreach($clubs as $club)
                                             @if (App::getLocale() == 'ar')
                                                 <option value="{{$club->id}}">{{$club->name_ar}}</option>

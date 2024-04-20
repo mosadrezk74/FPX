@@ -62,7 +62,7 @@ class CaochController extends Controller
             $file->move('uploads/coach_logo/', $filename);
             $coaches->photo = $filename;
         }
-        $coaches->age=$request->age;
+        $coaches->role=$request->role;
         $coaches->nationality=$request->nationality;
         $coaches->club_id=$request->club_id;
 

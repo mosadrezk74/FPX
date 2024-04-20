@@ -25,9 +25,7 @@
                                     <div class="d-flex" style="border:0px solid red">
                                         <img width="30px" height="30px" alt="image"
                                              src="{{ asset('uploads/coach_logo/'. $player->photo) }}" />
-
                                         <span id="{{ $player->name_ar }}"> {{ $player->name_ar }} </span>
-
                                     </div>
                                 </a>
                             @endforeach

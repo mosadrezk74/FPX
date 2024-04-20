@@ -12,6 +12,7 @@ use App\Models\History;
 use App\Models\Message;
 use App\Models\Player;
 use App\Models\Standing;
+use App\Models\Task;
 use App\MyEvent;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,6 @@ use function Ramsey\Uuid\v1;
 
 class Coach_Dashboard extends Controller
 {
-
     public function index()
     {
         $coach = auth()->guard('coach')->user();
@@ -84,9 +84,6 @@ class Coach_Dashboard extends Controller
         ));
     }
 
-
-
-
     public function stats()
     {
 
@@ -102,7 +99,6 @@ class Coach_Dashboard extends Controller
         return view('Dashboard.Coach_Dashboard.stats', compact('coach', 'players',
             'clubs', 'club_id', 'random_clubs'));
     }
-
     public function show($playerId)
     {
 
@@ -113,14 +109,12 @@ class Coach_Dashboard extends Controller
 
 
     }
-
     public function print(string $id)
     {
         $player = Player::findorfail($id);
 
          return view('Dashboard.Coach_Dashboard.print',  compact( 'player'));
     }
-
     public function club_info(){
         $coach = auth()->guard('coach')->user();
         $club = $coach->club;
@@ -192,8 +186,6 @@ class Coach_Dashboard extends Controller
             ));
     }
 
-
-
     public function epl_stats(Request $request)
     {
         $coach = auth()->guard('coach')->user();
@@ -208,13 +200,6 @@ class Coach_Dashboard extends Controller
         ));
     }
 
-
-
-
-
-
-
-
     public function compare($player_id){
         $player1 = Player::findOrFail($player_id);
         $players = Player::where('id', '<>', $player_id)->get();
@@ -224,7 +209,6 @@ class Coach_Dashboard extends Controller
 
  ##################################################################################################################################
  ##################################################################################################################################
-
     public function ajaxRequest(Request $request){
 
         $player = Player::find($request->user_id);
@@ -232,10 +216,43 @@ class Coach_Dashboard extends Controller
 
         return response()->json(['success'=>$response]);
     }
-
-
-
     #############################################################################################
+
+
+    public function createReport()
+    {
+        $tasks=Task::with('player')->get();
+        return view('Dashboard.Coach_Dashboard.Report.index' ,compact('tasks') );
+    }
+
+    public function addReport()
+    {
+
+        $coach = auth()->guard('coach')->user();
+        $clubDS=Club::all();
+        $user = Auth::user();
+        $club_id = $user->club_id;
+        $clubs = Standing::where('club_id', $club_id)->get();
+        $club = Player::with('club')->where('club_id', $club_id)->get();
+        $players = Player::with('club')->where('club_id', $club_id)->get();
+        return view('Dashboard.Coach_Dashboard.Report.create' , compact('players' , 'club_id' ) );
+
+    }
+
+    public function store(Request $request)
+    {
+        $tasks=new Task();
+        $tasks->player_id=$request->player_id;
+
+        $tasks->priority = $request->priority;
+        $tasks->descr = $request->descr;
+        $tasks->category = $request->category;
+        $tasks->num=$request->num;
+        $tasks->save();
+        session()->flash('add');
+        return redirect()->back();
+
+    }
 
 
 
