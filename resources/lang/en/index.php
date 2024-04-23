@@ -90,6 +90,34 @@ return [
     'xa'=>'xa',
     'process'=>'Processes',
     'date_of_est'=>'Date of Establishment',
+    'MP'=>'Matches',
+    'goals'=>'Goals',
+    'assists'=>'assists',
+    'rating'=>'Rate',
+    'rank'=>'Rank in the club',
+    'rankLeg'=>'Rank in the legue ',
+    'market'=>'Market Value',
+    'lastFive'=>'Rating of the last 5 matches',
+    'stats'=>'Stats',
+    'min'=>'Minutes',
+    'ycard'=>'Yellow Card',
+    'rcard'=>'Red Card',
+    'topScore'=>'Top scorer in the Egyptian League',
+    'topassist'=>'Top assister in the Egyptian League',
+    'follow'=>'Follow',
+    'b_stats'=>'Statistics',
+    'passes'=>'Pass',
+    'total'=>'Total',
+    'avg'=>'Average',
+    'per'=>'Percent %',
+    'heat'=>'Season HeatMap',
+    
+
+
+
+
+
+
 
 
 

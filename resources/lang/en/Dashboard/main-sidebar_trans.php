@@ -17,7 +17,18 @@ return [
     'veiw_stats'=>'Add Stats',
     'pages'=>'Pages'
     ,'add_pages'=>'Website Pages',
-
+    'player_dash'=>'Player Dashboard',
+    'performance'=>'Performance',
+    'stats'=>'Your Stats',
+    'rating'=>'Match Rating',
+    'tasks'=>'Tasks',
+    'task_coach'=>'Tasks From Coach',
+    'task_ana'=>'Tasks From Fpx',
+    'con'=>'Coach',
+    'con_chat'=>'Chat With Coach',
+    'compare'=>'Compare',
+    'compare_team'=>'Compare With Team ',
+    'compare_leg'=>'Compare With Legue',
 
 
 

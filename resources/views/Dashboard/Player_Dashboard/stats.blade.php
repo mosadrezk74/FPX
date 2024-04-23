@@ -29,13 +29,13 @@
                         <h1 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{$player->name_ar}}</h1>
                         @if($player->position == 0)
                             <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">
-                                {{trans('index.goalKeeper')}}</h3>
+                                {{trans('player.goalkeeper')}}</h3>
                         @elseif($player->position == 1)
-                            <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{trans('index.defender')}}</h3>
+                            <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{trans('player.defender')}}</h3>
                         @elseif($player->position == 2)
-                            <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{trans('index.middle')}}</h3>
+                            <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{trans('player.midfielder')}}</h3>
                         @elseif($player->position == 3)
-                            <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{trans('index.forward')}}</h3>
+                            <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{trans('player.forward')}}</h3>
                         @endif
                         <h5 class="card-subtitle mb-2 text-muted align-items-center  " style="padding-left: 15px;">{{$player->stat->MP}}#</h5>
                     </div>
@@ -50,18 +50,18 @@
                             <table class="table table-borderless">
                                 <tbody>
                                 <tr>
-                                    <th scope="row">{{trans('index.age')}}</th>
+                                    <th scope="row">{{trans('player.age')}}</th>
                                     <td>{{$player->stat->Age}}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">{{trans('index.weight')}}</th>
+                                    <th scope="row">{{trans('player.weight')}}</th>
                                     <th>{{rand(60,80)}}</th></tr>
                                 <tr>
-                                    <th scope="row">{{trans('index.height')}}</th>
+                                    <th scope="row">{{trans('player.height')}}</th>
                                     <th>{{rand(170,190)}}</th>
                                 </tr>
                                 <tr>
-                                    <th scope="row">{{trans('index.nation')}}</th>
+                                    <th scope="row">{{trans('player.nationality')}}</th>
                                     <td>{{$player->nationality}}</td>
                                 </tr>
                                 <tr>
@@ -146,7 +146,7 @@
                             <div class="col-lg-3 col-md-3">
                                 <div class="card bg-primary">
                                     <div class="card-body text-center">
-                                        <h1 class=" text-white">{{$player->stat->Assists}}</h1>
+                                        <h1 class=" text-white">{{intval($player->stat->Assists * $player->stat->MP )}}</h1>
                                         <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.assist')}}</h1>
 
                                     </div>
@@ -157,7 +157,7 @@
                             <div class="col-lg-3 col-md-3">
                                 <div class="card bg-primary">
                                     <div class="card-body text-center">
-                                        <h1 class=" text-white">{{($player->stat->PasTotCmp*10)*3  }}</h1>
+                                        <h1 class=" text-white">{{intval($player->stat->PasTotCmp * $player->stat->MP )}}</h1>
                                         <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.passes')}}</h1>
 
                                     </div>
@@ -177,14 +177,14 @@
                                             <table class="table text-md-nowrap text-center" id="example">
 
                                                 <tr>
-                                                    <th style="font-weight: 1000">احصائيات عامه</th>
-                                                    <th style="font-weight: 1000">إجمالي</th>
-                                                    <th style="font-weight: 1000"> المتوسط</th>
-                                                    <th style="font-weight: 1000">نسبه مئويه %</th>
+                                                    <th style="font-weight: 1000">{{trans('index.b_stats')}}</th>
+                                                    <th style="font-weight: 1000">{{trans('index.total')}}</th>
+                                                    <th style="font-weight: 1000">{{trans('index.avg')}}</th>
+                                                    <th style="font-weight: 1000">{{trans('index.per')}}</th>
                                                 </tr>
 
                                                 <tr>
-                                                    <th style="font-weight: 1000">عدد المباريات</th>
+                                                    <th style="font-weight: 1000">{{trans('index.MP')}}</th>
                                                     <td>{{$player->stat->MP}}</td>
                                                     <td>{{$player->stat->Min}}</td>
                                                     @php
@@ -236,7 +236,7 @@
                                                 @php
                                                     $totalminutes = $player->stat->Min;
                                                     $totalgoals = $player->stat->Goals;
-                                                    $totalassists = $player->stat->Assists;
+                                                    $totalassists = ($player->stat->Assists * $player->stat->MP);
                                                     $percentage_goals = ( $totalgoals/ $player->stat->MP) * 100;
                                                     $percentage_assists = ( $totalassists/ $player->stat->MP) * 100;
                                                 @endphp
@@ -292,7 +292,7 @@
 
                                                 <tr>
                                                     <th style="font-weight: 1000">{{trans('index.assist')}}</th>
-                                                    <td>{{$player->stat->Assists}}</td>
+                                                    <td>{{$player->stat->Assists * $player->stat->MP }}</td>
                                                     <td>{{number_format(($totalassists/$totalminutes)*90 ,2 )}}</td>
 
                                                     <td>
@@ -504,33 +504,39 @@
                             <div class="col-md-12 col-lg-4 col-xl-4">
                                 <div class="card card-dashboard-eight pb-2">
                                     <div class="main-content-label tx-12 mg-b-15">
-                                        تقييم أخر 5 مباريات
+                                        {{trans('index.lastFive')}}
                                     </div>
                                     <div class="ht-200 ht-lg-250">
-
                                         @foreach($random_clubs as $rand)
                                             <div class="list-group-item border-top-0">
-                                                <p>{{$player->name_ar}} vs {{$rand->name_ar}}</p>
+                                                @if(App::getLocale() == 'ar')
+                                                    <p>{{$player->name_ar}} vs {{$rand->name_ar}}</p>
+                                                @elseif(App::getLocale() == 'en')
+                                                    <p>{{$player->name_en}} vs {{$rand->name_en}}</p>
+                                                @endif
+
                                                 <span><a href="">{{ mt_rand(50, 100) / 10 }}</a></span>
                                             </div>
                                         @endforeach
                                     </div>
+
                                 </div>
                             </div>
+
                             <div class="col-md-12 col-lg-4 col-xl-4">
                                 <div class="card card-dashboard-eight pb-2">
                                     <div class="main-content-label tx-12 mg-b-15">
-                                        المياريات
+                                        {{trans('index.stats')}}
                                     </div>
                                     <div class="ht-200 ht-lg-250">
                                         <table class="table" id="example1">
                                             <tr>
-                                                <th>عدد المباريات</th>
+                                                <th>{{trans('index.MP')}}</th>
                                                 <th>{{$player->stat->MP}}</th>
                                             </tr>
 
                                             <tr>
-                                                <th>عدد الدقائق</th>
+                                                <th>{{trans('index.min')}}</th>
                                                 <th>{{$player->stat->Min}}</th>
                                             </tr>
 
@@ -538,21 +544,22 @@
                                             <tr>
                                                 <th>
                                                     <img src="{{asset('Dashboard\y.png')}}" style="width: 10px;height: 15px"  alt="Yellow Card">
-                                                    كرت أصفر
+                                                    {{trans('index.ycard')}}
                                                 </th>
-                                                <th>{{$player->stat->CrdY*100}}</th>
+                                                <th>{{intval($player->stat->CrdY * $player->stat->MP)}}</th>
                                             </tr>
 
 
                                             <tr>
                                                 <th>
                                                     <img src="{{asset('Dashboard\r.png')}}" style="width: 10px;height: 15px"  alt="Yellow Card">
+                                                    {{trans('index.rcard')}}
 
-                                                    كرت أحمر</th>
-                                                <th>{{$player->stat->CrdR}}</th>
+                                                </th>
+                                                <th>{{$player->stat->CrdR * $player->stat->MP }}</th>
                                             </tr>
                                             <tr>
-                                                <th>التقييم</th>
+                                                <th>{{trans('index.rating')}}</th>
                                                 <th>
                                                     <p class="card-text">
                                                         @if(rand() > 5)
@@ -570,10 +577,11 @@
                                 </div>
                             </div>
 
+
                             <div class="col-md-12 col-lg-4 col-xl-4">
                                 <div class="card card-dashboard-eight pb-2">
                                     <div class="main-content-label tx-12 mg-b-15">
-                                        Season HeatMap
+                                        {{trans('index.heat')}}
                                     </div>
                                     <div class="ht-200 ht-lg-250">
                                         <div class="list-group-item border-top-0">

@@ -125,10 +125,19 @@ Route::group(
 
         ##------------------------Report--------------------------##
         ##------------------------Report--------------------------##
-        Route::get('dashboard/coach/report',
+        Route::get('dashboard/coach/task',
             [Coach_Dashboard::class, 'createReport'])
             ->middleware('auth:coach')
             ->name('report.index');
+
+
+
+    Route::get('dashboard/player/task',
+        [Player_Dashboard::class, 'task'])
+        ->middleware('auth:player')
+        ->name('player.report');
+
+
 
 
         Route::get('dashboard/coach/report/add',
@@ -189,6 +198,23 @@ Route::group(
     Route::get('dashboard/player/develop',
         [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
             'develop'])->name('player.develop');
+
+
+
+     Route::get('dashboard/player/club_info',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'club_info'])->name('player.club_info');
+
+
+     Route::get('dashboard/player/epl_stats',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'epl_stats'])->name('player.epl_stats');
+
+
+
+
+
+
 #########################################################
 #########################################################
     Route::get('dashboard/player/chat_player',

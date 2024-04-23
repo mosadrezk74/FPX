@@ -26,6 +26,12 @@ class FrontContoller extends Controller
     {
         return view('Website.players');
     }
+    ############################################################
+    public function contact()
+    {
+        return view('Website.contact');
+    }
+
 
 
 }

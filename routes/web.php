@@ -18,6 +18,8 @@ Route::group(
     Route::get('/player', [\App\Http\Controllers\FrontContoller::class, 'player'])
         ->name('front.player');
 ##################################################################################
+    Route::get('/contact', [\App\Http\Controllers\FrontContoller::class, 'contact'])
+        ->name('front.contact');
 
 });
 

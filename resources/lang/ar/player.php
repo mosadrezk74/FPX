@@ -6,6 +6,7 @@ return [
     'name'=>'اسم اللاعب',
     'age'=>'العمر',
     'height'=>'الطول',
+    'weight'=>'الوزن',
     'position'=>'المركز',
     'nationality'=>'الجنسية',
     'shirt_number'=>'رقم التشيرت',

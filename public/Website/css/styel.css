@@ -1,0 +1,100 @@
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Bold.ttf");
+  font-size: 900;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Medium.ttf");
+  font-size: 700;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Regular.ttf");
+  font-size: 500;
+}
+*{
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+
+}
+body{
+  background-color: black;
+}
+.contact{
+  text-align: center;
+  color: #fff;
+  text-transform: capitalize;
+  margin-top: 30px;
+  
+}
+.contact h1{
+  font-size: 50px;
+  font-weight: 700;
+}
+.main{
+  margin-top: 60px;
+}
+.send-us p{
+  color: #fff;
+  font-size: 25px;
+  width: 75%;
+}
+
+form{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin: auto;
+}
+input{
+  padding: 10px;
+  border-radius: 10px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+}
+textarea{
+  padding: 10px;
+  border-radius: 10px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+
+}
+ .we-contact h3{
+  font-size: 22px;
+  color: #fff;
+ }
+
+ .we-contact p{
+  font-size: 20px;
+ }
+ .get h1{
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 30px;
+ }
+ .get p{
+  color: #fff;
+  font-size: 20px;
+ }
+ .icons{
+  margin-top: 60px;
+ }
+ .get .icons i{
+  display: flex;
+  gap: 10px;
+  margin: auto;
+  padding: 10px;
+  color: #fff;
+  font-size: 20px;
+  
+  
+ }

@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Rubik:ital,wght@1,300&display=swap" rel="stylesheet">
     @yield('css')
 
 </head>
@@ -51,7 +53,7 @@
                                 <li>
                                     <a href="#">{{trans('Website/index.revent')}}</a>
                                 </li>
-                                <hr />
+                                <hr/>
                                 <li>
                                     <a href="#">{{trans('Website/index.about')}}</a>
                                 </li>
@@ -146,12 +148,14 @@
                         >
                             {{trans('Website/index.contact')}}
                         </button>
+
+
                         <ul
                             class="dropdown-menu py-3"
                             aria-labelledby="dropdownMenuButton3"
                             style="background: #2a2a2a"
                         >
-                            <li><a class="dropdown-item" href="#"> {{trans('Website/index.contact')}} </a></li>
+                            <li><a class="dropdown-item" href="{{route('front.contact')}}"> {{trans('Website/index.contact')}} </a></li>
                             <li>
                                 <a class="dropdown-item" href="#">{{trans('Website/index.join')}}</a>
                             </li>
@@ -161,6 +165,30 @@
                         </ul>
                     </div>
                 </li>
+                {{--  Login Addon                --}}
+                <li class="verNavLinks">
+                    <div class="dropdown">
+                        <button
+                            class="dropdown-toggle border-0 bg-transparent text-white"
+                            type="button"
+                            id="dropdownMenuButton3"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            {{trans('Website/index.sign')}}
+                        </button>
+
+
+                        <ul
+                            class="dropdown-menu py-3"
+                            aria-labelledby="dropdownMenuButton3"
+                            style="background: #2a2a2a"
+                        >
+                            <li><a class="dropdown-item" href="{{route('login.user')}}"> {{trans('Website/index.sign')}} </a></li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li class="searchParentLi">
                     <form>
                         <label for="search">

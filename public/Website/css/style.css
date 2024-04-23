@@ -1,6 +1,4 @@
-:root {
-  --color1: #287d14;
-}
+
 body {
   background-color: #000;
 }
@@ -546,3 +544,83 @@ body {
     }
   }
 }
+
+
+
+.contact{
+  text-align: center;
+  color: #fff;
+  text-transform: capitalize;
+  
+  
+}
+.contact h1{
+  font-size: 50px;
+  font-weight: 700;
+}
+.main{
+  margin-top: 60px;
+}
+.send-us p{
+  color: #fff;
+  font-size: 25px;
+  width: 75%;
+}
+
+form{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin: auto;
+}
+input{
+  padding: 10px;
+  border-radius: 10px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+}
+textarea{
+  padding: 10px;
+  border-radius: 10px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+
+}
+ .we-contact h3{
+  font-size: 22px;
+  color: #fff;
+ }
+
+ .we-contact p{
+  font-size: 20px;
+ }
+ .get h1{
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 30px;
+ }
+ .get p{
+  color: #fff;
+  font-size: 20px;
+ }
+ .icons{
+  margin-top: 60px;
+ }
+ .get .icons i{
+  display: flex;
+  gap: 10px;
+  margin: auto;
+  padding: 10px;
+  color: #fff;
+  font-size: 20px;
+  
+  
+ }
+ 
+ 
+
+

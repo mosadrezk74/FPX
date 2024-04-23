@@ -64,7 +64,10 @@
                                     <option value="1">تسجيل الاهداف</option>
                                     <option value="2">الصناعة</option>
                                     <option value="3">الدفاع</option>
-                                    <option value="4">التكتيك</option>
+                                    <option value="4">المرواغة</option>
+                                    <option value="5">التمرير</option>
+                                    <option value="6">التسديد</option>
+                                    <option value="7">اخري</option>
                                 </select>
                             </div>
 

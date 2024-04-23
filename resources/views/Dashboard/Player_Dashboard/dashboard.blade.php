@@ -22,9 +22,9 @@
         <div class="col-lg-3 col-md-3">
             <hr>
 
-            <div class="card text-center bg-success-gradient text-white ">
+            <div class="card text-center bg-warning-gradient text-white ">
                 <div class="card-body">
-                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">عدد المباريات </h1>
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.MP')}} </h1>
                     <h1 class="text-black">{{ $player->stat->MP }}</h1>
                 </div>
             </div>
@@ -34,10 +34,10 @@
         <div class="col-lg-3 col-md-3">
             <hr>
 
-            <div class="card text-center bg-success-gradient text-white ">
+            <div class="card text-center bg-warning-gradient text-white ">
 
                 <div class="card-body">
-                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">عدد أهدافك</h1>
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.goals')}}</h1>
                     <h1 class="text-black">{{ $player->stat->Goals }}</h1>
                 </div>
             </div>
@@ -47,10 +47,10 @@
         <div class="col-lg-3 col-md-3">
             <hr>
 
-            <div class="card text-center bg-success-gradient text-white ">
+            <div class="card text-center bg-warning-gradient text-white ">
 
                 <div class="card-body">
-                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">عدد اسيستاتك</h1>
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.assists')}}</h1>
                     <h1 class="text-black">{{ intval($player->stat->Assists * $player->stat->MP)}}</h1>
                 </div>
             </div>
@@ -59,15 +59,76 @@
         <div class="col-lg-3 col-md-3">
             <hr>
 
-            <div class="card text-center bg-success-gradient text-white ">
+            <div class="card text-center bg-warning-gradient text-white ">
 
                 <div class="card-body">
-                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">متوسط التقييم</h1>
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.rating')}}</h1>
                     <h1 class="text-black">{{ mt_rand(50, 100) / 10 }}</h1>
                 </div>
             </div>
             <hr>
         </div>
+
+        <div class="col-lg-3 col-md-3">
+
+
+            <div class="card text-center bg-primary-gradient text-white ">
+
+                <div class="card-body">
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.rank')}}</h1>
+                    <h1 class="text-black">{{ $rank }} #</h1>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-lg-3 col-md-3">
+
+
+            <div class="card text-center bg-primary-gradient text-white ">
+
+                <div class="card-body">
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.rankLeg')}}</h1>
+                    <h1 class="text-black">{{ $rank_leg }} # </h1>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-lg-3 col-md-3">
+
+
+            <div class="card text-center bg-primary-gradient text-white ">
+
+                <div class="card-body">
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.market')}}</h1>
+                    <h1 class="text-black">{{$player->stat->SoT*10}}M </h1>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-lg-3 col-md-3">
+
+
+            <div class="card text-center bg-primary-gradient text-white ">
+
+                <div class="card-body">
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.rankLeg')}}</h1>
+                    <h1 class="text-black">{{ $rank_leg }} # </h1>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
 
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
@@ -76,23 +137,23 @@
                 </div>
                 <div class="ht-200 ht-lg-250">
                     <div class="list-group-item border-top-0" title="Dollar" >
-                        <p>القيمه السوقيه</p>
+                        <p>{{trans('index.market')}}</p>
                         <span>{{$player->stat->SoT*10}}M</span>
                     </div>
                     <div class="list-group-item border-top-0">
-                        <p>الطول</p>
+                        <p>{{trans('player.height')}}</p>
                         <span>{{ mt_rand(160, 200) }}</span>
                     </div>
                     <div class="list-group-item border-top-0">
-                        <p>الوزن</p>
+                        <p>{{trans('player.weight')}}</p>
                         <span>{{ mt_rand(75, 90)}}</span>
                     </div>
                     <div class="list-group-item border-top-0">
-                        <p>العمر</p>
+                        <p>{{trans('player.age')}}</p>
                         <span>{{$player->stat->Age}}</span>
                     </div>
                     <div class="list-group-item border-top-0">
-                        <p>الجنسيه</p>
+                        <p>{{trans('player.nationality')}}</p>
                         <span>{{$player->nationality}}</span>
                     </div>
                 </div>
@@ -103,34 +164,39 @@
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
                 <div class="main-content-label tx-12 mg-b-15">
-                    تقييم أخر 5 مباريات
+                    {{trans('index.lastFive')}}
                 </div>
                 <div class="ht-200 ht-lg-250">
-
                     @foreach($random_clubs as $rand)
-                    <div class="list-group-item border-top-0">
+                        <div class="list-group-item border-top-0">
+                            @if(App::getLocale() == 'ar')
                             <p>{{$player->name_ar}} vs {{$rand->name_ar}}</p>
+                            @elseif(App::getLocale() == 'en')
+                            <p>{{$player->name_en}} vs {{$rand->name_en}}</p>
+                            @endif
+
                             <span><a href="">{{ mt_rand(50, 100) / 10 }}</a></span>
                         </div>
                     @endforeach
                 </div>
+
             </div>
         </div>
 
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
                 <div class="main-content-label tx-12 mg-b-15">
-                    المياريات
+                    {{trans('index.stats')}}
                 </div>
                 <div class="ht-200 ht-lg-250">
                     <table class="table" id="example1">
                         <tr>
-                            <th>عدد المباريات</th>
+                            <th>{{trans('index.MP')}}</th>
                             <th>{{$player->stat->MP}}</th>
                         </tr>
 
                         <tr>
-                            <th>عدد الدقائق</th>
+                            <th>{{trans('index.min')}}</th>
                             <th>{{$player->stat->Min}}</th>
                         </tr>
 
@@ -138,21 +204,22 @@
                         <tr>
                             <th>
                                 <img src="{{asset('Dashboard\y.png')}}" style="width: 10px;height: 15px"  alt="Yellow Card">
-                                كرت أصفر
+                                {{trans('index.ycard')}}
                             </th>
-                            <th>{{$player->stat->CrdY*100}}</th>
+                            <th>{{intval($player->stat->CrdY * $player->stat->MP)}}</th>
                         </tr>
 
 
                         <tr>
                             <th>
                                 <img src="{{asset('Dashboard\r.png')}}" style="width: 10px;height: 15px"  alt="Yellow Card">
+                                {{trans('index.rcard')}}
 
-                                كرت أحمر</th>
-                            <th>{{$player->stat->CrdR}}</th>
+                            </th>
+                            <th>{{$player->stat->CrdR * $player->stat->MP }}</th>
                         </tr>
                         <tr>
-                            <th>التقييم</th>
+                            <th>{{trans('index.rating')}}</th>
                             <th>
                                 <p class="card-text">
                                     @if(rand() > 5)
@@ -169,6 +236,106 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="col-md-12 col-lg-4 col-xl-4">
+            <div class="card card-dashboard-eight pb-2">
+                <h6 class="card-title">{{trans('index.topScore')}}</h6>
+                <div class="list-group">
+                    @foreach($topLegScorer as $player)
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                            <p>{{$loop->iteration}} # </p>
+                            <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
+                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                            @if(App::getlocale() == "ar")
+                                <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Goals}} </span>
+                            @else
+                                <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_en}}</a>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Goals}}  </span>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+                <hr>
+                <h6 class="card-title">{{trans('index.topassist')}}</h6>
+                <div class="list-group">
+                    @foreach($topAssisterLeg as $player)
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                            <p>{{$loop->iteration}} # </p>
+                            <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
+                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                            @if(App::getlocale() == "ar")
+                                <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{intval($player->stat->Assists * $player->stat->MP )}}  </span>
+                            @else
+                                <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_en}}</a>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{intval($player->stat->Assists * $player->stat->MP )}}  </span>
+                            @endif
+                        </div>
+                    @endforeach
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-0 col-lg-0 col-xl-8">
+            <div class="card card-table-two">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title mb-1">{{trans('index.standings')}}</h4>
+                    <i class="mdi mdi-dots-horizontal text-gray"></i>
+                </div>
+                <div class="table-responsive country-table">
+                    <table class="table   table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
+                        <thead>
+                        <tr>
+                            <th class="wd-lg-10p">{{trans('index.standing')}}</th>
+                            <th class="wd-lg-30p">{{trans('index.team_name')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.played')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.won')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.draw')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.lost')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.goal_in')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.goal_out')}}</th>
+                            <th class="wd-lg-10p tx-right">{{trans('index.goal_diff')}}</th>
+                            <th class="wd-lg-15p tx-right">{{trans('index.points')}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($tables as $table)
+
+                            <tr>
+                                <td class="tx-right tx-medium tx-inverse">{{$loop->iteration}}</td>
+
+                                @if(App::getlocale() == 'ar')
+                                    <td class="tx-right tx-medium tx-inverse">
+                                        <img src="{{$table->image}}" class="wd-30 ht-30" alt="img">
+                                        {{$table->team_ar}}
+                                    </td>
+                                @else
+                                    <td class="tx-right tx-medium tx-inverse">
+                                        <img src="{{ $table->image }}" class="wd-30 ht-30" alt="img" style="float: left; margin-right: 10px;">
+                                        {{ $table->team_en }}
+                                    </td>
+
+                                @endif
+                                <td class="tx-right tx-medium tx-inverse">{{$table->mp}}</td>
+                                <td class="tx-right tx-medium tx-inverse">{{$table->won}}</td>
+                                <td class="tx-right tx-medium tx-inverse">{{$table->draw}}</td>
+                                <td class="tx-right tx-medium tx-inverse">{{$table->lose}}</td>
+                                <td class="tx-right tx-medium tx-inverse">{{$table->gf}}</td>
+                                <td class="tx-right tx-medium tx-inverse">{{$table->ga}}</td>
+                                <td class="tx-right tx-medium tx-inverse">{{$table->gd}}</td>
+                                <td class="tx-right tx-medium tx-danger tx-bold">{{$table->points}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
 
 
 

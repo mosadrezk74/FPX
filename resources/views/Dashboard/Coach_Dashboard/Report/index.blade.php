@@ -33,56 +33,124 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped">
-                                <tbody>
+                            <table class="table table-striped mg-b-0 text-md-nowrap">
+                                <thead>
                                 <tr>
-                                    <th class="text-center">
-                                        <div class="custom-checkbox custom-checkbox-table custom-control">
-                                            <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
-                                            <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                                        </div>
-                                    </th>
+                                    <th>#</th>
                                     <th>Player Name</th>
                                     <th>Text</th>
+                                    <th>Priority</th>
+                                    <th>Num</th>
+                                    <th>Achieved</th>
                                     <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
+                                </thead>
+                                <tbody>
                                 @foreach($tasks as $task)
-
-                                <tr>
-                                    <td class="text-center">
-                                        <div class="custom-checkbox custom-control">
-                                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
-                                            <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <th>
-
-                                        <img width="30px" height="30px" alt="image"
-                                             src="{{ asset('uploads/players/' . $task->player->photo) }}"
-                                        />
-                                    <a type="button" class="text-primary"   data-toggle="modal" data-target="#add">
-                                        {{$task->player->name_ar}}
-                                    </a>
-                                    </th>
-                                    <td>{{$task->descr}}</td>
-                                    <td>
-                                        @if($task->priority == 1)
-                                            <span class="text-secondary">in progress</span>
-                                        @elseif($task->priority == 2)
-                                            <span class="text-danger">Fail</span>
-                                        @elseif($task->priority == 3)
-                                            <span class="text-success">Done</span>
+                                    <tr>
+                                        <th scope="row">{{$loop->iteration}}</th>
+                                        <td>
+                                            <img width="30px" height="30px" alt="image"
+                                                 src="{{ asset('uploads/players/' . $task->player->photo) }}"
+                                            />
+                                            <a href="{{route('player.show', $task->player->id)}}">
+                                                {{$task->player->name_ar}}
+                                            </a>
+                                        </td>
+                                        <td>{{$task->descr}}</td>
+                                        @if($task->priority==1)
+                                            <td>منخفض</td>
+                                        @elseif($task->priority==2)
+                                            <td>متوسط</td>
+                                        @elseif($task->priority==3)
+                                            <td>عالي</td>
                                         @endif
-                                    </td>
+                                        <td>{{$task->num}}</td>
+                                        @if($task->category ==1)
+                                            <td>{{$task->player->stat->Goals}}</td>
+                                            <td>
+                                                @php
+                                                    $totw=intval($task->player->stat->Goals)
+                                                @endphp
+                                                @if($totw>=$task->num)
+                                                    <span class="text-success">ACHIEVED</span>
+                                                @elseif($totw<$task->num)
+                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                @endif
+                                            </td>
 
-                                    <td>
-                                        <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a class="btn btn-danger btn-action" data-toggle="tooltip" title="" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')" data-original-title="Delete"><i class="fas fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                                        @elseif($task->category ==2)
+                                            <td>{{intval($task->player->stat->Assists * $task->player->stat->MP )}}</td>
+                                            <td>
+                                                @php
+                                                    $totw=intval($task->player->stat->Assists * $task->player->stat->MP)
+                                                @endphp
+                                                @if($totw>=$task->num)
+                                                    <span class="text-success">ACHIEVED</span>
+                                                @elseif($totw<$task->num)
+                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                @endif
+                                            </td>
+
+                                        @elseif($task->category ==3)
+                                            <td>{{intval($task->player->stat->Tkl * $task->player->stat->MP )}}</td>
+                                            <td>
+                                                @php
+                                                    $totw=intval($task->player->stat->Tkl * $task->player->stat->MP)
+                                                @endphp
+                                                @if($totw>=$task->num)
+                                                    <span class="text-success">ACHIEVED</span>
+                                                @elseif($totw<$task->num)
+                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                @endif
+                                            </td>
+
+                                        @elseif($task->category ==4)
+                                            <td>{{intval($task->player->stat->TklDriPast * $task->player->stat->MP )}}</td>
+                                            <td>
+                                                @php
+                                                    $totw=intval($task->player->stat->TklDriPast * $task->player->stat->MP)
+                                                @endphp
+                                                @if($totw>=$task->num)
+                                                    <span class="text-success">ACHIEVED</span>
+                                                @elseif($totw<$task->num)
+                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                @endif
+                                            </td>
+
+                                        @elseif($task->category ==5)
+                                            <td>{{intval($task->player->stat->PasTotCmp * $task->player->stat->MP )}}</td>
+                                            <td>
+                                                @php
+                                                    $totw=intval($task->player->stat->PasTotCmp * $task->player->stat->MP)
+                                                @endphp
+                                                @if($totw>=$task->num)
+                                                    <span class="text-success">ACHIEVED</span>
+                                                @elseif($totw<$task->num)
+                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                @endif
+                                            </td>
+                                        @elseif($task->category ==6)
+                                            <td>{{intval($task->player->stat->G_SoT * $task->player->stat->MP )}}</td>
+                                            <td>
+                                                @php
+                                                    $totw=intval($task->player->stat->G_SoT * $task->player->stat->MP)
+                                                @endphp
+                                                @if($totw>=$task->num)
+                                                    <span class="text-success">ACHIEVED</span>
+                                                @elseif($totw<$task->num)
+                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                @endif
+                                            </td>
+                                        @elseif($task->category ==7)
+                                            <td>Others</td>
+                                        @else
+                                            <td>N/A</td>
+                                        @endif
+
+
+                                    </tr>
                                 @endforeach
-
                                 </tbody>
                             </table>
                         </div>
