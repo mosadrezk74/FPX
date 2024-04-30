@@ -114,8 +114,8 @@
             <div class="card text-center bg-primary-gradient text-white ">
 
                 <div class="card-body">
-                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.rankLeg')}}</h1>
-                    <h1 class="text-black">{{ $rank_leg }} # </h1>
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">ترتيبك ما بين هدافي الدوري</h1>
+                    <h1 class="text-black">{{ $TopGoals }} # </h1>
                 </div>
             </div>
 

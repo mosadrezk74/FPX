@@ -219,7 +219,7 @@
                           <div class="card text-center" style="background-color: transparent; border: none;">
                               <div class="card-body">
                                   <img src="{{$club->image}}" title="{{$club->name_en}}"
-                                       class="card-img-top" alt="Club Image" style="filter: grayscale(100%); width: 40%; height: 40%;">
+                                       class="card-img-top" alt="Club Image" style="filter: grayscale(100%); width: 50%; height: 55%;">
 
                               </div>
                           </div>

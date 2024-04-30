@@ -6,7 +6,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('index.task')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{trans('index.veiw_all')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('index.tasks')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{trans('index.veiw_all')}}</span>
             </div>
         </div>
     </div>
@@ -20,23 +20,23 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">STRIPED ROWS</h4>
+                        <h4 class="card-title mg-b-0">{{trans('index.taskD')}}</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
-                    <p class="tx-12 tx-gray-500 mb-2">Example of Valex Striped Rows.. <a href="">Learn more</a></p>
                 </div>
+
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped mg-b-0 text-md-nowrap">
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Player Name</th>
-                                <th>Text</th>
-                                <th>Priority</th>
-                                <th>Num</th>
-                                <th>Achieved</th>
-                                <th>Status</th>
+                                <th>{{trans('index.player')}}</th>
+                                <th>{{trans('index.text')}}</th>
+                                <th>{{trans('index.pro')}}</th>
+                                <th>{{trans('index.Num')}}</th>
+                                <th>{{trans('index.Achieved')}}</th>
+                                <th>{{trans('index.status')}}</th>
                             </tr>
                             </thead>
                             <tbody>

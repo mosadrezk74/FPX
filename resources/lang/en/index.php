@@ -111,7 +111,16 @@ return [
     'avg'=>'Average',
     'per'=>'Percent %',
     'heat'=>'Season HeatMap',
-    
+    'tasks'=>'Tasks',
+    'taskD'=>'Tasks the coach asked you to accomplish',
+    'player'=>'Player Name ',
+    'text'=>'Text',
+    'pro'=>'Priority',
+
+
+
+
+
 
 
 

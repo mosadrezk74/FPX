@@ -61,7 +61,7 @@ class Player_Dashboard extends Controller
 
 
         $currentPlayerRank_leg = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->where('players.id', $authPlayer->id) // filter by current auth player
+            ->where('players.id', $authPlayer->id)
             ->select('players.*', 'stats.G_Sh as G_Sh')
             ->first();
 
@@ -70,6 +70,23 @@ class Player_Dashboard extends Controller
                 ->select('stats.G_Sh');
             $ranks_leg = $rankQuery_Leg->pluck('G_Sh')->all();
             $rank_leg = array_search($currentPlayerRank_leg->G_Sh, $ranks_leg) + 1;
+
+
+
+        $currentPlayerRankGoal = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+
+            ->where('players.id', $authPlayer->id)
+            ->select('players.*', 'stats.Goals as Goals')
+            ->first();
+
+        $rankQueryGoal = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+
+            ->orderByDesc('stats.Goals')
+            ->select('stats.Goals');
+
+        $ranksGoals = $rankQueryGoal->pluck('Goals')->all();
+        $TopGoals = array_search($currentPlayerRankGoal->Goals, $ranksGoals) + 1;
+
 
 
 
@@ -108,6 +125,7 @@ class Player_Dashboard extends Controller
             ,'topAssister'
             ,'rank'
             ,'rank_leg'
+            ,'TopGoals'
         ));
     }
 
@@ -129,9 +147,6 @@ class Player_Dashboard extends Controller
         return view('Dashboard.Player_Dashboard.stats',
             compact('player', 'stats', 'club_id', 'player_id' ,'random_clubs' , 'random_dates' ));
     }
-
-
-
 
     public function club_info(){
         $player = auth()->guard('player')->user();
@@ -218,13 +233,6 @@ class Player_Dashboard extends Controller
 
         ));
     }
-
-
-
-
-
-
-
 
 
     public function chat_coach()
@@ -364,6 +372,12 @@ class Player_Dashboard extends Controller
 
 
         return view('Dashboard.Player_Dashboard.task' , compact('tasks' , 'player'  ));
+    }
+
+
+    public function compare()
+    {
+        return view('Dashboard.Player_Dashboard.compare');
     }
 
 

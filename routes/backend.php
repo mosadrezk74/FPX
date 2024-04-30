@@ -212,6 +212,14 @@ Route::group(
 
 
 
+     Route::get('dashboard/player/compare'
+     ,[Player_Dashboard::class,'compare']
+     );
+
+
+
+
+
 
 
 
