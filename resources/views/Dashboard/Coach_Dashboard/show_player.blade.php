@@ -24,7 +24,7 @@ $random_number = $rating[$random_key];
                 <div class="col-md-4">
                     <div class="d-flex flex-column text-center">
                         <div class="position-relative">
-                            <img alt="" src="{{ asset('uploads/players/'. $player->photo) }}"  width="200px" height="200px" class="brround img-fluid">
+                            <img alt="" src="{{$player->photo }}"  width="200px" height="200px" class="brround img-fluid">
                             <img alt="Club Logo" src="{{$player->club->image}}" class="club-logo ml-1" width="30" height="30">
                             <h1 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{$player->name_ar}}</h1>
                              @if($player->position == 0)
@@ -146,7 +146,7 @@ $random_number = $rating[$random_key];
                                     <div class="col-lg-3 col-md-3">
                                         <div class="card bg-primary">
                                             <div class="card-body text-center">
-                                                <h1 class=" text-white">{{$player->stat->Assists}}</h1>
+                                                <h1 class=" text-white">{{ intval($player->stat->Assists * $player->stat->MP) }}</h1>
                                                 <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.assist')}}</h1>
 
                                             </div>

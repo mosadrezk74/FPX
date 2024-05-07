@@ -54,9 +54,28 @@ class ApiController extends Controller
 
     public function get_players_api()
     {
-        $players = Player::get();
-        return response()->json($players);
+
+        $players = Player::with('club', 'stat')->get();
+        
+        $transformedPlayers = $players->map(function ($player) {
+            return [
+                'id' => $player->id,
+                'name_ar' => $player->name_ar,
+                'name_en' => $player->name_en,
+                'photo' => $player->photo,
+                'position' => $player->position,
+                'nationality' => $player->nationality,
+                'club' => $player->club,
+                'stats' => $player->stat,
+                'email' => $player->email,
+                'created_at' => $player->created_at,
+                'updated_at' => $player->updated_at,
+            ];
+        });
+
+        return response()->json($transformedPlayers);
     }
+
 
     public function get_players_by_id_api(Request $request)
     {
@@ -97,9 +116,10 @@ class ApiController extends Controller
     public function top_player()
     {
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.totalGoals')
-            ->select('players.*', 'stats.totalGoals as totalGoals')
-            ->first();
+            ->orderByDesc('stats.Goals')
+            ->select('players.*', 'stats.Goals as Goals')
+            ->take(10)
+            ->get();
 
         return response()->json($topGoalScorer);
     }
@@ -107,9 +127,10 @@ class ApiController extends Controller
     public function top_assist()
     {
         $topAssister = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.goalAssists')
-            ->select('players.*', 'stats.goalAssists as goalAssists')
-            ->first();
+            ->orderByDesc('stats.Assists')
+            ->select('players.*', 'stats.Assists as Assists')
+            ->take(10)
+            ->get();
 
         return response()->json($topAssister);
     }
@@ -117,14 +138,60 @@ class ApiController extends Controller
     public function top_rating()
     {
         $topRatePlayer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.totalGoals')
-            ->select('players.*', 'stats.totalGoals as totalGoals')
-            ->take(5)
+            ->orderByDesc('stats.SoT')
+            ->select('players.*', 'stats.SoT as SoT')
+            ->take(10)
             ->get();
-
 
         return response()->json($topRatePlayer);
     }
+   public function top_xg()
+   {
+       $topXG = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+           ->orderByDesc('stats.SoT')
+           ->select('players.*', 'stats.SoT as SoT')
+           ->take(10)
+           ->get();
+
+       return response()->json($topXG);
+
+   }
+   public function top_xa()
+   {
+       $topXA = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+           ->orderByDesc('stats.PasAss')
+           ->select('players.*', 'stats.PasAss as PasAss')
+           ->take(10)
+           ->get();
+
+       return response()->json($topXA);
+
+   }
+
+   public function xg_xa()
+   {
+       $topXGA = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+           ->orderByDesc('stats.GCA')
+           ->select('players.*', 'stats.GCA as GCA')
+           ->take(10)
+           ->get();
+
+       return response()->json($topXGA);
+   }
+
+   public function top_key_pass()
+   {
+       $top_Passes=Player::join('stats', 'players.stat_id', '=', 'stats.id')
+           ->orderByDesc('stats.Pas3rd')
+           ->select('players.*', 'stats.Pas3rd as Pas3rd')
+           ->take(10)
+           ->get();
+       return response()->json($top_Passes);
+
+   }
+
+
+
 
 
 

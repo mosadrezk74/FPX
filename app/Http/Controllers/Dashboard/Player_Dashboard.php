@@ -375,10 +375,31 @@ class Player_Dashboard extends Controller
     }
 
 
-    public function compare()
+    public function comparePlayer()
     {
-        return view('Dashboard.Player_Dashboard.compare');
+        $player = auth()->guard('player')->user();
+        $club_id = $player->club_id;
+        $player_id = $player->id;
+
+        return view('Dashboard.Player_Dashboard.compare'
+        ,compact('player' , 'club_id','player_id' )
+        );
     }
+
+    public function compare(Player $player)
+    {
+        try {
+
+            $authPlayer = auth()->user()->player;
+            return view('comparison.compare', compact('authPlayer', 'player'));
+        } catch (\Exception $e) {
+
+            \Log::error($e->getMessage());
+
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+    }
+
 
 
 

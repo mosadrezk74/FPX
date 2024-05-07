@@ -183,7 +183,7 @@
                                         @foreach($topGoalScorers as $player)
                                             <div class="list-group-item border-top-0">
                                                 <img alt="image" class="flag-icon flag-icon-squared flag-icon-lg"
-                                                     src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                     src="{{$player->photo }}" />
                                                 @if(App::getlocale() == "ar")
                                                     <p>{{$player->name_ar}}</p>
                                                     <span>{{$player->stat->Goals}}   </span>
@@ -203,13 +203,13 @@
                                         @foreach($topAssisters as $player)
                                             <div class="list-group-item border-top-0">
                                                 <img alt="image" class="flag-icon flag-icon-squared flag-icon-lg"
-                                                     src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                     src="{{$player->photo }}" />
                                                 @if(App::getlocale() == "ar")
                                                     <p>{{$player->name_ar}}</p>
-                                                    <span>{{$player->stat->Assists}}  </span>
+                                                    <span>{{ intval($player->stat->Assists * $player->stat->MP) }}  </span>
                                                 @else
                                                     <p>{{$player->name_en}}</p>
-                                                    <span>{{$player->stat->Assists}} </span>
+                                                    <span>{{ intval($player->stat->Assists * $player->stat->MP) }} </span>
                                                 @endif
                                             </div>
                                         @endforeach

@@ -59,7 +59,7 @@
                                         <tr>
                                             <th >{{$loop->iteration}}</th>
                                             <td style="width:50px" >
-                                                <img  alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                <img  alt="image" src="{{$player->photo }}" />
                                             </td>
                                             <td>
                                                 <a   style="font-size: 15px ;" href="{{route('stats.show',$player->id)}}">
@@ -72,7 +72,7 @@
                                             </td>
                                             <td>{{$player->stat->MP}}</td>
                                             <td>{{$player->stat->Goals}}</td>
-                                            <td>{{$player->stat->Assists}}</td>
+                                            <td>{{ intval($player->stat->Assists * $player->stat->MP) }}</td>
                                             <td>{{rand(100,50)/100 }}</td>
                                             <td>{{rand(100,50)/100 }}</td>
 

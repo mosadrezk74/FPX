@@ -160,27 +160,6 @@
         </div>
         </div>
 
-    <!-- Modal  add-->
-
-    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{trans('index.task')}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                     <div class="modal-body">
-                        <label for="exampleInputPassword1">{{trans('coach.name_ar')}}</label>
-                        <input type="text" value="{{$task->num}}" class="form-control" disabled>
-                    </div>
-
-             </div>
-        </div>
-    </div>
-
-
 
 
 @endsection

@@ -79,7 +79,7 @@
                                                                         <tr>
                                                                             <td>{{$player->stat->Jersey}}</td>
                                                                             <td>
-                                                                                <img width="50px" height="50px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                                                <img width="50px" height="50px" alt="image"  src="{{$player->photo}}"  />
                                                                             </td>
                                                                             @if(App::getLocale() == 'ar')
                                                                                 <td>{{$player->name_ar}}</td>
@@ -147,7 +147,7 @@
                                                                         <tr>
                                                                             <td>{{$player->shirt_number}}</td>
                                                                             <td>
-                                                                                <img width="50px" height="50px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                                                <img width="50px" height="50px" alt="image"  src="{{$player->photo}}"  />
                                                                             </td>
                                                                             @if(App::getLocale() == 'ar')
                                                                                 <td>{{$player->name_ar}}</td>
@@ -209,7 +209,7 @@
                                                                         <tr>
                                                                             <td>{{$player->shirt_number}}</td>
                                                                             <td>
-                                                                                <img width="50px" height="50px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                                                <img width="50px" height="50px" alt="image"  src="{{$player->photo}}" />
                                                                             </td>
                                                                             @if(App::getLocale() == 'ar')
                                                                                 <td>{{$player->name_ar}}</td>
@@ -271,7 +271,7 @@
                                                                         <tr>
                                                                             <td>{{$player->shirt_number}}</td>
                                                                             <td>
-                                                                                <img width="50px" height="50px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                                                <img width="50px" height="50px" alt="image"  src="{{$player->photo}}"  />
                                                                             </td>
                                                                             @if(App::getLocale() == 'ar')
                                                                                 <td>{{$player->name_ar}}</td>

@@ -46,7 +46,7 @@
                                                 <div class="col-sm-4">
                                                     <div class="border p-1 card thumb">
                                                         <a href="#" class="image-popup" title="Screenshot-2">
-                                                            <img width="100px" height="100px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                            <img width="100px" height="100px" alt="image" src="{{$player->photo }}" />
                                                         </a>
                                                         <h4 class="text-center tx-14 mt-3 mb-0">
 														<a href="" style="color:#0040ce;" >

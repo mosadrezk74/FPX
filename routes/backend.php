@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\Player_Dashboard;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\SearchController;
  use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -68,9 +69,17 @@ Route::group(
   #-----------------#############################-------------------------------#
 
 
-    Route::get('dashboard/admin/front_pages',
-        [\App\Http\Controllers\PageController::class, 'index'])->name('page.index');
+    Route::get('dashboard/admin/join_front',
+        [\App\Http\Controllers\PageController::class, 'join'])->name('front.join');
 
+    Route::delete('/dashboard/admin/join_front/{id}', [PageController::class, 'destroy'])->name('join.destroy');
+
+    Route::get('dashboard/admin/contact_front',
+        [\App\Http\Controllers\PageController::class, 'contact'])->name('front.contact');
+
+
+    Route::get('dashboard/admin/send_front',
+        [\App\Http\Controllers\PageController::class, 'send'])->name('front.send');
 
 
 
@@ -83,9 +92,15 @@ Route::group(
     //-------------------------------------------------------------------------
     //-------------------------------------------------------------------------
      Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
+
     Route::get('dashboard/admin/club/status/{status}/{id}', [\App\Http\Controllers\Admin\ClubController::class, 'toggleStatus'])
         ->name('club.toggleStatus');
 
+    Route::get('dashboard/dashboard/admin/join_front/{status}/{id}', [\App\Http\Controllers\PageController::class, 'toggleStatus'])
+        ->name('join.toggleStatus');
+
+    Route::get('dashboard/dashboard/admin/contact_front/{status}/{id}', [\App\Http\Controllers\PageController::class, 'toggleStatus_contact'])
+        ->name('contact.toggleStatus');
 
   Route::resource('dashboard/admin/coach', \App\Http\Controllers\Admin\CaochController::class);
     Route::get('/search', SearchController::class);
@@ -213,10 +228,11 @@ Route::group(
 
 
      Route::get('dashboard/player/compare'
-     ,[Player_Dashboard::class,'compare']
+     ,[Player_Dashboard::class,'comparePlayer']
      );
 
 
+    Route::get('/compare/{player}', [Player_Dashboard::class, 'compare'])->name('compare');
 
 
 

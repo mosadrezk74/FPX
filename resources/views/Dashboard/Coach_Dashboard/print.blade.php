@@ -58,7 +58,7 @@
                         <div class="row mg-t-20">
                             <div class="col-md">
                                 <label class="tx-gray-600">{{trans('index.info_player')}}</label>
-                                <p class="invoice-info-row"><span>{{trans('player.photo_player')}}</span> <span><img width="70px" height="70px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" /></span>
+                                <p class="invoice-info-row"><span>{{trans('player.photo_player')}}</span> <span><img width="70px" height="70px" alt="image" src="{{$player->photo }}"/></span>
                                 </p>
                                 <p class="invoice-info-row "><span>{{trans('player.name')}}</span>
                                     @if(App::getlocale() == 'ar')
@@ -152,10 +152,10 @@
                                     <td class="tx-12">{{ $player->stat->offsides}}</td>
                                     <td class="tx-12">{{ $player->stat->yellowCards}}</td>
                                     <td class="tx-12">{{ $player->stat->redCards}}</td>
-                                    <td class="tx-12">{{ $player->stat->goalAssists}}</td>
+                                    <td class="tx-12">{{ intval($player->stat->Assists * $player->stat->MP) }}</td>
                                     <td class="tx-12">{{ $player->stat->shotsOnTarget}}</td>
                                     <td class="tx-12">{{ $player->stat->totalShots}}</td>
-                                    <td class="tx-12">{{ $player->stat->totalGoals}}</td>
+                                    <td class="tx-12">{{ $player->stat->Goals}}</td>
                                     <td class="tx-12">{{ $player->stat->goalsConceded}}</td>
                                     <td class="tx-12">{{ $player->stat->shotsFaced}}</td>
 

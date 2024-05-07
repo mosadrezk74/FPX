@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+}
+body {
+  background-color: black;
+}
+.supmit {
+  border-radius: 32px;
+  text-transform: capitalize;
+  background: rgba(53, 182, 127, 1);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+.form input {
+  background: rgba(217, 217, 217, 1);
+  border: 1px solid rgba(217, 217, 217, 1);
+  border-radius: 20px;
+  padding: 20px 50px;
+  margin: 30px;
+  font-size: 25px;
+  width: 80%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}

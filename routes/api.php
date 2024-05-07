@@ -63,6 +63,10 @@ Route::group(
         Route::post('/get_theTop_player_score', [ApiController::class, 'top_player']);
         Route::post('/get_theTop_player_assist', [ApiController::class, 'top_assist']);
         Route::post('/get_theTop_player_Rate', [ApiController::class, 'top_rating']);
+        Route::post('/top_xg', [ApiController::class, 'top_xg']);
+        Route::post('/top_xa', [ApiController::class, 'top_xa']);
+        Route::post('/goals_assists', [ApiController::class, 'xg_xa']);
+        Route::post('/top_key_pass', [ApiController::class, 'top_key_pass']);
         ## شويه apis متنوعه ##
         //############################################################################################################//
 

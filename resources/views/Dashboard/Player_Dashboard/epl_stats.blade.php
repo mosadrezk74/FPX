@@ -61,7 +61,7 @@
                                         <tr>
                                             <th >{{$loop->iteration}}</th>
                                             <td style="width:50px" >
-                                                <img  alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                <img  alt="image"  src="{{$player->photo}}"  />
                                             </td>
                                             <td>
                                                 <a   style="font-size: 15px ;" href="{{route('stats.show',$player->id)}}">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontContoller;
 use App\Http\Controllers\ProfileController;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Route;
@@ -13,13 +14,62 @@ Route::group(
     ], function() {
 ##################################################################################
     Route::get('/', [\App\Http\Controllers\FrontContoller::class, 'index'])
-        ->name('front.index');
+        ->name('index');
 ##################################################################################
     Route::get('/player', [\App\Http\Controllers\FrontContoller::class, 'player'])
-        ->name('front.player');
+        ->name('player');
 ##################################################################################
     Route::get('/contact', [\App\Http\Controllers\FrontContoller::class, 'contact'])
-        ->name('front.contact');
+        ->name('contact');
+
+
+    Route::post('/contact', [\App\Http\Controllers\FrontContoller::class, 'contact_store'])
+        ->name('contact.store');
+
+##################################################################################
+    Route::get('/about', [\App\Http\Controllers\FrontContoller::class, 'about'])
+        ->name('about');
+##################################################################################
+    Route::get('/compare', [FrontContoller::class, 'compare'])->name('compare');
+##################################################################################
+    Route::post('/comparison', [FrontContoller::class, 'comparison'])->name('comparison');
+##################################################################################
+
+    Route::post('/join', [FrontContoller::class, 'join_store'])->name('join.store');
+
+    Route::get('/join', [\App\Http\Controllers\FrontContoller::class, 'join'])
+        ->name('join');
+
+##################################################################################
+    Route::get('/discover', [\App\Http\Controllers\FrontContoller::class, 'discover'])
+        ->name('discover');
+##################################################################################
+    Route::get('/rating', [\App\Http\Controllers\FrontContoller::class, 'rating'])
+        ->name('rating');
+    ##################################################################################
+    Route::get('/scouting', [\App\Http\Controllers\FrontContoller::class, 'scouting'])
+        ->name('scouting');
+##################################################################################
+    Route::get('/send', [\App\Http\Controllers\FrontContoller::class, 'send'])
+        ->name('send');
+
+
+    ##################################################################################
+    Route::post('/send', [\App\Http\Controllers\FrontContoller::class, 'send_store'])
+        ->name('send.store');
+
+
+
+
+
+
+    ##################################################################################
+    Route::get('/signup', [\App\Http\Controllers\FrontContoller::class, 'signup'])
+        ->name('signup');
+##################################################################################
+    Route::get('/topRated', [\App\Http\Controllers\FrontContoller::class, 'topRated'])
+        ->name('topRated');
+##################################################################################
 
 });
 

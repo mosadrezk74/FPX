@@ -24,7 +24,7 @@
             <div class="col-md-4">
                 <div class="d-flex flex-column text-center">
                     <div class="position-relative">
-                        <img alt="" src="{{ asset('uploads/players/'. $player->photo) }}"  width="200px" height="200px" class="brround img-fluid">
+                        <img alt="" src="{{$player->photo}}"  width="200px" height="200px" class="brround img-fluid">
                         <img alt="Club Logo" src="{{$player->club->image}}" class="club-logo ml-1" width="30" height="30">
                         @if(App::getlocale() == 'ar')
                         <h1 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{$player->name_ar}}</h1>

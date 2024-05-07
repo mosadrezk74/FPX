@@ -116,6 +116,7 @@ return [
     'player'=>'Player Name ',
     'text'=>'Text',
     'pro'=>'Priority',
+'player_c'=>'Player',
 
 
 

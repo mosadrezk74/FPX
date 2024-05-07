@@ -45,7 +45,7 @@
                                 <th scope="row">{{$loop->iteration}}</th>
                                 <td>
                                     <img width="30px" height="30px" alt="image"
-                                         src="{{ asset('uploads/players/' . $task->player->photo) }}"
+                                         src="{{$task->$player->photo}}"
                                     />
                                     <a href="{{route('player.show', $task->player->id)}}">
                                     {{$task->player->name_ar}}

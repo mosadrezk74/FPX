@@ -31,7 +31,7 @@
                                     <div class="d-flex" style="border:0px solid red">
 
                                         <img width="30px" height="30px" alt="image"
-                                             src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                             src="{{$player->photo}}"  />
 
                                         <span id="{{ $player->name_en }}"> {{ $player->name_ar }} </span>
                                     </div>

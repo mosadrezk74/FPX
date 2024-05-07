@@ -112,7 +112,15 @@
                             </svg>
                         </a>
                         <ul class="slide-menu">
-                            <li><a class="slide-item" href="{{ route('page.index') }}">{{trans('Dashboard/main-sidebar_trans.add_pages')}}</a></li>
+                            <li><a class="slide-item" href="{{ route('front.join') }}">{{trans('site/index.join')}}</a></li>
+
+                        </ul>
+                        <ul class="slide-menu">
+                            <li><a class="slide-item" href="{{ route('front.contact') }}">{{trans('site/index.contact')}}</a></li>
+
+                        </ul>
+                        <ul class="slide-menu">
+                            <li><a class="slide-item" href="{{ route('front.send') }}">{{trans('site/index.send')}}</a></li>
 
                         </ul>
                     </li>

@@ -1,0 +1,77 @@
+*{
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+
+}
+
+
+body{
+  background-color: black;
+}
+/* .apply{
+  border: 1px solid #fff;
+} */
+.apply h1{
+  color: #fff;
+  font-size: 32px;
+  text-transform: capitalize;
+}
+.apply span{
+  color:rgb(58, 156, 58);
+  text-transform: capitalize;
+  font-size: 32px;
+
+}
+.apply p{
+  font-size: 18px;
+  font-weight:400 ;
+  color: #fff;
+  width:75% ;
+  margin-top: 20px;
+}
+.applybtn{
+  width: 48%;
+  padding: 10px 0px;
+  border-radius:32px ;
+  text-transform: capitalize;
+  background-color: rgba(242, 242, 242, 1);
+  font-size:20px ;
+  margin-top: 20px;
+  font-weight: 600;
+  @media (max-width:1200px) {
+    width: 100%;
+  }
+
+}
+.join h1{
+  color: #fff;
+  justify-content: center;
+  text-align: center;
+  font-size: 56px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+}
+input{
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  padding: 10px 10px;
+  margin: 10px auto;
+  width: 100%;
+}
+.last-name{
+  margin-top: 120px;
+  @media (max-width:1200px) {
+    margin-top: 10px;
+  }
+}
+textarea{
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  padding: 10px 10px;
+  width: 100%;
+  margin-top: 10px;
+}

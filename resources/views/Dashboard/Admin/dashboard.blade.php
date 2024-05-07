@@ -28,7 +28,7 @@
                     <div class="counter-status d-flex md-mb-0">
                         <div style="text-align: center;">
                             <img alt="image" style="width: 100px; height: 100px;"
-                                 src="{{ asset('uploads/players/'. $topGoalScorer->photo) }}" />
+                                 src="{{$topGoalScorer->photo }}" />
                          </div>
                         <div class="mr-auto">
                             <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;">{{trans('index.top_goal_scorer')}}</h2>
@@ -50,7 +50,7 @@
                     <div class="counter-status d-flex md-mb-0">
                         <div style="text-align: center;">
                             <img alt="image" style="width: 100px; height: 100px;"
-                                 src="{{ asset('uploads/players/'. $topAssister->photo) }}" />
+                                 src="{{$topAssister->photo }}" />
                          </div>
                         <div class="mr-auto">
                             <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;" > {{trans('index.top_assister')}} </h2>
@@ -60,7 +60,7 @@
                                 <h3 class="tx-13 tx-white-8 mb-3" style="text-align: center;"> {{$topAssister->name_en}} </h3>
                             @endif
 
-                                <h3 class="counter mb-0 text-white" style="text-align: center;">{{$topAssister->stat->Assists}}
+                                <h3 class="counter mb-0 text-white" style="text-align: center;">{{intval($topAssister->stat->Assists*$topAssister->stat->MP)}}
                                     {{trans('index.assist')}}</h3>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                         <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
-                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                  src="{{$player->photo}}" />
                             @if(App::getlocale() == "ar")
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
                                 <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Goals}} </span>
@@ -145,13 +145,13 @@
                         <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
-                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                  src="{{$player->photo}}" />
                             @if(App::getlocale() == "ar")
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
-                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Assists}} </span>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{intval($player->stat->Assists*$player->stat->MP)}} </span>
                             @else
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_en}}</a>
-                                <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Assists}}  </span>
+                                <span {{$loop->first ? 'class=text-white' : ''}}>{{intval($player->stat->Assists*$player->stat->MP)}}  </span>
                             @endif
                         </div>
                     @endforeach
@@ -172,7 +172,7 @@
                         <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
-                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                  src="{{$player->photo}}" />
                             @if(App::getlocale() == "ar")
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
                                 <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->MP}} </span>

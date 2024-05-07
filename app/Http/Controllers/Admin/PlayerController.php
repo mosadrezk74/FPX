@@ -68,15 +68,11 @@ class PlayerController extends Controller
                 'name_ar' => 'required|string|max:25',
                 'name_en' => 'required|string|max:25',
                 'nationality' => 'required|string|max:25',
-//                'age' => 'required',
-//                'height' => 'required|numeric',
                 'position' => 'required|string|max:50',
-//                'shirt_number' => 'required|integer',
                 'club_id' => 'required|exists:clubs,id',
-
                 'email' => 'required|email|unique:players,email',
                 'password' => 'required|string|min:6',
-                'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'photo' => 'required',
 
 
             ];
@@ -93,23 +89,21 @@ class PlayerController extends Controller
             $players->name_ar = $request->name_ar;
             $players->name_en = $request->name_en;
             $players->nationality = $request->nationality;
-//            $players->age = $request->age;
-//            $players->height = $request->height;
+
             $players->position = $request->position;
-//            $players->shirt_number = $request->shirt_number;
             $players->stat_id  = $request->stat_id ;
             $players->club_id = $request->club_id;
             $players->email = $request->email;
             $players->password = password_hash($request->password, PASSWORD_BCRYPT);
+            $players->photo=$request->photo;
 
-            if ($request->hasFile('photo')) {
-                $file = $request->file('photo');
-                $extension = $file->getClientOriginalExtension();
-                $filename = time() . '.' . $extension;
-                $file->move('uploads/players/', $filename);
-                $players->photo = $filename;
-            }
-
+//            if ($request->hasFile('photo')) {
+//                $file = $request->file('photo');
+//                $extension = $file->getClientOriginalExtension();
+//                $filename = time() . '.' . $extension;
+//                $file->move('uploads/players/', $filename);
+//                $players->photo = $filename;
+//            }
             $players->save();
             ###############################
             ###############################

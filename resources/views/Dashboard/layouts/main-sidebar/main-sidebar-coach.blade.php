@@ -23,7 +23,7 @@
                     @if($coach)
 
                         <img alt="user-img" class="avatar avatar-xl brround"
-                             src="{{ asset('uploads/coach_logo/'. $coach->photo) }}">
+                             src="{{$coach->photo}}">
                     @else
                         <img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('Dashboard/img/faces/6.jpg')}}">
                     @endif

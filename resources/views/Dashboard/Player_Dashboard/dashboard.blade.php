@@ -246,7 +246,7 @@
                         <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
-                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                  src="{{$player->photo}}"  />
                             @if(App::getlocale() == "ar")
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
                                 <span {{$loop->first ? 'class=text-white' : ''}}>{{$player->stat->Goals}} </span>
@@ -264,7 +264,7 @@
                         <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
-                                  src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                  src="{{$player->photo}}"  />
                             @if(App::getlocale() == "ar")
                                 <a href="{{route('stats.show', $player->id)}}" {{$loop->first ? 'class=text-white' : ''}}>{{$player->name_ar}}</a>
                                 <span {{$loop->first ? 'class=text-white' : ''}}>{{intval($player->stat->Assists * $player->stat->MP )}}  </span>

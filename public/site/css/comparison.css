@@ -1,0 +1,533 @@
+
+body
+{
+    background-image: url(../images/comparison/mainBG.png);
+    background-repeat: no-repeat;
+    background-attachment:scroll ;
+    background-size: cover;
+
+}
+p , pre{
+    color: #FFFFFF;
+    font-family:Inter ;
+
+
+}
+.Headers
+{
+    color: #FFFFFF;
+    font-family:Inter ;
+    margin-left: 3.1%;
+}
+/* first section */
+.players
+{
+    background-color: #6f6e6eb5;
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 8%;
+    margin: 1% 3%;
+}
+.playerA , .total_matches , .playerB
+{
+    text-align: left;
+    margin: 5% auto;
+}
+.players_pic
+{
+    width: 45.3%;
+    height: 28%;
+    margin-bottom: 5%;
+}
+.players_input
+{
+    background-color:#6F6E6E ;
+    border: none;
+    height:4.8ex;
+    border-radius: 5px;
+    width: 100%;
+}
+.matches_input
+{
+    background-color:#6F6E6E ;
+    border: none;
+    height:4.8ex;
+    border-radius: 5px;
+    width: 66%;
+    color: #ffffff99;
+    padding-left: 4%;
+
+}
+::placeholder
+{
+    color: #ffffff99;
+    opacity: 50; /* Firefox */
+    padding-left: 5%;
+}
+.total_matches
+{
+    margin-left: 12.5%;
+
+}
+.total_matches h3
+{
+    color: #FFFFFF;
+}
+
+
+@media screen and (max-width: 600px) {
+    .players
+    {
+        display: block;
+    }
+    .playerA , .total_matches , .playerB
+    {
+        text-align: center;
+        margin: 5% auto;
+    }
+    .players_input
+{
+    background-color:#6F6E6E ;
+    border: none;
+    height:4.8ex;
+    border-radius: 5px;
+    width: 100%;
+}
+.matches_input
+{
+    background-color:#6F6E6E ;
+    border: none;
+    height:4.8ex;
+    border-radius: 5px;
+    width: 100%;
+    color: #ffffff99;
+    padding-left: 4%;
+
+}
+.players_pic
+{
+    width: 20%;
+    height: 25%;
+    margin-bottom: 5%;
+}
+}
+
+
+
+
+/* 000000000000000000000000000000000000000000000000000000000000 */
+/* .name_analyse{
+    background-color: #86858552;
+    display: flex;
+    justify-content: space-between;
+    padding: 4% 8%;
+    margin: 6% 3%;
+}
+
+.profile_pic_1
+{
+    border-radius: 50%;
+    width: auto;
+    height: 50%;
+}
+
+.profile_pic_2
+{
+    border-radius: 50%;
+    width: auto;
+    height: auto;
+}
+
+.names
+{
+    width:30%;
+    margin-bottom: 9%;
+}
+.name2
+{
+    width:20%;
+    direction: rtl;
+    text-align: right;
+    margin-left: 50%;
+    margin-bottom: 15%;
+}
+
+.internal_data_1
+{
+    display: flex;
+
+}
+
+
+
+.data
+{
+    text-align: center;
+    background-color: #6F6E6E;
+    width: auto;
+    height: 20%;
+    padding: 0 3%;
+}
+
+.name_b
+{
+    text-align: right;
+
+}
+
+.name_b .internal_data_2
+{
+    display: flex;
+    justify-content:space-between;
+}
+
+.text
+{
+    margin-right: 10%;
+} */
+
+.match
+{
+    background-color: #6f6e6eb5;
+    display: flex;
+    display: none;
+    justify-content: space-between;
+    padding: 4% 4% 0% 4%;
+    margin: 6% 3% 0% 3%;
+}
+
+.name_player
+{
+    width: 50%;
+}
+
+/* */
+
+.match2
+{
+    display: flex;
+    display: none;
+    background-color: #6f6e6eb5;
+
+    justify-content: space-between;
+    padding: 4% 8% 0% 8%;
+    margin: 0% 3% 6% 3%;
+}
+
+.contianner
+{
+    display: flex;
+}
+.last
+{
+    display: flex;
+}
+
+.a img
+{
+    border-radius: 50%;
+}
+
+.c{
+    text-align: right;
+    float: right;
+    margin-left: 15%;
+}
+.c img
+{
+    border-radius: 50%;
+
+}
+
+
+.middle
+{
+    text-align: center;
+    background-color: #6f6e6eb5;
+    width: auto;
+    height: 20%;
+    padding: 0 7%;
+}
+.name_b
+{
+    text-align: right;
+}
+
+table th ,td
+{
+    text-align: center;
+}
+/* 00000000000000000 */
+
+/* circles */
+.contC
+{
+    display: flex;
+    justify-content: space-between;
+    background-color: #6f6e6eb5;
+    margin: 1% 3% 0% 3%;
+    /* border-radius: 10px; */
+    padding: 2% 2%;
+
+}
+
+
+.circles {
+  display: flex;
+  flex-wrap: wrap; /* Wrap circles if they overflow */
+  justify-content: space-around; /* Distribute circles evenly */
+}
+
+.circle {
+  width: 100px; /* Adjust width and height as needed */
+  height: 100px;
+  border-radius: 50%; /* Make the div a circle */
+  /* Set background color */
+  text-align: center; /* Center text within circle */
+  line-height: 82px; /* Center text vertically */
+  font-size: 15px; /* Adjust font size as needed */
+  margin: 10px; /* Add spacing between circles */
+  border: 10px solid #cfcfd0;
+  color: #fff;
+}
+.text {
+    font-size: 14px; /* Adjust font size as needed */
+    margin-top: 5px; /* Add space between circle and text */
+    color: #fff;
+  }
+  .circle-container {
+    text-align: center; /* Center content within container */
+  }
+
+.contC_under{
+    display: flex;
+    justify-content: space-between;
+    background-color: #6f6e6eb5;
+    margin: 0% 3%;
+    /* border-radius: 10px; */
+    padding: 0% 2%;
+}
+.under_circle
+{
+    width: 100px; /* Adjust width and height as needed */
+    height: 100px; /* Make the div a circle */
+    /* Set background color */
+    text-align: center; /* Center text within circle */
+    line-height: 0px; /* Center text vertically */
+    font-size: 20px; /* Adjust font size as needed */
+    margin: 10px; /* Add spacing between circles */
+
+    color: #fff;
+}
+
+
+@media only screen and (max-width: 420px)
+{
+    .contC
+    {
+        display: block;
+    }
+}
+
+/* circles */
+
+
+/* heatmap */
+.ClassContianer1 {
+    display: flex;
+    justify-content: space-evenly;
+    /* padding-top: 3%; */
+    margin: 1% 2%;
+    color: #FFFFFF;
+}
+
+.total-shots,
+.score-table {
+    /* border-radius: 5px; */
+    background: #6f6e6eb5;
+    width: 48.5%;
+    height: 440px;
+    padding: 3%;
+}
+.noR
+{
+    text-align: end;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .ClassContianer1
+{
+        display: block;
+
+    }
+
+    .total-shots,
+    .score-table {
+        width: 100%;
+        padding-top: 0%;
+        margin-top: 1%;
+
+        text-align: center;
+    }
+
+    .noR
+    {
+        text-align: center;
+    }
+
+}
+
+
+
+
+
+/* heatmap end */
+
+
+/* table 1 */
+.table-standings {
+    font-size: 11px;
+    letter-spacing: .1em;
+
+}
+
+.table-container{
+    background-color: #6f6e6eb5;
+    border-radius: 10px;
+}
+
+.table-custom {
+
+    /* font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
+    text-transform: uppercase;
+    line-height: 3.5;
+    border-collapse: collapse;
+
+    border: none;
+    color: #fff;
+    width: 100%;
+    /* background-color: #86858584;
+padding: 4% 0% */
+
+/* padding: 4% 0% ; */
+}
+
+.table-standings tr {
+    transition: all 200ms ease-in-out;
+}
+.table-custom-responsive
+{
+  display: flex;
+JUSTIFY-CONTENT: CENTER;
+
+}
+table th, td {
+  text-align: center;
+  border-bottom: 1px solid #fff;
+  ;
+}
+td{
+padding: 2% 1%;
+
+}
+
+table tr{
+    border-bottom: 1px solid #fff;
+
+}
+
+
+
+
+.progress-bar1 {
+height: 10px; /* Set height of progress bar */
+background-color: #ddd; /* Set background color for the bar */
+border-radius: 5px; /* Add rounded corners */
+overflow: hidden; /* Clip overflowing content */
+display: flex; /* Allow stacking elements horizontally */
+align-items: center; /* Align content vertically within the bar */
+}
+
+.progress1 {
+height: 100%; /* Fill the entire height of the progress bar */
+background-color: limegreen; /* Set progress bar color */
+}
+
+.progress-number1 {
+margin-left: 5px; /* Add spacing between progress bar and number */
+font-size: 10px; /* Adjust font size as needed */
+color: #333; /* Set text color */
+}
+
+
+.progress-bar0 {
+height: 10px; /* Set height of progress bar */
+background-color: #ddd; /* Set background color for the bar */
+border-radius: 5px; /* Add rounded corners */
+overflow: hidden; /* Clip overflowing content */
+display: flex; /* Allow stacking elements horizontally */
+align-items: center; /* Align content vertically within the bar */
+}
+
+.progress0 {
+height: 100%; /* Fill the entire height of the progress bar */
+background-color: #B6452C; /* Set progress bar color */
+}
+
+.progress-number0 {
+margin-left: 5px; /* Add spacing between progress bar and number */
+font-size: 10px; /* Adjust font size as needed */
+color: #333; /* Set text color */
+}
+
+
+.progress-bar2 {
+height: 10px; /* Set height of progress bar */
+background-color: #ddd; /* Set background color for the bar */
+border-radius: 5px; /* Add rounded corners */
+overflow: hidden; /* Clip overflowing content */
+display: flex; /* Allow stacking elements horizontally */
+align-items: center; /* Align content vertically within the bar */
+}
+
+.progress2 {
+height: 100%; /* Fill the entire height of the progress bar */
+background-color: #DF9A13; /* Set progress bar color */
+}
+
+.progress-number2 {
+margin-left: 5px; /* Add spacing between progress bar and number */
+font-size: 10px; /* Adjust font size as needed */
+color: #333; /* Set text color */
+}
+/* end tables 1 */
+
+.progress-bar4 {
+    height: 10px; /* Set height of progress bar */
+    background-color: #ddd; /* Set background color for the bar */
+    border-radius: 5px; /* Add rounded corners */
+    overflow: hidden; /* Clip overflowing content */
+    display: flex; /* Allow stacking elements horizontally */
+    align-items: center; /* Align content vertically within the bar */
+    }
+
+    .progress4 {
+    height: 100%; /* Fill the entire height of the progress bar */
+    background-color: #FF5C00; /* Set progress bar color */
+    }
+
+    .progress-number4 {
+    margin-left: 5px; /* Add spacing between progress bar and number */
+    font-size: 10px; /* Adjust font size as needed */
+    color: #333; /* Set text color */
+    }
+
+
+
+
+span{
+    display: flex;
+    text-align: left;
+
+}

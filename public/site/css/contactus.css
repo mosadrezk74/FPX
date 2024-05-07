@@ -1,0 +1,101 @@
+*{
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+
+}
+body{
+  background-color: black;
+}
+.contact{
+  text-align: center;
+  color: #fff;
+  text-transform: capitalize;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+}
+.contact h1{
+  font-size: 50px;
+  font-weight: 700;
+}
+.main{
+  margin-top: 60px;
+}
+.send-us{
+  border: 1px solid #ffffff80;
+  border-radius: 5px;
+  padding: 40px;
+}
+.send-us p{
+  color: #fff;
+  font-size: 25px;
+}
+
+.contactForm{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin: auto;
+}
+input{
+  padding: 10px;
+  border-radius: 10px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  margin-top:13px;
+}
+label{
+  color: #ffffff;
+  margin-left: 10px;
+}
+input[type=submit]{
+  border-radius: 50px;
+  color: #000;
+  background-color: #fff;
+}
+textarea{
+  padding: 10px;
+  border-radius: 10px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  margin-top:13px;
+}
+ .we-contact h3{
+  font-size: 22px;
+  color: #fff;
+ }
+
+ .we-contact p{
+  font-size: 20px;
+ }
+ .get{
+  border: 1px solid #ffffff80;
+  border-radius: 5px;
+  padding: 40px;
+  height: 100vh;
+ }
+ .get h1{
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 30px;
+ }
+ .get p{
+  color: #fff;
+  font-size: 20px;
+ }
+ .icons{
+  margin-top: 40px;
+ }
+ .get .icons i{
+  display: flex;
+  gap: 10px;
+  /* margin: auto; */
+  padding: 10px;
+  color: #fff;
+  font-size: 15px;
+ }
