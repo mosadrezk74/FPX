@@ -21,7 +21,7 @@ return [
     'PasTotCmp' => 'Total Completed Passes',
     'PasTotAtt' => 'Total Attempted Passes',
     'PasTotCmp_per' => 'Completed Passes Percentage',
-    'Pas3rd' => 'Completed passes in the 1/3 of the pitch',
+    'Pas3rd' => 'Key Passes ',
     'PasShoCmp_per' => 'Short Completed Passes Percentage',
     'PPA' => 'Passes Per Attempt',
     'pass'=>'Pass',
@@ -50,6 +50,14 @@ return [
     'TouMid3rd'=>'Touches in middle ',
     'TouAtt3rd'=>'Touches in attacking ',
     'TouAttPen'=>'Touches in attacking penalty area',
+
+	'Dribbling_Offside_Stats'=>'Dribbling,Offside,and Cards Stats',
+	'CrdY'=>'Yellow Card',
+	'CrdR'=>'Red Card',
+	'Dribbles'=>'Dribbles',
+	'Successful_Dribbles'=>'Successful Dribbles',
+	'Successful_Dribbles_per'=>'Successful Dribbles Percent',
+	'Offsides'=>'Offsides',
 
 
 

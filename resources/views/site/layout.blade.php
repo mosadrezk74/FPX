@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FPX</title>
 
+    @yield('css')
+
+    @if (!request()->route()->named('rating'))
     <link rel="stylesheet" href="{{asset('site/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('site/css/all.min.css')}}" />
-    @if (!request()->route()->named('rating'))
         <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" />
     @endif
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -23,14 +25,17 @@
     @endif
 
 
-    @yield('css')
 
 
 
 
 </head>
 <body>
+@if (request()->route()->named('index'))
 <section class="hero">
+@else
+        <section>
+    @endif
     <div class="navbar">
         <div class="navbar_items">
             <ul class="herozintal_nav">
@@ -78,35 +83,17 @@
                                 </li>
                                 <hr/>
                                 <div class="dropdown">
-                                    <button
-                                        class="dropdown-toggle border-0 bg-transparent text-white verticalOne"
-                                        type="button"
-                                        id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                    >
-                                        English
+                                    <button class="dropdown-toggle border-0 bg-transparent text-white verticalOne" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ LaravelLocalization::getCurrentLocaleName() }}
                                     </button>
-                                    <ul
-                                        class="dropdown-menu bg-dark"
-                                        aria-labelledby="dropdownMenuButton1"
-                                    >
-                                        <li>
-                                            <a
-                                                style="font-size: 14px"
-                                                class="dropdown-item"
-                                                href="#"
-                                            >English</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                style="font-size: 14px"
-                                                class="dropdown-item"
-                                                href="#"
-                                            >Arabic</a
-                                            >
-                                        </li>
+                                    <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton1">
+                                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                            <li>
+                                                <a style="font-size: 14px" class="dropdown-item" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                    {{ $properties['native'] }}
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </ul>
@@ -124,7 +111,9 @@
                         <img class="menuImg" src="{{asset('site/images/navbar/menu.png')}}" alt="" />
                     </a>
                 </li>
-                <li class="verNavLinks"><a href="{{route('player')}}">{{trans('site/index.compare')}}</a></li>
+                <li class="verNavLinks">
+                    <a href="{{ route('compare_front') }}">{{ trans('site/index.compare') }}</a>
+                </li>
                 <li class="verNavLinks">
                     <div class="dropdown">
                         <button
@@ -155,7 +144,7 @@
                 </li>
 
                 <li class="logoParentLi">
-                    <a href="{{route('player')}}">
+                    <a href="{{route('index')}}">
                         <img class="logoImg" src="{{asset('site/images/navbar/Slogo.png')}}" alt="" />
                     </a>
                 </li>
@@ -229,8 +218,8 @@
                     <li class="searchParentLi">
                     <form onsubmit="e => e.preventDefault()">
                         <label for="search">
-                            <i class="fa-solid fa-magnifying-glass text-white"></i
-                            ></label>
+                            <i class="fas fa-search text-white"></i>
+                        </label>
                         <input
                             type="text"
                             id="search"
@@ -275,7 +264,7 @@
                                 إنها قاعدة بيانات تعاونية ويمكن لأي شخص إنشاء البيانات وتحريرها. تحتوي قاعدة البيانات المجتمعية هذه على معلومات حول اللاعبين والأندية والملاعب والمديرين والحكام والدوريات وغيرها من البيانات المتعلقة بعالم كرة القدم
 
                             @else
-                                <span>FPX</span> It is a collaborative database andanyone can
+                                <span>FPX</span> It is a collaborative database and anyone can
                                 create and edit data. This community database contains
                                 information about players, clubs, stadiums, managers,
                                 leagues and other data related to the world of football
@@ -324,7 +313,7 @@
                             <li><a href="{{route('join')}}">{{trans('site/index.about')}}</a></li>
                             <li><a href="{{route('contact')}}">{{trans('site/index.contact')}} </a></li>
                             <li><a href="{{route('discover')}}">{{trans('site/index.about')}} </a></li>
-                            <li><a href="{{route('join')}}">{{trans('site/index.faq')}} </a></li>
+                            <li><a href="{{route('scouting')}}">{{trans('site/index.faq')}} </a></li>
                         </ul>
                     </div>
                     <!-- fourth -->

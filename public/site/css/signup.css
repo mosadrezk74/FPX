@@ -1,3 +1,21 @@
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Bold.ttf");
+  font-size: 900;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Medium.ttf");
+  font-size: 700;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Regular.ttf");
+  font-size: 500;
+}
 *{
   box-sizing: border-box;
   border: 0;
@@ -15,7 +33,7 @@ body{
   font-family: 'Jost', sans-serif;
   background: linear-gradient(#050505fb, rgba(11, 11, 11, 0.329)),
   url(../images/signup/f4a8891b8bac6a9d1b4f7031042af3b1\ 2.png) no-repeat center/cover;
-
+  
 
 }
 
@@ -91,13 +109,13 @@ body{
   color: green;
   transform: scale(.6);
  }
-
+ 
  #chk:checked ~ .login{
   transform: translateY(-500px);
  }
 
  #chk:checked ~ .login label{
-  transform: scale(1);
+  transform: scale(1); 
  }
  #chk:checked ~ .signup label{
   transform: scale(.6);

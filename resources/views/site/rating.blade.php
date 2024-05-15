@@ -1,6 +1,8 @@
 @extends('site.layout')
 
 @section('css')
+    <link rel="stylesheet" href="{{asset('site/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('site/css/all.min.css')}}" />
     <link rel="stylesheet" href="{{asset('site/css/rating.css')}}" />
 @endsection
 

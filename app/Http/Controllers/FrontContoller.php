@@ -78,8 +78,13 @@ class FrontContoller extends Controller
         $player1Name = $request->input('player1');
         $player2Name = $request->input('player2');
 
-        $player1 = Player::where('name_ar', $player1Name)->first();
-        $player2 = Player::where('name_ar', $player2Name)->first();
+        $player1 = Player::where('name_ar', $player1Name)
+            ->orWhere('name_en', $player1Name)
+            ->first();
+
+        $player2 = Player::where('name_ar', $player2Name)
+            ->orWhere('name_en', $player2Name)
+            ->first();
 
         if (!$player1 || !$player2) {
             return redirect()->back()->with('error', 'One or both players not found');
@@ -87,6 +92,7 @@ class FrontContoller extends Controller
 
         return view('site.comparison', compact('player1', 'player2'));
     }
+
 
 
 #############################################################

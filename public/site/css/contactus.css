@@ -1,3 +1,21 @@
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Bold.ttf");
+  font-size: 900;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Medium.ttf");
+  font-size: 700;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Regular.ttf");
+  font-size: 500;
+}
 *{
   box-sizing: border-box;
   border: 0;
@@ -13,7 +31,7 @@ body{
   text-transform: capitalize;
   margin-top: 100px;
   margin-bottom: 100px;
-
+  
 }
 .contact h1{
   font-size: 50px;

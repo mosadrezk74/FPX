@@ -1,6 +1,6 @@
 @extends('site.layout')
 @section('contact')
-<div class="heroContent">
+<div class="heroContent ">
     <div class="heroContent">
         <div class="container-fluid">
             <div class="row">

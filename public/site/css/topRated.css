@@ -1,3 +1,21 @@
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Bold.ttf");
+  font-size: 900;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Medium.ttf");
+  font-size: 700;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Regular.ttf");
+  font-size: 500;
+}
 *{
   box-sizing: border-box;
   border: 0;
@@ -36,7 +54,7 @@ thead th{
   text-transform: uppercase;
   font-size: 25px;
   border: none;
-  text-align: center;
+  text-align: center; 
 }
 tbody th,td{
   text-align: center;

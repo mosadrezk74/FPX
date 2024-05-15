@@ -30,7 +30,7 @@ Route::group(
     Route::get('/about', [\App\Http\Controllers\FrontContoller::class, 'about'])
         ->name('about');
 ##################################################################################
-    Route::get('/compare', [FrontContoller::class, 'compare'])->name('compare');
+    Route::get('/compare', [FrontContoller::class, 'compare'])->name('compare_front');
 ##################################################################################
     Route::post('/comparison', [FrontContoller::class, 'comparison'])->name('comparison');
 ##################################################################################

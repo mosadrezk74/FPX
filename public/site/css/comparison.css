@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Tajawal:wght@200&display=swap');
 
 body
 {
@@ -5,6 +6,7 @@ body
     background-repeat: no-repeat;
     background-attachment:scroll ;
     background-size: cover;
+    font-family:Inter ;
 
 }
 p , pre{
@@ -13,11 +15,57 @@ p , pre{
 
 
 }
+/*  */
+.sec2{
+    background-color: #6f6e6eb5;
+    padding: 2% 2%;
+    margin: 1% 3%;
+    border-radius: 5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    .img-Cont , img{
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+    }
+    div p {
+        margin-bottom: 7px;
+    }
+    .lastDiv{
+        background-color: #6f6e6e;
+        border-radius: 5px;
+        width: 280px;
+        margin: auto;
+        padding: 10px 20px;
+        margin-top: 30px;
+        margin-left: 60px;
+    }
+    .x{
+        margin: unset;
+        margin-top: 20px;
+    }
+    .secondContent{
+        background-color: #6f6e6e;
+        border-radius: 5px;
+        margin-top: 60px;
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .s{
+            font-size: 26px;
+        }
+    }
+}
+
+/*  */
 .Headers
 {
     color: #FFFFFF;
     font-family:Inter ;
-    margin-left: 3.1%;
+    margin-left: 3.1%
 }
 /* first section */
 .players
@@ -25,7 +73,7 @@ p , pre{
     background-color: #6f6e6eb5;
     display: flex;
     justify-content: space-between;
-    padding: 2% 8%;
+    padding: 2% 3%;
     margin: 1% 3%;
 }
 .playerA , .total_matches , .playerB
@@ -56,9 +104,9 @@ p , pre{
     width: 66%;
     color: #ffffff99;
     padding-left: 4%;
-
+    
 }
-::placeholder
+::placeholder 
 {
     color: #ffffff99;
     opacity: 50; /* Firefox */
@@ -67,7 +115,7 @@ p , pre{
 .total_matches
 {
     margin-left: 12.5%;
-
+    
 }
 .total_matches h3
 {
@@ -102,7 +150,7 @@ p , pre{
     width: 100%;
     color: #ffffff99;
     padding-left: 4%;
-
+    
 }
 .players_pic
 {
@@ -236,7 +284,7 @@ p , pre{
 .c img
 {
     border-radius: 50%;
-
+    
 }
 
 
@@ -268,7 +316,7 @@ table th ,td
     margin: 1% 3% 0% 3%;
     /* border-radius: 10px; */
     padding: 2% 2%;
-
+    
 }
 
 
@@ -359,7 +407,7 @@ table th ,td
     .ClassContianer1
 {
         display: block;
-
+        
     }
 
     .total-shots,
@@ -367,7 +415,7 @@ table th ,td
         width: 100%;
         padding-top: 0%;
         margin-top: 1%;
-
+        
         text-align: center;
     }
 
@@ -389,7 +437,7 @@ table th ,td
 .table-standings {
     font-size: 11px;
     letter-spacing: .1em;
-
+    
 }
 
 .table-container{
@@ -398,12 +446,12 @@ table th ,td
 }
 
 .table-custom {
-
+    
     /* font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
     text-transform: uppercase;
     line-height: 3.5;
     border-collapse: collapse;
-
+    
     border: none;
     color: #fff;
     width: 100%;
@@ -511,12 +559,12 @@ color: #333; /* Set text color */
     display: flex; /* Allow stacking elements horizontally */
     align-items: center; /* Align content vertically within the bar */
     }
-
+    
     .progress4 {
     height: 100%; /* Fill the entire height of the progress bar */
     background-color: #FF5C00; /* Set progress bar color */
     }
-
+    
     .progress-number4 {
     margin-left: 5px; /* Add spacing between progress bar and number */
     font-size: 10px; /* Adjust font size as needed */
@@ -529,5 +577,5 @@ color: #333; /* Set text color */
 span{
     display: flex;
     text-align: left;
-
+    
 }

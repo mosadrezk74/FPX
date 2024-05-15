@@ -6,19 +6,29 @@
     <div class="container1 container">
         <form action="{{ route('comparison') }}" method="POST" class="form">
             @csrf
-            <label for="player1">Select Player 1:</label>
-            <input list="player1List" id="player1" name="player1" placeholder="Type player name...">
+            <label for="player1">{{trans('site/index.player1')}}</label>
+            <input list="player1List" id="player1" name="player1" placeholder="{{trans('site/index.lang')}}">
             <datalist id="player1List">
                 @foreach($players as $player)
-                    <option value="{{ $player->name_ar }}">{{ $player->name_ar }}</option>
+                    @if(App::getlocale() == 'ar')
+                        <option value="{{ $player->name_ar }}">{{ $player->name_ar }}</option>
+
+                    @else
+                        <option value="{{ $player->name_en }}">{{ $player->name_en }}</option>
+                    @endif
                 @endforeach
             </datalist>
 
-            <label for="player2">Select Player 2:</label>
-            <input list="player2List" id="player2" name="player2" placeholder="Type player name...">
+            <label for="player2">{{trans('site/index.player2')}}</label>
+            <input list="player2List" id="player2" name="player2" placeholder="{{trans('site/index.lang')}}">
             <datalist id="player2List">
                 @foreach($players as $player)
-                    <option value="{{ $player->name_ar }}">{{ $player->name_ar }}</option>
+                    @if(App::getlocale() == 'ar')
+                        <option value="{{ $player->name_ar }}">{{ $player->name_ar }}</option>
+
+                    @else
+                        <option value="{{ $player->name_en }}">{{ $player->name_en }}</option>
+                    @endif
                 @endforeach
             </datalist>
 
@@ -27,7 +37,7 @@
             </button>
         </form>
 
-        </form>
+
 
     </div>
 

@@ -1,5 +1,3 @@
-<!-- main-sidebar -->
-<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar sidebar-scroll">
     <div class="main-sidebar-header active">
         <a class="desktop-logo logo-light active" href="{{url('dashboard/admin')}}">
@@ -11,12 +9,14 @@
 
 
 
+
     </div>
 			<div class="main-sidemenu">
 				<div class="app-sidebar__user clearfix">
 					<div class="dropdown user-pro-body">
 						<div class="">
-							<img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('Dashboard/img/faces/6.jpg')}}"><span class="avatar-status profile-status bg-green"></span>
+							<img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('Dashboard/img/user.png')}}">
+                            <span class="avatar-status profile-status bg-green"></span>
 						</div>
 						<div class="user-info">
                             @auth

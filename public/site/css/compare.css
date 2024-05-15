@@ -1,3 +1,21 @@
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Bold.ttf");
+  font-size: 900;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Medium.ttf");
+  font-size: 700;
+}
+
+@font-face{
+  font-family: inter;
+  src: url("../fonts/Inter-Regular.ttf");
+  font-size: 500;
+}
 *{
   box-sizing: border-box;
   border: 0;
@@ -28,7 +46,7 @@ body{
   border-radius: 32px;
   padding: 10px 50px;
   margin: 20px;
-  font-size: 25px;
+  font-size: 25px; 
 }
 
 .form{
@@ -47,7 +65,7 @@ body{
   padding: 20px 20px;
   margin-top: 40px;
   margin-left: 30px;
-
+  
 }
 .footer{
   background-color: #000 !important;
