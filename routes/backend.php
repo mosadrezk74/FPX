@@ -132,9 +132,8 @@ Route::group(
         Route::post('ajaxRequest' ,[Coach_Dashboard::class, 'ajaxRequest'] )->name('ajaxRequest');
     //--------------------------------------------------------------------------------------------------------
        //--------------------------------------------------------------------------------------------------------
-//        Route::get('dashboard/coach/club/statistics/comparison/{player_id}', [Coach_Dashboard::class, 'compare'])->name('compare');
-        Route::post('dashboard/coach/club/statistics/comparison/{player_id}', [Coach_Dashboard::class, 'comparePlayers'])->name('compare.players');
-        Route::post('dashboard/coach/club/statistics/comparison/{player_id}', [Coach_Dashboard::class, 'comparePlayers'])->name('players.follow');
+        Route::get('dashboard/coach/compare', [Coach_Dashboard::class, 'compare'])->name('back.compare');
+        Route::post('dashboard/coach/comparison', [Coach_Dashboard::class, 'comparePlayers'])->name('back.comparison');
 
         Route::get('dashboard/coach/player/club/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');
 
@@ -225,16 +224,10 @@ Route::group(
         [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
             'epl_stats'])->name('player.epl_stats');
 
+    Route::get('dashboard/player/compare', [Player_Dashboard::class, 'compare'])->name('player.compare');
 
-
-     Route::get('dashboard/player/compare'
-     ,[Player_Dashboard::class,'comparePlayer']
-     );
-
-
-    Route::get('/compare/{player}', [Player_Dashboard::class, 'compare'])->name('compare');
-
-
+    Route::post('/dashboard/player/comparison',
+        [Player_Dashboard::class, 'comparePlayers'])->name('comparePlayers');
 
 
 

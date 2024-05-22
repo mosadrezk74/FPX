@@ -83,9 +83,7 @@
 							<li><a class="slide-item" href="{{ route('player.report') }}">{{trans('Dashboard/main-sidebar_trans.task_coach')}} </a></li>
 
 						</ul>
-                        <ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('player.analysis') }}">{{trans('Dashboard/main-sidebar_trans.task_ana')}} </a></li>
-						</ul>
+
 
 					</li>
 
@@ -133,10 +131,7 @@
 						<ul class="slide-menu">
 							<li><a class="slide-item" href="{{ route('player.chat') }}">{{trans('Dashboard/main-sidebar_trans.con_chat')}}</a></li>
                         </ul>
-{{--						</ul><ul class="slide-menu">--}}
-{{--							<li><a class="slide-item" href="{{ route('player.chat_player') }}"> زملاء الفريق </a></li>--}}
 
-{{--						</ul>--}}
 
 
 					</li>
@@ -153,13 +148,11 @@
                             </svg>
                         </a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('player.chat') }}">{{trans('Dashboard/main-sidebar_trans.compare_team')}}</a></li>
+							<li><a class="slide-item" href="{{ route('player.compare') }}">{{trans('Dashboard/main-sidebar_trans.compare')}}</a></li>
                         </ul>
 
 
-                        <ul class="slide-menu">
-                            <li><a class="slide-item" href="{{ route('player.chat') }}">{{trans('Dashboard/main-sidebar_trans.compare_leg')}}</a></li>
-                        </ul>
+
 
 {{--						</ul><ul class="slide-menu">--}}
 {{--							<li><a class="slide-item" href="{{ route('player.chat_player') }}"> زملاء الفريق </a></li>--}}

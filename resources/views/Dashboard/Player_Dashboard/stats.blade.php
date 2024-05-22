@@ -83,25 +83,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="follow-table" >
-                            <table class="table table-bordered border-primary text-center text-primary bg-light">
-                                <thead>
-                                <tr>
-                                    <th scope="col"><i class="fas fa-balance-scale fa-lg d-sm-none"></i>
-                                        <a href="{{ route('compare', $player->id) }}"  >{{trans('index.compare')}}</a>
-                                    </th>
-                                    <th scope="col"><i class="fas fa-user-plus fa-lg d-sm-none"></i>
-                                        <a href="{{ route('players.follow', $player->id) }}"  >{{trans('index.follow')}}</a>
-                                    </th>
-                                    <th scope="col"><i class="fas fa-print fa-lg d-sm-none"></i>
-                                        <a href="{{ route('stats.print', $player->id) }}">{{trans('index.print')}}</a>
-                                    </th>
 
-                                </tr>
-                                </thead>
 
-                            </table>
-                        </div>
 
 
 
@@ -866,11 +849,13 @@
                                         <table class="table" id="example1">
                                             <tr title="عدد محاولات المرواغة  " >
                                                 <th>  المرواغات  </th>
-                                                <td>{{ intval($player->stat->ToAtt*10)*3}}</td>                                                    </tr>
+                                                <td>{{ intval($player->stat->ToAtt*10)*3}}</td>
+                                            </tr>
 
                                             <tr title="عدد المرواغات الناجحة" >
                                                 <th>المرواغات الناجحة</th>
-                                                <td>{{ intval($player->stat->ToSuc*10)*3}}</td>                                                    </tr>
+                                                <td>{{ intval($player->stat->ToSuc*10)*3}}</td>
+                                            </tr>
 
 
                                             <tr title="نسبة نجاح المراوغات" >

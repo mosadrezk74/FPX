@@ -140,13 +140,13 @@
                             <tr title="رقم {{$rankPass}} في التمرير في الفريق" >
                                 <th>المركز</th>
                                 @if($player->position == 0)
-                                    <th>{{trans('player.goalkeeper')}}</th>
+                                    <th>{{trans('site/index.goalkeeper')}}</th>
                                 @elseif($player->position == 1)
-                                    <th>{{trans('player.defender')}}</th>
+                                    <th>{{trans('site/index.defender')}}</th>
                                 @elseif($player->position == 2)
-                                    <th>{{trans('player.mid')}}</th>
+                                    <th>{{trans('site/index.mid')}}</th>
                                 @elseif($player->position == 3)
-                                    <th>{{trans('player.forward')}}</th>
+                                    <th>{{trans('site/index.forward')}}</th>
 
                                 @endif
                             </tr>

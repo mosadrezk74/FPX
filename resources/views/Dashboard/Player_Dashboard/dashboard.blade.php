@@ -12,7 +12,26 @@
             </div>
         </div>
 
+        <div class="main-dashboard-header-right">
 
+            <div>
+                <label class="tx-13">{{trans('index.day')}}</label>
+                @if(app::getlocale() == 'ar')
+                    <h6>{{$dayOfWeekArabic}}</h6>
+                @else
+                    <h6>{{$dayOfWeekEnglish}}</h6>
+                @endif
+            </div>
+            <div id="real-time-clock">
+                <label class="tx-13">{{trans('index.time')}}</label>
+                <h6>{{$time}}</h6>
+            </div>
+
+            <div>
+                <label class="tx-13">{{trans('index.date')}}</label>
+                <h6>{{date('Y-m-d')}}</h6>
+            </div>
+        </div>
 
     </div>
 @endsection
@@ -20,9 +39,9 @@
 
     <div class="row">
         <div class="col-lg-3 col-md-3">
-            <hr>
 
-            <div class="card text-center bg-warning-gradient text-white ">
+
+            <div class="card text-center bg-primary-gradient text-white ">
                 <div class="card-body">
                     <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.MP')}} </h1>
                     <h1 class="text-black">{{ $player->stat->MP }}</h1>
@@ -32,9 +51,9 @@
         </div>
 
         <div class="col-lg-3 col-md-3">
-            <hr>
 
-            <div class="card text-center bg-warning-gradient text-white ">
+
+            <div class="card text-center bg-primary-gradient text-white ">
 
                 <div class="card-body">
                     <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.goals')}}</h1>
@@ -45,9 +64,9 @@
 
         </div>
         <div class="col-lg-3 col-md-3">
-            <hr>
 
-            <div class="card text-center bg-warning-gradient text-white ">
+
+            <div class="card text-center bg-primary-gradient text-white ">
 
                 <div class="card-body">
                     <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.assists')}}</h1>
@@ -57,9 +76,9 @@
             <hr>
         </div>
         <div class="col-lg-3 col-md-3">
-            <hr>
 
-            <div class="card text-center bg-warning-gradient text-white ">
+
+            <div class="card text-center bg-primary-gradient text-white ">
 
                 <div class="card-body">
                     <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.rating')}}</h1>
@@ -68,6 +87,9 @@
             </div>
             <hr>
         </div>
+
+
+
 
         <div class="col-lg-3 col-md-3">
 

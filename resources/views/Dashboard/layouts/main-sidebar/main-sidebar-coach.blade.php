@@ -77,7 +77,7 @@
 
 
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.stats') }}">{{trans('index.compare')}}</a></li>
+                    <li><a class="slide-item" href="{{ route('back.compare')}}">{{trans('index.compare')}}</a></li>
                 </ul>
             </li>
 
@@ -102,13 +102,11 @@
                     <li><a class="slide-item" href="{{ route('coach.epl_stats') }}">{{trans('index.other_players')}}</a></li>
                 </ul>
 
-                <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.other_teams')}}</a></li>
-                </ul>
 
-                <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.predictions')}}</a></li>
-                </ul>
+
+{{--                <ul class="slide-menu">--}}
+{{--                    <li><a class="slide-item" href="{{ route('coach.predictions') }}">{{trans('index.predictions')}}</a></li>--}}
+{{--                </ul>--}}
             </li>
 
 

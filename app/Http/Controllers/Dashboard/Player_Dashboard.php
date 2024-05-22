@@ -375,33 +375,34 @@ class Player_Dashboard extends Controller
     }
 
 
-    public function comparePlayer()
+    public function compare(){
+
+        return view('Dashboard.Player_Dashboard.compare');
+    }
+
+
+    public function comparePlayers(Request $request)
     {
         $player = auth()->guard('player')->user();
-        $club_id = $player->club_id;
-        $player_id = $player->id;
 
-        return view('Dashboard.Player_Dashboard.compare'
-        ,compact('player' , 'club_id','player_id' )
-        );
-    }
+        $player1 = Player::where('id', $player->id)->first();
 
-    public function compare(Player $player)
-    {
-        try {
-
-            $authPlayer = auth()->user()->player;
-            return view('comparison.compare', compact('authPlayer', 'player'));
-        } catch (\Exception $e) {
-
-            \Log::error($e->getMessage());
-
-            return response()->json(['error' => 'Internal Server Error'], 500);
+        if (!$player1) {
+            return redirect()->back()->with('error', 'المستخدم المسجل دخوله ليس لاعبًا');
         }
+
+        $player2Name = $request->input('player2');
+
+        $player2 = Player::where('name_ar', $player2Name)
+            ->orWhere('name_en', $player2Name)
+            ->first();
+
+        if (!$player2) {
+            return redirect()->back()->with('error', 'اللاعب المختار لم يتم العثور عليه');
+        }
+
+        return view('Dashboard.Player_Dashboard.compartion', compact('player1', 'player2'));
     }
-
-
-
 
 
 

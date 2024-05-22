@@ -61,7 +61,7 @@
                                                             <div class="mx-auto" style="width: 140px;">
                                                                 <div class="d-flex justify-content-center align-items-center rounded" >
                                                                      @if($coach && $coach->photo)
-                                                                        <img alt="user-img" class="d-flex justify-content-center align-items-center rounded" src="{{ asset('uploads/coach_logo/'. $coach->photo) }}">
+                                                                        <img alt="user-img" class="d-flex justify-content-center align-items-center rounded" src="{{$coach->photo}}">
                                                                     @else
                                                                         <img alt="user-img" class="avatar avatar-xl brround" src="{{ asset('Dashboard/img/faces/6.jpg') }}">
                                                                     @endif

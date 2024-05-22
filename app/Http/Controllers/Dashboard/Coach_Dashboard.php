@@ -203,12 +203,32 @@ class Coach_Dashboard extends Controller
         ));
     }
 
-    public function compare($player_id){
-        $player1 = Player::findOrFail($player_id);
-        $players = Player::where('id', '<>', $player_id)->get();
+    public function compare(){
 
-        return view('Dashboard.Players.compare', compact('player1', 'players'));
+        return view('Dashboard.Coach_Dashboard.compare');
     }
+
+    public function comparePlayers(Request $request)
+    {
+        $player1Name = $request->input('player1');
+        $player2Name = $request->input('player2');
+
+        $player1 = Player::where('name_ar', $player1Name)
+            ->orWhere('name_en', $player1Name)
+            ->first();
+
+        $player2 = Player::where('name_ar', $player2Name)
+            ->orWhere('name_en', $player2Name)
+            ->first();
+
+        if (!$player1 || !$player2) {
+            return redirect()->back()->with('error', 'One or both players not found');
+        }
+
+        return view('Dashboard.Coach_Dashboard.compartion', compact('player1', 'player2'));
+    }
+
+
 
  ##################################################################################################################################
  ##################################################################################################################################
