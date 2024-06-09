@@ -118,7 +118,7 @@
                                 </div>
                             </div>
 
-                            <!-- Add more cards here with the same structure -->
+
                             <div class="col-lg-3 col-md-3">
 
                                 <div class="card bg-primary">
@@ -132,8 +132,6 @@
 
 
 
-
-                            <!-- Add more cards here with the same structure -->
                             <div class="col-lg-3 col-md-3">
                                 <div class="card bg-primary">
                                     <div class="card-body text-center">
@@ -144,7 +142,7 @@
                                 </div>
                             </div>
 
-                            <!-- Add more cards here with the same structure -->
+
                             <div class="col-lg-3 col-md-3">
                                 <div class="card bg-primary">
                                     <div class="card-body text-center">
@@ -584,7 +582,7 @@
 
                                 </div>
                             </div>
-                            {{--          بدايه الاحصائيات  --}}
+                            {{--Shoot Start--}}
                             <div class="col-md-12 col-lg-6 col-xl-6">
                                 <div class="card card-dashboard-eight pb-4">
                                     <div class="main-content-label tx-12 mg-b-15">
@@ -647,7 +645,9 @@
                                     </div>
                                 </div>
                             </div>
-                            {{--                            end shooting--}}
+                            {{--end shooting--}}
+                            {{--#######################################################################--}}
+                            {{--Shoot Pass--}}
                             <div class="col-md-12 col-lg-3 col-xl-6">
                                 <div class="card card-dashboard-eight pb-4">
                                     <div class="main-content-label tx-12 mg-b-15">
@@ -710,7 +710,9 @@
                                     </div>
                                 </div>
                             </div>
-                            {{--                            end passing --}}
+                            {{--end passing--}}
+                            {{--#################################################--}}
+                            {{--Attack Start--}}
                             <div class="col-md-12 col-lg-3 col-xl-6">
                                 <div class="card card-dashboard-eight pb-5">
                                     <div class="main-content-label tx-12 mg-b-15">
@@ -762,6 +764,10 @@
                                     </div>
                                 </div>
                             </div>
+                            {{--Attack End--}}
+                            {{--#########################################################--}}
+                            {{--Shoot Start--}}
+
                             <div class="col-md-12 col-lg-3 col-xl-6">
                                 <div class="card card-dashboard-eight pb-5">
                                     <div class="main-content-label tx-12 mg-b-15">
