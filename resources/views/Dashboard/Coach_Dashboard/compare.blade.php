@@ -13,8 +13,8 @@
         <div class="my-auto">
             <div class="d-flex">
 
-                <h4 class="content-title mb-0 my-auto">{{trans('index.compare')}}</h4>
-                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/قارن
+                <h4 class="content-title mb-0 my-auto">{{trans('dash.compare')}}</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{trans('index.compare')}}
 				</span>
 
 
@@ -33,15 +33,17 @@
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body" >
-                    <form action="{{route('back.comparison')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('back.comparison')}}" method="post" autocomplete="off">
                         @csrf
                         <div class="form-group">
-                            <label for="player1">اللاعب الأول</label>
+                            <label for="player1">{{trans('dash.f_name')}}</label>
                             <input class="form-control"  id="player1" name="player1" placeholder="{{trans('site/index.lang')}}" list="player1List" >
                             <datalist id="player1List">
                                 @foreach($players as $player)
                                     @if(App::getlocale() == 'ar')
-                                        <option value="{{ $player->name_ar }}">{{ $player->name_ar }}</option>
+                                        <option value="{{ $player->name_ar }}">
+                                            {{ $player->name_ar }}
+                                        </option>
 
                                     @else
                                         <option value="{{ $player->name_en }}">{{ $player->name_en }}</option>
@@ -52,7 +54,7 @@
                         </div>
                         {{--####################################################################################################################--}}
                         <div class="form-group">
-                            <label for="player2">اللاعب التاني</label>
+                            <label for="player2">{{trans('dash.l_name')}}</label>
                             <input class="form-control" id="player2" name="player2" placeholder="{{trans('site/index.lang')}}"  list="player2List">
                             <datalist id="player2List">
                                 @foreach($players as $player)
@@ -69,7 +71,7 @@
 
 
                         <button   type="submit" class="btn btn-lg btn-primary btn-block">
-                            Submit
+                            {{trans('dash.compare')}}
                         </button>
                     </form>
                 </div>

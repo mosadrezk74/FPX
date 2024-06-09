@@ -7,7 +7,7 @@
 <style>
     .position-bg
     {
-        /*background-color: #778498;*/
+
         color: #0162e8;
         padding: 10px;
         border-radius: 5px;

@@ -68,14 +68,12 @@ return [
     'points'=>'  نقاط  ',
     'team_pl'=>'عدد لاعبي فريقك '
     ,'top_team_scorer'=>'هداف الفريق',
-    'player'=>'لاعب',
     'top_team_assist'=>'أكثر من صنع في الفريق',
     'fixtures'=>'الدوري',
     'fixtures_time'=>'مواعيد  المباريات',
     'compare'=>'مقارنة اللاعبين',
     'pub_info'=>'معلومات  عن الفريق',
     'pub_info_leg'=>'معلومات  عن الدوري',
-'stats'=>'احصائيات',
     'predictions'=>'تبنوأت  للمباريات',
 'other_teams'=>'احصائيات الدوري',
 'other_players'=>'احصائيات لاعبون الدوري',
@@ -94,8 +92,8 @@ return [
     'staduim'=>'ملعب الفريق',
     'top_team_scorer_all'=>'هدافي  الفريق',
     'top_team_assist_all'=>'أكثر صنع في الفريق',
-    'totalgoals'=>"عدد الأهداف",
-    'totalassists'=>"عدد الأسيستات",
+    'totalgoals'=>'عدد الأهداف',
+    'totalassists'=>'عدد الأسيستات',
     'xg'=>'XG',
     'xa'=>'xa',
     'process'=>'عمليات',
@@ -129,7 +127,6 @@ return [
     'text'=>'نص',
 'player_c'=>'لاعب',
     'pro'=>'الأولوية',
-
 
 
 

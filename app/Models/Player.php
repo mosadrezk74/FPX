@@ -79,6 +79,11 @@ class Player extends Authenticatable implements JWTSubject
         return $this->belongsTo(Task::class);
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class,'nationality','id');
+
+    }
 
 
 }

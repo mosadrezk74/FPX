@@ -113,7 +113,12 @@
                             <div class="mr-auto">
                                 <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;">{{trans('index.random')}}</h1>
 								<a href="" class="counter mb-0 text-white" style="text-align: center; color: #fff; transition: color 0.3s;">
-									{{$topPlayer->name_ar}} ({{$topPlayer->MP}})
+									@if(App::getLocale() == 'ar')
+                                        {{$topPlayer->name_ar}} ({{$topPlayer->MP}})
+                                    @else
+                                    {{$topPlayer->name_en}} ({{$topPlayer->MP}})
+                                    @endif
+
 								</a>
                             </div>
                         </div>
@@ -242,12 +247,12 @@
                                             @if(App::getlocale() == 'ar')
                                                 <td class="tx-right tx-medium tx-inverse">
                                                     <img src="{{$table->image}}" class="wd-30 ht-30" alt="img">
-                                                    {{$history->name}}
+                                                    {{ $club_st->name_ar }}
                                                 </td>
                                             @else
                                                 <td class="tx-right tx-medium tx-inverse">
                                                     <img src="{{ $table->image }}" class="wd-30 ht-30" alt="img" style="float: left; margin-right: 10px;">
-                                                    {{ $history->name }}
+                                                    {{ $club_st->name_en }}
                                                 </td>
 
                                             @endif

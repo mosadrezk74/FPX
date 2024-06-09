@@ -1,4 +1,8 @@
-
+/*Color variables*/
+/*gray variables*/
+/*white variables*/
+/*black variables*/
+/*shadow variables*/
 .app-sidebar .mCSB_draggerContainer {
   right: -11px !important;
 }
@@ -240,7 +244,11 @@
   text-decoration: none;
 }
 
-
+/*@media (max-width: 360px) {
+	.app-sidebar__toggle {
+		line-height: 2;
+	}
+}*/
 @media (max-width: 767px) {
   .app-sidebar__toggle {
     -webkit-box-ordinal-group: 0;
@@ -524,7 +532,7 @@ slide is-expanded side-menu__item {
 }
 
 .side-menu .slide.active .side-menu__label, .side-menu .slide.active .side-menu__icon {
-  color: #00A000;
+  color: #0162e8;
 }
 
 .side-menu__item {
@@ -545,23 +553,23 @@ slide is-expanded side-menu__item {
 
 .side-menu__item.active, .side-menu__item:hover, .side-menu__item:focus {
   text-decoration: none;
-  color: #00A000;
+  color: #0162e8;
 }
 
 .side-menu__item.active .side-menu__label {
-  color: #00A000;
+  color: #0162e8;
 }
 
 .side-menu__item.active .angle {
-  color: #00A000;
+  color: #0162e8;
 }
 
 .side-menu__item.active .side-menu__icon {
-  fill: #00A000;
+  fill: #0162e8;
 }
 
 .side-menu__item.active .side-menu__icon, .side-menu__item:hover .side-menu__icon, .side-menu__item:focus .side-menu__icon {
-  color: #00A000;
+  color: #0162e8;
 }
 
 @media (min-width: 768px) {
@@ -587,12 +595,12 @@ slide is-expanded side-menu__item {
 }
 
 .slide:hover .side-menu__label, .slide:hover .angle, .slide:hover .side-menu__icon {
-  color: #00A000 !important;
-  fill: #00A000 !important;
+  color: #0162e8 !important;
+  fill: #0162e8 !important;
 }
 
 .slide.is-expanded .side-menu__label, .slide.is-expanded .side-menu__icon, .slide.is-expanded .angle {
-  color: #00A000 !important;
+  color: #0162e8 !important;
 }
 
 .slide-item.active, .slide-item:hover, .slide-item:focus {
@@ -602,7 +610,7 @@ slide is-expanded side-menu__item {
 
 .slide-item.active, .slide-item:hover, .slide-item:focus {
   text-decoration: none;
-  color: #00A000 !important;
+  color: #0162e8 !important;
 }
 
 .slide-menu .sub-slide {
@@ -686,7 +694,7 @@ slide is-expanded side-menu__item {
   content: '';
   width: 3px;
   height: 31px;
-  background: #00A000;
+  background: #005ee9;
   position: absolute;
   left: 0;
 }
@@ -1209,7 +1217,7 @@ slide is-expanded side-menu__item {
 }
 
 .sub-slide.is-expanded .sub-side-menu__item {
-  color: #00A000;
+  color: #0162e8;
 }
 
 .slide-menu .sub-slide.is-expanded {
@@ -1234,15 +1242,15 @@ slide is-expanded side-menu__item {
 }
 
 .app-sidebar .slide.active .side-menu__icon, .app-sidebar .slide.is-expanded .side-menu__icon {
-  fill: #00A000  !important;
+  fill: #277aec  !important;
 }
 
 .app-sidebar .slide.active .side-menu__icon {
-  fill: #00A000  !important;
+  fill: #277aec  !important;
 }
 
 .app-sidebar .slide.active .side-menu__item {
-  color: #00A000  !important;
+  color: #277aec  !important;
 }
 
 .app-sidebar .slide-menu .sub-slide-menu a:before {
@@ -1306,7 +1314,7 @@ slide is-expanded side-menu__item {
 }
 
 .app-sidebar .slide-menu a.active:before {
-  color: #00A000;
+  color: #0162e8;
 }
 
 @media (min-width: 768px) {
@@ -1439,7 +1447,7 @@ slide is-expanded side-menu__item {
     content: '';
     width: 3px;
     height: 31px;
-    background: #00A000;
+    background: #005ee9;
     position: absolute;
     left: 0;
     display: block;

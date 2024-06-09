@@ -163,7 +163,11 @@ public function join_store(Request $request)
         return view('site.topRated');
     }
 #############################################################
-
+    public function clubs()
+    {
+        $clubs=Club::all()->where('status',1);
+        return view('site.clubs' , compact('clubs') );
+    }
 
 
 }

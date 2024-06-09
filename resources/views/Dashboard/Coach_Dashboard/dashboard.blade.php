@@ -36,7 +36,6 @@
 				</div>
 @endsection
 @section('content')
-    @if($coach->role==0)
 
     <div class="row">
         <div class="col-lg-3 col-md-6">
@@ -158,7 +157,12 @@
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
                 <h6 class="card-title">
+                    @if(App::getLocale()== 'ar')
                     أداء {{$coach->club->name_ar}} في الدوري هذا الموسم
+                    @else
+                        {{$coach->club->name_en}}'s performance in the league this season
+                    @endif
+
                 </h6>
                 <div class="list-group">
 
@@ -169,7 +173,7 @@
                                     <canvas id="chartDonut"></canvas>
 
 
-                    </div><!-- col-6 -->
+                    </div>
 
 
                 </div>
@@ -177,10 +181,8 @@
         </div>
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">{{trans('index.recent_players')}}</h6>
-                     <div class="main-content-label tx-12 mg-b-15">
-                        Solid Color
-                    </div>
+                <h6 class="card-title">{{trans('dash.team_per')}}</h6>
+
                     <div class="ht-200 ht-lg-250">
                         <canvas id="chartBar1"></canvas>
                     </div>
@@ -245,10 +247,10 @@
         </div>
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">هدافي الدوري المصري</h6>
+                <h6 class="card-title">{{trans('dash.top_scorer')}}</h6>
                 <div class="list-group">
                     @foreach($topLegScorer as $player)
-                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
                                   src="{{$player->photo}}" />
@@ -263,10 +265,10 @@
                     @endforeach
                 </div>
                 <hr>
-                <h6 class="card-title">صانعي الدوري المصري</h6>
+                <h6 class="card-title">{{trans('dash.top_assist')}}</h6>
                 <div class="list-group">
                     @foreach($topAssisterLeg as $player)
-                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
                                   src="{{$player->photo}}" />
@@ -292,9 +294,6 @@
 
      </div>
 
-    @elseif($coach->role == 1)
-            @include('Dashboard.Coach_Dashboard.analysis')
-    @endif
 
 
     </div>

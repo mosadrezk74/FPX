@@ -245,7 +245,7 @@
                             <th>
                                 <p class="card-text">
                                     @if(rand() > 5)
-                                        <span class="bg-success text-white">{{rand(5,10)}}</span>
+                                        <span class="bg-primary text-white">{{rand(5,10)}}</span>
                                     @elseif(rand()<5)
                                         <span class="bg-danger text-white">{{rand(0,4)}}</span>
                                     @endif
@@ -265,7 +265,7 @@
                 <h6 class="card-title">{{trans('index.topScore')}}</h6>
                 <div class="list-group">
                     @foreach($topLegScorer as $player)
-                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
                                   src="{{$player->photo}}"  />
@@ -283,7 +283,7 @@
                 <h6 class="card-title">{{trans('index.topassist')}}</h6>
                 <div class="list-group">
                     @foreach($topAssisterLeg as $player)
-                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
                                   src="{{$player->photo}}"  />

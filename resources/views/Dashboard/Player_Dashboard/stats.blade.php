@@ -66,7 +66,12 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">{{trans('player.nationality')}}</th>
-                                    <td>{{$player->nationality}}</td>
+                                    @if(App::getLocale()=='ar')
+                                        <td>{{$player->country->name_ar}}</td>
+                                    @else
+                                        <td>{{$player->country->name_en}}</td>
+                                    @endif
+
                                 </tr>
                                 <tr>
                                     <th scope="row">{{trans('index.rating')}}</th>

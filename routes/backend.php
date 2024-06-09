@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\AnalysisController;
 use App\Http\Controllers\Admin\CaochController;
+use App\Http\Controllers\Admin\ClubController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\PlayerStatsController;
 use App\Http\Controllers\Auth\CoachLoginController;
@@ -10,9 +10,7 @@ use App\Http\Controllers\Dashboard\Admin_Dashboard;
 use App\Http\Controllers\Dashboard\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\Player_Dashboard;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\SearchController;
  use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -33,7 +31,6 @@ Route::group(
     })->middleware(['auth'])->name('dashboard.user');
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
-
     Route::get('dashboard/admin', [Admin_Dashboard::class, 'index'])
         ->middleware(['auth:admin'])
         ->name('dashboard.admin');
@@ -54,44 +51,17 @@ Route::group(
     })->middleware(['auth:club'])->name('dashboard.club');
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
-
-
     //--------------------Start Admin Routes---------------------------------------------------
-  Route::resource('dashboard/admin/player', PlayerController::class);
-  #-----------------#############################-------------------------------#
-  Route::get('/dashboard/admin/analysis', [AnalysisController::class, 'index'])->name('analysis.index');
-  Route::get('/dashboard/admin/analysis/create', [AnalysisController::class, 'create'])->name('analysis.create');
-  Route::post('/dashboard/admin/analysis', [AnalysisController::class, 'store'])->name('analysis.store');
-  Route::get('/dashboard/admin/analysis/{id}', [AnalysisController::class, 'show'])->name('analysis.show');
-  Route::get('/dashboard/admin/analysis/{id}/edit', [AnalysisController::class, 'edit'])->name('analysis.edit');
-  Route::put('/dashboard/admin/analysis/{id}', [AnalysisController::class, 'update'])->name('analysis.update');
-  Route::delete('/dashboard/admin/analysis/{id}', [AnalysisController::class, 'destroy'])->name('analysis.destroy');
-  #-----------------#############################-------------------------------#
+    Route::resource('dashboard/admin/player', PlayerController::class);
+    #-----------------#############################-------------------------------
 
-
-    Route::get('dashboard/admin/join_front',
-        [\App\Http\Controllers\PageController::class, 'join'])->name('front.join');
-
-    Route::delete('/dashboard/admin/join_front/{id}', [PageController::class, 'destroy'])->name('join.destroy');
-
-    Route::get('dashboard/admin/contact_front',
-        [\App\Http\Controllers\PageController::class, 'contact'])->name('front.contact');
-
-
-    Route::get('dashboard/admin/send_front',
-        [\App\Http\Controllers\PageController::class, 'send'])->name('front.send');
-
-
-
-  //-------------------------------------------------------------------------
-  //-------------------------------------------------------------------------
-  Route::get('dashboard/admin/player_stats', [PlayerStatsController::class, 'index'])->name('player_stats.index');
-  Route::get('dashboard/admin/player_stats/add_player_stats', [PlayerStatsController::class, 'create'])->name('player_stats.create');
-  Route::get('dashboard/admin/player_stats/add_player_stats/store', [PlayerStatsController::class, 'store'])->name('player_stats.store');
-  Route::get('/get-players/{clubId}', [PlayerStatsController::class, 'getPlayers'])->name('getPlayers');
+    Route::get('dashboard/admin/player_stats', [PlayerStatsController::class, 'index'])->name('player_stats.index');
+    Route::get('dashboard/admin/player_stats/add_player_stats', [PlayerStatsController::class, 'create'])->name('player_stats.create');
+    Route::get('dashboard/admin/player_stats/add_player_stats/store', [PlayerStatsController::class, 'store'])->name('player_stats.store');
+    Route::get('/get-players/{clubId}', [PlayerStatsController::class, 'getPlayers'])->name('getPlayers');
     //-------------------------------------------------------------------------
     //-------------------------------------------------------------------------
-     Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
+    Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);
 
     Route::get('dashboard/admin/club/status/{status}/{id}', [\App\Http\Controllers\Admin\ClubController::class, 'toggleStatus'])
         ->name('club.toggleStatus');
@@ -101,48 +71,31 @@ Route::group(
 
     Route::get('dashboard/dashboard/admin/contact_front/{status}/{id}', [\App\Http\Controllers\PageController::class, 'toggleStatus_contact'])
         ->name('contact.toggleStatus');
-
-  Route::resource('dashboard/admin/coach', \App\Http\Controllers\Admin\CaochController::class);
-    Route::get('/search', SearchController::class);
-    Route::get('/get-available-shirt-numbers/{club_id}', [PlayerController::class, 'getAvailableShirtNumbers']);
-    Route::get('/send-notification', [NotificationController::class, 'sendOfferNotification']);
+    Route::resource('dashboard/admin/coach', \App\Http\Controllers\Admin\CaochController::class);
     //--------------------End Admin Routes------------------------------------------------------
     //--------------------End Admin Routes------------------------------------------------------
 
-     //------------------------- Start Coach Routes -------------------------------------------
     //------------------------- Start Coach Routes -------------------------------------------
-        Route::get('dashboard/coach/club/statistics', [Coach_Dashboard::class, 'stats'])->name('coach.stats');
-        Route::get('dashboard/coach/epl_stats', [Coach_Dashboard::class, 'epl_stats'])->name('coach.epl_stats');
-         ##################################################################################################################
-        Route::get('/dashboard/coach/filter', [Coach_Dashboard::class, 'filter'])->name('coach.filter');
-        ##################################################################################################################
-        Route::get('dashboard/coach/club/statistics/{player_id}', [Coach_Dashboard::class, 'stats'])->name('stats.show');
-        Route::get('dashboard/coach/club/statistics/print/{player_id}', [Coach_Dashboard::class, 'print'])->name('stats.print');
-        Route::get('dashboard/coach/club/statistics/show/{player_id}', [Coach_Dashboard::class, 'show'])->name('stats.show');
-
-        Route::get('dashboard/coach/{id}/edit', [CaochController::class, 'edit'])->name('coach.edit');
-        Route::put('dashboard/coach/{id}/update', [CaochController::class, 'update'])->name('coach.update');
-
-
-
+    //------------------------- Start Coach Routes -------------------------------------------
+    Route::get('dashboard/coach/club/statistics', [Coach_Dashboard::class, 'stats'])->name('coach.stats');
+    Route::get('dashboard/coach/epl_stats', [Coach_Dashboard::class, 'epl_stats'])->name('coach.epl_stats');
+    Route::get('/dashboard/coach/filter', [Coach_Dashboard::class, 'filter'])->name('coach.filter');
+    Route::get('dashboard/coach/club/statistics/{player_id}', [Coach_Dashboard::class, 'stats'])->name('stats.show');
+    Route::get('dashboard/coach/club/statistics/print/{player_id}', [Coach_Dashboard::class, 'print'])->name('stats.print');
+    Route::get('dashboard/coach/club/statistics/show/{player_id}', [Coach_Dashboard::class, 'show'])->name('stats.show');
+    Route::get('dashboard/coach/{id}/edit', [CaochController::class, 'edit'])->name('coach.edit');
+    Route::put('dashboard/coach/{id}/update', [CaochController::class, 'update'])->name('coach.update');
+    Route::get('dashboard/coach/compare', [Coach_Dashboard::class, 'compare'])->name('back.compare');
+    Route::post('dashboard/coach/comparison', [Coach_Dashboard::class, 'comparePlayers'])->name('back.comparison');
+    Route::get('dashboard/coach/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');
     //--------------------------------------------------------------------------------------------------------
-        //--------------------------------------------------------------------------------------------------------
 
-
-        Route::post('ajaxRequest' ,[Coach_Dashboard::class, 'ajaxRequest'] )->name('ajaxRequest');
-    //--------------------------------------------------------------------------------------------------------
-       //--------------------------------------------------------------------------------------------------------
-        Route::get('dashboard/coach/compare', [Coach_Dashboard::class, 'compare'])->name('back.compare');
-        Route::post('dashboard/coach/comparison', [Coach_Dashboard::class, 'comparePlayers'])->name('back.comparison');
-
-        Route::get('dashboard/coach/player/club/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');
-
-        ##------------------------Report--------------------------##
-        ##------------------------Report--------------------------##
-        Route::get('dashboard/coach/task',
-            [Coach_Dashboard::class, 'createReport'])
-            ->middleware('auth:coach')
-            ->name('report.index');
+    ##------------------------Report--------------------------##
+    ##------------------------Report--------------------------##
+    Route::get('dashboard/coach/task',
+        [Coach_Dashboard::class, 'createReport'])
+        ->middleware('auth:coach')
+        ->name('report.index');
 
 
 
@@ -154,35 +107,26 @@ Route::group(
 
 
 
-        Route::get('dashboard/coach/report/add',
+    Route::get('dashboard/coach/report/add',
         [Coach_Dashboard::class, 'addReport'])
-            ->middleware('auth:coach')
-            ->name('report.create');
+        ->middleware('auth:coach')
+        ->name('report.create');
 
 
-        Route::post('dashboard/coach/player/club/report/add/store',
+    Route::post('dashboard/coach/report/add/store',
         [Coach_Dashboard::class, 'store'])->name('report.store');
 
     ##------------------------EReport--------------------------##
     ##------------------------EReport--------------------------##
 
-
-
-
-
-
-    Route::get('dashboard/coach/player/calendar', [CaochController::class, 'calendar'])->name('coach.calendar');
-     //------------------------- End Coach Routes -------------------------------------------
-     //------------------------- End Coach Routes -------------------------------------------
+    Route::get('dashboard/coach/calendar', [CaochController::class, 'calendar'])->name('coach.calendar');
+    //------------------------- End Coach Routes -------------------------------------------
+    //------------------------- End Coach Routes -------------------------------------------
 
     //______________________ Start Player Routes ____________________________________________
-        Route::get('dashboard/player', [\App\Http\Controllers\Dashboard\Player_Dashboard::class, 'index'])
+    Route::get('dashboard/player', [\App\Http\Controllers\Dashboard\Player_Dashboard::class, 'index'])
         ->middleware(['auth:player'])
         ->name('dashboard.player');
-
-    Route::get('dashboard/analysis', [\App\Http\Controllers\Dashboard\Analysis_Dashboard::class, 'index'])
-        ->middleware(['auth:analysis'])
-        ->name('dashboard.analysis');
 
 
     Route::get('dashboard/player/stats',
@@ -215,12 +159,12 @@ Route::group(
 
 
 
-     Route::get('dashboard/player/club_info',
+    Route::get('dashboard/player/club_info',
         [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
             'club_info'])->name('player.club_info');
 
 
-     Route::get('dashboard/player/epl_stats',
+    Route::get('dashboard/player/epl_stats',
         [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
             'epl_stats'])->name('player.epl_stats');
 
@@ -233,38 +177,16 @@ Route::group(
 
 
 #########################################################
-#########################################################
-    Route::get('dashboard/player/chat_player',
-        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
-            'chat_coach'])->name('player.chat_coach');
-
-    Route::get('/chat/send-message',
-        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
-            'sendMessage'])->name('chat.send');
-
-    Route::get('dashboard/coach/chat_coach',
-        [\App\Http\Controllers\Dashboard\Coach_Dashboard::class,
-            'chat_coach'])->name('coach.chat_coach');
-
-    Route::get('/chat/send-message',
-        [\App\Http\Controllers\Dashboard\Coach_Dashboard::class,
-            'sendMessage'])->name('chat.send');
-
-
-
-
     #Start Chat Route#
-
     Route::get('/dashboard/coach/chat',
         [ContactsController::class, 'index'])
         ->middleware('auth:coach')
-        ->name('coach.chat')
-    ;
+        ->name('coach.chat');
     ###########################################################
     Route::get('/dashboard/player/chat',
         [ContactsController::class, 'index_player'])
         ->middleware('auth:player')
-    ->name('player.chat')
+        ->name('player.chat')
     ;
     ###########################################################
     Route::get('/checkConvo/{recieverId}',
@@ -280,61 +202,60 @@ Route::group(
     Route::get('/retrieveMessages/{reciever}/{sender}/{lastMsgId}',
         [ContactsController::class, 'retrieveNew'])->middleware('auth:coach');
     #End Chat Route#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

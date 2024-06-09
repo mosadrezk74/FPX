@@ -42,7 +42,7 @@
                                             <th class="wd-15p border-bottom-0">{{trans('coach.image')}}</th>
                                             <th class="wd-15p border-bottom-0">{{trans('coach.name')}}</th>
 {{--                                            <th class="wd-15p border-bottom-0">{{trans('coach.date')}}</th>--}}
-                                            <th class="wd-15p border-bottom-0">{{trans('coach.club')}}</th>
+{{--                                            <th class="wd-15p border-bottom-0">{{trans('coach.club')}}</th>--}}
                                             <th class="wd-15p border-bottom-0">{{trans('coach.created_at')}}</th>
                                             <th class="wd-15p border-bottom-0">{{trans('coach.process')}}</th>
 
@@ -55,7 +55,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 <img width="50px" height="50px" alt="image"
-                                                     src="{{ asset('uploads/coach_logo/' . $coach->photo) }}"
+                                                     src="{{ asset($coach->photo) }}"
                                                 />
                                             </td>
                                             @if(App::getLocale() == 'ar')
@@ -64,19 +64,19 @@
                                                     <td>{{$coach->name_en}}</td>
                                                 @endif
 {{--                                            <td>{{ $coach->age }}</td>--}}
-                                                @if(App::getLocale() == 'ar')
-                                                    @if($coach->club != null)
-                                                        <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_ar }}</a></td>
-                                                    @else
-                                                        <td>فريق FPX</td>
-                                                    @endif
-                                                @else
-                                                    @if($coach->club != null)
-                                                        <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_en }}</a></td>
-                                                    @else
-                                                        <td>FPX TEAM.</td>
-                                                    @endif
-                                                @endif
+{{--                                                @if(App::getLocale() == 'ar')--}}
+{{--                                                    @if($coach->club != null)--}}
+{{--                                                        <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_ar }}</a></td>--}}
+{{--                                                    @else--}}
+{{--                                                        <td>فريق FPX</td>--}}
+{{--                                                    @endif--}}
+{{--                                                @else--}}
+{{--                                                    @if($coach->club != null)--}}
+{{--                                                        <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_en }}</a></td>--}}
+{{--                                                    @else--}}
+{{--                                                        <td>FPX TEAM.</td>--}}
+{{--                                                    @endif--}}
+{{--                                                @endif--}}
 
                                             <td>{{ $coach->created_at->diffForHumans() }}</td>
                                             <td>
@@ -138,22 +138,14 @@
 
                                 <div class="modal-body">
                                     <label for="exampleInputPassword1">{{trans('coach.image_upload')}}</label>
-                                    <input type="file" name="photo" class="form-control" >
+                                    <input type="text" name="photo" class="form-control" >
                                 </div>
 
-                                <div class="modal-body">
-                                    <label for="exampleInputPassword1">{{trans('coach.role')}}</label>
-                                    <select id="role" name="role" class="form-control" required>
-                                        <option value="">{{trans('index.role')}}</option>
-                                        <option value="0">{{trans('coach.coach')}}</option>
-                                        <option value="1">{{trans('coach.analysis')}}</option>
-                                    </select>
-                                </div>
 
                                 <div class="modal-body">
                                     <label for="exampleInputPassword1">{{trans('coach.club')}}</label>
                                     <select id="club" name="club_id" class="form-control">
-                                        <option value="">{{trans('index.clubs')}}(can be null)</option>
+                                        <option value="">{{trans('index.clubs')}}</option>
                                         @foreach($clubs as $club)
                                             @if (App::getLocale() == 'ar')
                                                 <option value="{{$club->id}}">{{$club->name_ar}}</option>
@@ -171,9 +163,13 @@
                                     <datalist id="nationalitiesList">
                                         <option value="" label="{{trans('nation.player_nation')}}"></option>
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country['name']['common'] }}">
-                                                {{ trans('nation.country_name.' . strtolower($country['cca2'])) }}
-                                                <img src="{{ $country['flags']['png'] }}" alt="{{ $country['name']['common'] }} Flag">
+                                            <option value="{{$country->id}}">
+                                                @if(App::getLocale() == 'ar')
+                                                {{$country->name_ar}}
+                                                @else
+                                                    {{$country->name_en}}
+                                                @endif
+
                                             </option>
                                         @endforeach
                                     </datalist>

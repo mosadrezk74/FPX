@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Models\Club;
+use App\Models\Country;
 use App\Models\Statistics;
 use App\Models\User;
 use App\MyEvent;
@@ -23,9 +24,7 @@ class PlayerController extends Controller
     {
         $players = \App\Models\Player::with('club', 'stat')->get();
         $clubs = \App\Models\Club::all();
-        $notifications = \App\Models\Notification::all();
-
-        return view('Dashboard.Players.index', compact('players', 'clubs', 'notifications'));
+        return view('Dashboard.Players.index', compact('players', 'clubs'));
     }
 
 
@@ -35,27 +34,14 @@ class PlayerController extends Controller
     {
         $players = \App\Models\Player::with('club')->get();
         $clubs = \App\Models\Club::all();
-        $notifications = \App\Models\Notification::all();
-        $client = new Client();
-        $response = $client->get('https://restcountries.com/v3.1/all');
-        $countries = json_decode($response->getBody(), true);
-        $countries = array_filter($countries, function ($country) {
-            return $country['name']['common'] !== 'Israel';
-        });
-        $northAmerica = ["ca", "us", "mx"];
-        $asia = ["cn", "jp", "in"];
-        $countries = array_filter($countries, function ($country) use ($northAmerica, $asia) {
-            $countryCode = strtolower($country['cca2']);
-            return !in_array($countryCode, array_merge($northAmerica, $asia));
-        });
+        $countries=Country::all();
+
         $player_stats=Statistics::all();
-        $countries = collect($countries)->sortBy('name.common')->all();
-
-
 
         return view('Dashboard.Players.create',
-            ['countries' => $countries],
-            compact('players' ,'clubs','notifications' , 'player_stats' ));
+            compact('players' ,'clubs',
+                'countries',
+                'player_stats'));
 
     }
 
@@ -97,21 +83,7 @@ class PlayerController extends Controller
             $players->password = password_hash($request->password, PASSWORD_BCRYPT);
             $players->photo=$request->photo;
 
-//            if ($request->hasFile('photo')) {
-//                $file = $request->file('photo');
-//                $extension = $file->getClientOriginalExtension();
-//                $filename = time() . '.' . $extension;
-//                $file->move('uploads/players/', $filename);
-//                $players->photo = $filename;
-//            }
             $players->save();
-            ###############################
-            ###############################
-            $data = [
-                'name_ar' => $players->name_ar,
-                'nationality' => $players->nationality,
-            ];
-            event(new MyEvent($data));
 
             session()->flash('add');
 

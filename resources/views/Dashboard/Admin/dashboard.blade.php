@@ -23,7 +23,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-success-gradient">
+            <div class="card  bg-primary-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div style="text-align: center;">
@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-success-gradient">
+            <div class="card  bg-primary-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div style="text-align: center;">
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-success-gradient">
+            <div class="card  bg-primary-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div class="counter-icon">
@@ -90,7 +90,7 @@
         </div>
 
         <div class="col-lg-3 col-md-6">
-            <div class="card  bg-success-gradient">
+            <div class="card  bg-primary-gradient">
                 <div class="card-body">
                     <div class="counter-status d-flex md-mb-0">
                         <div class="counter-icon">
@@ -118,7 +118,7 @@
                 <h6 class="card-title">هدافي الدوري المصري</h6>
                 <div class="list-group">
                     @foreach($topLegScorer as $player)
-                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
                                   src="{{$player->photo}}" />
@@ -142,7 +142,7 @@
                 <h6 class="card-title">صانعي الدوري المصري</h6>
                 <div class="list-group">
                     @foreach($topAssisterLeg as $player)
-                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
                                   src="{{$player->photo}}" />
@@ -169,7 +169,7 @@
                 <h6 class="card-title">الأكثر مشاركة هذا الموسم</h6>
                 <div class="list-group">
                     @foreach($topAppearancesLeg as $player)
-                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-success text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
+                        <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
                             <p>{{$loop->iteration}} # </p>
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
                                   src="{{$player->photo}}" />

@@ -60,14 +60,11 @@ return [
     'team_pl'=>'Total Number of Players',
     'top_team_scorer'=>'Scorer of Your Team',
     'top_team_assist'=>'Assist of Your Team',
-    'player'=>'Player',
     'fixtures'=>' The League',
     'fixtures_time'=>'Match Dates',
     'compare'=>'Compare Players',
     'pub_info'=>'General Info About The Team',
     'pub_info_leg'=>'General Info About The League',
-
-    'stats'=>'Statistics',
     'predictions'=>'Predictions And Simulations',
     'other_teams'=>'Other Teams Statistics',
     'other_players'=>'Other Teams Statistics',
@@ -118,7 +115,8 @@ return [
     'pro'=>'Priority',
 'player_c'=>'Player',
 
-
+    'top_team_scorer_all'=>'Top Scorer',
+    'top_team_assist_all'=>'Top Assist',
 
 
 

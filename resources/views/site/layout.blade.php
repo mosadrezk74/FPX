@@ -69,14 +69,14 @@
                                     <a href="{{route('player')}}">{{trans('site/index.players')}}</a>
                                 </li>
                                 <li>
-                                    <a href="#">{{trans('site/index.clubs')}}</a>
+                                    <a href="{{route('clubs')}}">{{trans('site/index.clubs')}}</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('comparison')}}">{{trans('site/index.compare')}}</a>
+                                    <a href="{{route('compare_front')}}">{{trans('site/index.compare')}}</a>
                                 </li>
                                 <hr/>
                                 <li>
-                                    <a href="{{route('login')}}"> {{trans('site/index.sign')}}</a>
+                                    <a href="{{ url('login') }}">{{ trans('site/index.sign') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{route('join')}}"> {{trans('site/index.about')}}</a>
@@ -134,7 +134,7 @@
                                 <a class="dropdown-item" href="{{route('player')}}"> {{trans('site/index.players')}} </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{route('player')}}">{{trans('site/index.clubs')}}</a>
+                                <a class="dropdown-item" href="{{route('clubs')}}">{{trans('site/index.clubs')}}</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{route('rating')}}">{{trans('site/index.rating')}}</a>

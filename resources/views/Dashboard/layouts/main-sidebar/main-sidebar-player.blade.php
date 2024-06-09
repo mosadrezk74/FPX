@@ -7,10 +7,6 @@
                 FPX
             </h1>
         </a>
-
-
-
-
     </div>
 			<div class="main-sidemenu">
 				<div class="app-sidebar__user clearfix">

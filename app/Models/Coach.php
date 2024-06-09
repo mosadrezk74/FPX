@@ -57,11 +57,14 @@ use Laravel\Sanctum\HasApiTokens;
         return $this->hasMany(Player::class);
     }
 
+    public function country(){
 
-    public function followedPlayers()
-    {
-        return $this->belongsToMany(Player::class, 'user_player', 'user_id', 'player_id');
+        return $this->belongsTo(Country::class,'nationality','id');
+
     }
+
+
+
 
 
 

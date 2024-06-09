@@ -66,7 +66,12 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">{{trans('player.nationality')}}</th>
-                                    <td>{{$player->nationality}}</td>
+                                    @if(App::getLocale()=='ar')
+                                        <td>{{$player->country->name_ar}}</td>
+                                    @else
+                                        <td>{{$player->country->name_en}}</td>
+                                    @endif
+
                                 </tr>
                                 <tr>
                                     <th scope="row">{{trans('index.rating')}}</th>
@@ -595,25 +600,10 @@
 
                                             <tr title="{{trans('stat.dec2')}}">
                                                 <th>
-                                                    {{trans('stat.shots_per')}}
+                                                    {{trans('stat.SoT_per')}}
                                                 </th>
-                                                <th>{{$player->stat->SoT_per}} % </th>
+                                                <th>{{$player->stat->SoT_per}}%</th>
                                             </tr>
-
-                                            <tr>
-                                                <th>XG</th>
-                                                <th>{{$player->stat->SoT}}</th>
-                                            </tr>
-
-
-
-                                            {{--                                                    <tr title="  نسبه الأهداف المسجلة من التسديدات على المرمى" >--}}
-                                            {{--                                                        <th>--}}
-                                            {{--                                                              الأهداف المسجلة من التسديد--}}
-                                            {{--                                                        </th>--}}
-                                            {{--                                                        <th>{{$player->stat->G_Sh}}</th>--}}
-                                            {{--                                                    </tr>--}}
-
 
 
 
@@ -627,7 +617,7 @@
                                             <tr>
                                                 <th>{{trans('stat.fk')}} ({{trans('stat.scored')}}) </th>
                                                 <th>
-                                                    {{$player->stat->ShoFK*100}}
+                                                    {{$player->stat->ShoFK*$player->stat->MP}}
                                                     ({{intval($player->stat->ShoFK)/2}})
                                                 </th>
                                             </tr>
@@ -635,9 +625,16 @@
                                             <tr>
                                                 <th>{{trans('stat.pk')}} ({{trans('stat.scored')}})</th>
                                                 <th>
-                                                    {{intval($player->stat->Pkatt*100/4)}}
+                                                    {{intval($player->stat->Pkatt*$player->stat->MP)}}
                                                     ({{intval($player->stat->Pkatt*100/4)}})
 
+                                                </th>
+                                            </tr>
+
+                                            <tr>
+                                                <th>{{trans('stat.Goals')}}</th>
+                                                <th>
+                                                    {{$player->stat->Goals}}
                                                 </th>
                                             </tr>
 
@@ -658,15 +655,20 @@
                                     </div>
                                     <div class="ht-200 ht-lg-250">
                                         <table class="table" id="example1">
-                                            <tr title="{{trans('stat.pass1')}}">
-                                                <th>{{trans('stat.PasTotCmp')}}</th>
-                                                <th>{{intval($player->stat->PasTotCmp*$player->stat->MP)}}</th>
-                                            </tr>
 
                                             <tr title="{{trans('stat.pass2')}}">
                                                 <th>{{trans('stat.PasTotAtt')}}</th>
                                                 <th>{{intval($player->stat->PasTotAtt*$player->stat->MP)}}</th>
                                             </tr>
+
+
+
+                                            <tr title="{{trans('stat.pass1')}}">
+                                                <th>{{trans('stat.PasTotCmp')}}</th>
+                                                <th>{{intval($player->stat->PasTotCmp*$player->stat->MP)}}</th>
+                                            </tr>
+
+
 
                                             <tr title="{{trans('stat.pass3')}}">
                                                 <th>
@@ -678,28 +680,28 @@
                                             </tr>
 
 
-                                            <tr title="{{trans('stat.pass4')}}">
+                                            <tr title="{{trans('stat.PasCrs')}}">
                                                 <th>
-                                                    {{trans('stat.Pas3rd')}}
+                                                    {{trans('stat.PasCrs')}}
                                                 </th>
-                                                <th>{{intval($player->stat->Pas3rd*$player->stat->MP)}}</th>
+                                                <th>{{intval($player->stat->PasCrs*$player->stat->MP)}}</th>
                                             </tr>
 
 
                                             <tr title="{{trans('stat.pass5')}}">
                                                 <th>
-                                                    {{trans('stat.PasShoCmp_per')}}
+                                                    {{trans('stat.PasProg')}}
                                                 </th>
-                                                <th>
-                                                    {{($player->stat->PasShoCmp_per)}}%
-                                                </th>
+                                                <th>{{intval($player->stat->PasProg*$player->stat->MP)}}</th>
                                             </tr>
 
 
-                                            <tr title="{{trans('stat.pass6')}}">
-                                                <th> {{trans('stat.PPA')}}</th>
 
-                                                <th>{{intval($player->stat->PPA*$player->stat->MP)}}</th>
+
+                                            <tr title="{{trans('stat.Assists')}}">
+                                                <th> {{trans('stat.Assists')}}</th>
+
+                                                <th>{{intval($player->stat->Assists*$player->stat->MP)}}</th>
                                             </tr>
 
                                         </table>
@@ -724,37 +726,33 @@
                                             </tr>
 
 
-                                            <tr>
-                                                <th> {{trans('index.goal')}}  </th>
-                                                <th>{{intval(($player->stat->Goals))}}</th>
+                                            <tr title="{{trans('stat.GCA')}} ">
+                                                <th>{{trans('stat.GCA')}}</th>
+                                                <th>{{($player->stat->GCA)}}</th>
                                             </tr>
 
-                                            <tr title="{{trans('stat.ScaPassLive_Desc')}} ">
-                                                <th>{{trans('stat.ScaPassLive')}}</th>
-                                                <th>{{($player->stat->ScaPassLive)}}</th>
+
+                                            <tr>
+                                                <th> {{trans('stat.ScaDrib')}}  </th>
+                                                <th>{{intval(($player->stat->ScaDrib))}}</th>
                                             </tr>
+
+
 
 
                                             <tr title="{{trans('stat.ScaDrib_desc')}} ">
-                                                <th>{{trans('stat.ScaPassDead')}}</th>
-                                                <th>{{($player->stat->ScaPassDead)}}</th>
+                                                <th>{{trans('stat.ScaSh')}}</th>
+                                                <th>{{($player->stat->ScaSh)}}</th>
                                             </tr>
 
                                             <tr title="{{trans('stat.ScaDrib_desc')}} ">
-                                                <th>{{trans('stat.ScaDrib')}}</th>
-                                                <th>{{($player->stat->ScaDrib)}}</th>
+                                                <th>{{trans('stat.Carries')}}</th>
+                                                <th>{{($player->stat->Carries*$player->stat->MP)}}</th>
                                             </tr>
 
-
-
-                                            {{--                                                    <tr title="نسبه عدد المرواغات في كل مباراة">--}}
-                                            {{--                                                        <th> عدد المرواغات  </th>--}}
-                                            {{--                                                        <th>{{($player->stat->Sw)}}</th>--}}
-                                            {{--                                                    </tr>--}}
-
                                             <tr>
-                                                <th>{{trans('stat.Crs')}}  </th>
-                                                <td>{{ intval($player->stat->Crs*$player->stat->MP)}}</td>
+                                                <th>{{trans('stat.GCA')}}  </th>
+                                                <td>{{ intval($player->stat->GCA*$player->stat->MP)}}</td>
                                             </tr>
 
 
@@ -793,9 +791,11 @@
                                                 <th>{{intval($player->stat->TklAtt3rd  * $player->stat->MP )}}</th>
                                             </tr>
 
-                                            <tr title="{{trans('stat.Clr')}}">
-                                                <th>  {{trans('stat.Clr')}}</th>
-                                                <th>{{intval($player->stat->Clr * $player->stat->MP )}}</th>
+
+
+                                            <tr title="{{trans('stat.Recov')}}">
+                                                <th>  {{trans('stat.Recov')}}</th>
+                                                <th>{{intval($player->stat->Recov  * $player->stat->MP )}}</th>
                                             </tr>
 
                                         </table>
@@ -806,32 +806,32 @@
                             <div class="col-md-12 col-lg-4 col-xl-4">
                                 <div class="card card-dashboard-eight pb-2">
                                     <div class="main-content-label tx-12 mg-b-15">
-                                        {{trans('stat.touches')}}
+                                        {{trans('stat.Blocks')}}
                                     </div>
                                     <div class="ht-200 ht-lg-250">
                                         <table class="table" id="example1">
-                                            <tr title="{{trans('stat.touches')}} " >
-                                                <th>{{trans('stat.touches')}}</th>
-                                                <td>{{ intval($player->stat->Touches*$player->stat->MP)}}</td>                                                    </tr>
+                                            <tr title="{{trans('stat.Blocks')}} " >
+                                                <th>{{trans('stat.Blocks')}}</th>
+                                                <td>{{ intval($player->stat->Blocks*$player->stat->MP)}}</td>                                                    </tr>
 
-                                            <tr title="{{trans('stat.TouDef3rd')}}" >
-                                                <th>{{trans('stat.TouDef3rd')}}</th>
-                                                <td>{{ intval($player->stat->TouDef3rd*$player->stat->MP)}}</td>                                                    </tr>
+                                            <tr title="{{trans('stat.BlkSh')}}" >
+                                                <th>{{trans('stat.BlkSh')}}</th>
+                                                <td>{{ intval($player->stat->BlkSh*$player->stat->MP)}}</td>                                                    </tr>
 
 
-                                            <tr title="{{trans('stat.TouMid3rd')}}" >
-                                                <th> {{trans('stat.TouMid3rd')}}</th>
-                                                <td>{{ intval($player->stat->TouMid3rd*$player->stat->MP)}}</td>
+                                            <tr title="{{trans('stat.BlkShSv')}}" >
+                                                <th> {{trans('stat.BlkShSv')}}</th>
+                                                <td>{{ intval($player->stat->BlkShSv*$player->stat->MP)}}</td>
                                             </tr>
 
 
-                                            <tr title="{{trans('stat.TouAtt3rd')}}" >
-                                                <th> {{trans('stat.TouAtt3rd')}}</th>
-                                                <td>{{ intval($player->stat->TouAtt3rd *$player->stat->MP )}}</td>
+                                            <tr title="{{trans('stat.BlkPass')}}" >
+                                                <th> {{trans('stat.BlkPass')}}</th>
+                                                <td>{{ intval($player->stat->BlkPass *$player->stat->MP )}}</td>
                                             </tr>
-                                            <tr title="{{trans('stat.TouAttPen')}}" >
-                                                <th>{{trans('stat.TouAttPen')}}</th>
-                                                <td>{{ intval($player->stat->TouAttPen* $player->stat->MP )}}</td>
+                                            <tr title="{{trans('stat.Int')}}" >
+                                                <th>{{trans('stat.Int')}}</th>
+                                                <td>{{ intval($player->stat->Int* $player->stat->MP )}}</td>
                                             </tr>
 
 
@@ -842,34 +842,34 @@
                             <div class="col-md-12 col-lg-4 col-xl-4">
                                 <div class="card card-dashboard-eight pb-2">
                                     <div class="main-content-label tx-12 mg-b-15">
-                                        المرواغة
+                                        {{trans('stat.dribble')}}
                                     </div>
                                     <div class="ht-200 ht-lg-250">
                                         <table class="table" id="example1">
-                                            <tr title="عدد محاولات المرواغة  " >
-                                                <th>  المرواغات  </th>
+                                            <tr title="{{trans('stat.ToAtt')}}  " >
+                                                <th> {{trans('stat.ToAtt')}}  </th>
                                                 <td>{{ intval($player->stat->ToAtt*10)*3}}</td>
                                             </tr>
 
-                                            <tr title="عدد المرواغات الناجحة" >
-                                                <th>المرواغات الناجحة</th>
+                                            <tr title="{{trans('stat.ToSuc')}}" >
+                                                <th>{{trans('stat.ToSuc')}}</th>
                                                 <td>{{ intval($player->stat->ToSuc*10)*3}}</td>
                                             </tr>
 
 
-                                            <tr title="نسبة نجاح المراوغات" >
-                                                <th> نسبة نجاح المراوغات</th>
+                                            <tr title="{{trans('stat.ToSuc_per')}}" >
+                                                <th> {{trans('stat.ToSuc_per')}}</th>
                                                 <td>{{ ($player->stat->ToSuc_per)}}%</td>
                                             </tr>
 
 
-                                            <tr title="عدد المرات التي تم التدخل فيها بالمراوغة" >
-                                                <th>التدخل عند المرواغة</th>
-                                                <td>{{ intval($player->stat->ToTkl*10)*3}}</td>
+                                            <tr>
+                                                <th>{{trans('stat.Carries')}}</th>
+                                                <td>{{ intval($player->stat->Carries)}}</td>
                                             </tr>
-                                            <tr title="نسبه التدخل عند المرواغة" >
-                                                <th>نسبه التدخل عند المرواغة</th>
-                                                <td>{{ intval($player->stat->ToTkl_per)}}%</td>
+                                            <tr>
+                                                <th>{{trans('stat.CarProg')}}</th>
+                                                <td>{{ intval($player->stat->CarProg)}}</td>
                                             </tr>
 
 
@@ -880,35 +880,36 @@
                             <div class="col-md-12 col-lg-4 col-xl-4">
                                 <div class="card card-dashboard-eight pb-2">
                                     <div class="main-content-label tx-12 mg-b-15">
-                                        اللعب - التسلسل - الأخطاء
+                                        {{trans('stat.ddd')}}
                                     </div>
                                     <div class="ht-200 ht-lg-250">
                                         <table class="table" id="example1">
 
-                                            <tr title="عدد الفرص الخطيرة التي تم إنشاؤها" >
-                                                <th>الفرص الخطيرة </th>
-                                                <td>{{ intval($player->stat->CPA*10)*3}}</td>
+                                            <tr title="{{trans('stat.Clr')}}" >
+                                                <th>{{trans('stat.Clr')}} </th>
+                                                <td>{{ intval($player->stat->Clr*$player->stat->MP)}}</td>
                                             </tr>
 
-                                            <tr title="عدد مرات استرجاع الكرة من الخصم " >
-                                                <th>استرجاعات الكرة </th>
-                                                <td>{{ intval($player->stat->Rec*2) }}</td>
+                                            <tr title="{{trans('stat.Tkl_Int')}}" >
+                                                <th>{{trans('stat.Tkl_Int')}} </th>
+                                                <td>{{ intval($player->stat->Tkl_Int*$player->stat->MP) }}</td>
                                             </tr>
 
 
-                                            <tr title="عدد استرجاع الكرة الذي أدى إلى تقدم الفريق " >
-                                                <th>استرجاع أدي الي تقدم الفريق  </th>
-                                                <td>{{ intval($player->stat->RecProg*2) }}</td>
+                                            <tr title="{{trans('stat.touches')}} " >
+                                                <th>{{trans('stat.touches')}}  </th>
+                                                <td>{{ intval($player->stat->Touches*$player->stat->MP) }}</td>
                                             </tr>
 
-                                            <tr title="الكرات الضائعة " >
-                                                <th>عدد الكرات الضائعة  </th>
-                                                <td>{{ intval($player->stat->Crs*10)*3}}</td>
+                                            <tr title="{{trans('stat.Fls')}} " >
+                                                <th>{{trans('stat.Fls')}}  </th>
+                                                <td>{{ intval($player->stat->Fls*$player->stat->MP) }}</td>
                                             </tr>
 
-                                            <tr title="عدد المرات التي تم التسلل فيها " >
-                                                <th>التسلسلات  </th>
-                                                <td>{{ intval($player->stat->Off*10)*3}}</td>
+                                            <tr title="{{trans('stat.Off')}}" >
+                                                <th>{{trans('stat.Off')}}  </th>
+                                                <td>{{ intval($player->stat->Off*$player->stat->MP) }}</td>
+
                                             </tr>
 
 

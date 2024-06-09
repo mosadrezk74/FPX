@@ -113,8 +113,9 @@ return [
 	'player1'=>'Select First Player',
 	'player2'=>'Select Second Player',
 	'lang'=>'Search Player',
-	''=>'',
+	'Partners'=>'Our Partners',
 
+    'join_with_us'=>'Join us and be a partner',
 
 
 

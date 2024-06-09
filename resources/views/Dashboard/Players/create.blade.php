@@ -156,14 +156,18 @@
 
 
                                                 <div class="col-md-4">
-                                                    <label for="nationality" class="control-label mb-1">{{trans('index.player_nation')}}</label>
+                                                    <label for="nationality">{{trans('coach.nationality')}}</label>
                                                     <input id="nationality" name="nationality" list="nationalitiesList" class="form-control" required>
                                                     <datalist id="nationalitiesList">
                                                         <option value="" label="{{trans('nation.player_nation')}}"></option>
                                                         @foreach ($countries as $country)
-                                                            <option value="{{ $country['name']['common'] }}">
-                                                                {{ trans('nation.country_name.' . strtolower($country['cca2'])) }}
-                                                                <img src="{{ $country['flags']['png'] }}" alt="{{ $country['name']['common'] }} Flag">
+                                                            <option value="{{$country->id}}">
+                                                                @if(App::getLocale() == 'ar')
+                                                                    {{$country->name_ar}}
+                                                                @else
+                                                                    {{$country->name_en}}
+                                                                @endif
+
                                                             </option>
                                                         @endforeach
                                                     </datalist>
@@ -175,7 +179,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label for="stat_id" class="control-label mb-1">احصائيات</label>
+                                                    <label for="stat_id" class="control-label mb-1">{{trans('stat.stat')}}</label>
                                                     <input type="text" list="player_stats_list" id="stat_id" name="stat_id" class="form-control" placeholder="اختر اسم اللاعب-" required>
 
                                                     <datalist id="player_stats_list">

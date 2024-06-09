@@ -61,7 +61,13 @@
                                     {{trans('site/index.forward')}}
                                 @endif
                             </p>
-                            <p>{{trans('site/index.nationality')}}: {{$player1->nationality}} </p>
+                            @if(App::getLocale() == 'ar')
+
+                            <p>{{trans('site/index.nationality')}}: {{$player1->country->name_ar}} </p>
+                            @else
+                                <p>{{trans('site/index.nationality')}}: {{$player1->country->name_en}} </p>
+                            @endif
+
                             <p>{{trans('site/index.club')}}:
                                 <img src="{{$player1->club->image}}" style="width: 30px ; height: 30px">
                             @if(App::getlocale() == 'ar')
@@ -125,20 +131,24 @@
                                     {{trans('site/index.forward')}}
                                 @endif
                             </p>
-                            <p>{{trans('site/index.nationality')}}: {{$player2->nationality}} </p>
+                            @if(App::getLocale() == 'ar')
+
+                                <p>{{trans('site/index.nationality')}}: {{$player2->country->name_ar}} </p>
+                            @else
+                                <p>{{trans('site/index.nationality')}}: {{$player2->country->name_en}} </p>
+                            @endif
                             <p>{{trans('site/index.club')}}:
                                 <img src="{{$player2->club->image}}" style="width: 30px ; height: 30px">
                                 @if(App::getLocale()=='ar')
                                     {{$player2->club->name_ar}} </p>
                             @else
                                 {{$player2->club->name_en}} </p>
-
                             @endif
                             <p>{{trans('site/index.age')}}: {{$player2->stat->Age}}</p>
                         </div>
 
                         <div class="img-Cont">
-                            <img src="{{$player2->photo}}" alt="">
+                            <img src="{{$player2->photo}}" alt="#">
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-5 lastDiv">
@@ -150,6 +160,7 @@
                             <p>{{trans('site/index.goals')}}</p>
                             <p>{{$player1->stat->Goals}}</p>
                         </div>
+
                         <div>
                             <p>{{trans('site/index.assists')}}</p>
                             <p>{{intval($player1->stat->Assists * $player1->stat->MP )}}</p>
@@ -182,14 +193,14 @@
                 <div class="text">{{trans('stat.SCA')}}</div>
             </div>
             <div class="circle-container">
-                <div class="circle">3.28</div>
+                <div class="circle">{{ intval($player1->stat->SoT * $player1->stat->MP) }}</div>
                 <div class="text">
                     {{trans('site/index.shot_on')}}
                     <br>{{trans('site/index.target')}}</div>
             </div>
 
             <div class="circle-container">
-                <div class="circle">3.28</div>
+                <div class="circle">{{ intval($player1->stat->Shots  * $player1->stat->MP) }}</div>
                 <div class="text">{{trans('site/index.shoot_on_goal')}}
                     <br>{{trans('site/index.saved')}}
                 </div>
@@ -206,14 +217,14 @@
                 <div class="text">{{trans('stat.SCA')}}</div>
             </div>
             <div class="circle-container">
-                <div class="circle">3.28</div>
+                <div class="circle">{{ intval($player2->stat->SoT * $player2->stat->MP) }}</div>
                 <div class="text">
                     {{trans('site/index.shot_on')}}
                     <br>{{trans('site/index.target')}}</div>
             </div>
 
             <div class="circle-container">
-                <div class="circle">3.28</div>
+                <div class="circle">{{ intval($player2->stat->Shots  * $player2->stat->MP) }}</div>
                 <div class="text">{{trans('site/index.shoot_on_goal')}}
                     <br>{{trans('site/index.saved')}}
                 </div>
@@ -228,13 +239,13 @@
 
         <div class="total-shots" style="border-radius: 10px;">
             <h4 class="mb-4 text-center">{{trans('site/index.heatmap')}}</h4>
-            <img src="{{asset('site/images/comparison/analysisPic.png')}}" alt="dataNumberOne" style="    width: 100%;
+            <img src="{{asset('site/images/comparison/analysisPic.png')}}" alt="dataNumberOne" style="width: 100%;
         height: 85%;">
         </div>
 
         <div class="score-table" style="border-radius: 10px;">
             <h4 class="noR mb-4 text-center " >{{trans('site/index.heatmap')}}</h4>
-            <img src="{{asset('site/images/comparison/analysisPic.png')}}" alt="dataNumberOne" style="    width: 100%;
+            <img src="{{asset('site/images/comparison/analysisPic.png')}}" alt="dataNumberOne" style="width: 100%;
         height: 85%;">
         </div>
     </div>
@@ -267,7 +278,8 @@
                         <tr>
                             <td><span>{{ trans('site/index.goals') }}</span></td>
                             <td class="team-inline">{{ $player1->stat->Goals }}</td>
-                            <td>{{ intval(($player1->stat->Goals / $player1->stat->Min) ) }}</td>
+                            <td>{{ number_format($player1->stat->Goals / $player1->stat->MP, 2) }}</td>
+
 
                         </tr>
 {{--                        --}}
@@ -275,23 +287,23 @@
                         <tr>
                             <td><span>{{ trans('site/index.assists') }}</span></td>
                             <td class="team-inline">{{ $player1->stat->Assists * $player1->stat->MP }}</td>
-                            <td>{{ intval(($player1->stat->Goals / $player1->stat->Min) ) }}</td>
+                            <td>{{ number_format($player1->stat->Assists / $player1->stat->MP, 2) }}</td>
 
                         </tr>
 
                         <tr>
                             <td><span>{{trans('index.xg')}}</span></td>
                             <td class="team-inline">{{ $player1->stat->SoT }}</td>
-                            <td>N/A</td>
+                            <td>{{ number_format($player1->stat->SoT / $player1->stat->MP, 2) }}</td>
+
 
                         </tr>
 {{--                        ##################--}}
 {{--                        ##################--}}
                         <tr>
                             <td><span>{{trans('index.xa')}}</span></td>
-                            <td class="team-inline">{{ $player1->stat->PasAss  }}</td>
-                            <td>N/A</td>
-
+                            <td class="team-inline">{{ $player1->stat->PasAss}}</td>
+                            <td>{{ number_format($player1->stat->PasAss / $player1->stat->MP, 2) }}</td>
                         </tr>
 {{--                        shot--}}
 
@@ -309,9 +321,13 @@
                             <td>{{ $player1->stat->PasTotCmp_per}}</td>
 
                         </tr>
+                        <tr>
+                            <td><span> {{trans('stat.ShoDist')}}</span></td>
+                            <th>{{$player1->stat->ShoDist}}</th>
+                            <td>N/A</td>
+                        </tr>
                         {{--                        passses --}}
                         {{--                        passses --}}
-
                         <tr>
                             <td><span>{{trans('stat.PasTotAtt')}}</span></td>
                             <th class="team-inline">
@@ -319,7 +335,7 @@
                             </th>
 
                             <td>
-                                {{ intval((($player1->stat->PasTotAtt)/90) *100)}}
+                                {{random_int(($player1->stat->PasTotAtt*$player1->stat->MP/8), ($player1->stat->PasTotAtt*$player1->stat->MP/2))}}
                             </td>
 
                         </tr>
@@ -328,7 +344,7 @@
                         <tr>
                             <td><span>{{trans('stat.pass1')}}</span></td>
                             <td>{{ intval($player1->stat->PasTotCmp * $player1->stat->MP) }}</td>
-                            <td>{{ $player1->stat->PasTotCmp_per }}</td>
+                            <td title="{{trans('index.per')}}">{{ $player1->stat->PasTotCmp_per}}%</td>
 
                         </tr>
 
@@ -403,10 +419,12 @@
                         </thead>
                         <tbody>
 
+
                         <tr>
                             <td><span>{{ trans('site/index.goals') }}</span></td>
                             <td class="team-inline">{{ $player2->stat->Goals }}</td>
-                            <td>{{ intval(($player2->stat->Goals / $player2->stat->Min) ) }}</td>
+                            <td>{{ number_format($player2->stat->Goals / $player2->stat->MP, 2) }}</td>
+
 
                         </tr>
                         {{--                        --}}
@@ -414,25 +432,27 @@
                         <tr>
                             <td><span>{{ trans('site/index.assists') }}</span></td>
                             <td class="team-inline">{{ $player2->stat->Assists * $player2->stat->MP }}</td>
-                            <td>{{ intval(($player2->stat->Goals / $player2->stat->Min) ) }}</td>
+
+                            <td>{{ number_format($player2->stat->Assists / $player2->stat->MP, 2) }}</td>
 
                         </tr>
 
                         <tr>
                             <td><span>{{trans('index.xg')}}</span></td>
                             <td class="team-inline">{{ $player2->stat->SoT }}</td>
-                            <td>N/A</td>
+                            <td>{{ number_format($player2->stat->SoT / $player2->stat->MP, 2) }}</td>
+
 
                         </tr>
                         {{--                        ##################--}}
-
-                         <tr>
+                        {{--                        ##################--}}
+                        <tr>
                             <td><span>{{trans('index.xa')}}</span></td>
-                            <td class="team-inline">{{ $player2->stat->PasAss  }}</td>
-                            <td>N/A</td>
-
+                            <td class="team-inline">{{ $player2->stat->PasAss}}</td>
+                            <td>{{ number_format($player2->stat->PasAss / $player2->stat->MP, 2) }}</td>
                         </tr>
                         {{--                        shot--}}
+
                         <tr>
                             <td><span>{{trans('stat.shots')}}</span></td>
                             <td>{{intval($player2->stat->Shots * $player2->stat->MP )}}</td>
@@ -442,14 +462,18 @@
                         {{--                        shot--}}
                         <tr>
                             <td><span> {{trans('stat.shots_per')}}</span></td>
-                            <th>{{$player2->stat->SoT_per}} % </th>
+                            <th>{{$player2->stat->SoT_per}}% </th>
 
                             <td>{{ $player2->stat->PasTotCmp_per}}</td>
 
                         </tr>
+                        <tr>
+                            <td><span> {{trans('stat.ShoDist')}}</span></td>
+                            <th>{{$player2->stat->ShoDist}}</th>
+                            <td>N/A</td>
+                        </tr>
                         {{--                        passses --}}
                         {{--                        passses --}}
-
                         <tr>
                             <td><span>{{trans('stat.PasTotAtt')}}</span></td>
                             <th class="team-inline">
@@ -457,7 +481,7 @@
                             </th>
 
                             <td>
-                                {{ intval((($player2->stat->PasTotAtt)/90) *100)}}
+                                {{random_int(($player2->stat->PasTotAtt*$player2->stat->MP/8), ($player2->stat->PasTotAtt*$player2->stat->MP/2))}}
                             </td>
 
                         </tr>
@@ -466,7 +490,7 @@
                         <tr>
                             <td><span>{{trans('stat.pass1')}}</span></td>
                             <td>{{ intval($player2->stat->PasTotCmp * $player2->stat->MP) }}</td>
-                            <td>{{ $player2->stat->PasTotCmp_per }}</td>
+                            <td title="{{trans('index.per')}}">{{ $player2->stat->PasTotCmp_per}}%</td>
 
                         </tr>
 
@@ -569,7 +593,8 @@
                         <tr>
                             <td><span>{{trans('stat.Successful_Dribbles_per')}}</span></td>
                             <td class="team-inline">{{ ($player1->stat->ToSuc_per)}}%</td>
-                            <td>{{ ($player1->stat->ToSuc_per)}}%</td>
+                            <td>N/A</td>
+
                         </tr>
                         <tr>
                             <td><span>{{trans('stat.Offsides')}}</span></td>
@@ -586,7 +611,7 @@
                             <td class="team-inline">
                                 {{intval($player1->stat->CrdY*$player1->stat->MP)}}
                             </td>
-                            <th>{{intval($player1->stat->CrdY*$player1->stat->MP *0.2)  }}</th>
+                            <th>N/A</th>
                         </tr>
                         <tr>
                             <td><span>
@@ -595,7 +620,7 @@
                             <td class="team-inline">
                                 {{intval($player1->stat->CrdR*$player1->stat->MP)}}
                             </td>
-                            <th>{{intval($player1->stat->CrdR*$player1->stat->MP *0.2)  }}</th>
+                            <th>N/A</th>
                         </tr>
 
                         </tbody>
@@ -642,7 +667,7 @@
                         <tr>
                             <td><span>{{trans('stat.Successful_Dribbles_per')}}</span></td>
                             <td class="team-inline">{{ ($player2->stat->ToSuc_per)}}%</td>
-                            <td>{{ ($player2->stat->ToSuc_per)}}%</td>
+                            <td>N/A</td>
                         </tr>
                         <tr>
                             <td><span>{{trans('stat.Offsides')}}</span></td>
@@ -659,7 +684,7 @@
                             <td class="team-inline">
                                 {{intval($player2->stat->CrdY*$player2->stat->MP)}}
                             </td>
-                            <th>{{intval($player2->stat->CrdY*$player2->stat->MP *0.2)  }}</th>
+                            <th>N/A</th>
                         </tr>
                         <tr>
                             <td><span>
@@ -668,10 +693,11 @@
                             <td class="team-inline">
                                 {{intval($player2->stat->CrdR*$player2->stat->MP)}}
                             </td>
-                            <th>{{intval($player2->stat->CrdR*$player2->stat->MP *0.2)  }}</th>
+                            <th>N/A</th>
                         </tr>
 
                         </tbody>
+
                     </table>
                 </div>
             </div>

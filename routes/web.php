@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontContoller;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Route;
@@ -52,24 +53,37 @@ Route::group(
 ##################################################################################
     Route::get('/send', [\App\Http\Controllers\FrontContoller::class, 'send'])
         ->name('send');
-
-
     ##################################################################################
     Route::post('/send', [\App\Http\Controllers\FrontContoller::class, 'send_store'])
         ->name('send.store');
-
-
-
-
-
-
-    ##################################################################################
+##################################################################################
+    Route::get('/clubs', [\App\Http\Controllers\FrontContoller::class, 'clubs'])
+        ->name('clubs');
+##################################################################################
+###################################################################################
     Route::get('/signup', [\App\Http\Controllers\FrontContoller::class, 'signup'])
         ->name('signup');
 ##################################################################################
     Route::get('/topRated', [\App\Http\Controllers\FrontContoller::class, 'topRated'])
         ->name('topRated');
 ##################################################################################
+#----------------------------Start Backend Routes-------------------------------------
+##################################################################################
+    Route::get('dashboard/admin/join_front',
+        [\App\Http\Controllers\PageController::class, 'join'])->name('front.join');
+
+    Route::delete('/dashboard/admin/join_front/{id}', [PageController::class, 'destroy'])->name('join.destroy');
+
+    Route::get('dashboard/admin/contact_front',
+        [\App\Http\Controllers\PageController::class, 'contact'])->name('front.contact');
+
+
+    Route::get('dashboard/admin/send_front',
+        [\App\Http\Controllers\PageController::class, 'send'])->name('front.send');
+##################################################################################
+##################################################################################
+
+
 
 });
 

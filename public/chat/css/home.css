@@ -9,7 +9,7 @@ p{
     top: 20px;
     right: 10px;
     padding: 1px;
-    background-color: rgb(46, 172, 109);
+    background-color: #3b5998;
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -37,7 +37,7 @@ p{
 }
 .recieverBox{
     color: white;
-    background-color: #2e8b57;
+    background-color: #3b5998;
     border-radius: 7px;
     box-shadow: 0 0 3px gray;
     max-width:70%;
