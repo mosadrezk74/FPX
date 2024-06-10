@@ -19,7 +19,6 @@
 @section('content')
 
 	@include('Dashboard.messages_alert')
-{{--	<div style="background-color: white">--}}
 	<!-- row -->
 	<div class="row" >
 		<div class="col-lg-12 col-md-12">
@@ -35,8 +34,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label for="name_ar" class="control-label mb-1">{{trans('index.player_name_ar')}}</label>
-                                                    <input id="name_ar"  name="name_ar" type="text"
-                                                           class="form-control" aria-required="true" required  >
+                                                    <input id="name_ar" name="name_ar" type="text" class="form-control" aria-required="true" required>
                                                     @error('name_ar')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
@@ -45,29 +43,25 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="name_en" class="control-label mb-1">{{trans('index.player_name_en')}}</label>
-                                                    <input id="name_en"  name="name_en" type="text"
-                                                           class="form-control" aria-required="true"  required >
+                                                    <input id="name_en" name="name_en" type="text" class="form-control" aria-required="true" required>
                                                     @error('name_en')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
                                                 </div>
-
                                                 <div class="col-md-4">
                                                     <label for="club" class="control-label mb-1">{{trans('index.club')}}</label>
-
                                                     <select id="club" name="club_id" class="form-control" required>
                                                         <option value="">{{trans('index.clubs')}}</option>
                                                         @foreach($clubs as $club)
-                                                            @if($club->status==1)
-                                                            @if (App::getLocale() == 'ar')
-                                                            <option value="{{$club->id}}">{{$club->name_ar}}</option>
-                                                            @else
-                                                                <option value="{{$club->id}}">{{$club->name_en}}</option>
+                                                            @if($club->status == 1)
+                                                                @if (App::getLocale() == 'ar')
+                                                                    <option value="{{$club->id}}">{{$club->name_ar}}</option>
+                                                                @else
+                                                                    <option value="{{$club->id}}">{{$club->name_en}}</option>
+                                                                @endif
                                                             @endif
-                                                            @endif
-
                                                         @endforeach
                                                     </select>
                                                     @error('club_id')
@@ -75,9 +69,7 @@
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
-
                                                 </div>
-
 
                                                 <div class="col-md-4">
                                                     <label for="photo" class="control-label mb-1">{{trans('index.player_image')}}</label>
@@ -88,7 +80,6 @@
                                                     </div>
                                                     @enderror
                                                 </div>
-
                                                 <div class="col-md-4">
                                                     <label for="email" class="control-label mb-1">{{trans('index.email')}}</label>
                                                     <input class="form-control" type="email" name="email" required>
@@ -98,8 +89,6 @@
                                                     </div>
                                                     @enderror
                                                 </div>
-
-
                                                 <div class="col-md-4">
                                                     <label for="password" class="control-label mb-1">{{trans('index.password')}}</label>
                                                     <input class="form-control" type="password" name="password" required>
@@ -109,50 +98,65 @@
                                                     </div>
                                                     @enderror
                                                 </div>
-
-
-
-{{--                                                <div class="col-md-4">--}}
-{{--                                                    <label for="age" class="control-label mb-1">{{trans('index.player_age')}}</label>--}}
-{{--                                                    <input id="age" name="age" type="text" class="form-control" required data-input aria-required="true">--}}
-{{--                                                    @error('age')--}}
-{{--                                                    <div class="alert alert-danger" role="alert">--}}
-{{--                                                        {{ $message }}--}}
-{{--                                                    </div>--}}
-{{--                                                    @enderror--}}
-{{--                                                </div>--}}
-
+                                                <div class="col-12">
+                                                        <label for="position" class="control-label mb-1">{{trans('index.player_position')}}</label>
+                                                        <select id="position" name="position" class="form-control" required>
+                                                            <option value="" disabled selected>{{trans('index.player_position_SS')}}</option>
+                                                            <option value="0">{{trans('index.player_position_GK')}}</option>
+                                                            <option value="1">{{trans('index.player_position_DF')}}</option>
+                                                            <option value="2">{{trans('index.player_position_MF')}}</option>
+                                                            <option value="3">{{trans('index.player_position_FW')}}</option>
+                                                        </select>
+                                                        @error('position')
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {{ $message }}
+                                                        </div>
+                                                        @enderror
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-{{--                                                <div class="col-md-4">--}}
-{{--                                                    <label for="height" class="control-label mb-1">{{trans('index.player_height')}}</label>--}}
-{{--                                                    <input id="height"  name="height" type="text"--}}
-{{--                                                           class="form-control" aria-required="true"  required >--}}
-{{--                                                    @error('height')--}}
-{{--                                                    <div class="alert alert-danger" role="alert">--}}
-{{--                                                        {{ $message }}--}}
-{{--                                                    </div>--}}
-{{--                                                    @enderror--}}
-{{--                                                </div>--}}
                                                 <div class="col-md-4">
-                                                    <label for="position" class="control-label mb-1">{{trans('index.player_position')}}</label>
-                                                    <select id="position" name="position" class="form-control" required>
-                                                        <option value="" disabled selected>{{trans('index.player_position_SS')}}</option>
-                                                        <option value="0">{{trans('index.player_position_GK')}}</option>
-                                                        <option value="1">{{trans('index.player_position_DF')}}</option>
-                                                        <option value="2">{{trans('index.player_position_MF')}}</option>
-                                                        <option value="3">{{trans('index.player_position_FW')}}</option>
-                                                     </select>
-                                                    @error('position')
+                                                    <label for="age" class="control-label mb-1">{{ trans('index.player_age') }}</label>
+                                                    <input id="age" name="age" type="text" class="form-control" required data-input aria-required="true">
+                                                    @error('age')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="height" class="control-label mb-1">{{trans('index.player_height')}}</label>
+                                                    <input id="height" name="height" type="text" class="form-control" aria-required="true" required>
+                                                    @error('height')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
                                                 </div>
 
+                                                <div class="col-md-4">
+                                                    <label for="weight" class="control-label mb-1">{{trans('index.player_weight')}}</label>
+                                                    <input id="weight" name="weight" type="text" class="form-control" aria-required="true" required>
+                                                    @error('weight')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
 
+                                                <div class="col-md-4">
+                                                    <label for="shirt" class="control-label mb-1">{{trans('index.player_shirt')}}</label>
+                                                    <select id="shirt" name="shirt_number" class="form-control" required>
+                                                        <option value="" disabled selected>Choose a number</option>
+                                                    </select>
+                                                    @error('shirt_number')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
 
 
                                                 <div class="col-md-4">
@@ -167,7 +171,6 @@
                                                                 @else
                                                                     {{$country->name_en}}
                                                                 @endif
-
                                                             </option>
                                                         @endforeach
                                                     </datalist>
@@ -177,47 +180,32 @@
                                                     </div>
                                                     @enderror
                                                 </div>
-
                                                 <div class="col-md-4">
                                                     <label for="stat_id" class="control-label mb-1">{{trans('stat.stat')}}</label>
                                                     <input type="text" list="player_stats_list" id="stat_id" name="stat_id" class="form-control" placeholder="اختر اسم اللاعب-" required>
-
                                                     <datalist id="player_stats_list">
                                                         <option value="{{trans('index.clubs')}}" disabled></option>
                                                         @foreach($player_stats as $st)
                                                             <option value="{{$st->id}}">{{$st->Name}}</option>
                                                         @endforeach
                                                     </datalist>
-
                                                     @error('stat_id')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
                                                 </div>
-
-
-
-
                                             </div>
                                         </div>
-
-                                        </div>
-
                                     </div>
                                 </div>
-
                             </div>
-
-                        <center>
-
-                        <div>
-                            <button id="payment-button" type="submit" class="btn btn-lg btn-primary">
-                                Submit
-                            </button>
+                            <div class="col-12 text-center mt-3">
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-primary">
+                                    Submit
+                                </button>
+                            </div>
                         </div>
-                        </center>
-
                     </form>
 				</div>
 			</div>
@@ -250,6 +238,34 @@
     var channel = pusher.subscribe('my-channel');
     channel.bind('App\\Events\\MyEvent', function(data) {
         alert(JSON.stringify(data.name_ar));
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#club').change(function() {
+            var clubId = $(this).val();
+            if (clubId) {
+                $.ajax({
+                    url: '/get-available-shirt-numbers/' + clubId,
+                    type: 'GET',
+                    success: function(data) {
+                        var shirtSelect = $('#shirt');
+                        shirtSelect.empty();
+                        shirtSelect.append('<option value="" disabled selected>Choose a number</option>');
+                        $.each(data, function(index, number) {
+                            shirtSelect.append('<option value="' + number + '">' + number + '</option>');
+                        });
+                    },
+                    error: function() {
+                        alert('Error fetching shirt numbers');
+                    }
+                });
+            } else {
+                $('#shirt').empty();
+                $('#shirt').append('<option value="" disabled selected>Choose a number</option>');
+            }
+        });
     });
 </script>
 

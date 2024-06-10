@@ -56,58 +56,58 @@
             <div class="nav nav-item  navbar-nav-right ml-auto">
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     @if($player)
-                    <a class="profile-user d-flex" href="" data-toggle="dropdown" data-bs-dismiss="dropdown"><img alt="" src="{{$player->photo}}"></a>
+                        <a class="profile-user d-flex" href="" data-toggle="dropdown" data-bs-dismiss="dropdown"><img alt="" src="{{$player->photo}}"></a>
                     @else
                         <a class="profile-user d-flex" href="" data-toggle="dropdown" data-bs-dismiss="dropdown"><img alt="" src="{{asset('Dashboard/img/user.png')}}"></a>
                     @endif
-                        <div class="dropdown-menu">
+                    <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user">
                                     @if($player)
-                                    <img alt="" src="{{$player->photo}}"
-                                                                class=""></div>
+                                        <img alt="" src="{{$player->photo}}"
+                                             class=""></div>
                                 @else
                                     <img alt="" src="{{asset('Dashboard/img/user.png')}}"
-                                    class=""></div>
-                                @endif
+                                         class=""></div>
+                            @endif
 
-                                <div class="mr-3 my-auto">
-                                    @auth
-                                        <h6>{{Auth::user()->name_ar}}</h6><span>{{trans('Dashboard/main-header_trans.admin')}} </span>
-                                    @endauth
-                                </div>
+                            <div class="mr-3 my-auto">
+                                @auth
+                                    <h6>{{Auth::user()->name_ar}}</h6><span>{{trans('Dashboard/main-header_trans.admin')}} </span>
+                                @endauth
                             </div>
                         </div>
-                        <a class="dropdown-item" href=><i class="bx bx-user-circle"></i>{{trans('Dashboard/main-header_trans.my_profile')}}</a>
-
-                        @if(Auth('web')->check())
-                            <form method="POST" action="{{ route('logout.user') }}">
-                                @elseif(Auth('admin')->check())
-                                    <form method="POST" action="{{ route('logout.admin') }}">
-
-                                        @elseif(Auth('club')->check())
-                                            <form method="POST" action="{{ route('logout.club') }}">
-
-                                                @elseif(Auth('player')->check())
-                                                    <form method="POST" action="{{ route('logout.player') }}">
-
-                                                        @elseif(Auth('coach')->check())
-                                                            <form method="POST" action="{{ route('logout.coach') }}">
-
-                                                                @endif
-                                                                @csrf
-                                                                <a class="dropdown-item" href="#"
-                                                                   onclick="event.preventDefault();
-                                        this.closest('form').submit();"><i class="bx bx-log-out"></i>{{trans('Dashboard/main-header_trans.logout')}}</a>
-                                                            </form>
-
                     </div>
-                </div>
+                    <a class="dropdown-item" href=><i class="bx bx-user-circle"></i>{{trans('Dashboard/main-header_trans.my_profile')}}</a>
 
+                    @if(Auth('web')->check())
+                        <form method="POST" action="{{ route('logout.user') }}">
+                            @elseif(Auth('admin')->check())
+                                <form method="POST" action="{{ route('logout.admin') }}">
+
+                                    @elseif(Auth('club')->check())
+                                        <form method="POST" action="{{ route('logout.club') }}">
+
+                                            @elseif(Auth('player')->check())
+                                                <form method="POST" action="{{ route('logout.player') }}">
+
+                                                    @elseif(Auth('coach')->check())
+                                                        <form method="POST" action="{{ route('logout.coach') }}">
+
+                                                            @endif
+                                                            @csrf
+                                                            <a class="dropdown-item" href="#"
+                                                               onclick="event.preventDefault();
+                                        this.closest('form').submit();"><i class="bx bx-log-out"></i>{{trans('Dashboard/main-header_trans.logout')}}</a>
+                                                        </form>
+
+                </div>
             </div>
+
         </div>
     </div>
+</div>
 
 
 
@@ -115,5 +115,3 @@
 
 
 </div>
-
-

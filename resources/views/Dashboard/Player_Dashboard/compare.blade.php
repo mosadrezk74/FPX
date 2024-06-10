@@ -14,7 +14,7 @@
             <div class="d-flex">
 
                 <h4 class="content-title mb-0 my-auto">{{trans('index.compare')}}</h4>
-                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/قارن
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{trans('index.compare')}}
 				</span>
 
 
@@ -36,7 +36,7 @@
                     <form action="{{ route('comparePlayers') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="player2">اختر لاعب</label>
+                            <label for="player2">{{trans('index.choose')}}</label>
                             <input type="text" name="player2" id="player2"  list="player2List" class="form-control" placeholder="{{trans('site/index.lang')}}"  required>
                             <datalist id="player2List">
                                 @foreach($players as $player)

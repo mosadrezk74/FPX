@@ -41,7 +41,7 @@
                         @elseif($player->position == 3)
                             <h3 class="card-subtitle mb-2 text-muted align-items-center  text-center " style="padding-left: 15px;">{{trans('player.forward')}}</h3>
                         @endif
-                        <h5 class="card-subtitle mb-2 text-muted align-items-center  " style="padding-left: 15px;">{{$player->stat->MP}}#</h5>
+                        <h5 class="card-subtitle mb-2 text-muted align-items-center  " style="padding-left: 15px;">{{$player->shirt_number}}#</h5>
                     </div>
                 </div>
                 <br>
@@ -55,15 +55,20 @@
                                 <tbody>
                                 <tr>
                                     <th scope="row">{{trans('player.age')}}</th>
-                                    <td>{{$player->stat->Age}}</td>
+                                    <td>{{$player->age_in_years }}</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">{{trans('player.weight')}}</th>
-                                    <th>{{rand(60,80)}}</th></tr>
+
                                 <tr>
                                     <th scope="row">{{trans('player.height')}}</th>
-                                    <th>{{rand(170,190)}}</th>
+                                    <td>{{$player->height}}</td>
                                 </tr>
+
+                                <tr>
+                                    <th scope="row">{{trans('player.weight')}}</th>
+                                    <td>{{$player->weight}}</td>
+
+                                </tr>
+
                                 <tr>
                                     <th scope="row">{{trans('player.nationality')}}</th>
                                     @if(App::getLocale()=='ar')
@@ -112,7 +117,7 @@
                                 <div class="card bg-primary">
                                     <div class="card-body text-center">
                                         <h1 class=" text-white">{{$player->stat->MP}}</h1>
-                                        <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('index.appearances')}}</h1>
+                                        <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold;">{{trans('stat.MP')}}</h1>
 
                                     </div>
                                 </div>
@@ -767,7 +772,6 @@
                             {{--Attack End--}}
                             {{--#########################################################--}}
                             {{--Shoot Start--}}
-
                             <div class="col-md-12 col-lg-3 col-xl-6">
                                 <div class="card card-dashboard-eight pb-5">
                                     <div class="main-content-label tx-12 mg-b-15">
@@ -845,6 +849,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {{--############################################################################--}}
                             <div class="col-md-12 col-lg-4 col-xl-4">
                                 <div class="card card-dashboard-eight pb-2">
                                     <div class="main-content-label tx-12 mg-b-15">
@@ -883,6 +888,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {{--############################################################################--}}
                             <div class="col-md-12 col-lg-4 col-xl-4">
                                 <div class="card card-dashboard-eight pb-2">
                                     <div class="main-content-label tx-12 mg-b-15">

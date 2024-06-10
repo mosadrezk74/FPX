@@ -1,55 +1,39 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use App\Models\Club;
 use App\Models\Country;
-use App\Models\Statistics;
-use App\Models\User;
-use App\MyEvent;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\ValidationException;
-use App\Http\Controllers\Controller;
 use App\Models\Player;
-use Carbon\Carbon;
-use GuzzleHttp\Client;
+use App\Models\Statistics;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 
 class PlayerController extends Controller
 {
-
-     public function index()
+    public function index()
     {
-        $players = \App\Models\Player::with('club', 'stat')->get();
-        $clubs = \App\Models\Club::all();
+        $players = Player::with('club', 'stat')->get();
+        $clubs = Club::all();
         return view('Dashboard.Players.index', compact('players', 'clubs'));
     }
 
-
-
-
     public function create()
     {
-        $players = \App\Models\Player::with('club')->get();
-        $clubs = \App\Models\Club::all();
-        $countries=Country::all();
+        $players = Player::with('club')->get();
+        $clubs = Club::all();
+        $countries = Country::all();
+        $player_stats = Statistics::all();
 
-        $player_stats=Statistics::all();
-
-        return view('Dashboard.Players.create',
-            compact('players' ,'clubs',
-                'countries',
-                'player_stats'));
-
+        return view('Dashboard.Players.create', compact('players', 'clubs', 'countries', 'player_stats'));
     }
-
 
     public function store(Request $request)
     {
         try {
-
             $rules = [
                 'name_ar' => 'required|string|max:25',
                 'name_en' => 'required|string|max:25',
@@ -59,8 +43,10 @@ class PlayerController extends Controller
                 'email' => 'required|email|unique:players,email',
                 'password' => 'required|string|min:6',
                 'photo' => 'required',
-
-
+                'age'=>'required',
+                'weight'=>'required',
+                'height'=>'required',
+                'shirt_number'=>'required',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -71,60 +57,62 @@ class PlayerController extends Controller
                     ->withInput();
             }
 
-            $players = new \App\Models\Player();
-            $players->name_ar = $request->name_ar;
-            $players->name_en = $request->name_en;
-            $players->nationality = $request->nationality;
+            $player = new Player();
+            $player->name_ar = $request->name_ar;
+            $player->name_en = $request->name_en;
+            $player->nationality = $request->nationality;
+            $player->position = $request->position;
+            $player->stat_id = $request->stat_id;
+            $player->club_id = $request->club_id;
+            $player->email = $request->email;
+            $player->password = Hash::make($request->password);
+            $player->photo = $request->photo;
+            $player->weight = $request->weight;
+            $player->height = $request->height;
+            $player->age = $request->age;
+            $player->shirt_number = $request->shirt_number;
 
-            $players->position = $request->position;
-            $players->stat_id  = $request->stat_id ;
-            $players->club_id = $request->club_id;
-            $players->email = $request->email;
-            $players->password = password_hash($request->password, PASSWORD_BCRYPT);
-            $players->photo=$request->photo;
+            $player->save();
 
-            $players->save();
-
-            session()->flash('add');
+            session()->flash('add', 'Player added successfully.');
 
             return redirect()->route('player.create');
         } catch (ValidationException $e) {
-
             return redirect()->route('player.create')
                 ->withErrors($e->validator)
                 ->withInput();
         } catch (\Exception $e) {
-
-            return redirect()->route('player.create');
+            return redirect()->route('player.create')->withErrors(['error' => 'An error occurred. Please try again.']);
         }
-
-
-
     }
 
 
     public function show(string $id)
     {
-        //
+        // Show player details (not implemented)
     }
 
-
+    /**
+     * Show the form for editing the specified player.
+     */
     public function edit(string $id)
     {
-        //
+        // Edit player details (not implemented)
     }
 
-
+    /**
+     * Update the specified player in storage.
+     */
     public function update(Request $request, string $id)
     {
-        //
+        // Update player details (not implemented)
     }
 
 
     public function destroy($id)
     {
         try {
-            $player = \App\Models\Player::findOrFail($id);
+            $player = Player::findOrFail($id);
 
             if ($player->photo) {
                 $photoPath = public_path('uploads/players/' . $player->photo);
@@ -135,7 +123,7 @@ class PlayerController extends Controller
 
             $player->delete();
 
-            session()->flash('delete');
+            session()->flash('delete', 'Player deleted successfully.');
 
             return redirect()->route('player.index');
         } catch (\Exception $e) {
@@ -143,18 +131,16 @@ class PlayerController extends Controller
         }
     }
 
+
     public function getAvailableShirtNumbers($club_id)
     {
-        $takenShirtNumbers = \App\Models\Player::where('club_id', $club_id)->pluck('shirt_number')->toArray();
-
+        $takenShirtNumbers = Player::where('club_id', $club_id)->pluck('shirt_number')->toArray();
         $allShirtNumbers = range(1, 99);
         $availableShirtNumbers = array_diff($allShirtNumbers, $takenShirtNumbers);
+
         \Log::info('Club ID: ' . $club_id);
         \Log::info('Available Shirt Numbers: ' . implode(', ', $availableShirtNumbers));
 
         return response()->json($availableShirtNumbers);
     }
-
-
-
 }

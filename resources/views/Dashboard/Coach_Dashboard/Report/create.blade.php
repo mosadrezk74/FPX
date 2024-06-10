@@ -29,7 +29,7 @@
                         @csrf
                              <div class="form-row align-items-center">
                                 <div class="col-7">
-                                    <label for="player_id">اسم اللاعب</label>
+                                    <label for="player_id">{{trans('index.Name')}}</label>
                                     <select id="player_id" name="player_id" class="form-control" required>
                                         <option value="">{{trans('index.taskName')}}</option>
                                         @foreach($players as $player)
@@ -43,12 +43,12 @@
                                 </div>
                                  {{--####################################################################################################################--}}
                                  <div class="col">
-                                    <label for="priority">أولوية تحقيق</label>
+                                    <label for="priority">{{trans('index.Priority')}}</label>
                                     <select class="custom-select" name="priority" id="priority">
-                                        <option selected>Choose...</option>
-                                        <option value="1">منخفضة</option>
-                                        <option value="2">متوسط</option>
-                                        <option value="3">عاليه</option>
+                                        <option selected>{{trans('index.choose')}}</option>
+                                        <option value="1">{{trans('index.low')}}</option>
+                                        <option value="2">{{trans('index.midl')}}</option>
+                                        <option value="3">{{trans('index.high')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -58,22 +58,22 @@
 
 
                             <div class="col-7">
-                                <label for="category">القسم</label>
+                                <label for="category">{{trans('index.category')}}</label>
                                 <select class="custom-select" id="category" name="category">
-                                    <option selected>Choose...</option>
-                                    <option value="1">تسجيل الاهداف</option>
-                                    <option value="2">الصناعة</option>
-                                    <option value="3">الدفاع</option>
-                                    <option value="4">المرواغة</option>
-                                    <option value="5">التمرير</option>
-                                    <option value="6">التسديد</option>
-                                    <option value="7">اخري</option>
+                                    <option selected>{{trans('index.choose')}}...</option>
+                                    <option value="1">{{trans('index.goals_scoring')}}</option>
+                                    <option value="2">{{trans('index.assist_s')}}</option>
+                                    <option value="3">{{trans('index.defense')}}</option>
+                                    <option value="4">{{trans('index.dribbling')}}</option>
+                                    <option value="5">{{trans('index.passing')}}</option>
+                                    <option value="6">{{trans('index.shooting')}}</option>
+                                    <option value="7">{{trans('index.task_description')}}</option>
                                 </select>
                             </div>
 
 
                             <div class="col">
-                                <label for="num">العدد</label>
+                                <label for="num">{{trans('index.number')}}</label>
                                 <input type="number" id="num" name="num" class="form-control">
                             </div>
 
@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="descr">وصف التاسك</label>
+                            <label for="descr">{{trans('index.task_description')}}</label>
                             <textarea class="form-control" id="descr" name="descr" rows="3"></textarea>
                         </div>
                         {{--####################################################################################################################--}}

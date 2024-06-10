@@ -70,7 +70,7 @@
                         </div>
 
 
-                        <button   type="submit" class="btn btn-lg btn-primary btn-block">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">
                             {{trans('dash.compare')}}
                         </button>
                     </form>

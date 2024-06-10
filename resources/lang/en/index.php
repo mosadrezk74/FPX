@@ -114,9 +114,55 @@ return [
     'text'=>'Text',
     'pro'=>'Priority',
 'player_c'=>'Player',
-
+    'user'=>'User',
     'top_team_scorer_all'=>'Top Scorer',
     'top_team_assist_all'=>'Top Assist',
+    'ACHIEVED'=>'ِAchieved'
+    ,'NACHIEVED'=>'Not ِAchieved',
+    'others'=>'Others',
+    'low'=>'Low',
+    'midl'=>'Middle',
+    'high'=>'High',
+    'Text'=>'Text',
+    'Priority'=>'Priority',
+    'Num'=>'Num',
+    'Achieved'=>'Achieved',
+    'Status'=>'Status',
+    'report'=>'Report',
+    'V_report'=>'View Report',
+
+    'category' => 'Category',
+    'choose' => 'choose...',
+    'goals_scoring' => 'Score Goals ',
+    'assist_s' => 'Make Assists',
+    'defense' => 'Defense',
+    'dribbling' => 'Dribbling',
+    'passing' => 'Passing',
+    'shooting' => 'Shooting',
+    'number' => 'Number',
+    'task_description' => 'Task description',
+    'taskName'=>'Task Name',
+    'Name'=>'Name',
+    'manage'=>'Manage Page ',
+    'seen'=>'Seen',
+    'pending'=>'Pending',
+    'country'=>'Country',
+    'phone'=>'Phone',
+    'desc'=>'Desc',
+    'status'=>'Status',
+    'action'=>'Action',
+    'name'=>'Name',
+    'since'=>'Since',
+    'g_stats'=>'General Stats',
+
+    'dd'=>'Your ranking in the league top scorers',
+    'rankTeam'=>'Your Rank In Team',
+    'best'=>'Best Match',
+
+
+
+
+
 
 
 

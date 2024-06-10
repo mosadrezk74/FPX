@@ -136,7 +136,7 @@
             <div class="card text-center bg-primary-gradient text-white ">
 
                 <div class="card-body">
-                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">ترتيبك ما بين هدافي الدوري</h1>
+                    <h1 class="tx-13 tx-black-8 mb-3" style="font-weight: bold;">{{trans('index.dd')}}</h1>
                     <h1 class="text-black">{{ $TopGoals }} # </h1>
                 </div>
             </div>
@@ -155,7 +155,7 @@
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
                 <div class="main-content-label tx-12 mg-b-15">
-                    احصائيات عامه
+                    {{trans('index.g_stats')}}
                 </div>
                 <div class="ht-200 ht-lg-250">
                     <div class="list-group-item border-top-0" title="Dollar" >
@@ -164,19 +164,24 @@
                     </div>
                     <div class="list-group-item border-top-0">
                         <p>{{trans('player.height')}}</p>
-                        <span>{{ mt_rand(160, 200) }}</span>
+                        <span>{{ $player->height }}</span>
                     </div>
                     <div class="list-group-item border-top-0">
                         <p>{{trans('player.weight')}}</p>
-                        <span>{{ mt_rand(75, 90)}}</span>
+                        <span>{{ $player->weight }}</span>
                     </div>
                     <div class="list-group-item border-top-0">
                         <p>{{trans('player.age')}}</p>
-                        <span>{{$player->stat->Age}}</span>
+                        <span>{{$player->age_in_years}}</span>
                     </div>
                     <div class="list-group-item border-top-0">
                         <p>{{trans('player.nationality')}}</p>
-                        <span>{{$player->nationality}}</span>
+                        @if(App::getLocale() == 'ar')
+                        <span>{{$player->country->name_ar}}</span>
+                        @else
+                        <span>{{$player->country->name_en}}</span>
+                        @endif
+
                     </div>
                 </div>
             </div>

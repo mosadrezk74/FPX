@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
  use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -85,5 +86,8 @@ class Player extends Authenticatable implements JWTSubject
 
     }
 
-
+    public function getAgeInYearsAttribute()
+    {
+        return Carbon::parse($this->attributes['age'])->age;
+    }
 }

@@ -1,7 +1,7 @@
 @extends('Dashboard.layouts.master')
 
 @section('title')
-    {{trans('index.gen_info')}}
+    {{trans('index.compare')}}
 @stop
 
 
@@ -13,8 +13,8 @@
         <div class="my-auto">
             <div class="d-flex">
 
-                <h4 class="content-title mb-0 my-auto">{{trans('index.gen_info')}}</h4>
-                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                <h4 class="content-title mb-0 my-auto">{{trans('index.compare')}}</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{trans('index.compare')}}<
 				</span>
 
 
@@ -154,11 +154,11 @@
                 <tr>
                     <th scope="row">{{trans('stat.age')}}</th>
                     <td class="base-item">
-                        {{$player1->stat->Age}}
+                        {{$player1->age_in_years}}
                     </td>
 
                     <td>
-                        {{$player2->stat->Age}}
+                        {{$player2->stat->age_in_years}}
                     </td>
                 </tr>
 

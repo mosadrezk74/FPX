@@ -12,7 +12,7 @@ return [
     "MP"=> "Matches",
 
     "Min"=> "Minutes",
-    "90s"=> "Full Matches",
+    "s90"=> "Full Matches",
     "Goals"=> "Goals",
 
     "SoT"=> "On Target",
@@ -195,6 +195,13 @@ return [
 
 
 'ddd'=>'Matches - Cards - Offsides',
+
+    'MPP'=>'Num of Matches',
+    'goall'=>'Goal',
+    'assistss'=>'Assist',
+    'best'=>'Best Match',
+    'rankk'=>'Rank in Team',
+    'vs'=>'VS',
 
 
 ];

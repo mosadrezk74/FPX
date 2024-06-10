@@ -35,32 +35,37 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-8" id="default_card">
                 <div class="card">
-                    <div class="card-header"> Choose a conversation</div>
+                    <div class="card-header"> {{trans('dash.choose_a_conversation')}}</div>
                     <div class="card-body">
-                        <h1 class="text-primary"> Please choose a user to message.</h1>
+                        <h1 class="text-primary">  {{trans('dash.please_choose_a_user_to_message')}}</h1>
                     </div>
                 </div>
             </div>
 
-            <!-- CHAT BOX OF THE SELECTED USER -->
             <div class="col-md-8" id="active_card" style="display:none;">
                 <div class="card">
-                    <div class="card-header" id="chatWithName">(Name of Selected User)</div>
+                    <div class="card-header" id="chatWithName"> {{trans('dash.name_of_selected_user')}}</div>
 
-                    <div class="card-body messageThread" id="">
-                        @foreach($messages as $message)
-                        <h1 id="loadingMessages">{{$message->message}}</h1>
-                        @endforeach
+                    <div class="card-body messageThread" id="messageThread">
+                        <h1 id="loadingMessages"> {{trans('dash.loading_messages')}}</h1>
 
 
                     </div>
 
                     <div class="card-body p-0 m-0" style="border:0px solid black">
 
-
+                        <form method="POST" onsubmit="submitMessage();" autocomplete="off">
+                            @csrf
+                            <div style="display:block;">
+                                <input type="hidden" id="convo_id" name="convo_id" required>
+                                <input class="form-control m-0" name="message" id="messsageInput" rows="3" required>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary btn-block" id="sendMsgBtn">{{trans('dash.Send')}}</button>
+                            </div>
+                        </form>
                     </div>
 
                 </div>

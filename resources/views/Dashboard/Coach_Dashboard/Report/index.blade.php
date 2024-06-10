@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    Reports
+    {{trans('index.report')}}
 @stop
 
 @section('page-header')
@@ -10,7 +10,7 @@
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">{{trans('index.report')}}</h4>
                 <span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                    {{trans('index.report')}}</span>
+                    {{trans('index.V_report')}}</span>
             </div>
         </div>
     </div>
@@ -37,12 +37,12 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Player Name</th>
-                                    <th>Text</th>
-                                    <th>Priority</th>
-                                    <th>Num</th>
-                                    <th>Achieved</th>
-                                    <th>Status</th>
+                                    <td>{{trans('index.player')}}</td>
+                                    <td>{{trans('index.Text')}}</td>
+                                    <td>{{trans('index.Priority')}}</td>
+                                    <td>{{trans('index.Num')}}</td>
+                                    <td>{{trans('index.Achieved')}}</td>
+                                    <td>{{trans('index.Status')}}</td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -51,19 +51,28 @@
                                         <th scope="row">{{$loop->iteration}}</th>
                                         <td>
                                             <img width="30px" height="30px" alt="image"
-                                                 src="{{ asset('uploads/players/' . $task->player->photo) }}"
+                                                 src="{{$task->player->photo}}"
                                             />
+                                            @if(App::getLocale('ar'))
+
                                             <a href="{{route('player.show', $task->player->id)}}">
                                                 {{$task->player->name_ar}}
                                             </a>
+                                            @else
+
+                                                <a href="{{route('player.show', $task->player->id)}}">
+                                                    {{$task->player->name_en}}
+                                                </a>
+                                            @endif
+
                                         </td>
                                         <td>{{$task->descr}}</td>
                                         @if($task->priority==1)
-                                            <td>منخفض</td>
+                                            <td>{{trans('index.low')}}</td>
                                         @elseif($task->priority==2)
-                                            <td>متوسط</td>
+                                            <td>{{trans('index.midl')}}</td>
                                         @elseif($task->priority==3)
-                                            <td>عالي</td>
+                                            <td>{{trans('index.high')}}</td>
                                         @endif
                                         <td>{{$task->num}}</td>
                                         @if($task->category ==1)
@@ -73,9 +82,9 @@
                                                     $totw=intval($task->player->stat->Goals)
                                                 @endphp
                                                 @if($totw>=$task->num)
-                                                    <span class="text-success">ACHIEVED</span>
+                                                    <span class="text-success">{{trans('index.ACHIEVED')}}</span>
                                                 @elseif($totw<$task->num)
-                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                    <span class="text-danger">{{trans('index.NACHIEVED')}}</span>
                                                 @endif
                                             </td>
 
@@ -86,9 +95,9 @@
                                                     $totw=intval($task->player->stat->Assists * $task->player->stat->MP)
                                                 @endphp
                                                 @if($totw>=$task->num)
-                                                    <span class="text-success">ACHIEVED</span>
+                                                    <span class="text-success">{{trans('index.ACHIEVED')}}</span>
                                                 @elseif($totw<$task->num)
-                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                    <span class="text-danger">{{trans('index.NACHIEVED')}}</span>
                                                 @endif
                                             </td>
 
@@ -99,9 +108,9 @@
                                                     $totw=intval($task->player->stat->Tkl * $task->player->stat->MP)
                                                 @endphp
                                                 @if($totw>=$task->num)
-                                                    <span class="text-success">ACHIEVED</span>
+                                                    <span class="text-success">{{trans('index.ACHIEVED')}}</span>
                                                 @elseif($totw<$task->num)
-                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                    <span class="text-danger">{{trans('index.NACHIEVED')}}</span>
                                                 @endif
                                             </td>
 
@@ -112,9 +121,9 @@
                                                     $totw=intval($task->player->stat->TklDriPast * $task->player->stat->MP)
                                                 @endphp
                                                 @if($totw>=$task->num)
-                                                    <span class="text-success">ACHIEVED</span>
+                                                    <span class="text-success">{{trans('index.ACHIEVED')}}</span>
                                                 @elseif($totw<$task->num)
-                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                    <span class="text-danger">{{trans('index.NACHIEVED')}}</span>
                                                 @endif
                                             </td>
 
@@ -125,9 +134,9 @@
                                                     $totw=intval($task->player->stat->PasTotCmp * $task->player->stat->MP)
                                                 @endphp
                                                 @if($totw>=$task->num)
-                                                    <span class="text-success">ACHIEVED</span>
+                                                    <span class="text-success">{{trans('index.ACHIEVED')}}</span>
                                                 @elseif($totw<$task->num)
-                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                    <span class="text-danger">{{trans('index.NACHIEVED')}}</span>
                                                 @endif
                                             </td>
                                         @elseif($task->category ==6)
@@ -137,13 +146,13 @@
                                                     $totw=intval($task->player->stat->G_SoT * $task->player->stat->MP)
                                                 @endphp
                                                 @if($totw>=$task->num)
-                                                    <span class="text-success">ACHIEVED</span>
+                                                    <span class="text-success">{{trans('index.ACHIEVED')}}</span>
                                                 @elseif($totw<$task->num)
-                                                    <span class="text-danger">NOT ACHIEVED</span>
+                                                    <span class="text-danger">{{trans('index.NACHIEVED')}}</span>
                                                 @endif
                                             </td>
                                         @elseif($task->category ==7)
-                                            <td>Others</td>
+                                            <td>{{trans('index.others')}}</td>
                                         @else
                                             <td>N/A</td>
                                         @endif
@@ -157,6 +166,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
 

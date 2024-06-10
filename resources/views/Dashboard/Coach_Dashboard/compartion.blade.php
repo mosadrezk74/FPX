@@ -1,7 +1,7 @@
 @extends('Dashboard.layouts.master')
 
 @section('title')
-    {{trans('index.gen_info')}}
+    {{trans('index.compare')}}
 @stop
 
 
@@ -13,7 +13,7 @@
         <div class="my-auto">
             <div class="d-flex">
 
-                <h4 class="content-title mb-0 my-auto">{{trans('index.gen_info')}}</h4>
+                <h4 class="content-title mb-0 my-auto">{{trans('index.compare')}}</h4>
                 <span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{trans('dash.compare')}}
 				</span>
 
@@ -122,7 +122,8 @@
                             {{trans('site/index.mid')}}
                         @elseif($player1->position == 3)
                             {{trans('site/index.forward')}}
-                        @endif</td>
+                        @endif
+                    </td>
                     <td>
                         @if($player2->position == 0)
                             {{trans('site/index.goalKeeper')}}
@@ -163,11 +164,11 @@
                 <tr>
                     <th scope="row">{{trans('stat.age')}}</th>
                     <td class="base-item">
-                            {{$player1->stat->Age}}
+                            {{$player1->age_in_years}}
                     </td>
 
                     <td>
-                            {{$player2->stat->Age}}
+                            {{$player2->age_in_years}}
                     </td>
                 </tr>
 

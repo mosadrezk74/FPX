@@ -31,8 +31,13 @@
 
                                         <img width="30px" height="30px" alt="image"
                                              src="{{$player->photo}}"  />
+                                        @if(App::getlocale('ar'))
+                                        <span id="{{ $player->name_ar }}"> {{ $player->name_ar }} </span>
+                                        @else
+                                            <span id="{{ $player->name_en }}"> {{ $player->name_en }} </span>
 
-                                        <span id="{{ $player->name_en }}"> {{ $player->name_ar }} </span>
+                                        @endif
+
                                     </div>
                                 </a>
                             @endforeach

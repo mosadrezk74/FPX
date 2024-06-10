@@ -11,7 +11,17 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">ادارة الصفحات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ انضم الينا</span>
+                @if(App::getLocale() == 'ar')
+
+                    <h4 class="content-title mb-0 my-auto">صفحات الموقع</h4>
+
+                    <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ انضم</span>
+                @else
+                    <h4 class="content-title mb-0 my-auto">Manage Pages</h4>
+                    <span class="text-muted mt-1 tx-13 mr-2 mb-0">/Join </span>
+
+                @endif
+
             </div>
         </div>
     </div>
@@ -65,10 +75,10 @@
                                             @if ($message->status == 1)
                                                 <a href="{{ route('join.toggleStatus', ['status' => 0, 'id' => $message->id]) }}"
 
-                                                   class="btn btn-success btn-sm">Seen</a>
+                                                   class="btn btn-success btn-sm">{{trans('index.seen')}}</a>
                                             @elseif ($message->status == 0)
                                                 <a href="{{ route('join.toggleStatus', ['status' => 1, 'id' => $message->id]) }}"
-                                                   class="btn btn-primary btn-sm">Pending</a>
+                                                   class="btn btn-primary btn-sm">{{trans('index.pending')}}</a>
                                             @endif
                                     </td>
                                     <td>

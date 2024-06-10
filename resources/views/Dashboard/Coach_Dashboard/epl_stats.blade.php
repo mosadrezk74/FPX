@@ -59,7 +59,7 @@
                                     <tbody>
                                     @foreach($players as $player)
                                         <tr>
-                                            <th >{{$loop->iteration}}</th>
+                                            <th >{{$player->shirt_number}}#</th>
                                             <td style="width:50px" >
                                                 <img  alt="image" src="{{$player->photo }}" />
                                             </td>

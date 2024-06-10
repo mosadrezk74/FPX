@@ -40,7 +40,11 @@ class Coach_Dashboard extends Controller
 
 
         $count_p = $club->count();
-        $players = Player::with('club')->where('club_id', $club_id)->get();
+        $players = Player::with('club')
+            ->where('club_id', $club_id)
+            ->inRandomOrder()
+            ->take(7)
+            ->get();
         $tables = Standing::all()->take(10);
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $club_id)
@@ -96,7 +100,7 @@ class Coach_Dashboard extends Controller
 
         if ($coach) {
             $club_id = $coach->club_id;
-            $players = Player::where('club_id', $club_id)->with('club')->paginate(8);
+            $players = Player::where('club_id', $club_id)->with('club')->paginate(35);
         }
 
         return view('Dashboard.Coach_Dashboard.stats', compact('coach', 'players',

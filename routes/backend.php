@@ -59,6 +59,7 @@ Route::group(
     Route::get('dashboard/admin/player_stats/add_player_stats', [PlayerStatsController::class, 'create'])->name('player_stats.create');
     Route::get('dashboard/admin/player_stats/add_player_stats/store', [PlayerStatsController::class, 'store'])->name('player_stats.store');
     Route::get('/get-players/{clubId}', [PlayerStatsController::class, 'getPlayers'])->name('getPlayers');
+    Route::get('/get-available-shirt-numbers/{club_id}', [PlayerController::class, 'getAvailableShirtNumbers']);
     //-------------------------------------------------------------------------
     //-------------------------------------------------------------------------
     Route::resource('dashboard/admin/club', \App\Http\Controllers\Admin\ClubController::class);

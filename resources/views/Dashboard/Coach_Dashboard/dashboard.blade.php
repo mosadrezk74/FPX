@@ -134,7 +134,12 @@
     <div class="row row-sm row-deck">
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">{{trans('index.recent_players')}}</h6>
+                @if(App::getLocale('ar'))
+                    <a href="{{route('coach.stats')}}" class="card-title">قائمة فريقك</a>
+                @else
+                    <a href="{{route('coach.stats')}}" class="card-title">Your team squad </a>
+                @endif
+
                 <div class="list-group">
                     @foreach($players as $player)
                         <div class="list-group-item border-top-0">

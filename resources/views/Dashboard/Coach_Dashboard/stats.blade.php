@@ -34,6 +34,9 @@
 					<div class="card-body">
 						<div class="tab-content border-left border-bottom border-right border-top p-4">
                             <div class="card-body">
+                                <div class="form-group">
+                                    <input type="text" id="search-input" class="form-control" placeholder="Search with player's name...">
+                                </div>
                                 <div class="table-responsive">
                                     @php
                                         $sortedPlayers = $players->sortBy('position')->values();
@@ -57,7 +60,7 @@
                                         <tbody>
                                         @foreach($sortedPlayers as $player)
                                         <tr>
-                                            <th >{{$loop->iteration}}</th>
+                                            <th >{{$player->shirt_number}}#</th>
                                             <td style="width:50px" >
                                                 <img  alt="image" src="{{$player->photo }}" />
                                             </td>
@@ -102,4 +105,27 @@
 		</div>
 @endsection
 @section('js')
+
+    <script>
+        $(document).ready(function() {
+            $('#search-input').on('input', function() {
+                var query = $(this).val().toLowerCase();
+
+                $('table tbody tr').each(function() {
+                    var name = $(this).find('td:nth-child(3)').text().toLowerCase();
+                    var appearances = $(this).find('td:nth-child(4)').text().toLowerCase();
+                    var totalGoals = $(this).find('td:nth-child(5)').text().toLowerCase();
+                    var totalAssists = $(this).find('td:nth-child(6)').text().toLowerCase();
+
+                    if (name.includes(query) || appearances.includes(query) || totalGoals.includes(query) || totalAssists.includes(query)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+
+
 @endsection

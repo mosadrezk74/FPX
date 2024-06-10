@@ -7,7 +7,7 @@
 <style>
     .position-bg
     {
-        /*background-color: #778498;*/
+
         color: #0162e8;
         padding: 10px;
         border-radius: 5px;
@@ -67,13 +67,13 @@
 														</div>
                                                         <p class="text-muted text-center"><small>{{$player->shirt_number}}</small></p>
                                                         @if($player->position == 0)
-                                                            <h4 class="text-center tx-14 mt-3 mb-0 position-bg ">Goalkeeper</h4>
+                                                            <h4 class="text-center tx-14 mt-3 mb-0 position-bg ">{{trans('index.Goalkeeper')}}</h4>
                                                         @elseif($player->position == 1)
-                                                            <h4 class="text-center tx-14 mt-3 mb-0 position-bg">Defender</h4>
+                                                            <h4 class="text-center tx-14 mt-3 mb-0 position-bg">{{trans('index.Defender')}}</h4>
                                                         @elseif($player->position == 2)
-                                                            <h4 class="text-center tx-14 mt-3 mb-0 position-bg ">Midfielder</h4>
+                                                            <h4 class="text-center tx-14 mt-3 mb-0 position-bg ">{{trans('index.Midfielder')}}</h4>
                                                         @elseif($player->position == 3)
-                                                            <h4 class="text-center tx-14 mt-3 mb-0 position-bg ">Forward</h4>
+                                                            <h4 class="text-center tx-14 mt-3 mb-0 position-bg ">{{trans('index.Forward')}}</h4>
                                                         @endif
                                                     </div>
                                                 </div>

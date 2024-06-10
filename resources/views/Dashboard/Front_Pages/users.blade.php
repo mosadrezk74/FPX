@@ -11,7 +11,17 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">ادارة الصفحات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ التواصل</span>
+                @if(App::getLocale() == 'ar')
+
+                    <h4 class="content-title mb-0 my-auto">صفحات الموقع</h4>
+
+                    <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ المستخدمين</span>
+                @else
+                    <h4 class="content-title mb-0 my-auto">Manage Pages</h4>
+                    <span class="text-muted mt-1 tx-13 mr-2 mb-0">/Users </span>
+
+                @endif
+
             </div>
         </div>
     </div>
