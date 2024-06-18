@@ -1,7 +1,7 @@
 @extends('Dashboard.layouts.master')
 
 @section('title')
-    {{trans('Dashboard/main-sidebar_trans.clubs')}}
+    {{trans('index.user_fetch')}}
 @stop
 
 
@@ -44,23 +44,23 @@
                             <thead>
                             <tr>
                                 <th class="wd-15p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('index.task')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('index.name')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('index.email')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('index.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($messages as $message)
+                            @foreach($users as $user)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$message->send}}</td>
+                                    <td>{{$user->name}}</td>
                                     <td>
-                                        <a href="mailto:{{$message->email}}">
-                                            {{$message->email}}
+                                        <a href="mailto:{{$user->email}}">
+                                            {{$user->email}}
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('join.destroy',  $message->id) }}"
+                                        <a href="{{ route('user_delete',  $user->id) }}"
                                            class="btn btn-danger-gradient btn-sm">
                                             Delete
                                         </a>

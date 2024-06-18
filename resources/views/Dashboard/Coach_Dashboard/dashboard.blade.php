@@ -1,39 +1,39 @@
 @extends('Dashboard.layouts.master')
 
 @section('page-header')
-				<div class="breadcrumb-header justify-content-between">
-					<div class="left-content">
-                        <div>
-                            @if(App::getlocale() == 'ar')
-                                <p class="main-content-title tx-24 mg-b-1 mg-b-lg-1"> مرحبا  {{Auth::user()->name_ar}} </p>
-                            @else
-                                <p class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Welcome {{Auth::user()->name_en}} </p>
-                            @endif
-                        </div>
-					</div>
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <div>
+                @if(App::getlocale() == 'ar')
+                    <p class="main-content-title tx-24 mg-b-1 mg-b-lg-1"> مرحبا  {{Auth::user()->name_ar}} </p>
+                @else
+                    <p class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Welcome {{Auth::user()->name_en}} </p>
+                @endif
+            </div>
+        </div>
 
-					<div class="main-dashboard-header-right">
+        <div class="main-dashboard-header-right">
 
-						<div>
-							<label class="tx-13">{{trans('index.day')}}</label>
-							@if(app::getlocale() == 'ar')
-							<h6>{{$dayOfWeekArabic}}</h6>
-							@else
-								<h6>{{$dayOfWeekEnglish}}</h6>
-							@endif
-						</div>
-						<div id="real-time-clock">
-							<label class="tx-13">{{trans('index.time')}}</label>
-							<h6>{{$time}}</h6>
-						</div>
+            <div>
+                <label class="tx-13">{{trans('index.day')}}</label>
+                @if(app::getlocale() == 'ar')
+                    <h6>{{$dayOfWeekArabic}}</h6>
+                @else
+                    <h6>{{$dayOfWeekEnglish}}</h6>
+                @endif
+            </div>
+            <div id="real-time-clock">
+                <label class="tx-13">{{trans('index.time')}}</label>
+                <h6>{{$time}}</h6>
+            </div>
 
-						<div>
-							<label class="tx-13">{{trans('index.date')}}</label>
-							<h6>{{date('Y-m-d')}}</h6>
-						</div>
-					</div>
+            <div>
+                <label class="tx-13">{{trans('index.date')}}</label>
+                <h6>{{date('Y-m-d')}}</h6>
+            </div>
+        </div>
 
-				</div>
+    </div>
 @endsection
 @section('content')
 
@@ -50,7 +50,7 @@
 
                             @endif
                         @endforeach
-                         <div class="mr-auto">
+                        <div class="mr-auto">
                             <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;">{{trans('index.club')}}</h2>
                             @if(App::getlocale('ar'))
                                 <h3 class="counter mb-0 text-white" style="text-align: center;">{{$coach->club->name_ar}}</h3>
@@ -74,8 +74,8 @@
                         </div>
                         <div class="mr-auto">
                             <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;">{{trans('index.team_pl')}}</h1>
-                             <h2 class="counter mb-0 text-white" style=" text-align: center;">{{$count_p}}</h2>
-                             <h2 class="counter mb-0 text-white" style=" text-align: center;">{{trans('index.player_c')}}</h2>
+                            <h2 class="counter mb-0 text-white" style=" text-align: center;">{{$count_p}}</h2>
+                            <h2 class="counter mb-0 text-white" style=" text-align: center;">{{trans('index.player_c')}}</h2>
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
             <div class="card card-dashboard-eight pb-2">
                 <h6 class="card-title">
                     @if(App::getLocale()== 'ar')
-                    أداء {{$coach->club->name_ar}} في الدوري هذا الموسم
+                        أداء {{$coach->club->name_ar}} في الدوري هذا الموسم
                     @else
                         {{$coach->club->name_en}}'s performance in the league this season
                     @endif
@@ -172,10 +172,10 @@
                 <div class="list-group">
 
 
-                                <div class="main-content-label mg-b-5">
-                                </div>
-                                 <div class="chartjs-wrapper-demo">
-                                    <canvas id="chartDonut"></canvas>
+                    <div class="main-content-label mg-b-5">
+                    </div>
+                    <div class="chartjs-wrapper-demo">
+                        <canvas id="chartDonut"></canvas>
 
 
                     </div>
@@ -188,9 +188,9 @@
             <div class="card card-dashboard-eight pb-2">
                 <h6 class="card-title">{{trans('dash.team_per')}}</h6>
 
-                    <div class="ht-200 ht-lg-250">
-                        <canvas id="chartBar1"></canvas>
-                    </div>
+                <div class="ht-200 ht-lg-250">
+                    <canvas id="chartBar1"></canvas>
+                </div>
 
             </div>
         </div>
@@ -297,13 +297,13 @@
 
     <div class="p-6 m-20 bg-white rounded shadow">
 
-     </div>
+    </div>
 
 
 
     </div>
- </div>
-<!-- Container closed -->
+    </div>
+    <!-- Container closed -->
 @endsection
 @section('js')
     <!--Internal  Chart.bundle js -->
@@ -351,14 +351,14 @@
     </script>
     <script>
 
-            'use strict';
+        'use strict';
 
-            var clubs = {!! json_encode($clubs) !!};
-            const won = [];
-            const draw = [];
-            const lose = [];
-            const total=[];
-            if (Array.isArray(clubs)) {
+        var clubs = {!! json_encode($clubs) !!};
+        const won = [];
+        const draw = [];
+        const lose = [];
+        const total=[];
+        if (Array.isArray(clubs)) {
             clubs.forEach(function (club) {
                 won.push(club.won);
                 draw.push(club.draw);
@@ -366,93 +366,93 @@
                 total.push(club.total);
             });
         }
-            var ctx1 = document.getElementById('chartBar1').getContext('2d');
+        var ctx1 = document.getElementById('chartBar1').getContext('2d');
 
-            new Chart(ctx1, {
+        new Chart(ctx1, {
             type: 'bar',
             data: {
-            labels: ['Win', 'Draw', 'Lose'],
-            datasets: [{
-            label: '# of total',
-            data: [won, draw, lose],
-            backgroundColor: '#285cf7'
-        }]
-        },
-            options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            legend: {
-            display: false,
-            labels: {
-            display: false
-        }
-        },
-            scales: {
-            yAxes: [{
-            ticks: {
-            beginAtZero: true,
-            fontSize: 10,
-            max: 12,
-            fontColor: "rgb(171, 167, 167,0.9)",
-        },
-            gridLines: {
-            display: true,
-            color: 'rgba(171, 167, 167,0.2)',
-            drawBorder: false
-        },
-        }],
-            xAxes: [{
-            barPercentage: 0.6,
-            ticks: {
-            beginAtZero: true,
-            fontSize: 11,
-            fontColor: "rgb(171, 167, 167,0.9)",
-        },
-            gridLines: {
-            display: true,
-            color: 'rgba(171, 167, 167,0.2)',
-            drawBorder: false
-        },
-        }]
-        }
-        }
-        });
-            //*###########################################################################*//
-            //*###########################################################################*//
-            var datapie = {
                 labels: ['Win', 'Draw', 'Lose'],
-
                 datasets: [{
+                    label: '# of total',
                     data: [won, draw, lose],
-                    backgroundColor: ['#285cf7', '#f10075', '#8500ff', '#7987a1', '#74de00']
+                    backgroundColor: '#285cf7'
                 }]
-            };
-
-            var optionpie = {
+            },
+            options: {
                 maintainAspectRatio: false,
                 responsive: true,
                 legend: {
                     display: false,
+                    labels: {
+                        display: false
+                    }
                 },
-                animation: {
-                    animateScale: true,
-                    animateRotate: true
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 10,
+                            max: 12,
+                            fontColor: "rgb(171, 167, 167,0.9)",
+                        },
+                        gridLines: {
+                            display: true,
+                            color: 'rgba(171, 167, 167,0.2)',
+                            drawBorder: false
+                        },
+                    }],
+                    xAxes: [{
+                        barPercentage: 0.6,
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 11,
+                            fontColor: "rgb(171, 167, 167,0.9)",
+                        },
+                        gridLines: {
+                            display: true,
+                            color: 'rgba(171, 167, 167,0.2)',
+                            drawBorder: false
+                        },
+                    }]
                 }
-            };
-            var ctx7 = document.getElementById('chartDonut');
-            var myPieChart7 = new Chart(ctx7, {
-                type: 'pie',
-                data: datapie,
-                options: optionpie
-            });
-            //################################################################################//
-            //################################################################################//
-            var ctx6 = document.getElementById('chartPie');
-            var myPieChart6 = new Chart(ctx6, {
-                type: 'doughnut',
-                data: datapie,
-                options: optionpie
-            });
+            }
+        });
+        //*###########################################################################*//
+        //*###########################################################################*//
+        var datapie = {
+            labels: ['Win', 'Draw', 'Lose'],
+
+            datasets: [{
+                data: [won, draw, lose],
+                backgroundColor: ['#285cf7', '#f10075', '#8500ff', '#7987a1', '#74de00']
+            }]
+        };
+
+        var optionpie = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: false,
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        };
+        var ctx7 = document.getElementById('chartDonut');
+        var myPieChart7 = new Chart(ctx7, {
+            type: 'pie',
+            data: datapie,
+            options: optionpie
+        });
+        //################################################################################//
+        //################################################################################//
+        var ctx6 = document.getElementById('chartPie');
+        var myPieChart6 = new Chart(ctx6, {
+            type: 'doughnut',
+            data: datapie,
+            options: optionpie
+        });
 
     </script>
 

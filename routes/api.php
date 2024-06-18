@@ -15,6 +15,7 @@ Route::group([
 
 ], function () {
     ## --- Start Auth Api --- ##
+    Route::post('/login', [AuthApiController::class, 'login']);
     Route::post('/login/coach', [AuthApiController::class, 'login_coach']);
     Route::post('/login/club', [AuthApiController::class, 'login_club']);
     Route::post('/login/player', [AuthApiController::class, 'login_player']);
@@ -69,6 +70,11 @@ Route::group(
         Route::post('/top_key_pass', [ApiController::class, 'top_key_pass']);
         ## شويه apis متنوعه ##
         //############################################################################################################//
+        Route::post('/scouting_players', [ApiController::class, 'scouting_players']);
+        Route::post('/part_clubs', [ApiController::class, 'part_clubs']);
+    Route::post('/clubs/{id}', [ApiController::class, 'show_club']);
+    Route::post('/coach/{id}', [ApiController::class, 'show_coach']);
+    Route::post('/player/{id}', [ApiController::class, 'show_player']);
 
 
 

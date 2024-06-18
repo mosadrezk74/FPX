@@ -1,4 +1,9 @@
 @extends('site.layout')
+
+@section('title')
+    FPX
+@endsection
+
 @section('contact')
 <div class="heroContent ">
     <div class="heroContent">
@@ -172,7 +177,7 @@
                     <div class="content">
                         <img src="{{asset('site/images/home/discover/1.png')}}" alt="" />
                         <p>{{trans('site/index.player')}}</p>
-                        <a class="discoverBtn" href="#">{{trans('site/index.dis')}}</a>
+                        <a class="discoverBtn" href="{{route('player')}}">{{trans('site/index.dis')}}</a>
                     </div>
                     <!-- content -->
                 </div>
@@ -180,7 +185,7 @@
                     <div class="content">
                         <img src="{{asset('site/images/home/discover/2.png')}}" alt="" />
                         <p class="w-75 mt-4 m-auto">{{trans('site/index.scout')}}</p>
-                        <a class="discoverBtn" href="#">{{trans('site/index.dis')}}</a>
+                        <a class="discoverBtn" href="{{trans('scouting')}}">{{trans('site/index.dis')}}</a>
                     </div>
                     <!-- content -->
                 </div>
@@ -188,7 +193,7 @@
                     <div class="content">
                         <img src="{{asset('site/images/home/discover/3.png')}}" alt="" />
                         <p>{{trans('site/index.ser')}}</p>
-                        <a class="discoverBtn" href="#">{{trans('site/index.dis')}}</a>
+                        <a class="discoverBtn" href="{{route('clubs')}}">{{trans('site/index.dis')}}</a>
                     </div>
                     <!-- content -->
                 </div>
@@ -199,34 +204,6 @@
 
     </section>
     <!--  discover-->
-{{--    <section class="py-3 py-md-5 py-xl-8">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row justify-content-md-center">--}}
-{{--                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">--}}
-{{--                    <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Our Partners</h2>--}}
-{{--                    <p class="fs-5 text-secondary mb-5 text-center">--}}
-{{--                        Our commitment lies in prioritizing our clients above all else,--}}
-{{--                        ensuring they receive unparalleled service tailored to their needs.--}}
-
-{{--                    </p>--}}
-{{--                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="container overflow-hidden">--}}
-{{--            <div class="row gy-4">--}}
-{{--                @foreach($clubs as $club)--}}
-{{--                    <div class="col-6 col-md-4 col-xl-3">--}}
-{{--                        <div class="card text-center" style="background-color: transparent; border: none;">--}}
-{{--                            <div class="card-body">--}}
-{{--                                <img src="{{$club->image}}" title="{{$club->name_en}}"--}}
-{{--                                     class="card-img-top" alt="Club Image" style="filter: grayscale(100%); width: 50%; height: 55%;">--}}
-
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                @endforeach--}}
-{{--            </div>--}}
         </div>
 
 

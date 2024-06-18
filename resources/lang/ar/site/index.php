@@ -111,6 +111,8 @@ return [
 
 	'Partners'=>'شراكئنا',
     'join_with_us'=>'تواصل معنا و كن من الشركاء',
+    'discover_players'=>'اكتشف اللاعبين',
+    'scouting'=>'اكتشف',
 
 
 ];

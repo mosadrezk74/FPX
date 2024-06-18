@@ -2,6 +2,9 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('site/css/topRated.css')}}" />
 @endsection
+@section('title')
+    {{trans('site/index.topRated')}}
+@endsection
 @section('contact')
         <div class="head container">
           <h1>{{trans('site/index.topRated')}}</h1>

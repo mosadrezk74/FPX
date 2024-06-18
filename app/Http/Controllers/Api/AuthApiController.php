@@ -167,37 +167,17 @@ class AuthApiController extends Controller
     ##################################################################################
     public function login_user(Request $request)
     {
-        try {
-            $rules = [
-                "email" => "required",
-                "password" => "required"
+        $credentials = $request->only('email', 'password');
 
-            ];
-
-            $validator = Validator::make($request->all(), $rules);
-
-            if ($validator->fails()) {
-                $code = $this->returnCodeAccordingToInput($validator);
-                return $this->returnValidationError($code, $validator);
-            }
-
-            //login
-
-            $credentials = $request->only(['email', 'password']);
-
-            $token = Auth::guard('user-api')->attempt($credentials);  //generate token
-
-            if (!$token)
-                return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
-
-            $user = Auth::guard('user-api')->user();
-            $user->api_token = $token;
-            //return token
-            return $this->returnData('user', $user);  //return json response
-
-        } catch (\Exception $ex) {
-            return $this->returnError($ex->getCode(), $ex->getMessage());
+        if (!$token = JWTAuth::attempt($credentials)) {
+            return response()->json(['status' => false, 'message' => 'Email & password does not match with our record.'], 401);
         }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User logged in successfully',
+            'token' => $token,
+        ], 200);
     }
 
 
@@ -209,7 +189,7 @@ class AuthApiController extends Controller
         if ($token) {
             try {
 
-                JWTAuth::setToken($token)->invalidate(); //logout
+                JWTAuth::setToken($token)->invalidate();
             } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
                 return $this->returnError('', 'some thing went wrongs');
             }
@@ -219,6 +199,20 @@ class AuthApiController extends Controller
         }
 
     }
+##################################################################################
+##################################################################################
+public function login(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+
+    if (!$token = JWTAuth::attempt($credentials)) {
+        return response()->json(['status' => false, 'message' => 'Email & password does not match with our record.'], 401);
+    }
+
+    return response()->json([
+        'status' => true,
+        'message' => 'User logged in successfully',
+        'token' => $token,
+    ], 200);
 }
-##################################################################################
-##################################################################################
+}

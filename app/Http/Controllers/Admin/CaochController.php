@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Club;
+
 use App\Models\Coach;
-use App\Models\Country;
 use App\Models\Player;
 use GuzzleHttp\Client;
+use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -61,43 +63,31 @@ class CaochController extends Controller
      */
     public function edit($id)
     {
-        $coach = auth()->guard('coach')->user();
-
-
-        $coach_id = Coach::findOrFail($id);
-         return view('Dashboard.Coach_Dashboard.Auth.profile', compact('coach','coach_id',
-             ));
+        $coach = Coach::findOrFail($id);
+        \Log::info($coach);
+        return view('Dashboard.Coach_Dashboard.Auth.profile', compact('coach'));
     }
+
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'nullable',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'email' => 'email',
+            'name_ar' => 'nullable|string',
+            'name_en' => 'nullable|string',
+            'photo' => 'nullable|string',
+            'email' => 'nullable|email',
             'password' => 'nullable|min:6',
         ]);
 
         $coach = Coach::findOrFail($id);
 
-        $coach->name_ar = $request->name_ar;
-        $coach->name_en = $request->name_en;
-        $coach->email = $request->email;
+        $coach->name_ar = $request->input('name_ar', $coach->name_ar);
+        $coach->name_en = $request->input('name_en', $coach->name_en);
+        $coach->email = $request->input('email', $coach->email);
+        $coach->photo = $request->input('photo', $coach->photo);
 
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/coach_logo'), $imageName);
 
-            $oldPhotoPath = public_path('uploads/coach_logo/') . $coach->photo;
-            if (file_exists($oldPhotoPath)) {
-                unlink($oldPhotoPath);
-            }
-
-            $coach->photo = $imageName;
-        }
-
-        if ($request->has('password')) {
+        if ($request->filled('password')) {
             $coach->password = bcrypt($request->password);
         }
 
@@ -107,8 +97,19 @@ class CaochController extends Controller
         return redirect()->back()->with('success', 'تم تحديث بياناتك بنجاح');
     }
 
+
+
     public function destroy(string $id)
     {
-        //
+        try {
+            $coach = Coach::findOrFail($id);
+            $coach->delete();
+
+            session()->flash('delete', 'Coach deleted successfully.');
+
+            return redirect()->route('coach.index');
+        } catch (\Exception $e) {
+            return redirect()->route('coach.index')->withErrors(['error' => 'An error occurred. Please try again.']);
+        }
     }
 }

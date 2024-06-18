@@ -22,7 +22,6 @@
                                             <option value="admin">{{trans('Dashboard/login-page.Admin')}}</option>
                                             <option value="player">{{trans('auth.player')}}</option>
                                             <option value="coach">{{trans('auth.coach')}}</option>
-                                            <option value="club">{{trans('auth.club')}}</option>
 
                                         </select>
                                     </div>
@@ -82,23 +81,23 @@
                                             </div>
 
                                             {{--    club   --}}
-                                            <div class="panel" id="club">
-                                                <div class="main-signup-header">
-                                                    <h2>{{trans('Dashboard/login-page.club')}}</h2>
-                                                    <form method="POST" action="{{ route('login.club') }}">
-                                                        @csrf
-                                                        <div class="form-group">
-                                                            <label>{{trans('Dashboard/login-page.Email')}}</label>
-                                                            <input class="form-control" placeholder="{{trans('Dashboard/login-page.SS')}}" type="email" name="email" :value="old('email')" required autofocus>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>{{trans('Dashboard/login-page.Password')}}</label>
-                                                            <input class="form-control" placeholder="{{trans('Dashboard/login-page.SS2')}}" type="password" name="password" required autocomplete="current-password">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-main-primary btn-block">{{trans('Dashboard/login-page.Sign')}}</button>
-                                                    </form>
-                                                </div>
-                                            </div>
+{{--                                            <div class="panel" id="club">--}}
+{{--                                                <div class="main-signup-header">--}}
+{{--                                                    <h2>{{trans('Dashboard/login-page.club')}}</h2>--}}
+{{--                                                    <form method="POST" action="{{ route('login.club') }}">--}}
+{{--                                                        @csrf--}}
+{{--                                                        <div class="form-group">--}}
+{{--                                                            <label>{{trans('Dashboard/login-page.Email')}}</label>--}}
+{{--                                                            <input class="form-control" placeholder="{{trans('Dashboard/login-page.SS')}}" type="email" name="email" :value="old('email')" required autofocus>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="form-group">--}}
+{{--                                                            <label>{{trans('Dashboard/login-page.Password')}}</label>--}}
+{{--                                                            <input class="form-control" placeholder="{{trans('Dashboard/login-page.SS2')}}" type="password" name="password" required autocomplete="current-password">--}}
+{{--                                                        </div>--}}
+{{--                                                        <button type="submit" class="btn btn-main-primary btn-block">{{trans('Dashboard/login-page.Sign')}}</button>--}}
+{{--                                                    </form>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
 
 									</div>
 								</div>

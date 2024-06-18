@@ -58,6 +58,8 @@ class FrontContoller extends Controller
         session()->flash('success', trans('site/index.success'));
         return redirect()->back();
     }
+
+
     #############################################################
     public function about()
     {
@@ -120,7 +122,11 @@ public function join_store(Request $request)
 #############################################################
     public function discover()
     {
-        $players=Player::with(['club' , 'stat'] )->get();
+        $players = Player::with(['club', 'stat'])
+            ->where('rate', '=', 5)
+            ->inRandomOrder()
+            ->take(10)
+            ->get();
         return view('site.discover' , compact('players') );
     }
 #############################################################

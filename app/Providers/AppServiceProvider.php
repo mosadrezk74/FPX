@@ -35,8 +35,6 @@ class AppServiceProvider extends ServiceProvider
         $club_count=Player::all();
         $count=$club_count->count();
         view()->share('count',$count);
-        $notifications = \App\Models\Notification::all();
-        view()->share('notifications',$notifications);
         $players=Player::with('club')->get();
         view()->share('players',$players);
         $now = Carbon::now();
@@ -54,6 +52,8 @@ class AppServiceProvider extends ServiceProvider
         view()->share('coach_info',$coach_info);
         $player=auth()->guard('player')->user();
         view()->share('player',$player);
+        $auth = Auth::user();
+        view()->share('auth',$auth);
 
 
 

@@ -1,7 +1,7 @@
 @extends('Dashboard.layouts.master')
 
 @section('title')
-    {{trans('Dashboard/main-sidebar_trans.clubs')}}
+    {{trans('site/index.send')}}
 @stop
 
 
@@ -37,14 +37,18 @@
     <div class="row row-sm">
         <div class="col-xl-12">
             <div class="card"  >
-
+                @if(session('success'))
+                    <div class="alert alert-danger">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table text-md-nowrap" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-15p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('index.task')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('index.text')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('index.email')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('index.action')}}</th>
                             </tr>
@@ -60,7 +64,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('join.destroy',  $message->id) }}"
+                                        <a href="{{ route('send_delete',  $message->id) }}"
                                            class="btn btn-danger-gradient btn-sm">
                                             Delete
                                         </a>

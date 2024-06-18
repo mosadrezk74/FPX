@@ -76,12 +76,21 @@ Route::group(
 
     Route::get('dashboard/admin/contact_front',
         [\App\Http\Controllers\PageController::class, 'contact'])->name('front.contact');
+##################################################################################
+    Route::get('/contact/delete/{id}', [PageController::class, 'contact_delete'])->name('contact_delete');
+    Route::get('/join/delete/{id}', [PageController::class, 'join_delete'])->name('join_delete');
+    Route::get('/send/delete/{id}', [PageController::class, 'send_delete'])->name('send_delete');
+    Route::get('dashboard/admin/users', [PageController::class, 'fetch_user'])->name('fetch_user');
+    Route::get('/user/delete/{id}', [PageController::class, 'user_delete'])->name('user_delete');
+
+    ##################################################################################
 
 
     Route::get('dashboard/admin/send_front',
         [\App\Http\Controllers\PageController::class, 'send'])->name('front.send');
 ##################################################################################
 ##################################################################################
+
 
 
 

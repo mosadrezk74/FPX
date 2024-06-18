@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="{{asset('site/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/bootstrap.min.css.map')}}">
     <link rel="stylesheet" href="{{asset('site/css/signup.css')}}">
+      @section('title')
+          {{trans('site/index.sign')}}
+      @endsection
   </head>
   <body>
 

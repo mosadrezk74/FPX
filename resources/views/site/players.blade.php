@@ -3,7 +3,9 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('site/css/players.css')}}" />
 @endsection
-
+@section('title')
+    {{trans('site/index.players')}}
+@endsection
 @section('contact')
     <!-- navbar -->
         <div class="heroContent">

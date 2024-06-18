@@ -3,7 +3,9 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('site/css/scouting.css')}}" />
 @endsection
-
+@section('title')
+    {{trans('site/index.scouting')}}
+@endsection
 @section('contact')
     @if(App::getLocale() == 'ar')
 

@@ -1,7 +1,7 @@
 @extends('Dashboard.layouts.master')
 
 @section('title')
-    {{trans('Dashboard/main-sidebar_trans.clubs')}}
+    {{trans('site/index.join')}}
 @stop
 
 
@@ -37,7 +37,11 @@
     <div class="row row-sm">
         <div class="col-xl-12">
             <div class="card"  >
-
+                @if(session('success'))
+                    <div class="alert alert-danger">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table text-md-nowrap" id="example1">
@@ -55,42 +59,43 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($messages as $message)
+                            @forelse($messages as $message)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$message->name}}</td>
                                     <td>{{$message->country}}</td>
                                     <td>
                                         <a href="tel:{{$message->phone}}">
-                                        {{$message->phone}}
+                                            {{$message->phone}}
                                         </a>
                                     </td>
                                     <td>
                                         <a href="mailto:{{$message->email}}">
-                                        {{$message->email}}
+                                            {{$message->email}}
                                         </a>
                                     </td>
-                                    <td title="{{$message->descr}}" >{{ \Str::limit($message->descr, 30) }}</td>
+                                    <td title="{{$message->descr}}">{{ \Str::limit($message->descr, 30) }}</td>
                                     <td>
-                                            @if ($message->status == 1)
-                                                <a href="{{ route('join.toggleStatus', ['status' => 0, 'id' => $message->id]) }}"
-
-                                                   class="btn btn-success btn-sm">{{trans('index.seen')}}</a>
-                                            @elseif ($message->status == 0)
-                                                <a href="{{ route('join.toggleStatus', ['status' => 1, 'id' => $message->id]) }}"
-                                                   class="btn btn-primary btn-sm">{{trans('index.pending')}}</a>
-                                            @endif
+                                        @if ($message->status == 1)
+                                            <a href="{{ route('join.toggleStatus', ['status' => 0, 'id' => $message->id]) }}"
+                                               class="btn btn-success btn-sm">{{trans('index.seen')}}</a>
+                                        @elseif ($message->status == 0)
+                                            <a href="{{ route('join.toggleStatus', ['status' => 1, 'id' => $message->id]) }}"
+                                               class="btn btn-primary btn-sm">{{trans('index.pending')}}</a>
+                                        @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('join.destroy',  $message->id) }}"
-                                           class="btn btn-danger-gradient btn-sm">
+                                        <a href="{{ route('join_delete', $message->id) }}" class="btn btn-danger-gradient btn-sm">
                                             Delete
                                         </a>
                                     </td>
-
-                            @endforeach
                                     <td>{{ $message->created_at->diffForHumans() }}</td>
-
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9">No Message</td>
+                                </tr>
+                            @endforelse
                             </tbody>
 
 

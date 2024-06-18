@@ -11,7 +11,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('Dashboard/main-sidebar_trans.clubs')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ { {{trans('clubs.veiw_all_clubs')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Dashboard/main-sidebar_trans.clubs')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                    {{trans('clubs.veiw_all_clubs')}}</span>
             </div>
         </div>
     </div>
@@ -26,14 +27,7 @@
                 <!-- row opened -->
                 <div class="row row-sm">
                     <div class="col-xl-12">
-                        <div class="card"  >
-{{--                            <div class="card-header pb-0">--}}
-{{--                                <div class="d-flex justify-content-between">--}}
-{{--                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">--}}
-{{--                                        {{trans('clubs.add_club')}}--}}
-{{--                                    </button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                        <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table text-md-nowrap" id="example1">
@@ -43,20 +37,15 @@
                                             <th class="wd-15p border-bottom-0">{{trans('clubs.image')}}</th>
                                             <th class="wd-15p border-bottom-0">{{trans('clubs.name')}}</th>
                                             <th class="wd-15p border-bottom-0">{{trans('clubs.date')}}</th>
-{{--                                            <th class="wd-15p border-bottom-0">{{trans('clubs.stadium')}}</th>--}}
-                                            <th class="wd-15p border-bottom-0">{{trans('clubs.status')}}</th>
-                                            <th class="wd-15p border-bottom-0">{{trans('clubs.process')}}</th>
-
-
-                                         </tr>
+                                            <th class="wd-15p border-bottom-0">{{trans('index.status')}}</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                         @foreach($clubs as $club)
+                                        @foreach($clubs as $club)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <img width="50px" height="50px" alt="image"
-                                                         src="{{$club->image }}"
+                                                    <img width="50px" height="50px" alt="image" src="{{$club->image }}"
                                                     />
                                                 </td>
                                                 @if(App::getLocale() == 'ar')
@@ -66,33 +55,18 @@
                                                 @endif
 
                                                 <td>{{ $club->date_of_est }}</td>
-{{--                                                <td>{{ $club->staduim_ar }}</td>--}}
-
                                                 <td>
                                                     @if ($club->status == 1)
                                                         <a href="{{ route('club.toggleStatus', ['status' => 0, 'id' => $club->id]) }}"
 
-                                                           class="btn btn-success btn-sm">Partener</a>
+                                                           class="btn btn-success btn-sm">{{trans('index.Partener')}}</a>
                                                     @elseif ($club->status == 0)
                                                         <a href="{{ route('club.toggleStatus', ['status' => 1, 'id' => $club->id]) }}"
-                                                           class="btn btn-danger btn-sm">Not Partener</a>
+                                                           class="btn btn-danger btn-sm">{{trans('index.Not_Partener')}}</a>
                                                     @endif
                                                 </td>
-
-
-
-
-                                                <td>
-                                                        <a href="{{ route('club.edit',  $club->id) }}"
-                                                           class="btn btn-success btn-sm">
-                                                            Edit
-                                                        </a>
-                                                 </td>
                                             </tr>
                                         @endforeach
-
-
-                                        {{$clubs->links()}}
 
                                         </tbody>
 

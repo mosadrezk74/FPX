@@ -550,7 +550,7 @@
                                                     {{trans('index.rcard')}}
 
                                                 </th>
-                                                <th>{{$player->stat->CrdR * $player->stat->MP }}</th>
+                                                <th>{{intval($player->stat->CrdR * $player->stat->MP) }}</th>
                                             </tr>
                                             <tr>
                                                 <th>{{trans('index.rating')}}</th>
@@ -857,7 +857,7 @@
                                     </div>
                                     <div class="ht-200 ht-lg-250">
                                         <table class="table" id="example1">
-                                            <tr title="{{trans('stat.ToAtt')}}  " >
+                                            <tr title="{{trans('stat.ToAtt')}}" >
                                                 <th> {{trans('stat.ToAtt')}}  </th>
                                                 <td>{{ intval($player->stat->ToAtt*10)*3}}</td>
                                             </tr>

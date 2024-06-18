@@ -78,8 +78,11 @@
 											</div>
 											<div class="mr-auto">
 												<h5 class="tx-13">اسم المدرب</h5>
-												<h6 class="mb-0 tx-15 mb-1 mt-1">{{$club->coach->name_ar}}</h6>
-												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
+                                                @if(App::getLocale() == 'ar' )
+                                                    <h6 class="mb-0 tx-15 mb-1 mt-1">{{$club->coach->name_ar}}</h6>
+                                                @else
+                                                    <h6 class="mb-0 tx-15 mb-1 mt-1">{{$club->coach->name_en}}</h6>
+                                                @endif
 											</div>
 										</div>
 									</div>
@@ -94,8 +97,11 @@
 											</div>
 											<div class="mr-auto">
 												<h5 class="tx-13">اسم الملعب</h5>
-												<h2 class="mb-0 tx-15 mb-1 mt-1">{{$club->staduim_en}}</h2>
-												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
+                                                @if(App::getlocale() == 'ar')
+                                                    <h2 class="mb-0 tx-15 mb-1 mt-1">{{$club->staduim_ar}}</h2>
+                                                @else
+                                                    <h2 class="mb-0 tx-15 mb-1 mt-1">{{$club->staduim_en}}</h2>
+                                                @endif
 											</div>
 										</div>
 									</div>
@@ -112,10 +118,6 @@
 										<br>
                                         </li>
 
-{{--										<li class="">--}}
-{{--											<a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">SETTINGS</span> </a>--}}
-{{--										</li>--}}
-
 									</ul>
 								</div>
 								<div class="tab-content border-left border-bottom border-right border-top-0 p-4">
@@ -129,7 +131,7 @@
                                                 <div class="col-sm-4">
                                                     <div class="border p-1 card thumb">
                                                         <a href="#" class="image-popup" title="Screenshot-2">
-                                                            <img width="100px" height="100px" alt="image" src="{{ asset('uploads/players/'. $player->photo) }}" />
+                                                            <img width="100px" height="100px" alt="image" src="{{$player->photo}}" />
                                                         </a>
                                                         <h4 class="text-center tx-14 mt-3 mb-0">{{$player->name_ar}}</h4>
                                                         <div class="ga-border"></div>

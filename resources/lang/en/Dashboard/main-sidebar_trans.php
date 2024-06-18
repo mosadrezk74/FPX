@@ -29,6 +29,8 @@ return [
     'compare'=>'Compare',
     'compare_team'=>'Compare With Team ',
     'compare_leg'=>'Compare With Legue',
+    'club_dash'=>'Club Dashboard',
+    'club'=>'Club'
 
 
 

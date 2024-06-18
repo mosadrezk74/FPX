@@ -53,7 +53,7 @@
                                  src="{{$topAssister->photo }}" />
                          </div>
                         <div class="mr-auto">
-                            <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;" > {{trans('index.top_assister')}} </h2>
+                            <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;" > {{trans('index.top_assister')}}    </h2>
                             @if(App::getlocale() == "ar")
                                 <h3 class="tx-13 tx-white-8 mb-3" style="text-align: center;"> {{$topAssister->name_ar}} </h3>
                             @else
@@ -75,7 +75,7 @@
                             <i class="icon icon-people"></i>
                         </div>
                         <div class="mr-auto">
-                            <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;" > عدد المستخدمين </h2>
+                            <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;" >{{trans('index.users')}}</h2>
                                 <h1 class="tx-13 tx-white-8 mb-3" style="text-align: center;">
                                 </h1>
                             <h3 class="counter mb-0 text-white" style="text-align: center;">
@@ -97,12 +97,12 @@
                             <i class="icon icon-people"></i>
                         </div>
                         <div class="mr-auto">
-                            <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;" > عدد الشركاء </h2>
+                            <h2 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;" > {{trans('index.part')}} </h2>
                                 <h1 class="tx-13 tx-white-8 mb-3" style="text-align: center;">
                                 </h1>
                             <h3 class="counter mb-0 text-white" style="text-align: center;">
                                 {{$clubs_count}}<br>
-                                {{trans('index.clubss')}}
+                                {{trans('index.ppartener')}}
                             </h3>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
     <div class="row row-sm row-deck">
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">هدافي الدوري المصري</h6>
+                <h6 class="card-title">{{trans('index.topScore')}}</h6>
                 <div class="list-group">
                     @foreach($topLegScorer as $player)
                         <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
@@ -139,7 +139,7 @@
 
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">صانعي الدوري المصري</h6>
+                <h6 class="card-title">{{trans('index.topassist')}}</h6>
                 <div class="list-group">
                     @foreach($topAssisterLeg as $player)
                         <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
@@ -166,7 +166,7 @@
 
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">الأكثر مشاركة هذا الموسم</h6>
+                <h6 class="card-title">{{trans('index.topAppear')}}</h6>
                 <div class="list-group">
                     @foreach($topAppearancesLeg as $player)
                         <div class="list-group-item border-top-0 {{$loop->first ? 'bg-primary text-white' : ''}} " style="{{ $loop->first ? 'height: 60px; font-size: 17px ;  ' : '' }}"  >
@@ -190,7 +190,7 @@
 
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">شراكئنا</h6>
+                <h6 class="card-title">{{trans('index.topclub')}}</h6>
 
                 <div class="list-group">
                     @foreach($clubs as $club)
@@ -215,7 +215,7 @@
 
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
-                <h6 class="card-title">أكثر الفرق تسجيلا للأهداف</h6>
+                <h6 class="card-title">{{trans('index.topcountry')}}</h6>
 
                 <div class="ht-200 ht-lg-250">
                     <canvas id="chartDonut"></canvas>
@@ -228,7 +228,7 @@
         <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="card card-dashboard-eight pb-2">
                  <div class="main-content-label tx-12 mg-b-15">
-                   الفرق الأفضل تاريخيا
+                   {{trans('index.top_clubs_in_history')}}
                 </div>
                 <div class="ht-200 ht-lg-250">
 
@@ -236,7 +236,7 @@
                         <div class="list-group-item border-top-0">
                             {{$loop->iteration}}
                             <p>{{$club->name}}</p>
-                            <span><a href="">{{$club->total_points}}</a></span>
+
                         </div>
                     @endforeach
 
@@ -253,13 +253,13 @@
                     @foreach($recentes as $recent)
                         <div class="list-group-item border-top-0">
                             <img  alt="image" class="flag-icon  flag-icon-squared flag-icon-lg"
-                                  src="{{ asset('uploads/players/'. $recent->photo) }}" />
+                                  src="{{ asset($recent->photo) }}" />
                             @if(App::getlocale() == "ar")
                                 <p>{{$recent->name_ar}}</p>
-                                <span><a href="">{{$recent->club->name_ar}}</a></span>
+                                <span><a href="{{route('club.show', $recent->club->id)}}">{{$recent->club->name_ar}}</a></span>
                             @else
                                 <p>{{$recent->name_en}}</p>
-                                <span><a href="">{{$recent->club->name_en}}</a></span>
+                                <span><a href="{{route('club.show', $recent->club->id)}}">{{$recent->club->name_en}}</a></span>
                             @endif
 
                         </div>

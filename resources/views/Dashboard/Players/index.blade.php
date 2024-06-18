@@ -77,9 +77,9 @@
                                                                 @foreach($players as $player)
                                                                     @if($player->position==0)
                                                                         <tr>
-                                                                            <td>{{$player->stat->Jersey}}</td>
+                                                                            <td>{{$player->stat->shirt_number}}</td>
                                                                             <td>
-                                                                                <img width="50px" height="50px" alt="image"  src="{{$player->photo}}"  />
+                                                                                <img width="80px" height="80px" alt="image"  src="{{$player->photo}}"  />
                                                                             </td>
                                                                             @if(App::getLocale() == 'ar')
                                                                                 <td>{{$player->name_ar}}</td>
@@ -92,9 +92,13 @@
                                                                                     <a href="{{ route('club.show',  $player->club->id) }}"> {{$player->club->name_en}}</a>
                                                                                 </td>
                                                                             @endif
-                                                                            <td>  {{$player->stat->Age}}  </td>
-                                                                            <td>{{$player->nationality}}</td>
+                                                                            <td>  {{$player->age_in_years}}  </td>
+                                                                            @if(App::getlocale() == 'ar')
 
+                                                                            <td>{{$player->country->name_ar}}</td>
+                                                                            @else
+                                                                            <td>{{$player->country->name_en}}</td>
+                                                                            @endif
                                                                             <td>
                                                                                 <form action="{{ route('player.destroy',  $player->id) }}" method="post">
                                                                                     @csrf
@@ -117,7 +121,6 @@
 
                                                                 </tbody>
                                                             </table>
-{{--                                                            {{ $players->links() }}--}}
 
                                                         </div>
                                                     </div>
@@ -147,7 +150,7 @@
                                                                         <tr>
                                                                             <td>{{$player->shirt_number}}</td>
                                                                             <td>
-                                                                                <img width="50px" height="50px" alt="image"  src="{{$player->photo}}"  />
+                                                                                <img width="80px" height="80px" alt="image"  src="{{$player->photo}}"  />
                                                                             </td>
                                                                             @if(App::getLocale() == 'ar')
                                                                                 <td>{{$player->name_ar}}</td>
@@ -161,7 +164,12 @@
                                                                                 </td>
                                                                             @endif
                                                                             <td>  {{ now()->diffInYears($player->age) }}  </td>
-                                                                            <td>{{$player->nationality}}</td>
+                                                                            @if(App::getlocale() == 'ar')
+
+                                                                                <td>{{$player->country->name_ar}}</td>
+                                                                            @else
+                                                                                <td>{{$player->country->name_en}}</td>
+                                                                            @endif
                                                                             <td>
                                                                                 <form action="{{ route('player.destroy',  $player->id) }}" method="post">
                                                                                     @csrf
@@ -209,7 +217,7 @@
                                                                         <tr>
                                                                             <td>{{$player->shirt_number}}</td>
                                                                             <td>
-                                                                                <img width="50px" height="50px" alt="image"  src="{{$player->photo}}" />
+                                                                                <img width="80px" height="80px" alt="image"  src="{{$player->photo}}" />
                                                                             </td>
                                                                             @if(App::getLocale() == 'ar')
                                                                                 <td>{{$player->name_ar}}</td>
@@ -223,8 +231,12 @@
                                                                                 </td>
                                                                             @endif
                                                                             <td>  {{ now()->diffInYears($player->age) }}  </td>
-                                                                            <td>{{$player->nationality}}</td>
-                                                                            <td>
+                                                                            @if(App::getlocale() == 'ar')
+
+                                                                                <td>{{$player->country->name_ar}}</td>
+                                                                            @else
+                                                                                <td>{{$player->country->name_en}}</td>
+                                                                            @endif                                                                            <td>
                                                                                 <form action="{{ route('player.destroy',  $player->id) }}" method="post">
                                                                                     @csrf
                                                                                     @method('DELETE')
@@ -271,7 +283,7 @@
                                                                         <tr>
                                                                             <td>{{$player->shirt_number}}</td>
                                                                             <td>
-                                                                                <img width="50px" height="50px" alt="image"  src="{{$player->photo}}"  />
+                                                                                <img width="80px" height="80px" alt="image"  src="{{$player->photo}}"  />
                                                                             </td>
                                                                             @if(App::getLocale() == 'ar')
                                                                                 <td>{{$player->name_ar}}</td>
@@ -285,8 +297,12 @@
                                                                                 </td>
                                                                             @endif
                                                                             <td>  {{ now()->diffInYears($player->age) }}  </td>
-                                                                            <td>{{$player->nationality}}</td>
-                                                                            <td>
+                                                                            @if(App::getlocale() == 'ar')
+
+                                                                                <td>{{$player->country->name_ar}}</td>
+                                                                            @else
+                                                                                <td>{{$player->country->name_en}}</td>
+                                                                            @endif                                                                            <td>
                                                                                 <form action="{{ route('player.destroy',  $player->id) }}" method="post">
                                                                                     @csrf
                                                                                     @method('DELETE')

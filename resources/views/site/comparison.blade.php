@@ -2,6 +2,9 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('site/css/comparison.css')}}" />
 @endsection
+@section('title')
+    {{trans('site/index.comparison')}}
+@endsection
 @section('contact')
 
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PlayerStatsController;
 use App\Http\Controllers\Auth\CoachLoginController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\Dashboard\Admin_Dashboard;
+use App\Http\Controllers\Dashboard\Club_Dashboard;
 use App\Http\Controllers\Dashboard\Coach_Dashboard;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\Player_Dashboard;
@@ -14,12 +15,12 @@ use App\Http\Controllers\PageController;
  use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'web']
     ], function(){
+
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->middleware(['auth', 'verified'])
         ->name('dashboard');
@@ -44,11 +45,13 @@ Route::group(
     Route::get('/dashboard/player', function () {
         return view('Dashboard.Player_Dashboard.dashboard');
     })->middleware(['auth:player'])->name('dashboard.player');
+
+
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
-    Route::get('/dashboard/club', function () {
-        return view('Dashboard.Club_Dashboard.dashboard');
-    })->middleware(['auth:club'])->name('dashboard.club');
+    Route::get('dashboard/club', [\App\Http\Controllers\Dashboard\Club_Dashboard::class, 'index'])
+        ->middleware(['auth:club'])
+        ->name('dashboard.club');
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
     //--------------------Start Admin Routes---------------------------------------------------
@@ -76,6 +79,15 @@ Route::group(
     //--------------------End Admin Routes------------------------------------------------------
     //--------------------End Admin Routes------------------------------------------------------
 
+
+
+    //------------------------- Start Player Routes -------------------------------------------
+    //------------------------- Start Player Routes -------------------------------------------
+    Route::get('dashboard/player/{id}/edit', [PlayerController::class, 'edit'])->name('player.edit');
+    Route::put('dashboard/player/{id}/update', [PlayerController::class, 'update'])->name('player.update');
+    //--------------------------------------------------------------------------------------------------------
+
+
     //------------------------- Start Coach Routes -------------------------------------------
     //------------------------- Start Coach Routes -------------------------------------------
     Route::get('dashboard/coach/club/statistics', [Coach_Dashboard::class, 'stats'])->name('coach.stats');
@@ -90,6 +102,8 @@ Route::group(
     Route::post('dashboard/coach/comparison', [Coach_Dashboard::class, 'comparePlayers'])->name('back.comparison');
     Route::get('dashboard/coach/club_info', [Coach_Dashboard::class, 'club_info'])->name('coach.club_info');
     //--------------------------------------------------------------------------------------------------------
+
+
 
     ##------------------------Report--------------------------##
     ##------------------------Report--------------------------##
@@ -133,6 +147,10 @@ Route::group(
     Route::get('dashboard/player/stats',
         [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
             'stats'])->name('player.stats');
+
+    Route::get('dashboard/player/stats/show',
+        [\App\Http\Controllers\Dashboard\Player_Dashboard::class,
+            'player_stats'])->name('player_stats');
 
 
     Route::get('dashboard/player/matches_rating',
@@ -204,59 +222,3 @@ Route::group(
         [ContactsController::class, 'retrieveNew'])->middleware('auth:coach');
     #End Chat Route#
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

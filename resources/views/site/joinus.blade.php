@@ -3,7 +3,9 @@
 @section('css')
       <link rel="stylesheet" href="{{asset('site/css/joinus.css')}}">
  @endsection
-
+@section('title')
+    {{trans('site/index.join')}}
+@endsection
 @section('contact')
 
 

@@ -113,6 +113,23 @@
                                                         </div>
                                                         @enderror
                                                 </div>
+                                                {{--#################################################################################################################--}}
+                                                <div class="col-12">
+                                                        <label for="rate" class="control-label mb-1">{{trans('index.rate')}}</label>
+                                                        <select id="rate" name="rate" class="form-control" required>
+                                                            <option value="" disabled selected>--</option>
+                                                            <option value="1">World Class</option>
+                                                            <option value="2">Class A</option>
+                                                            <option value="3">Class B</option>
+                                                            <option value="4">Class C</option>
+                                                            <option value="5">Class D</option>
+                                                        </select>
+                                                        @error('position')
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {{ $message }}
+                                                        </div>
+                                                        @enderror
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -202,7 +219,7 @@
                             </div>
                             <div class="col-12 text-center mt-3">
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-primary">
-                                    Submit
+                                    {{trans('index.submit')}}
                                 </button>
                             </div>
                         </div>

@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\Player;
 use App\Models\Statistics;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
@@ -70,6 +71,7 @@ class PlayerController extends Controller
             $player->weight = $request->weight;
             $player->height = $request->height;
             $player->age = $request->age;
+            $player->rate = $request->rate;
             $player->shirt_number = $request->shirt_number;
 
             $player->save();
@@ -87,40 +89,60 @@ class PlayerController extends Controller
     }
 
 
-    public function show(string $id)
-    {
-        // Show player details (not implemented)
-    }
-
-    /**
-     * Show the form for editing the specified player.
-     */
     public function edit(string $id)
     {
-        // Edit player details (not implemented)
+        $player = Player::findOrFail($id);
+        \Log::info($player);
+        $player_stats=Statistics::all();
+        $countries = Country::all();
+        $clubs = Club::all();
+
+        return view('Dashboard.Players.edit', compact('player','player_stats','countries','clubs'));
     }
 
     /**
      * Update the specified player in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        // Update player details (not implemented)
+        $request->validate([
+            'name_ar' => 'nullable|string',
+            'name_en' => 'nullable|string',
+            'photo' => 'nullable|string',
+            'email' => 'nullable|email',
+            'password' => 'nullable|min:6',
+        ]);
+
+        $player = Player::findOrFail($id);
+
+        $player->name_ar = $request->input('name_ar', $player->name_ar);
+        $player->name_en = $request->input('name_en', $player->name_en);
+        $player->email = $request->input('email', $player->email);
+        $player->photo = $request->input('photo', $player->photo);
+        $player->stat_id = $request->input('stat_id', $player->stat_id);
+        $player->nationality  = $request->input('nationality', $player->nationality);
+
+
+        if ($request->filled('password')) {
+            $player->password = bcrypt($request->password);
+        }
+
+        $player->save();
+
+        session()->flash('update');
+        if (App::getlocale() == 'ar') {
+            return redirect()->back()->with('success', 'تم تحديث بياناتك بنجاح');
+        }else{
+            return redirect()->back()->with('success', 'Your data has been updated successfully');
+        }
     }
+
 
 
     public function destroy($id)
     {
         try {
             $player = Player::findOrFail($id);
-
-            if ($player->photo) {
-                $photoPath = public_path('uploads/players/' . $player->photo);
-                if (file_exists($photoPath)) {
-                    unlink($photoPath);
-                }
-            }
-
             $player->delete();
 
             session()->flash('delete', 'Player deleted successfully.');

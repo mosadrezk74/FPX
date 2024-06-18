@@ -2,6 +2,9 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('site/css/compare.css')}}" />
 @endsection
+@section('title')
+    {{trans('site/index.compare')}}
+@endsection
 @section('contact')
     <div class="container1 container">
         <form action="{{ route('comparison') }}" method="POST" class="form">

@@ -12,13 +12,13 @@
         <div class="app-sidebar__user clearfix">
             <div class="dropdown user-pro-body">
                 <div class="">
-                    @if($player)
-
-                        <img alt="user-img" class="avatar avatar-xl brround"
-                             src="{{$player->photo}}" >
+                    @auth
+                        <img alt="user-img" class="avatar avatar-xl brround" src="{{ Auth::user()->photo ? asset(Auth::user()->photo) : asset('path/to/default/image.png') }}">
                     @else
-                        <img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('Dashboard/img/faces/6.jpg')}}">
-                    @endif
+                        <img alt="user-img" class="avatar avatar-xl brround" src="{{ asset('Dashboard/img/profile.jpg') }}">
+
+                    @endauth
+
                 </div>
                 <div class="user-info">
                     @auth
@@ -33,6 +33,11 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
         <ul class="side-menu">
             <li class="side-item side-item-category">Main</li>
             <li class="slide">
@@ -105,8 +110,9 @@
                 </ul>
 
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('player.epl_stats') }}">{{trans('index.y_stats')}}</a></li>
+                    <li><a class="slide-item" href="{{ route('player_stats') }}">{{trans('index.stats')}}</a></li>
                 </ul>
+
 
             </li>
 
@@ -134,8 +140,9 @@
 
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclude" viewBox="0 0 16 16">
-                            <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" width="1em" height="1em">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-11.86V7h4v1.14l-1.45 1.45L13 9.29l3.84 3.85-1.42 1.42L11 11.71l-1.41 1.41L7.86 12l-1.41-1.41 2.86-2.86L11 6.29l1.41 1.41zm2 8.86h-4v-1.14l1.45-1.45L11 14.71l-3.84-3.85 1.42-1.42L13 12.29l1.41-1.41 1.42 1.42 2.86 2.86-1.42 1.42-2.86-2.86z" opacity=".3"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-11.86V7h4v1.14l-1.45 1.45L13 9.29l3.84 3.85-1.42 1.42L11 11.71l-1.41 1.41L7.86 12l-1.41-1.41 2.86-2.86L11 6.29l1.41 1.41zm2 8.86h-4v-1.14l1.45-1.45L11 14.71l-3.84-3.85 1.42-1.42L13 12.29l1.41-1.41 1.42 1.42 2.86 2.86-1.42 1.42-2.86-2.86z"/>
                         </svg>
 
                         <span class="side-menu__label">
@@ -150,39 +157,28 @@
 
 
 
-                {{--						</ul><ul class="slide-menu">--}}
-                {{--							<li><a class="slide-item" href="{{ route('player.chat_player') }}"> زملاء الفريق </a></li>--}}
-
-                {{--						</ul>--}}
-
-
             </li>
-
-
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" width="1em" height="1em">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-11.86V7h4v1.14l-1.45 1.45L13 9.29l3.84 3.85-1.42 1.42L11 11.71l-1.41 1.41L7.86 12l-1.41-1.41 2.86-2.86L11 6.29l1.41 1.41zm2 8.86h-4v-1.14l1.45-1.45L11 14.71l-3.84-3.85 1.42-1.42L13 12.29l1.41-1.41 1.42 1.42 2.86 2.86-1.42 1.42-2.86-2.86z" opacity=".3"/>
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-11.86V7h4v1.14l-1.45 1.45L13 9.29l3.84 3.85-1.42 1.42L11 11.71l-1.41 1.41L7.86 12l-1.41-1.41 2.86-2.86L11 6.29l1.41 1.41zm2 8.86h-4v-1.14l1.45-1.45L11 14.71l-3.84-3.85 1.42-1.42L13 12.29l1.41-1.41 1.42 1.42 2.86 2.86-1.42 1.42-2.86-2.86z"/>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclude" viewBox="0 0 16 16">
+                            <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>
+                        </svg>
 
 
-                    <span class="side-menu__label">
-                            {{trans('index.settings')}}
+
+                        <span class="side-menu__label">
+                            {{trans('index.y_stats')}}
                         </span>
-                    <i class="angle fe fe-chevron-down"></i>
+                        <i class="angle fe fe-chevron-down"></i>
                     </svg>
                 </a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('coach.calendar') }}">{{trans('index.settings')}}</a></li>
+                    <li><a class="slide-item" href="{{ route('player.epl_stats') }}">{{trans('index.y_stats')}}</a></li>
                 </ul>
 
 
-
             </li>
-
-
-
 
         </ul>
     </div>

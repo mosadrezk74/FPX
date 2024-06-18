@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FPX</title>
+    <title>
+        @yield('title')
+    </title>
 
     @yield('css')
 
@@ -74,6 +76,11 @@
                                 <li>
                                     <a href="{{route('compare_front')}}">{{trans('site/index.compare')}}</a>
                                 </li>
+
+                                <li>
+                                    <a href="{{route('rating')}}">{{trans('site/index.rating')}}</a>
+                                </li>
+
                                 <hr/>
                                 <li>
                                     <a href="{{ url('login') }}">{{ trans('site/index.sign') }}</a>
@@ -131,6 +138,9 @@
                             style="background: #2a2a2a"
                         >
                             <li>
+                                <a class="dropdown-item" href="{{route('discover')}}"> {{trans('site/index.discover')}} </a>
+                            </li>
+                            <li>
                                 <a class="dropdown-item" href="{{route('player')}}"> {{trans('site/index.players')}} </a>
                             </li>
                             <li>
@@ -138,6 +148,9 @@
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{route('rating')}}">{{trans('site/index.rating')}}</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{route('scouting')}}">{{trans('site/index.scout')}}</a>
                             </li>
                         </ul>
                     </div>

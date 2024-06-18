@@ -10,6 +10,7 @@ use App\Models\Player;
 use App\Models\Standing;
 use App\Models\Statistics;
 use App\Trait\GeneralTrait;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,7 @@ class ApiController extends Controller
     {
 
         $players = Player::with('club', 'stat')->get();
-        
+
         $transformedPlayers = $players->map(function ($player) {
             return [
                 'id' => $player->id,
@@ -137,15 +138,16 @@ class ApiController extends Controller
 
     public function top_rating()
     {
-        $topRatePlayer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.SoT')
-            ->select('players.*', 'stats.SoT as SoT')
+        $topRatePlayer = Player::with(['stat', 'club'])
+            ->whereIn('rate', [1, 2])
+            ->inRandomOrder()
             ->take(10)
             ->get();
 
         return response()->json($topRatePlayer);
     }
-   public function top_xg()
+
+    public function top_xg()
    {
        $topXG = Player::join('stats', 'players.stat_id', '=', 'stats.id')
            ->orderByDesc('stats.SoT')
@@ -189,7 +191,143 @@ class ApiController extends Controller
        return response()->json($top_Passes);
 
    }
+   public function scouting_players()
+   {
+       $scout=Player::with(['stat' , 'club' ])
+       ->where('rate' , '=' ,5)
+           ->inRandomOrder()
+           ->take(10)
+           ->get();
+       return response()->json($scout);
 
+   }
+
+
+    public function part_clubs()
+    {
+        $PartClub = Club::where('status', 1)->get();
+
+        return response()->json($PartClub);
+    }
+
+    public function show_club(Request $request)
+    {
+        $club = Club::with(['player', 'coach','table'])->find($request->id);
+
+        if (!$club) {
+            return response()->json(['message' => 'Club not found'], 404);
+        }
+
+        $responseData = [
+            'name_ar' => $club->name_ar,
+            'name_en' => $club->name_en,
+            'image' => $club->image,
+            'stadium_en' => $club->staduim_en,
+            'stadium_ar' => $club->staduim_ar,
+            'capacity' => $club->capacity,
+            'date_of_est' => $club->date_of_est,
+            'table' => $club->table,
+            'players' => $club->player->map(function ($player) {
+                return [
+                    'name_ar' => $player->name_ar,
+                    'name_en' => $player->name_en,
+                    'position' => $player->position,
+                    'age' => Carbon::now()->diffInYears($player->age),
+                    'country' => $player->country,
+                    'stat' => $player->stat,
+                    'club' => $player->club,
+                ];
+            }),
+            'coach' => $club->coach ? [
+                'name_ar' => $club->coach->name_ar,
+                'name_en' => $club->coach->name_en,
+                'country' => $club->coach->country,
+                'nationality' => $club->coach->nationality,
+                'club_id' => $club->coach->club_id,
+            ] : null,
+        ];
+        return response()->json($responseData);
+    }
+
+
+    public function show_coach(Request $request)
+    {
+        $coach = Coach::with(['club.player.country', 'country'])->find($request->id);
+
+
+        if (!$coach) {
+            return response()->json(['message' => 'Coach Not Found'], 404);
+        }
+
+        $responseData = [
+            'name_ar' => $coach->name_ar,
+            'name_en' => $coach->name_en,
+            'photo' => $coach->photo,
+            'country' => [
+                'name_ar' => $coach->country->name_ar,
+                'name_en' => $coach->country->name_en,
+            ],
+            'club' => [
+                'name_ar' => $coach->club->name_ar,
+                'name_en' => $coach->club->name_en,
+            ],
+            'players' => $coach->club->player->map(function ($player) {
+                return [
+                    'name_ar' => $player->name_ar,
+                    'name_en' => $player->name_en,
+                    'position' => $player->position,
+                    'age' => Carbon::now()->diffInYears(Carbon::parse($player->date_of_birth)),
+                    'country' => [
+                        'name_ar' => $player->country->name_ar,
+                        'name_en' => $player->country->name_en,
+                    ],
+                    'stat' => $player->stat,
+                    'club' => [
+                        'name_ar' => $player->club->name_ar,
+                        'name_en' => $player->club->name_en,
+                    ],
+                ];
+            }),
+        ];
+
+
+        return response()->json($responseData);
+    }
+
+
+
+    public function show_player(Request $request)
+    {
+        $player = Player::with(['stat', 'country' ,'club'])->find($request->id);
+
+
+        if (!$player) {
+            return response()->json(['message' => 'Player Not Found'], 404);
+        }
+
+        $responseData = [
+            'name_ar' => $player->name_ar,
+            'name_en' => $player->name_en,
+            'photo' => $player->photo,
+            'country' => [
+                'name_ar' => $player->country->name_ar,
+                'name_en' => $player->country->name_en,
+            ],
+            'position' => $player->position,
+            'club' => $player->club,
+            'stat' => $player->stat,
+            'age' => $player->age,
+            'height' => $player->height,
+            'weight' => $player->weight,
+            'shirt_number' => $player->shirt_number,
+            'rate' => $player->rate,
+
+
+            ];
+
+
+        return response()->json($responseData);
+    }
 
 
 

@@ -40,8 +40,8 @@ class Player_Dashboard extends Controller
 
         $topAssister = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $club_id)
-            ->orderByDesc('stats.Assists')
-            ->select('players.*', 'stats.Assists as Assists')
+            ->orderByDesc(DB::raw('stats.Assists * stats.MP'))
+            ->select('players.*', 'stats.Assists as Assists', 'stats.MP as MP')
             ->first();
 
         $authPlayer = Auth::user();
@@ -103,8 +103,8 @@ class Player_Dashboard extends Controller
             ->take(6)->get();
 
         $topAssisterLeg =Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.Assists')
-            ->select('players.*', 'stats.Assists as Assists')
+            ->orderByDesc(DB::raw('stats.Assists * stats.MP'))
+            ->select('players.*', 'stats.Assists as Assists', 'stats.MP as MP')
             ->take(6)->get();
 
 
@@ -176,17 +176,18 @@ class Player_Dashboard extends Controller
 
         $topAssisters = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
-            ->orderByDesc('stats.Assists')
-            ->limit(5)
-            ->select('players.*', 'stats.Assists as Assists')
+             ->limit(5)
+            ->orderByDesc(DB::raw('stats.Assists * stats.MP'))
+            ->select('players.*', 'stats.Assists as Assists', 'stats.MP as MP')
             ->get();
 
 
         $topAssister = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
-            ->orderByDesc('stats.Assists')
+            ->orderByDesc(DB::raw('stats.Assists * stats.MP'))
+            ->select('players.*', 'stats.Assists as Assists', 'stats.MP as MP')
             ->inRandomOrder()
-            ->select('players.*', 'stats.Assists as Assists')
+
             ->first();
 
         $topPlayer= Player::join('stats', 'players.stat_id', '=', 'stats.id')
@@ -402,6 +403,18 @@ class Player_Dashboard extends Controller
         }
 
         return view('Dashboard.Player_Dashboard.compartion', compact('player1', 'player2'));
+    }
+
+    public function player_stats()
+    {
+        $player = auth()->guard('player')->user();
+        $club_id = $player->club_id;
+        $players = Player::where('club_id', $club_id)->with('club')->paginate(35);
+        $clubs = Club::all();
+        $random_clubs = Club::all()->random(5);
+
+        return view('Dashboard.Player_Dashboard.player_stats',
+            compact('player', 'players', 'clubs', 'club_id', 'random_clubs'));
     }
 
 

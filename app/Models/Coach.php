@@ -52,10 +52,10 @@ use Laravel\Sanctum\HasApiTokens;
     public function club(){
         return $this->belongsTo(Club::class,'club_id','id');
     }
-    public function players()
-    {
-        return $this->hasMany(Player::class);
-    }
+     public function players()
+     {
+         return $this->hasManyThrough(Player::class, Club::class);
+     }
 
     public function country(){
 

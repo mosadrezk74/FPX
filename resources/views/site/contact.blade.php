@@ -9,6 +9,9 @@
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <title>
+        {{trans('site/index.contact')}}
+    </title>
     <link rel="stylesheet" href="{{asset('site/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('site/css/bootstrap.min.css.map')}}" />
     <link rel="stylesheet" href="{{asset('site/css/all.min.css')}}" />

@@ -13,8 +13,8 @@
         <div class="my-auto">
             <div class="d-flex">
 
-                    <h4 class="content-title mb-0 my-auto">{{trans('index.gen_info')}}</h4>
-                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                    <h4 class="content-title mb-0 my-auto">{{trans('index.view')}}</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{trans('index.gen_info')}}
 				</span>
 
 
@@ -59,7 +59,7 @@
                                     <tbody>
                                     @foreach($players as $player)
                                         <tr>
-                                            <th >{{$loop->iteration}}</th>
+                                            <th >{{$player->shirt_number}}#</th>
                                             <td style="width:50px" >
                                                 <img  alt="image"  src="{{$player->photo}}"  />
                                             </td>
@@ -72,9 +72,9 @@
                                                     @endif
                                                 </a>
                                             </td>
-                                            <td>{{$player->stat->Appearances}}</td>
-                                            <td>{{$player->stat->totalGoals}}</td>
-                                            <td>{{$player->stat->goalAssists}}</td>
+                                            <td>{{$player->stat->MP}}</td>
+                                            <td>{{$player->stat->Goals}}</td>
+                                            <td>{{ intval( $player->stat->Assists * $player->stat->MP) }}</td>
                                             <td>{{rand(100,50)/100 }}</td>
                                             <td>{{rand(100,50)/100 }}</td>
 

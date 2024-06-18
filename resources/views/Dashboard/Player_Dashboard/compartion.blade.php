@@ -41,7 +41,11 @@
                                 <img src="{{$player1->photo}}" style="width:80px;height: 80px" >
 
                                 <span class="text-center ">
-                                    {{$player1->name_ar}}
+                                    @if(App::getlocale() == 'ar')
+                                        {{$player1->name_ar}}
+                                    @else
+                                        {{$player1->name_en}}
+                                    @endif
                                 </span>
                             </div>
                             <hr>
@@ -61,7 +65,11 @@
                                 <img src="{{$player2->photo}}" style="width:80px;height: 80px" >
 
                                 <span class="text-center ">
-                                    {{$player2->name_ar}}
+                                    @if(App::getlocale() == 'ar')
+                                        {{$player2->name_ar}}
+                                    @else
+                                        {{$player2->name_en}}
+                                    @endif
                                 </span>
                             </div>
                             <hr>
@@ -154,11 +162,11 @@
                 <tr>
                     <th scope="row">{{trans('stat.age')}}</th>
                     <td class="base-item">
-                        {{$player1->age_in_years}}
+                        {{now()->diffInYears($player1->age)}}
                     </td>
 
                     <td>
-                        {{$player2->stat->age_in_years}}
+                        {{now()->diffInYears($player2->age)}}
                     </td>
                 </tr>
 
@@ -292,6 +300,50 @@
                             <strong>{{$player2->stat->PasAss}}</strong>
                         @else
                             {{$player2->stat->PasAss}}
+                        @endif
+                    </td>
+                </tr>
+
+
+{{--                --}}
+                <tr>
+                    <th scope="row">
+                        <img src="{{asset('Dashboard\y.png')}}" style="width: 10px;height: 15px"  alt="Yellow Card">
+                        {{trans('index.ycard')}}
+                    </th>
+                    <td class="base-item">
+                        @if($player1->stat->CrdY > $player2->stat->CrdY)
+                            <strong>{{intval($player1->stat->CrdY * $player1->stat->MP)}}</strong>
+                        @else
+                            {{intval($player1->stat->CrdY * $player1->stat->MP)}}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->CrdY > $player1->stat->CrdY)
+                            <strong>{{intval($player2->stat->CrdY * $player2->stat->MP)}}</strong>
+                        @else
+                            {{intval($player2->stat->CrdY* $player2->stat->MP)}}
+                        @endif
+                    </td>
+                </tr>
+{{--                --}}
+                <tr>
+                    <th scope="row">
+                        <img src="{{asset('Dashboard\r.png')}}" style="width: 10px;height: 15px"  alt="Yellow Card">
+                        {{trans('index.rcard')}}
+                    </th>
+                    <td class="base-item">
+                        @if($player1->stat->CrdR > $player2->stat->CrdR)
+                            <strong>{{$player1->stat->CrdR * $player1->stat->MP }}</strong>
+                        @else
+                            {{$player1->stat->CrdR  * $player1->stat->MP }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->CrdR > $player1->stat->CrdR)
+                            <strong>{{$player2->stat->CrdR* $player2->stat->MP}}</strong>
+                        @else
+                            {{$player2->stat->CrdR * $player2->stat->MP}}
                         @endif
                     </td>
                 </tr>
@@ -466,6 +518,183 @@
                 </tr>
 
 
+
+
+                <tr>
+                    <th scope="row">{{trans('stat.SCA')}}</th>
+                    <td class="base-item">
+                        @if($player1->stat->SCA > $player2->stat->SCA)
+                            <strong>{{intval($player1->stat->SCA * $player1->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player1->stat->SCA * $player1->stat->MP) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->SCA > $player1->stat->SCA)
+                            <strong>{{intval($player2->stat->SCA * $player2->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player2->stat->SCA * $player2->stat->MP) }}
+                        @endif
+                    </td>
+                </tr>
+
+
+
+
+                {{----}}
+                {{----}}
+                <tr>
+                    <th scope="row">{{trans('stat.Recov')}}</th>
+                    <td class="base-item">
+                        @if($player1->stat->Recov > $player2->stat->Recov)
+                            <strong>{{intval($player1->stat->Recov * $player1->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player1->stat->Recov * $player1->stat->MP) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->Recov > $player1->stat->Recov)
+                            <strong>{{intval($player2->stat->Recov * $player2->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player2->stat->Recov * $player2->stat->MP) }}
+                        @endif
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <th scope="row">{{trans('stat.Blocks')}}</th>
+                    <td class="base-item">
+                        @if($player1->stat->Blocks > $player2->stat->Blocks)
+                            <strong>{{intval($player1->stat->Blocks * $player1->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player1->stat->Blocks * $player1->stat->MP) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->Blocks > $player1->stat->Blocks)
+                            <strong>{{intval($player2->stat->Blocks * $player2->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player2->stat->Blocks * $player2->stat->MP) }}
+                        @endif
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">{{trans('stat.BlkSh')}}</th>
+                    <td class="base-item">
+                        @if($player1->stat->BlkSh > $player2->stat->BlkSh)
+                            <strong>{{intval($player1->stat->BlkSh * $player1->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player1->stat->BlkSh * $player1->stat->MP) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->BlkSh > $player1->stat->BlkSh)
+                            <strong>{{intval($player2->stat->BlkSh * $player2->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player2->stat->BlkSh * $player2->stat->MP) }}
+                        @endif
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">{{trans('stat.Tkl_Int')}}</th>
+                    <td class="base-item">
+                        @if($player1->stat->Tkl_Int > $player2->stat->Tkl_Int)
+                            <strong>{{intval($player1->stat->Tkl_Int * $player1->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player1->stat->Tkl_Int * $player1->stat->MP) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->Tkl_Int > $player1->stat->Tkl_Int)
+                            <strong>{{intval($player2->stat->Tkl_Int * $player2->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player2->stat->Tkl_Int * $player2->stat->MP) }}
+                        @endif
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">{{trans('stat.Clr')}}</th>
+                    <td class="base-item">
+                        @if($player1->stat->Clr > $player2->stat->Clr)
+                            <strong>{{intval($player1->stat->Clr * $player1->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player1->stat->Clr * $player1->stat->MP) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->Clr > $player1->stat->Clr)
+                            <strong>{{intval($player2->stat->Clr * $player2->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player2->stat->Clr * $player2->stat->MP) }}
+                        @endif
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">{{trans('stat.touches')}}</th>
+                    <td class="base-item">
+                        @if($player1->stat->Touches > $player2->stat->Touches)
+                            <strong>{{intval($player1->stat->Touches * $player1->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player1->stat->Touches * $player1->stat->MP) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->Touches > $player1->stat->Touches)
+                            <strong>{{intval($player2->stat->Touches * $player2->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player2->stat->Touches * $player2->stat->MP) }}
+                        @endif
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <th scope="row">{{trans('stat.Fls')}}</th>
+                    <td class="base-item">
+                        @if($player1->stat->Fls > $player2->stat->Fls)
+                            <strong>{{intval($player1->stat->Fls * $player1->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player1->stat->Fls * $player1->stat->MP) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->Fls > $player1->stat->Fls)
+                            <strong>{{intval($player2->stat->Fls * $player2->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player2->stat->Fls * $player2->stat->MP) }}
+                        @endif
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">{{trans('stat.Off')}}</th>
+                    <td class="base-item">
+                        @if($player1->stat->Off > $player2->stat->Off)
+                            <strong>{{intval($player1->stat->Off * $player1->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player1->stat->Off * $player1->stat->MP) }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($player2->stat->Off > $player1->stat->Off)
+                            <strong>{{intval($player2->stat->Off * $player2->stat->MP)}}</strong>
+                        @else
+                            {{ intval($player2->stat->Off * $player2->stat->MP) }}
+                        @endif
+                    </td>
+                </tr>
 
 
 

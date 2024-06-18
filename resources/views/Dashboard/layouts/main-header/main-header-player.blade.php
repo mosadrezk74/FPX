@@ -55,31 +55,43 @@
             </ul>
             <div class="nav nav-item  navbar-nav-right ml-auto">
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
-                    @if($player)
-                        <a class="profile-user d-flex" href="" data-toggle="dropdown" data-bs-dismiss="dropdown"><img alt="" src="{{$player->photo}}"></a>
+                    @auth
+                        <a class="profile-user d-flex" href="" data-toggle="dropdown" data-bs-dismiss="dropdown"><img alt="" src="{{Auth::user()->photo}}"></a>
                     @else
                         <a class="profile-user d-flex" href="" data-toggle="dropdown" data-bs-dismiss="dropdown"><img alt="" src="{{asset('Dashboard/img/user.png')}}"></a>
-                    @endif
+                    @endauth
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user">
-                                    @if($player)
-                                        <img alt="" src="{{$player->photo}}"
+                                    @auth
+                                        <img alt=""  src="{{Auth::user()->photo}}"
                                              class=""></div>
                                 @else
                                     <img alt="" src="{{asset('Dashboard/img/user.png')}}"
                                          class=""></div>
-                            @endif
+                            @endauth
+
 
                             <div class="mr-3 my-auto">
                                 @auth
-                                    <h6>{{Auth::user()->name_ar}}</h6><span>{{trans('Dashboard/main-header_trans.admin')}} </span>
+                                    @if(App::getlocale() == 'ar')
+                                        <h6>{{Auth::user()->name_ar}}</h6><span>{{trans('Dashboard/main-header_trans.admin')}} </span>
+                                    @else
+                                        <h6>{{Auth::user()->name_en}}</h6><span>{{trans('Dashboard/main-header_trans.admin')}} </span>
+                                    @endif
                                 @endauth
                             </div>
                         </div>
                     </div>
-                    <a class="dropdown-item" href=><i class="bx bx-user-circle"></i>{{trans('Dashboard/main-header_trans.my_profile')}}</a>
+
+                        @if(Auth::check())
+                            <a class="dropdown-item" href="{{ route('player.edit', Auth::user()->id) }}">
+                                <i class="bx bx-user-circle"></i>{{ trans('Dashboard/main-header_trans.my_profile') }}
+                            </a>
+                        @else
+                            <a class="dropdown-item" href="#"> <i class="bx bx-user-circle"></i> {{ trans('Dashboard/main-header_trans.my_profile') }}</a>
+                        @endif
 
                     @if(Auth('web')->check())
                         <form method="POST" action="{{ route('logout.user') }}">

@@ -2,6 +2,9 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('site/css/send.css')}}" />
 @endsection
+@section('title')
+    {{trans('site/index.send')}}
+@endsection
 @section('contact')
     @if(session('success'))
         <div class="alert alert-success">

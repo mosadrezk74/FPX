@@ -57,27 +57,26 @@
 
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
 
-                    @if($coach)
+                    @auth
                         <a class="profile-user d-flex" href="#" data-toggle="dropdown" data-bs-dismiss="dropdown">
-                            <img alt="Coach Photo" src="{{ $coach->photo }}">
+                            <img alt="Coach Photo" src="{{ Auth::user()->photo }}">
                         </a>
                     @else
                         <a class="profile-user d-flex" href="#" data-toggle="dropdown" data-bs-dismiss="dropdown">
-                            <img alt="Default Photo" src="{{asset('Dashboard/img/user.png')}}">
+                            <img alt="Default Photo"  src="{{asset('Dashboard/img/profile.jpg')}}">
                         </a>
-                    @endif
+                    @endauth
 
 
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user">
-                                    @if($coach)
-                                    <img alt="" src="{{$coach->photo}}" class=""></div>
+                                    @auth
+                                    <img alt="" src="{{Auth::user()->photo}}" class=""></div>
                                 @else
-                                    <img alt="" src="{{asset('Dashboard/img/user.png')}}" class=""></div>
-
-                                @endif
+                                    <img alt="" src="{{asset('Dashboard/img/profile.jpg')}}" class=""></div>
+                            @endauth
 
                                 <div class="mr-3 my-auto">
                                     @auth

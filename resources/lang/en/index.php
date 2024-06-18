@@ -158,16 +158,29 @@ return [
     'dd'=>'Your ranking in the league top scorers',
     'rankTeam'=>'Your Rank In Team',
     'best'=>'Best Match',
+    'users' => 'Number of Users',
+    'part' => 'Number of Partners',
+    'topAppear' => 'Most Participations This Season',
+    'topclub' => 'Our Partners',
+    'topcountry' => 'Teams with the Most Goals',
+    'top_clubs_in_history' => 'Top Historical Teams',
+    'Change_Photo' => 'Change Photo',
+'Change_Password' => 'Change Password',
 
 
+'submit' => 'Submit',
+    'Partener'=>'Partener',
+    'Not_Partener'=>'Not Partener',
 
+    'rate'=>'Rate',
 
+'ppartener'=>'Partener',
 
-
-
-
-
-
+    'user_fetch'=>'Users',
+    'profile'=>'Profile',
+    'veiwProfile'=>'View Profile',
+    'coach'=>'Coach',
+    'Subscription'=>'Subscription',
 
 
 

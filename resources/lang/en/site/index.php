@@ -116,7 +116,8 @@ return [
 	'Partners'=>'Our Partners',
 
     'join_with_us'=>'Join us and be a partner',
-
+    'discover_players'=>'The Discovered Players',
+    'scouting'=>'Scouting',
 
 
 

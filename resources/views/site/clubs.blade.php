@@ -1,5 +1,9 @@
 @extends('site.layout')
 
+
+@section('title')
+    {{trans('site/index.clubs')}}
+@endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('site/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('site/css/all.min.css')}}" />

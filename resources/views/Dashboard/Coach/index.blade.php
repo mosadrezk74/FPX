@@ -63,21 +63,6 @@
                                                 @else
                                                     <td>{{$coach->name_en}}</td>
                                                 @endif
-{{--                                            <td>{{ $coach->age }}</td>--}}
-{{--                                                @if(App::getLocale() == 'ar')--}}
-{{--                                                    @if($coach->club != null)--}}
-{{--                                                        <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_ar }}</a></td>--}}
-{{--                                                    @else--}}
-{{--                                                        <td>فريق FPX</td>--}}
-{{--                                                    @endif--}}
-{{--                                                @else--}}
-{{--                                                    @if($coach->club != null)--}}
-{{--                                                        <td> <a href="{{route('club.show',$coach->id)}}">{{ $coach->club->name_en }}</a></td>--}}
-{{--                                                    @else--}}
-{{--                                                        <td>FPX TEAM.</td>--}}
-{{--                                                    @endif--}}
-{{--                                                @endif--}}
-
                                             <td>{{ $coach->created_at->diffForHumans() }}</td>
                                             <td>
                                                 <form action="{{ route('coach.destroy',  $coach->id) }}" method="post">
@@ -143,15 +128,18 @@
 
 
                                 <div class="modal-body">
-                                    <label for="exampleInputPassword1">{{trans('coach.club')}}</label>
+                                    <label for="exampleInputPassword1">{{trans('index.club')}}</label>
                                     <select id="club" name="club_id" class="form-control">
                                         <option value="">{{trans('index.clubs')}}</option>
                                         @foreach($clubs as $club)
+                                            @if($club->status ==1)
                                             @if (App::getLocale() == 'ar')
                                                 <option value="{{$club->id}}">{{$club->name_ar}}</option>
                                             @else
                                                 <option value="{{$club->id}}">{{$club->name_en}}</option>
                                             @endif
+                                            @endif
+
                                         @endforeach
 
                                     </select>

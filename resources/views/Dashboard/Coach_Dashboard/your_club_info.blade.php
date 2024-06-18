@@ -113,7 +113,11 @@
                         <div class="mr-auto">
                             <h1 class="tx-13 tx-white-8 mb-3" style="font-weight: bold; text-align: center;">{{trans('index.random')}}</h1>
                             <a href="" class="counter mb-0 text-white" style="text-align: center; color: #fff; transition: color 0.3s;">
-                                {{$topPlayer->name_ar}} ({{$topPlayer->MP}})
+                                @if(App::getLocale() == 'ar')
+                                    {{$topPlayer->name_ar}} ({{$topPlayer->MP}})
+                                @else
+                                    {{$topPlayer->name_en}} ({{$topPlayer->MP}})
+                                @endif
                             </a>
                         </div>
                     </div>
@@ -206,10 +210,10 @@
                                          src="{{$player->photo}}" />
                                     @if(App::getlocale() == "ar")
                                         <p>{{$player->name_ar}}</p>
-                                        <span>{{$player->stat->Assists * $player->stat->MP }}  </span>
+                                        <span>{{intval($player->stat->Assists * $player->stat->MP) }}  </span>
                                     @else
                                         <p>{{$player->name_en}}</p>
-                                        <span>{{$player->stat->Assists * $player->stat->MP }}  </span>
+                                        <span>{{intval($player->stat->Assists * $player->stat->MP) }}  </span>
                                     @endif
                                 </div>
                             @endforeach

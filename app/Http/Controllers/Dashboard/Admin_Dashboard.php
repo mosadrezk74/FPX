@@ -9,7 +9,7 @@ use App\Models\History;
 use App\Models\Player;
 use App\Models\Standing;
 use App\Models\User;
-
+use Illuminate\Support\Facades\DB;
 
 
 class Admin_Dashboard extends Controller
@@ -19,7 +19,7 @@ class Admin_Dashboard extends Controller
     {
         $tables=Standing::all()->take(12);
 
-        $recentes = Player::latest()->take(16)->get();
+        $recentes = Player::latest()->take(15)->get();
 
 
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
@@ -29,9 +29,10 @@ class Admin_Dashboard extends Controller
             ->first();
 
         $topAssister = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.Assists')
-            ->select('players.*', 'stats.Assists as Assists')
+            ->orderByDesc(DB::raw('stats.Assists * stats.MP'))
+            ->select('players.*', 'stats.Assists as Assists', 'stats.MP as MP')
             ->first();
+
 
         $clubs=Club::all()->where('status',1);
         $clubs_count=Club::all()->where('status',1)->count();
@@ -55,10 +56,13 @@ class Admin_Dashboard extends Controller
             ->select('players.*', 'stats.Goals as Goals')
             ->take(6)->get();
 
-        $topAssisterLeg =Player::join('stats', 'players.stat_id', '=', 'stats.id')
-            ->orderByDesc('stats.Assists')
-            ->select('players.*', 'stats.Assists as Assists')
-            ->take(6)->get();
+        $topAssisterLeg = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc(DB::raw('stats.Assists * stats.MP'))
+            ->select('players.*', 'stats.Assists as Assists', 'stats.MP as MP')
+            ->take(6)
+            ->get();
+
+
 
 
         $topAppearancesLeg = Player::join('stats', 'players.stat_id', '=', 'stats.id')
@@ -68,20 +72,6 @@ class Admin_Dashboard extends Controller
             ->get()
             ->shuffle()
             ->take(6);
-
-
-//        $client = new Client();
-//
-//        $response = $client->request('GET', 'https://livescore-api.com/api-client/leagues/table.json', [
-//            'query' => [
-//                'competition_id' => 36,
-//                'key' => 'GyjrD7wQkFXlVCHE',
-//                'secret' => 'hKA9Usbn70zVQslw1FXENtv78st45aJm'
-//            ]
-//        ]);
-//        $data = json_decode($response->getBody(), true);
-
-
 
 
         return view('Dashboard.Admin.dashboard'
