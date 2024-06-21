@@ -24,9 +24,9 @@ return [
     'guards' => [
 
         'api' => [
-        'driver' => 'jwt',
-        'provider' => 'clubs',
-            ],
+            'driver' => 'jwt',
+            'provider' => 'clubs',
+        ],
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -35,24 +35,18 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'club' => [
-            'driver' => 'session',
-            'provider' => 'clubs'
-        ],
+
         'player' => [
             'driver' => 'session',
             'provider' => 'players',
-      ],
+        ],
         'coach' => [
             'driver' => 'session',
             'provider' => 'coaches',
         ],
 
 
-        'analysis' => [
-            'driver' => 'session',
-            'provider' => 'analysis_table',
-        ],
+
 
 
 

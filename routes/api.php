@@ -21,6 +21,7 @@ Route::group([
     Route::post('/login/player', [AuthApiController::class, 'login_player']);
     Route::post('/login/admin', [AuthApiController::class, 'login_admin']);
     Route::post('/login/user', [AuthApiController::class, 'login_user']);
+    Route::post('/register', [AuthApiController::class, 'register']);
 
 
 
@@ -37,8 +38,9 @@ Route::group([
 
 Route::group(
     [
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','api']
-    ], function(){
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'api']
+    ],
+    function () {
         //############################################################################################################//
         ## Start Clubs Name##
         Route::post('get_clubs_name', [ApiController::class, 'get_clubs_api'])->name('get_clubs_name');
@@ -72,13 +74,8 @@ Route::group(
         //############################################################################################################//
         Route::post('/scouting_players', [ApiController::class, 'scouting_players']);
         Route::post('/part_clubs', [ApiController::class, 'part_clubs']);
-    Route::post('/clubs/{id}', [ApiController::class, 'show_club']);
-    Route::post('/coach/{id}', [ApiController::class, 'show_coach']);
-    Route::post('/player/{id}', [ApiController::class, 'show_player']);
-
-
-
-
-
-});
-
+        Route::post('/clubs/{id}', [ApiController::class, 'show_club']);
+        Route::post('/coach/{id}', [ApiController::class, 'show_coach']);
+        Route::post('/player/{id}', [ApiController::class, 'show_player']);
+    }
+);

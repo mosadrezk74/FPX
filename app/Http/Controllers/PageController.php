@@ -13,8 +13,8 @@ class PageController extends Controller
 
     public function join()
     {
-        $messages=Join::all();
-        return view('Dashboard.Front_Pages.join' , compact('messages'));
+        $messages = Join::all();
+        return view('Dashboard.Front_Pages.join', compact('messages'));
     }
     public function toggleStatus($status, $id)
     {
@@ -40,9 +40,9 @@ class PageController extends Controller
 
     public function contact()
     {
-        $messages=FrontContact::all();
+        $messages = FrontContact::all();
 
-        return view('Dashboard.Front_Pages.contact' , compact('messages') );
+        return view('Dashboard.Front_Pages.contact', compact('messages'));
     }
 
     #####################################################################
@@ -70,16 +70,16 @@ class PageController extends Controller
     #####################################################################
     public function send()
     {
-        $messages=FrontSend::all();
+        $messages = FrontSend::all();
 
-        return view('Dashboard.Front_Pages.send' , compact('messages') );
+        return view('Dashboard.Front_Pages.send', compact('messages'));
     }
     #####################################################################
 
     public function fetch_user()
     {
-        $users=User::all();
-        return view('Dashboard.Front_Pages.users' , compact('users') );
+        $users = User::all();
+        return view('Dashboard.Front_Pages.users', compact('users'));
     }
     public function user_delete($id)
     {
@@ -87,6 +87,4 @@ class PageController extends Controller
         $user->delete();
         return redirect()->back()->with('success', 'User deleted successfully.');
     }
-
-
 }

@@ -1,34 +1,32 @@
 @extends('site.layout')
 @section('css')
-    <link rel="stylesheet" href="{{asset('site/css/compare.css')}}" />
+    <link rel="stylesheet" href="{{ asset('site/css/compare.css') }}" />
 @endsection
 @section('title')
-    {{trans('site/index.compare')}}
+    {{ trans('site/index.compare') }}
 @endsection
 @section('contact')
     <div class="container1 container">
         <form action="{{ route('comparison') }}" method="POST" class="form">
             @csrf
-            <label for="player1">{{trans('site/index.player1')}}</label>
-            <input list="player1List" id="player1" name="player1" placeholder="{{trans('site/index.lang')}}">
+            <label for="player1">{{ trans('site/index.player1') }}</label>
+            <input list="player1List" id="player1" name="player1" placeholder="{{ trans('site/index.lang') }}">
             <datalist id="player1List">
-                @foreach($players as $player)
-                    @if(App::getlocale() == 'ar')
+                @foreach ($players as $player)
+                    @if (App::getlocale() == 'ar')
                         <option value="{{ $player->name_ar }}">{{ $player->name_ar }}</option>
-
                     @else
                         <option value="{{ $player->name_en }}">{{ $player->name_en }}</option>
                     @endif
                 @endforeach
             </datalist>
 
-            <label for="player2">{{trans('site/index.player2')}}</label>
-            <input list="player2List" id="player2" name="player2" placeholder="{{trans('site/index.lang')}}">
+            <label for="player2">{{ trans('site/index.player2') }}</label>
+            <input list="player2List" id="player2" name="player2" placeholder="{{ trans('site/index.lang') }}">
             <datalist id="player2List">
-                @foreach($players as $player)
-                    @if(App::getlocale() == 'ar')
+                @foreach ($players as $player)
+                    @if (App::getlocale() == 'ar')
                         <option value="{{ $player->name_ar }}">{{ $player->name_ar }}</option>
-
                     @else
                         <option value="{{ $player->name_en }}">{{ $player->name_en }}</option>
                     @endif
@@ -43,7 +41,6 @@
 
 
     </div>
-
 @endsection
 @section('js')
 @endsection

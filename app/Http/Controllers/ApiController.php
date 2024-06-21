@@ -21,18 +21,19 @@ class ApiController extends Controller
 {
     use GeneralTrait;
 
-    public function get_clubs_api(){
+    public function get_clubs_api()
+    {
 
-        $clubs=Club::get();
+        $clubs = Club::get();
         return response()->json($clubs);
     }
-    public function get_club_by_id_api(Request $request){
-        $club=Club::get()->find($request->id);
-        if(!$club){
-            return $this->returnError('001','مفيش  نادي مسجل بالرقم دا .. حاول تاني ');
+    public function get_club_by_id_api(Request $request)
+    {
+        $club = Club::get()->find($request->id);
+        if (!$club) {
+            return $this->returnError('001', 'مفيش  نادي مسجل بالرقم دا .. حاول تاني ');
         }
-        return $this->returnData('club_info',$club,'تم تحميل بيانات النادي بنجاح');
-
+        return $this->returnData('club_info', $club, 'تم تحميل بيانات النادي بنجاح');
     }
 
     public function get_coaches_api()
@@ -58,7 +59,7 @@ class ApiController extends Controller
 
         $players = Player::with('club', 'stat')->get();
 
-        $transformedPlayers = $players->map(function ($player) {
+        $players = $players->map(function ($player) {
             return [
                 'id' => $player->id,
                 'name_ar' => $player->name_ar,
@@ -74,7 +75,7 @@ class ApiController extends Controller
             ];
         });
 
-        return response()->json($transformedPlayers);
+        return response()->json($players);
     }
 
 
@@ -89,7 +90,7 @@ class ApiController extends Controller
 
     public function get_all_stats()
     {
-        $stats=Statistics::all();
+        $stats = Statistics::all();
         return response()->json($stats);
     }
 
@@ -148,59 +149,55 @@ class ApiController extends Controller
     }
 
     public function top_xg()
-   {
-       $topXG = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-           ->orderByDesc('stats.SoT')
-           ->select('players.*', 'stats.SoT as SoT')
-           ->take(10)
-           ->get();
+    {
+        $topXG = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.SoT')
+            ->select('players.*', 'stats.SoT as SoT')
+            ->take(10)
+            ->get();
 
-       return response()->json($topXG);
+        return response()->json($topXG);
+    }
+    public function top_xa()
+    {
+        $topXA = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.PasAss')
+            ->select('players.*', 'stats.PasAss as PasAss')
+            ->take(10)
+            ->get();
 
-   }
-   public function top_xa()
-   {
-       $topXA = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-           ->orderByDesc('stats.PasAss')
-           ->select('players.*', 'stats.PasAss as PasAss')
-           ->take(10)
-           ->get();
+        return response()->json($topXA);
+    }
 
-       return response()->json($topXA);
+    public function xg_xa()
+    {
+        $topXGA = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.GCA')
+            ->select('players.*', 'stats.GCA as GCA')
+            ->take(10)
+            ->get();
 
-   }
+        return response()->json($topXGA);
+    }
 
-   public function xg_xa()
-   {
-       $topXGA = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-           ->orderByDesc('stats.GCA')
-           ->select('players.*', 'stats.GCA as GCA')
-           ->take(10)
-           ->get();
-
-       return response()->json($topXGA);
-   }
-
-   public function top_key_pass()
-   {
-       $top_Passes=Player::join('stats', 'players.stat_id', '=', 'stats.id')
-           ->orderByDesc('stats.Pas3rd')
-           ->select('players.*', 'stats.Pas3rd as Pas3rd')
-           ->take(10)
-           ->get();
-       return response()->json($top_Passes);
-
-   }
-   public function scouting_players()
-   {
-       $scout=Player::with(['stat' , 'club' ])
-       ->where('rate' , '=' ,5)
-           ->inRandomOrder()
-           ->take(10)
-           ->get();
-       return response()->json($scout);
-
-   }
+    public function top_key_pass()
+    {
+        $top_Passes = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.Pas3rd')
+            ->select('players.*', 'stats.Pas3rd as Pas3rd')
+            ->take(10)
+            ->get();
+        return response()->json($top_Passes);
+    }
+    public function scouting_players()
+    {
+        $scout = Player::with(['stat', 'club'])
+            ->where('rate', '=', 5)
+            ->inRandomOrder()
+            ->take(10)
+            ->get();
+        return response()->json($scout);
+    }
 
 
     public function part_clubs()
@@ -212,7 +209,7 @@ class ApiController extends Controller
 
     public function show_club(Request $request)
     {
-        $club = Club::with(['player', 'coach','table'])->find($request->id);
+        $club = Club::with(['player', 'coach', 'table'])->find($request->id);
 
         if (!$club) {
             return response()->json(['message' => 'Club not found'], 404);
@@ -298,7 +295,7 @@ class ApiController extends Controller
 
     public function show_player(Request $request)
     {
-        $player = Player::with(['stat', 'country' ,'club'])->find($request->id);
+        $player = Player::with(['stat', 'country', 'club'])->find($request->id);
 
 
         if (!$player) {
@@ -323,7 +320,7 @@ class ApiController extends Controller
             'rate' => $player->rate,
 
 
-            ];
+        ];
 
 
         return response()->json($responseData);

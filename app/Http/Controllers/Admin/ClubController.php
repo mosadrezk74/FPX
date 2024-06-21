@@ -39,8 +39,7 @@ class ClubController extends Controller
         $clubs->email = $request->email;
         $clubs->password = password_hash($request->password, PASSWORD_BCRYPT);
         $clubs->save();
-
-         session()->flash('add');
+        session()->flash('add');
         return redirect()->route('club.index');
 
     }
