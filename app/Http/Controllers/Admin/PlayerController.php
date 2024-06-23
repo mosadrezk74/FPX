@@ -76,7 +76,7 @@ class PlayerController extends Controller
 
             $player->save();
 
-            session()->flash('add', 'Player added successfully.');
+            session()->flash('success', 'Player added successfully.');
 
             return redirect()->route('player.create');
         } catch (ValidationException $e) {

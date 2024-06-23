@@ -110,10 +110,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-        'clubs' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Club::class,
-        ],
+
         'players' => [
             'driver' => 'eloquent',
             'model' => App\Models\Player::class,
@@ -123,10 +120,7 @@ return [
             'model' => App\Models\Coach::class,
         ],
 
-        'analysis_table' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Analysis::class,
-        ],
+
 
 
     ],

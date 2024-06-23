@@ -68,7 +68,6 @@ class Admin_Dashboard extends Controller
         $topAppearancesLeg = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->orderByDesc('stats.MP')
             ->select('players.*', 'stats.MP as MP')
-            ->take(6)
             ->get()
             ->shuffle()
             ->take(6);

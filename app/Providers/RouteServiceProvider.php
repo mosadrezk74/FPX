@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
     public const ADMIN = '/dashboard/admin';
     public const COACH = '/dashboard/coach';
     public const PLAYER = '/dashboard/player';
-    
+
 
 
 
@@ -35,6 +35,5 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/backend.php'));
         });
-
     }
 }

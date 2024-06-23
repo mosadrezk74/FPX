@@ -47,12 +47,6 @@ Route::group(
             return view('Dashboard.Player_Dashboard.dashboard');
         })->middleware(['auth:player'])->name('dashboard.player');
 
-
-        //-----------------------------------------------------------------------
-        //-----------------------------------------------------------------------
-        Route::get('dashboard/club', [\App\Http\Controllers\Dashboard\Club_Dashboard::class, 'index'])
-            ->middleware(['auth:club'])
-            ->name('dashboard.club');
         //-----------------------------------------------------------------------
         //-----------------------------------------------------------------------
         //--------------------Start Admin Routes---------------------------------------------------

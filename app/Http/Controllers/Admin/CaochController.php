@@ -32,19 +32,30 @@ class CaochController extends Controller
 
     public function store(Request $request)
     {
-        $coaches = new Coach();
-        $coaches->name_ar = $request->name_ar;
-        $coaches->name_en = $request->name_en;
-        $coaches->email = $request->email;
-        $coaches->password = password_hash($request->password, PASSWORD_BCRYPT);
-        $coaches->photo = $request->photo;
-        $coaches->nationality = $request->nationality;
-        $coaches->club_id = $request->club_id;
+        $validatedData = $request->validate([
+            'name_ar' => 'required|string|max:255',
+            'name_en' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:coaches,email',
+            'password' => 'required|string|min:8',
+            'nationality' => 'required|string|max:255',
+            'club_id' => 'required|exists:clubs,id',
+        ]);
 
-        $coaches->save();
+
+        $coach = new Coach();
+        $coach->name_ar = $validatedData['name_ar'];
+        $coach->name_en = $validatedData['name_en'];
+        $coach->email = $validatedData['email'];
+        $coach->password = bcrypt($validatedData['password']);
+        $coach->photo = $request->photo;
+        $coach->nationality = $validatedData['nationality'];
+        $coach->club_id = $validatedData['club_id'];
+
+        $coach->save();
         session()->flash('success', trans('index.added_successfully'));
         return redirect()->route('coach.index');
     }
+
 
     public function edit($id)
     {
@@ -57,11 +68,11 @@ class CaochController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name_ar' => 'nullable|string',
-            'name_en' => 'nullable|string',
-            'photo' => 'nullable|string',
-            'email' => 'nullable|email',
-            'password' => 'nullable|min:6',
+            'name_ar' => 'required|string',
+            'name_en' => 'required|string',
+            'photo' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
         ]);
 
         $coach = Coach::findOrFail($id);

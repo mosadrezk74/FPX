@@ -21,19 +21,6 @@ class ClubController extends Controller
         return view('Dashboard.Clubs.index', compact('clubs'));
     }
 
-
-    
-    public function toggleStatus($status, $id)
-    {
-        $club = Club::find($id);
-        $club->status = $status;
-        $club->save();
-
-        return redirect()->route('club.index')
-            ->with('message', 'Club status successfully updated.');
-    }
-
-
     public function store(Request $request)
     {
         $clubs = new Club();
@@ -60,5 +47,17 @@ class ClubController extends Controller
         $to_delete = Club::findorfail($club);
         $to_delete->delete();
         return redirect()->route('club.index');
+    }
+
+
+
+    public function toggleStatus($status, $id)
+    {
+        $club = Club::find($id);
+        $club->status = $status;
+        $club->save();
+
+        return redirect()->route('club.index')
+            ->with('message', 'Club status successfully updated.');
     }
 }

@@ -129,17 +129,14 @@ class Coach_Dashboard extends Controller
             ->inRandomOrder()
             ->select('players.*', 'stats.MP as MP')
             ->first();
-        $upcomingMatches = DB::table('fixtures')
-            ->where('date', '>=', now())
-            ->orderBy('date', 'asc')
-            ->get();
+
 
         return view('Dashboard.Coach_Dashboard.your_club_info', compact(
             'coach',
             'club',
             'tables',
             'count_p',
-            'upcomingMatches',
+
             'topGoalScorer',
             'topAssister',
             'topPlayer',
@@ -183,13 +180,7 @@ class Coach_Dashboard extends Controller
         return view('Dashboard.Coach_Dashboard.compartion', compact('player1', 'player2'));
     }
 
-    public function ajaxRequest(Request $request)
-    {
-        $player = Player::find($request->user_id);
-        $response = auth()->user()->toggleFollow($player);
 
-        return response()->json(['success' => $response]);
-    }
 
     public function createReport()
     {
@@ -222,5 +213,15 @@ class Coach_Dashboard extends Controller
         session()->flash('add');
 
         return redirect()->back();
+    }
+
+
+
+    public function ajaxRequest(Request $request)
+    {
+        $player = Player::find($request->user_id);
+        $response = auth()->user()->toggleFollow($player);
+
+        return response()->json(['success' => $response]);
     }
 }
