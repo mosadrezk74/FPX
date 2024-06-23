@@ -19,48 +19,33 @@ class CaochController extends Controller
 
     public function index()
     {
-        $coaches=Coach::with('club')->get();
-        $clubs=Club::all();
-        $countries=Country::all();
+        $coaches = Coach::with('club')->get();
+        $clubs = Club::all();
+        $countries = Country::all();
 
 
-        return view('Dashboard.Coach.index'
-        ,compact('coaches','clubs' , 'countries' ));
+        return view(
+            'Dashboard.Coach.index',
+            compact('coaches', 'clubs', 'countries')
+        );
     }
-
-
-
-    public function calendar(){
-        return view('Dashboard.Coach.calendar');
-    }
-
-
-
 
     public function store(Request $request)
     {
-        $coaches=new Coach();
-        $coaches->name_ar=$request->name_ar;
-        $coaches->name_en=$request->name_en;
+        $coaches = new Coach();
+        $coaches->name_ar = $request->name_ar;
+        $coaches->name_en = $request->name_en;
         $coaches->email = $request->email;
         $coaches->password = password_hash($request->password, PASSWORD_BCRYPT);
         $coaches->photo = $request->photo;
-        $coaches->nationality=$request->nationality;
-        $coaches->club_id=$request->club_id;
+        $coaches->nationality = $request->nationality;
+        $coaches->club_id = $request->club_id;
 
         $coaches->save();
-        session()->flash('add');
+        session()->flash('success', trans('index.added_successfully'));
         return redirect()->route('coach.index');
     }
 
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $coach = Coach::findOrFail($id);

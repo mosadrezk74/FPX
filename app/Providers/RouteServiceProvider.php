@@ -13,11 +13,9 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
     public const ADMIN = '/dashboard/admin';
     public const COACH = '/dashboard/coach';
-
-    public const CLUB = '/dashboard/club';
     public const PLAYER = '/dashboard/player';
+    
 
-    public const ANALYSIS = '/dashboard/analysis';
 
 
     public function boot(): void

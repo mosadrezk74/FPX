@@ -334,11 +334,13 @@ class ApiController extends Controller
     //-------------------------------------------------------------------------------------------------------------------
 
 
+    public function rank_api(Request $request)
+    {
 
-
-
-
-
-
-
+        $rank = Player::with(['stat', 'coach'])->find($request->id);
+        if (!$rank) {
+            return $this->returnError('001', 'مفيش لاعب مسجل بالرقم دا .. حاول تاني ');
+        }
+        return $this->returnData('rank_info', $rank, 'تم تحميل بيانات اللاعب بنجاح');
+    }
 }

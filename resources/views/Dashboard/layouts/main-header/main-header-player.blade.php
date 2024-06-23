@@ -98,9 +98,7 @@
                             @elseif(Auth('admin')->check())
                                 <form method="POST" action="{{ route('logout.admin') }}">
 
-                                    @elseif(Auth('club')->check())
-                                        <form method="POST" action="{{ route('logout.club') }}">
-
+                        
                                             @elseif(Auth('player')->check())
                                                 <form method="POST" action="{{ route('logout.player') }}">
 

@@ -11,29 +11,27 @@ use Symfony\Component\HttpFoundation\Response;
 class RedirectIfAuthenticated
 {
 
-    public function handle($request, Closure $next){
+    public function handle($request, Closure $next)
+    {
 
 
 
-        if (auth('web') ->check() ){
+        if (auth('web')->check()) {
             return redirect(RouteServiceProvider::HOME);
         }
 
-        if (auth('admin')->check()){
+        if (auth('admin')->check()) {
             return redirect(RouteServiceProvider::ADMIN);
         }
 
-        if (auth('player')->check()){
+        if (auth('player')->check()) {
             return redirect(RouteServiceProvider::PLAYER);
         }
 
-        if (auth('coach')->check()){
+        if (auth('coach')->check()) {
             return redirect(RouteServiceProvider::COACH);
         }
 
-        if (auth('club')->check()){
-            return redirect(RouteServiceProvider::CLUB);
-        }
 
         return $next($request);
     }

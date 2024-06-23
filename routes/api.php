@@ -77,5 +77,6 @@ Route::group(
         Route::post('/clubs/{id}', [ApiController::class, 'show_club']);
         Route::post('/coach/{id}', [ApiController::class, 'show_coach']);
         Route::post('/player/{id}', [ApiController::class, 'show_player']);
+        Route::post('/rank_api', [ApiController::class, 'rank_api']);
     }
 );

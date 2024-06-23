@@ -54,7 +54,7 @@
                 </li>
             </ul>
             <div class="nav nav-item  navbar-nav-right ml-auto">
- 
+
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     <a class="profile-user d-flex" href="#" data-toggle="dropdown" data-bs-dismiss="dropdown">
                         <img alt="" src="{{URL::asset('Dashboard/img/user.png')}}">
@@ -80,10 +80,6 @@
                             <form method="POST" action="{{ route('logout.user') }}">
                                 @elseif(Auth('admin')->check())
                                     <form method="POST" action="{{ route('logout.admin') }}">
-
-                                        @elseif(Auth('club')->check())
-                                            <form method="POST" action="{{ route('logout.club') }}">
-
                                                 @elseif(Auth('player')->check())
                                                     <form method="POST" action="{{ route('logout.player') }}">
 

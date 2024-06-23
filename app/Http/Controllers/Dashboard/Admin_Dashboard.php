@@ -17,7 +17,7 @@ class Admin_Dashboard extends Controller
 
     public function index()
     {
-        $tables=Standing::all()->take(12);
+        $tables = Standing::all()->take(12);
 
         $recentes = Player::latest()->take(15)->get();
 
@@ -34,9 +34,9 @@ class Admin_Dashboard extends Controller
             ->first();
 
 
-        $clubs=Club::all()->where('status',1);
-        $clubs_count=Club::all()->where('status',1)->count();
-        $coaches=Coach::all();
+        $clubs = Club::all()->where('status', 1);
+        $clubs_count = Club::all()->where('status', 1)->count();
+        $coaches = Coach::all();
         ############################################
         $topClubs = Standing::select('team_en', 'gf')
             ->orderByDesc('gf')
@@ -74,23 +74,25 @@ class Admin_Dashboard extends Controller
             ->take(6);
 
 
-        return view('Dashboard.Admin.dashboard'
-        , compact('tables' ,'topGoalScorer'
-             ,'topAssister'
-                 ,'recentes'
-                 ,'clubs'
-                 ,'coaches'
-                 ,'topClubs'
-             ,'count_users'
-             ,'clubs_count'
-             ,'topClubsInHistory'
-             ,'topAssisterLeg'
-             ,'topLegScorer'
-             ,'topAppearancesLeg'
+        return view(
+            'Dashboard.Admin.dashboard',
+            compact(
+                'tables',
+                'topGoalScorer',
+                'topAssister',
+                'recentes',
+                'clubs',
+                'coaches',
+                'topClubs',
+                'count_users',
+                'clubs_count',
+                'topClubsInHistory',
+                'topAssisterLeg',
+                'topLegScorer',
+                'topAppearancesLeg'
 
-             )
+            )
 
         );
     }
-
 }

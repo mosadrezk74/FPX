@@ -21,163 +21,145 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){
-Route::get('/register', [RegisteredUserController::class, 'create'])
-    ->middleware('guest')
-    ->name('register');
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ],
+    function () {
+        Route::get('/register', [RegisteredUserController::class, 'create'])
+            ->middleware('guest')
+            ->name('register');
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
-    ->middleware('guest');
-
-
-//################################## Route User ##############################################
-
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->middleware('guest')->name('login');
-
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('guest')->name('login.user');
-
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout.user');
-
-//################################## Route Admin ##############################################
-
-Route::get('/login/admin', [AdminController::class, 'create'])->middleware('guest')->name('login');
-
-Route::post('/login/admin', [AdminController::class, 'store'])->middleware('guest')->name('login.admin');
-
-Route::post('/logout/admin', [AdminController::class, 'destroy'])->middleware('auth:admin')->name('logout.admin');
+        Route::post('/register', [RegisteredUserController::class, 'store'])
+            ->middleware('guest');
 
 
-//#############################################################################################
+        //################################## Route User ##############################################
 
-//################################## Route Admin ##############################################
+        Route::get('/login', [AuthenticatedSessionController::class, 'create'])->middleware('guest')->name('login');
 
-Route::get('/login/admin', [AdminController::class, 'create'])
-    ->middleware('guest')
-    ->name('login.admin');
+        Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('guest')->name('login.user');
 
-Route::post('/login/admin', [AdminController::class, 'store'])
-    ->middleware('guest')
-    ->name('login.admin.post');
+        Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout.user');
 
-Route::post('/logout/admin', [AdminController::class, 'destroy'])
-    ->middleware('auth:admin')
-    ->name('logout.admin');
+        //################################## Route Admin ##############################################
 
-//#############################################################################################
+        Route::get('/login/admin', [AdminController::class, 'create'])->middleware('guest')->name('login');
 
-//################################## Route Club ##############################################
+        Route::post('/login/admin', [AdminController::class, 'store'])->middleware('guest')->name('login.admin');
 
-Route::get('/login/club', [ClubLoginController::class, 'create'])
-    ->middleware('guest')
-    ->name('login.club');
-
-Route::post('/login/club', [ClubLoginController::class, 'store'])
-    ->middleware('guest')
-    ->name('login.club.post');
-
-Route::post('/logout/club', [ClubLoginController::class, 'destroy'])
-    ->middleware('auth:club')
-    ->name('logout.club');
-
-//#############################################################################################
-
-//################################## Route Coach ##############################################
-
-Route::get('/login/coach', [CoachLoginController::class, 'create'])
-    ->middleware('guest')
-    ->name('login.coach');
-
-Route::post('/login/coach', [CoachLoginController::class, 'store'])
-    ->middleware('guest')
-    ->name('login.coach.post');
-
-Route::post('/logout/coach', [CoachLoginController::class, 'destroy'])
-    ->middleware('auth:coach')
-    ->name('logout.coach');
+        Route::post('/logout/admin', [AdminController::class, 'destroy'])->middleware('auth:admin')->name('logout.admin');
 
 
+        //#############################################################################################
 
+        //################################## Route Admin ##############################################
+
+        Route::get('/login/admin', [AdminController::class, 'create'])
+            ->middleware('guest')
+            ->name('login.admin');
+
+        Route::post('/login/admin', [AdminController::class, 'store'])
+            ->middleware('guest')
+            ->name('login.admin.post');
+
+        Route::post('/logout/admin', [AdminController::class, 'destroy'])
+            ->middleware('auth:admin')
+            ->name('logout.admin');
+
+        //#############################################################################################
+
+        //################################## Route Club ##############################################
+
+        Route::get('/login/club', [ClubLoginController::class, 'create'])
+            ->middleware('guest')
+            ->name('login.club');
+
+        Route::post('/login/club', [ClubLoginController::class, 'store'])
+            ->middleware('guest')
+            ->name('login.club.post');
+
+        Route::post('/logout/club', [ClubLoginController::class, 'destroy'])
+            ->middleware('auth:club')
+            ->name('logout.club');
+
+        //#############################################################################################
+
+        //################################## Route Coach ##############################################
+
+        Route::get('/login/coach', [CoachLoginController::class, 'create'])
+            ->middleware('guest')
+            ->name('login.coach');
+
+        Route::post('/login/coach', [CoachLoginController::class, 'store'])
+            ->middleware('guest')
+            ->name('login.coach.post');
+
+        Route::post('/logout/coach', [CoachLoginController::class, 'destroy'])
+            ->middleware('auth:coach')
+            ->name('logout.coach');
 
 
 
 
-//#############################################################################################
-
-//################################## Route Player ##############################################
-
-Route::get('/login/player', [PlayerLoginController::class, 'create'])
-    ->middleware('guest')
-    ->name('login.player');
-
-Route::post('/login/player', [PlayerLoginController::class, 'store'])
-    ->middleware('guest')
-    ->name('login.player.post');
-
-Route::post('/logout/player', [PlayerLoginController::class, 'destroy'])
-    ->middleware('auth:player')
-    ->name('logout.player');
-//#############################################################################################
-
-
-    //#############################################################################################
-
-//################################## Route Player ##############################################
-
-    Route::get('/login/analysis', [AnalysisLoginController::class, 'create'])
-        ->middleware('guest')
-        ->name('login.analysis');
-
-    Route::post('/login/analysis', [AnalysisLoginController::class, 'store'])
-        ->middleware('guest')
-        ->name('login.analysis.post');
-
-    Route::post('/logout/analysis', [AnalysisLoginController::class, 'destroy'])
-        ->middleware('auth:analysis')
-        ->name('logout.analysis');
-//#############################################################################################
 
 
 
+        //#############################################################################################
 
-    Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
-    ->middleware('guest')
-    ->name('password.request');
+        //################################## Route Player ##############################################
 
-Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-    ->middleware('guest')
-    ->name('password.email');
+        Route::get('/login/player', [PlayerLoginController::class, 'create'])
+            ->middleware('guest')
+            ->name('login.player');
 
-Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
-    ->middleware('guest')
-    ->name('password.reset');
+        Route::post('/login/player', [PlayerLoginController::class, 'store'])
+            ->middleware('guest')
+            ->name('login.player.post');
 
-Route::post('/reset-password', [NewPasswordController::class, 'store'])
-    ->middleware('guest')
-    ->name('password.update');
+        Route::post('/logout/player', [PlayerLoginController::class, 'destroy'])
+            ->middleware('auth:player')
+            ->name('logout.player');
+        //#############################################################################################
 
-Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
-    ->middleware('auth')
-    ->name('verification.notice');
 
-Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-    ->middleware(['auth', 'signed', 'throttle:6,1'])
-    ->name('verification.verify');
+        //#############################################################################################
 
-Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
+        Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+            ->middleware('guest')
+            ->name('password.request');
 
-Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
-    ->middleware('auth')
-    ->name('password.confirm');
+        Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+            ->middleware('guest')
+            ->name('password.email');
 
-Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
-    ->middleware('auth');
+        Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
+            ->middleware('guest')
+            ->name('password.reset');
 
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout.user');
+        Route::post('/reset-password', [NewPasswordController::class, 'store'])
+            ->middleware('guest')
+            ->name('password.update');
 
-});
+        Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
+            ->middleware('auth')
+            ->name('verification.notice');
 
+        Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+            ->middleware(['auth', 'signed', 'throttle:6,1'])
+            ->name('verification.verify');
+
+        Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+            ->middleware(['auth', 'throttle:6,1'])
+            ->name('verification.send');
+
+        Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
+            ->middleware('auth')
+            ->name('password.confirm');
+
+        Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
+            ->middleware('auth');
+
+        Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->middleware('auth')
+            ->name('logout.user');
+    }
+);

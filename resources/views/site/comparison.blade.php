@@ -6,11 +6,11 @@
     {{ trans('site/index.comparison') }}
 @endsection
 @section('contact')
-    <section class="players" id="players" style="border-radius: 10px;">
+    {{-- <section class="players" id="players" style="border-radius: 10px;">
         <div class="playerA">
             <h2 class="text-white">PLAYER A</h2>
             <br>
-            {{-- <input type="text" name id placeholder="{{ $player1->name_en }}" class="players_input"> --}}
+            <input type="text" name id placeholder="{{ $player1->name_en }}" class="players_input">
             <input list="player1List" id="player1" name="player1" placeholder="{{ $player1->name_en }}" autocomplete="none"
                 class="players_input">
             <datalist id="player2List">
@@ -51,7 +51,7 @@
                 @endforeach
             </datalist>
         </div>
-    </section>
+    </section> --}}
 
     <section class="sec2 ">
         <div class="container-fluid">
@@ -96,7 +96,7 @@
                                 @endif
 
                             </p>
-                            <p>{{ trans('site/index.age') }}: {{ $player1->stat->Age }}</p>
+                            <p>{{ trans('site/index.age') }}: {{ now()->diffInYears($player1->age) }}</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-5 lastDiv">
@@ -163,7 +163,7 @@
                         @else
                             {{ $player2->club->name_en }} </p>
                             @endif
-                            <p>{{ trans('site/index.age') }}: {{ $player2->stat->Age }}</p>
+                            <p>{{ trans('site/index.age') }}: {{ now()->diffInYears($player2->age) }}</p>
                         </div>
 
                         <div class="img-Cont">

@@ -44,10 +44,10 @@ class PlayerController extends Controller
                 'email' => 'required|email|unique:players,email',
                 'password' => 'required|string|min:6',
                 'photo' => 'required',
-                'age'=>'required',
-                'weight'=>'required',
-                'height'=>'required',
-                'shirt_number'=>'required',
+                'age' => 'required',
+                'weight' => 'required',
+                'height' => 'required',
+                'shirt_number' => 'required',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -93,11 +93,11 @@ class PlayerController extends Controller
     {
         $player = Player::findOrFail($id);
         \Log::info($player);
-        $player_stats=Statistics::all();
+        $player_stats = Statistics::all();
         $countries = Country::all();
         $clubs = Club::all();
 
-        return view('Dashboard.Players.edit', compact('player','player_stats','countries','clubs'));
+        return view('Dashboard.Players.edit', compact('player', 'player_stats', 'countries', 'clubs'));
     }
 
     /**
@@ -132,7 +132,7 @@ class PlayerController extends Controller
         session()->flash('update');
         if (App::getlocale() == 'ar') {
             return redirect()->back()->with('success', 'تم تحديث بياناتك بنجاح');
-        }else{
+        } else {
             return redirect()->back()->with('success', 'Your data has been updated successfully');
         }
     }

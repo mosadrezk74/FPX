@@ -13,13 +13,17 @@ class FrontContoller extends Controller
 {
     public function index()
     {
-        $clubs_count=Club::all()->where('status',1)->count();
-        $clubs=Club::all()->where('status',1);
-        $player_count=Player::all()->count();
+        $clubs_count = Club::all()->where('status', 1)->count();
+        $clubs = Club::all()->where('status', 1);
+        $player_count = Player::all()->count();
 
         ###########################################################
-        return view('site.index'
-        ,compact('clubs_count' , 'clubs' , 'player_count'
+        return view(
+            'site.index',
+            compact(
+                'clubs_count',
+                'clubs',
+                'player_count'
             )
         );
         ############################################################
@@ -37,7 +41,7 @@ class FrontContoller extends Controller
 
     public function contact_store(Request $request)
     {
-         $validatedData = $request->validate([
+        $validatedData = $request->validate([
             'f_name' => 'required|string',
             'l_name' => 'required|string',
             'number' => 'required|string',
@@ -72,7 +76,6 @@ class FrontContoller extends Controller
     {
 
         return view('site.compare');
-
     }
 
     public function comparison(Request $request)
@@ -97,29 +100,29 @@ class FrontContoller extends Controller
 
 
 
-#############################################################
+    #############################################################
 
     public function join()
     {
         return view('site.joinus');
     }
-public function join_store(Request $request)
-{
-    $js=new Join();
-    $js->name = $request->name;
-    $js->country = $request->country;
-    $js->phone = $request->phone;
-    $js->email=$request->email;
-    $js->descr=$request->descr;
-    session()->flash('success', trans('site/index.success'));
-    $js->save();
+    public function join_store(Request $request)
+    {
+        $js = new Join();
+        $js->name = $request->name;
+        $js->country = $request->country;
+        $js->phone = $request->phone;
+        $js->email = $request->email;
+        $js->descr = $request->descr;
+        session()->flash('success', trans('site/index.success'));
+        $js->save();
 
-    return redirect()->back();
-}
+        return redirect()->back();
+    }
 
 
- #############################################################
-#############################################################
+    #############################################################
+    #############################################################
     public function discover()
     {
         $players = Player::with(['club', 'stat'])
@@ -127,19 +130,19 @@ public function join_store(Request $request)
             ->inRandomOrder()
             ->take(10)
             ->get();
-        return view('site.discover' , compact('players') );
+        return view('site.discover', compact('players'));
     }
-#############################################################
+    #############################################################
     public function rating()
     {
         return view('site.rating');
     }
-#############################################################
+    #############################################################
     public function scouting()
     {
         return view('site.scouting');
     }
-#############################################################
+    #############################################################
     public function send()
     {
         return view('site.send');
@@ -158,22 +161,42 @@ public function join_store(Request $request)
         return redirect()->back();
     }
 
-#############################################################
+    #############################################################
     public function signup()
     {
         return view('site.signup');
     }
-#############################################################
+    #############################################################
     public function topRated()
     {
-        return view('site.topRated');
+        $players = Player::with('stat', 'club', 'country')->where('rate', 1)->get();
+        return view('site.topRated', compact('players'));
     }
-#############################################################
+    #############################################################
     public function clubs()
     {
-        $clubs=Club::all()->where('status',1);
-        return view('site.clubs' , compact('clubs') );
+        $clubs = Club::all()->where('status', 1);
+        return view('site.clubs', compact('clubs'));
     }
+    #############################################################
+    public function stats($name_en)
+    {
+        $player = Player::with('stat', 'club', 'country')->where('name_en', $name_en)->firstOrFail();
+        $player_count = Player::count();
 
+        $rankQuery = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.Goals')
+            ->select('players.id', 'stats.Goals');
 
+        $ranks = $rankQuery->pluck('Goals')->all();
+
+        $currentPlayerRank = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->select('players.id', 'stats.Goals')
+            ->where('players.id', $player->id)
+            ->first();
+
+        $rank = array_search($currentPlayerRank->Goals, $ranks) + 1;
+
+        return view('site.stats', compact('player', 'player_count', 'rank'));
+    }
 }

@@ -3,11 +3,11 @@
     <link rel="stylesheet" href="{{ asset('site/css/topRated.css') }}" />
 @endsection
 @section('title')
-    {{ trans('site/index.topRated') }}
+    {{ trans('site/index.players') }}
 @endsection
 @section('contact')
     <div class="head container">
-        <h1>{{ trans('site/index.topRated') }}</h1>
+        <h1>{{ trans('site/index.players') }}</h1>
     </div>
 
     <div class="container1 container table-responsive">
@@ -19,7 +19,6 @@
                     <th>{{ trans('site/index.club') }}</th>
                     <th>{{ trans('site/index.position') }}</th>
                     <th>{{ trans('site/index.age') }}</th>
-                    <th>{{ trans('site/index.rating') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,7 +53,7 @@
                         @endif
 
                         <td>{{ $player->stat->Age }}</td>
-                        <td>{{ intval($player->stat->PasMedCmp_per) }}</td>
+
                 </tr>
                 @endforeach
 

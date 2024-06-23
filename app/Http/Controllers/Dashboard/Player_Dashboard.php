@@ -20,7 +20,7 @@ class Player_Dashboard extends Controller
     public function index()
     {
         $player = auth()->guard('player')->user();
-        $clubDS=Club::all();
+        $clubDS = Club::all();
         $user = Auth::user();
         $club_id = $user->club_id;
         $player_id = $user->player_id;
@@ -29,7 +29,7 @@ class Player_Dashboard extends Controller
         $count_p = $club->count();
         $players = Player::with('club')->where('club_id', $club_id)->get();
 
-        $clubDS=Club::all();
+        $clubDS = Club::all();
 
 
         $topGoalScorer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
@@ -51,12 +51,12 @@ class Player_Dashboard extends Controller
             ->select('players.*', 'stats.SoT as SoT')
             ->first();
 
-            $rankQuery = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-                ->where('players.club_id', $club_id)
-                ->orderByDesc('stats.SoT')
-                ->select('stats.SoT');
-            $ranks = $rankQuery->pluck('SoT')->all();
-            $rank = array_search($currentPlayerRank->SoT, $ranks) + 1;
+        $rankQuery = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->where('players.club_id', $club_id)
+            ->orderByDesc('stats.SoT')
+            ->select('stats.SoT');
+        $ranks = $rankQuery->pluck('SoT')->all();
+        $rank = array_search($currentPlayerRank->SoT, $ranks) + 1;
 
 
 
@@ -65,11 +65,11 @@ class Player_Dashboard extends Controller
             ->select('players.*', 'stats.G_Sh as G_Sh')
             ->first();
 
-            $rankQuery_Leg = Player::join('stats', 'players.stat_id', '=', 'stats.id')
-                ->orderByDesc('stats.G_Sh')
-                ->select('stats.G_Sh');
-            $ranks_leg = $rankQuery_Leg->pluck('G_Sh')->all();
-            $rank_leg = array_search($currentPlayerRank_leg->G_Sh, $ranks_leg) + 1;
+        $rankQuery_Leg = Player::join('stats', 'players.stat_id', '=', 'stats.id')
+            ->orderByDesc('stats.G_Sh')
+            ->select('stats.G_Sh');
+        $ranks_leg = $rankQuery_Leg->pluck('G_Sh')->all();
+        $rank_leg = array_search($currentPlayerRank_leg->G_Sh, $ranks_leg) + 1;
 
 
 
@@ -102,7 +102,7 @@ class Player_Dashboard extends Controller
             ->select('players.*', 'stats.Goals as Goals')
             ->take(6)->get();
 
-        $topAssisterLeg =Player::join('stats', 'players.stat_id', '=', 'stats.id')
+        $topAssisterLeg = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->orderByDesc(DB::raw('stats.Assists * stats.MP'))
             ->select('players.*', 'stats.Assists as Assists', 'stats.MP as MP')
             ->take(6)->get();
@@ -115,17 +115,17 @@ class Player_Dashboard extends Controller
             'club_id',
             'clubs',
             'player_id',
-            'tables'
-            ,'clubDS'
-            ,'random_clubs'
-            ,'topLegScorer'
-            ,'topAssisterLeg'
-            ,'club'
-            ,'topGoalScorer'
-            ,'topAssister'
-            ,'rank'
-            ,'rank_leg'
-            ,'TopGoals'
+            'tables',
+            'clubDS',
+            'random_clubs',
+            'topLegScorer',
+            'topAssisterLeg',
+            'club',
+            'topGoalScorer',
+            'topAssister',
+            'rank',
+            'rank_leg',
+            'TopGoals'
         ));
     }
 
@@ -144,15 +144,18 @@ class Player_Dashboard extends Controller
             $formatted_date = $random_date->format('d-m');
             $random_dates[] = $formatted_date;
         }
-        return view('Dashboard.Player_Dashboard.stats',
-            compact('player', 'stats', 'club_id', 'player_id' ,'random_clubs' , 'random_dates' ));
+        return view(
+            'Dashboard.Player_Dashboard.stats',
+            compact('player', 'stats', 'club_id', 'player_id', 'random_clubs', 'random_dates')
+        );
     }
 
-    public function club_info(){
+    public function club_info()
+    {
         $player = auth()->guard('player')->user();
         $club = $player->club;
         $tables = Standing::where('club_id', $club->id)->get();
-        $clubs=Standing::where('club_id', $club->id)->get();
+        $clubs = Standing::where('club_id', $club->id)->get();
         $club_history = History::where('club_id', $club->id)->get();
         $player = auth()->guard('player')->user();
 
@@ -176,7 +179,7 @@ class Player_Dashboard extends Controller
 
         $topAssisters = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
-             ->limit(5)
+            ->limit(5)
             ->orderByDesc(DB::raw('stats.Assists * stats.MP'))
             ->select('players.*', 'stats.Assists as Assists', 'stats.MP as MP')
             ->get();
@@ -190,7 +193,7 @@ class Player_Dashboard extends Controller
 
             ->first();
 
-        $topPlayer= Player::join('stats', 'players.stat_id', '=', 'stats.id')
+        $topPlayer = Player::join('stats', 'players.stat_id', '=', 'stats.id')
             ->where('players.club_id', $clubId)
             ->orderByDesc('stats.MP')
             ->inRandomOrder()
@@ -209,16 +212,26 @@ class Player_Dashboard extends Controller
 
 
 
-        return view('Dashboard.Player_Dashboard.your_club_info'
-            ,compact('player',  'club',  'tables' , 'club_st','count_p'
-                ,'upcomingMatches'
-                ,'topGoalScorer', 'topAssister', 'topPlayer' , 'club_history'
-                ,'topGoalScorers'
-                ,'topAssisters'
-                ,'clubs'
+        return view(
+            'Dashboard.Player_Dashboard.your_club_info',
+            compact(
+                'player',
+                'club',
+                'tables',
+                'club_st',
+                'count_p',
+                'upcomingMatches',
+                'topGoalScorer',
+                'topAssister',
+                'topPlayer',
+                'club_history',
+                'topGoalScorers',
+                'topAssisters',
+                'clubs'
 
 
-            ));
+            )
+        );
     }
 
     public function epl_stats(Request $request)
@@ -227,10 +240,11 @@ class Player_Dashboard extends Controller
         $clubId = $player->club_id;
 
         $players = Player::where('club_id', '!=', $clubId)->get();
-        $clubs=Club::all();
+        $clubs = Club::all();
 
-        return view('Dashboard.Player_Dashboard.epl_stats', compact('players'
-            ,'clubs'
+        return view('Dashboard.Player_Dashboard.epl_stats', compact(
+            'players',
+            'clubs'
 
         ));
     }
@@ -263,7 +277,7 @@ class Player_Dashboard extends Controller
         $club_id = $player->club_id;
         $player_id = $player->id;
         $random_clubs = Club::all()->random(15);
-        $clubs=Club::all()->random(1);
+        $clubs = Club::all()->random(1);
         $authPlayer = Auth::guard('player')->user();
 
 
@@ -347,17 +361,17 @@ class Player_Dashboard extends Controller
 
 
 
-        return view('Dashboard.Player_Dashboard.rating' ,compact(
-            'random_clubs' ,
+        return view('Dashboard.Player_Dashboard.rating', compact(
+            'random_clubs',
             'player',
-            'club_id' ,
-            'player_id' ,
-            'clubs'
-            ,'rank'
-            ,'rankPass'
-            ,'rankShoot'
-            ,'TopGoals'
-            ,'TopAssists'
+            'club_id',
+            'player_id',
+            'clubs',
+            'rank',
+            'rankPass',
+            'rankShoot',
+            'TopGoals',
+            'TopAssists'
         ));
     }
     public function task()
@@ -372,11 +386,12 @@ class Player_Dashboard extends Controller
 
 
 
-        return view('Dashboard.Player_Dashboard.task' , compact('tasks' , 'player'  ));
+        return view('Dashboard.Player_Dashboard.task', compact('tasks', 'player'));
     }
 
 
-    public function compare(){
+    public function compare()
+    {
 
         return view('Dashboard.Player_Dashboard.compare');
     }
@@ -413,22 +428,9 @@ class Player_Dashboard extends Controller
         $clubs = Club::all();
         $random_clubs = Club::all()->random(5);
 
-        return view('Dashboard.Player_Dashboard.player_stats',
-            compact('player', 'players', 'clubs', 'club_id', 'random_clubs'));
+        return view(
+            'Dashboard.Player_Dashboard.player_stats',
+            compact('player', 'players', 'clubs', 'club_id', 'random_clubs')
+        );
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

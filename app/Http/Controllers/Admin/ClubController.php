@@ -18,8 +18,11 @@ class ClubController extends Controller
     {
         $clubs = Club::all();
 
-        return view('Dashboard.Clubs.index' , compact('clubs' ) );
+        return view('Dashboard.Clubs.index', compact('clubs'));
     }
+
+
+    
     public function toggleStatus($status, $id)
     {
         $club = Club::find($id);
@@ -33,15 +36,14 @@ class ClubController extends Controller
 
     public function store(Request $request)
     {
-        $clubs=new Club();
-        $clubs->select_name=$request->select_name;
-        $clubs->status=$request->status;
+        $clubs = new Club();
+        $clubs->select_name = $request->select_name;
+        $clubs->status = $request->status;
         $clubs->email = $request->email;
         $clubs->password = password_hash($request->password, PASSWORD_BCRYPT);
         $clubs->save();
-        session()->flash('add');
+        session()->flash('success', trans('index.added_successfully'));
         return redirect()->route('club.index');
-
     }
 
     public function show($clubId)
@@ -51,27 +53,12 @@ class ClubController extends Controller
         $count_players = $players->count();
 
         return view('Dashboard.Clubs.show', compact('club', 'players', 'count_players'));
-
-
     }
-
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
 
     function destroy($club)
     {
         $to_delete = Club::findorfail($club);
-        $to_delete ->delete();
-        return redirect() -> route('club.index');
+        $to_delete->delete();
+        return redirect()->route('club.index');
     }
 }
