@@ -201,11 +201,6 @@ class Player_Dashboard extends Controller
             ->first();
 
 
-        $upcomingMatches = DB::table('fixtures')
-            ->where('date', '>=', now())
-            ->orderBy('date', 'asc')
-            ->get();
-
 
 
 
@@ -220,7 +215,6 @@ class Player_Dashboard extends Controller
                 'tables',
                 'club_st',
                 'count_p',
-                'upcomingMatches',
                 'topGoalScorer',
                 'topAssister',
                 'topPlayer',

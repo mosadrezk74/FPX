@@ -182,7 +182,7 @@ return [
     'Subscription' => 'Subscription',
     'added_successfully' => 'Added Successfully',
 'online_users'=>'Connect with coach',
-
+'ex_rating'=>'Expected Rating',
 
 
 

@@ -10,6 +10,7 @@
     @endif
 @endsection
 @section('contact')
+
     <section class="kylian">
         <div class="container">
             <div class="data">
@@ -70,9 +71,11 @@
                     <p>{{ trans('stat.height') }}: <big>{{ $player->height }}cm</big></p>
                     <p>{{ trans('stat.weight') }}: <big>{{ $player->weight }}kg</big></p>
                 </div>
+
             </div>
         </div>
     </section>
+
 
     <div class="tabs container p-0">
         <button class="tablinks" onclick="openTab(event, 'tab1')">{{ trans('stat.general') }}</button>
@@ -125,46 +128,47 @@
                     <!--heatmap-->
                 </div>
             </div>
-            <div class="col-12 col-xl-6">
-                <div class="strengths">
-                    <div class="content">
-                        <div class="outstanding">
-                            <h3 style="color: rgba(98, 182, 44, 1)">{{ trans('stat.strengths') }}</h3>
-                            @if ($player->position == 0)
-                                <h3>{{ trans('stat.GK_diving') }}</h3>
-                                <h3>{{ trans('stat.GK_reflexes') }}</h3>
-                                <h3>{{ trans('stat.GK_positioning') }}</h3>
-                            @elseif ($player->position == 1)
-                                <h3>{{ trans('stat.Agility') }}</h3>
-                                <h3>{{ trans('stat.Balance') }}</h3>
-                                <h3>{{ trans('stat.Physical_capacity') }}</h3>
-                                <h3>{{ trans('stat.Sprint_speed') }}</h3>
-                            @elseif ($player->position == 2)
-                                <h3>{{ trans('stat.Short_passing') }}</h3>
-                                <h3>{{ trans('stat.Long_shots') }}</h3>
-                                <h3>{{ trans('stat.Ball_control') }}</h3>
-                                <h3>{{ trans('stat.Dribbles') }}</h3>
-                                <h3>{{ trans('stat.FK_accuracy') }}</h3>
-                            @elseif ($player->position == 3)
-                                <h3>{{ trans('stat.Long_shots') }}</h3>
-                                <h3>{{ trans('stat.Sprint_speed') }}</h3>
-                                <h3>{{ trans('stat.Finishing') }}</h3>
-                                <h3>{{ trans('stat.Heading_accuracy') }}</h3>
-                            @endif
-                            <h3 style="color: red">{{ trans('stat.weaknesses') }}</h3>
-                            <h3 style="margin-top: 20px; font-size: 22px">
-                                {{ trans('stat.no_outstanding_weaknesses') }}
-                            </h3>
-                        </div>
-                        <!--outstanding-->
+            @if (Auth::guard('admin')->check())
+                <div class="col-12 col-xl-6">
+                    <div class="strengths">
+                        <div class="content">
+                            <div class="outstanding">
+                                <h3 style="color: rgba(98, 182, 44, 1)">{{ trans('stat.strengths') }}</h3>
+                                @if ($player->position == 0)
+                                    <h3>{{ trans('stat.GK_diving') }}</h3>
+                                    <h3>{{ trans('stat.GK_reflexes') }}</h3>
+                                    <h3>{{ trans('stat.GK_positioning') }}</h3>
+                                @elseif ($player->position == 1)
+                                    <h3>{{ trans('stat.Agility') }}</h3>
+                                    <h3>{{ trans('stat.Balance') }}</h3>
+                                    <h3>{{ trans('stat.Physical_capacity') }}</h3>
+                                    <h3>{{ trans('stat.Sprint_speed') }}</h3>
+                                @elseif ($player->position == 2)
+                                    <h3>{{ trans('stat.Short_passing') }}</h3>
+                                    <h3>{{ trans('stat.Long_shots') }}</h3>
+                                    <h3>{{ trans('stat.Ball_control') }}</h3>
+                                    <h3>{{ trans('stat.Dribbles') }}</h3>
+                                    <h3>{{ trans('stat.FK_accuracy') }}</h3>
+                                @elseif ($player->position == 3)
+                                    <h3>{{ trans('stat.Long_shots') }}</h3>
+                                    <h3>{{ trans('stat.Sprint_speed') }}</h3>
+                                    <h3>{{ trans('stat.Finishing') }}</h3>
+                                    <h3>{{ trans('stat.Heading_accuracy') }}</h3>
+                                @endif
+                                <h3 style="color: red">{{ trans('stat.weaknesses') }}</h3>
+                                <h3 style="margin-top: 20px; font-size: 22px">
+                                    {{ trans('stat.no_outstanding_weaknesses') }}
+                                </h3>
+                            </div>
+                            <!--outstanding-->
 
-                        <div class="images">
-                            <img src="{{ asset('site/images/stats/b74ec1e39b010929a816cf1ef3994f78 1.png') }}" />
+                            <div class="images">
+                                <img src="{{ asset('site/images/stats/b74ec1e39b010929a816cf1ef3994f78 1.png') }}" />
+                            </div>
+                            <!--images-->
                         </div>
-                        <!--images-->
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 
@@ -197,7 +201,6 @@
                     <td>{{ $player->stat->Goals * 0.5 }}</td>
                     <td>{{ ($player->stat->Goals * 0.5) / 100 }}</td>
                     <td>{{ rand(60, 90) }}%</td>
-
                 </tr>
                 <tr>
                     <th scope="row">{{ trans('stat.goals_at_away') }}</th>
@@ -524,9 +527,7 @@
                     <td>{{ rand(60, 90) }}%</td>
 
                 </tr>
-
-
-
+                @endif
 
             </tbody>
         </table>

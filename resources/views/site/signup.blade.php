@@ -19,7 +19,6 @@
 
   <div class="main">
       <input type="checkbox" id="chk" aria-hidden="true">
-
       <div class="signup" >
           <form method="post" action="{{route('register')}}" >
               @csrf
@@ -32,7 +31,6 @@
               <button type="submit">Sign up</button>
           </form>
       </div>
-
       <div class="login">
           <form method="POST" action="{{ route('login.user') }}">
               @csrf

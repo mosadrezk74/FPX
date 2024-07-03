@@ -190,18 +190,13 @@
                             style="background: #2a2a2a">
                             <li>
                                 @if (Auth::check())
-                                    <a class="dropdown-item" href="{{ route('player') }}">
-                                        <img src="{{ asset('site/images/pro.png') }}"
-                                            style="width: 20px; height: 20px" alt="dd">
-                                        {{ trans('site/index.profile') }}
-                                    </a>
+
                                     @if (Auth('web')->check())
                                         <form method="POST" style="background-color: transparent"
                                             action="{{ route('logout.user') }}">
                                             @csrf
-                                            <a class="dropdown-item"
+                                            <a class="dropdown-item" href="#"
                                                 onclick="event.preventDefault(); this.closest('form').submit();">
-
                                                 {{ trans('site/index.log') }}
                                             </a>
                                         </form>
@@ -210,10 +205,9 @@
                                     <a class="dropdown-item"
                                         href="{{ route('login') }}">{{ trans('site/index.login') }}</a>
                                 @endif
-
                             </li>
-
                         </ul>
+
                     </div>
                 </li>
 

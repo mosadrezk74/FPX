@@ -197,7 +197,9 @@ return [
 
     'coach' => 'المدرب',
     'Subscription' => 'الاشتراك',
-    'online_users'=>' تواصل مع مدربك ',
+    'online_users' => ' تواصل مع مدربك ',
+    'ex_rating' => 'التقييم المتوقع',
+
 
 
 
