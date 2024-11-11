@@ -1,3 +1,6 @@
+<h1>Download Database</h1>
+<a href="https://www.file.io/i8Go/download/AKkcE2HC2cuN" target="_blank">Tazkarti_db</a>
+<hr>
 <h1>Project Endpoints</h1>
 <img src="https://github.com/user-attachments/assets/943c2f98-8f5e-4ccf-b337-b5e0112ff463" alt="Screenshot (164)">
 <img src="https://github.com/user-attachments/assets/892b796e-9030-4b47-bcca-7a97156319c8" alt="Screenshot (165)">
